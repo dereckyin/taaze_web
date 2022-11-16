@@ -697,7 +697,7 @@ jQuery.browser = {};
 		},
 		"author": {
 			"@type": "Person",
-			"name": "((sing.author!=null && sing.author.trim().length()>0)?(sing.author.length()>30?sing.author.substring(0,30):sing.author):"無")"
+			"name": "((sing.author!=null && sing.author.trim().length()>0)?(sing.author.length()>30?sing.author.substring(0,30):sing.author):無)"
 		}
 	},
 	"aggregateRating": {
@@ -710,7 +710,7 @@ jQuery.browser = {};
 		"lowPrice": "String.valueOf(sing.lowest_price)",
 		"highPrice": "sing.listPrice",
 		"priceCurrency": "TWD",
-		"offerCount": "<% if(sing.total_saler<=0){out.print("1");}else{out.print(sing.total_saler);}"
+		"offerCount": "if(sing.total_saler<=0){out.print("1");}else{out.print(sing.total_saler);}"
 	}
 }
 </script>
@@ -742,7 +742,7 @@ jQuery.browser = {};
 		},
 		"author": {
 			"@type": "Person",
-			"name": "((sing.author!=null && sing.author.trim().length()>0)?(sing.author.length()>30?sing.author.substring(0,30):sing.author):"無")"
+			"name": "((sing.author!=null && sing.author.trim().length()>0)?(sing.author.length()>30?sing.author.substring(0,30):sing.author):無)"
 		}
 	},
 	"aggregateRating": {
@@ -755,7 +755,7 @@ jQuery.browser = {};
 		"lowPrice": "String.valueOf(sing.lowest_price)",
 		"highPrice": "sing.listPrice",
 		"priceCurrency": "TWD",
-		"offerCount": "<% if(sing.total_saler<=0){out.print("1");}else{out.print(sing.total_saler);}"
+		"offerCount": "if(sing.total_saler<=0){out.print("1");}else{out.print(sing.total_saler);}"
 	}
 }
 </script>
