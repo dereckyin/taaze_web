@@ -24,12 +24,12 @@ JSONArray items = new JSONArray();
 try {
 	String s = SystemUtil.getEcJsonStrFromCacheByActionUrl("api/getWebEcSingleSameCatSaleDatas.html?p=" + pid);
 	items = JSONArray.fromObject(s);
-	out.print(s);
+	//out.print(s);
 } catch (Exception e) {
-	out.print("pid:"+pid+",error:"+e.getMessage());
+	//out.print("pid:"+pid+",error:"+e.getMessage());
 	items = null;
 }
-out.print("ss");
+//out.print("ss");
 Connection cn = null;
 ResultSet rs = null;
 PreparedStatement pstmt = null;
@@ -43,13 +43,13 @@ try {
 	pstmt = cn.prepareStatement(query);
 	pstmt.setString(1, "11100977212");
 	rs = pstmt.executeQuery();                                                                                      if (rs.next()) {
-		out.print(rs.getString("titleMain"));                                                                                                                                                                                             }
+		//out.print(rs.getString("titleMain"));                                                                                                                                                                                             }
 		rs.close();
 		pstmt.close();
 		cn.close();
 	} catch (Exception e) {
 		
-		out.println(e.getMessage());
+		//out.println(e.getMessage());
 	} finally {
 		try {
 		
@@ -64,7 +64,7 @@ try {
 			
 		} catch (Exception ex) {
 			
-			out.print(ex.getMessage());
+			//out.print(ex.getMessage());
 			
 		}
 		
