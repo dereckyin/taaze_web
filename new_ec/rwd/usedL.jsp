@@ -30,13 +30,13 @@ SingleUsedLibs sing = null;
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //log.info(request.getRemoteAddr());
 if (pid.length() == 11) {
-	sing = new SingleUsedLibs(request, pid);
+	sing = new SingleUsedLibs(this.getServletConfig(), pid);
 } else {
 	sing = new SingleUsedLibs();
 }
 if (!sing.initState) {
 	//response.sendRedirect(sing.getWebUrl(request));
-	out.print(sing.initState);
+	out.print(sing.msgText);
 	return;
 }
 boolean logined = LoginUtil.isLoginCustomer(request);
