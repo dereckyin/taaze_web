@@ -65,7 +65,7 @@ PreparedStatement pstmt = null;
 			
 		} catch (Exception ex) {
 			
-			//out.print(ex.getMessage());
+			out.print(ex.getMessage());
 			
 		}
 		
@@ -632,7 +632,7 @@ max-height: 250px;
 .note {
 font-size: 9pt;
 }
-}
+
 </style>
 	</head>
 
