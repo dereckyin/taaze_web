@@ -19,13 +19,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ include file="include/jsp/SingleUsedLibs.jsp" %>
+<%@ include file="../single/include/jsp/SingleUsedLibs.jsp" %>
 <%
 Log log = LogFactory.getLog(this.getClass());
 SystemDAO systemDao = (SystemDAO) SpringUtil.getSpringBeanById(this, "SystemDAO");
 boolean openNewCollectFriendsFlg = SystemUtil.openWecollectfunFlg || SystemUtil.isHomeIP(request);
 CustQingdanService custQingdanService = (CustQingdanService) SpringUtil.getSpringBeanById(this, "CustQingdanService");
-String pid = request.getParameter("oid") != null ? CookieSecure.HTMLEncode(request.getParameter("oid").toString()) : "";
+String pid = "11313988706";
 SingleUsedLibs sing = null;
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //log.info(request.getRemoteAddr());
