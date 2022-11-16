@@ -35,7 +35,8 @@ if (pid.length() == 11) {
 	sing = new SingleUsedLibs();
 }
 if (!sing.initState) {
-	response.sendRedirect(sing.getWebUrl(request));
+	//response.sendRedirect(sing.getWebUrl(request));
+	out.print(sing.initState);
 	return;
 }
 boolean logined = LoginUtil.isLoginCustomer(request);
