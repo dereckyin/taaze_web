@@ -30,7 +30,7 @@ SingleUsedLibs sing = null;
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //log.info(request.getRemoteAddr());
 if (pid.length() == 11) {
-	sing = new SingleUsedLibs(this, pid);
+	sing = new SingleUsedLibs(request, pid);
 } else {
 	sing = new SingleUsedLibs();
 }
