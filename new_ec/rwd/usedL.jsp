@@ -22,15 +22,15 @@ pageEncoding="UTF-8" %>
 <%@ include file="../single/include/jsp/SingleUsedLibs.jsp" %>
 <%
 Log log = LogFactory.getLog(this.getClass());
-SystemDAO systemDao = (SystemDAO) SpringUtil.getSpringBeanById(this, "SystemDAO");
+SystemDAO systemDao = (SystemDAO) SpringUtil.getSpringBeanById(this.getServletConfig(), "SystemDAO");
 boolean openNewCollectFriendsFlg = SystemUtil.openWecollectfunFlg || SystemUtil.isHomeIP(request);
-CustQingdanService custQingdanService = (CustQingdanService) SpringUtil.getSpringBeanById(this, "CustQingdanService");
+CustQingdanService custQingdanService = (CustQingdanService) SpringUtil.getSpringBeanById(this.getServletConfig(), "CustQingdanService");
 String pid = "11313988706";
 SingleUsedLibs sing = null;
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //log.info(request.getRemoteAddr());
 if (pid.length() == 11) {
-	sing = new SingleUsedLibs(this, pid);
+	sing = new SingleUsedLibs(this.getServletConfig(), pid);
 } else {
 	sing = new SingleUsedLibs();
 }
