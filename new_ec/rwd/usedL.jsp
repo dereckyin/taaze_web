@@ -52,7 +52,7 @@ try {
 		out.println(e.getMessage());
 	} finally {
 		try {
-			out.println("over");
+		
 			if (pstmt != null && !pstmt.isClosed()) {
 				pstmt.close();
 			}
@@ -70,6 +70,50 @@ try {
 		
 	}
 	
+	String fbTitle = "讀冊【二手徵求好處多】|二手書交易資訊- TAAZE 讀冊生活";
+	String fbDes = "【二手徵求好處多】|";
 	%>
 	
-	Hello github
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="robots" content="index, follow"/>
+	<meta name="keywords" content="<%=fbTitle %>"/>
+	<meta name="title" content="<%=fbTitle %>"/>
+	<meta name="description" content="<%=fbDes%>"/>
+	<meta property="fb:app_id" content="362610148222713"/>
+	<meta name="og:site_name" content="TAAZE 讀冊生活">
+	<meta property="og:title" content="<%=fbTitle %>"/>
+	<meta property="og:description" content="<%=fbDes%>"/>
+	<meta property="og:image" content="<%=fbImage %>"/>
+	<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<meta name="viewport" content="width=1200, initial-scale=1, user-scalable=yes">
+	</c:when>
+	<c:otherwise>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	</c:otherwise>
+	</c:choose>
+	<title><%=fbTitle %></title>
+	<%@ include file="/new_ec/rwd/include/jsp/include_goods.jsp" %>
+	<%@ include file="/new_ec/gift/include/css_include.jsp" %>
+	<%@ include file="/new_ec/rwd/include/js.jsp" %>
+	<%@ include file="/new_ec/rwd/include/css.jsp" %>
+	<link href="<%=EcPathSetting.WEB_JS_PATH%>/tipsy.css" rel="stylesheet" type="text/css"/>
+	<link href="/new_ec/single/include/js/rateit.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="/include2/css/alertify.core.css"/>
+	<link rel="stylesheet" type="text/css" href="/include2/css/alertify.default.css"/>
+	<link rel="stylesheet" type="text/css" href="/include2/css/jquery.jgrowl.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/include2/tooltipster/css/tooltipster.bundle.min.css"/>
+	<link rel="stylesheet" type="text/css"
+	href="/include2/tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/include2/css/swiper.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/include2/colorbox/colorbox.css"/>
+	<link rel="canonical" href="https://www.taaze.tw/usedList.html?oid=11100977212"/>
+	</head>
+
+	<body>
+	</body>
+	</html>
