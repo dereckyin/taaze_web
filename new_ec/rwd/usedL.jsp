@@ -29,7 +29,7 @@ try {
 	//out.print("pid:"+pid+",error:"+e.getMessage());
 	items = null;
 }
-// out.print("ss");
+//out.print("ss");
 Connection cn = null;
 ResultSet rs = null;
 PreparedStatement pstmt = null;
@@ -100,12 +100,12 @@ String fbImage = "https://media.taaze.tw/showProdImage.html?sc=11100969668&width
 </c:otherwise>
 </c:choose>
 <title><%=fbTitle %></title>
-<%@ include file="/include/jsp/include_goods.jsp" %>
-<%@ include file="/gift/include/css_include.jsp" %>
-<%@ include file="/include/js.jsp" %>
-<%@ include file="/include/css.jsp" %>
+<%@ include file="./include/jsp/include_goods.jsp" %>
+<%@ include file="../gift/include/css_include.jsp" %>
+<%@ include file="./include/js.jsp" %>
+<%@ include file="./include/css.jsp" %>
 <link href="<%=EcPathSetting.WEB_JS_PATH%>/tipsy.css" rel="stylesheet" type="text/css"/>
-<link href="/single/include/js/rateit.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="../single/include/js/rateit.css" media="screen, projection" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="/include2/css/alertify.core.css"/>
 <link rel="stylesheet" type="text/css" href="/include2/css/alertify.default.css"/>
 <link rel="stylesheet" type="text/css" href="/include2/css/jquery.jgrowl.min.css"/>
@@ -167,7 +167,7 @@ a, a:hover {
 	font-size: 11pt;
 }
 .btn_sale, .btn_cancel_wnt, .btn_sale_verify {
-	background: url('/single/include/images/btn_act.png') no-repeat;
+	background: url('../single/include/images/btn_act.png') no-repeat;
 	width: 71px;
 	height: 39px;
 	cursor: pointer;
@@ -177,7 +177,7 @@ a, a:hover {
 	margin: 0px auto;
 }
 .btn_buy {
-	background: url('/single/include/images/btn_more.png') no-repeat;
+	background: url('../single/include/images/btn_more.png') no-repeat;
 	width: 102px;
 	height: 40px;
 	font-size: 11pt;
@@ -187,11 +187,11 @@ a, a:hover {
 	cursor: pointer;
 }
 .btn_buy:hover {
-	background: url('/single/include/images/btn_more_hover.png') no-repeat;
+	background: url('../single/include/images/btn_more_hover.png') no-repeat;
 	color: #ffffff;
 }
 .btn_no_sale {
-	background: url('/single/include/images/btn_more.png') no-repeat;
+	background: url('../single/include/images/btn_more.png') no-repeat;
 	width: 102px;
 	height: 40px;
 	font-size: 10pt;
@@ -205,7 +205,7 @@ a, a:hover {
 	font-size: 10pt;
 }
 .btn_sale:hover, .btn_cancel_wnt:hover, .btn_sale_verify:hover {
-	background: url('/single/include/images/btn_act_hover.png') no-repeat;
+	background: url('../single/include/images/btn_act_hover.png') no-repeat;
 	color: #ffffff;
 }
 .sprod_sale_text, .sprod_want_text {
@@ -218,15 +218,15 @@ a, a:hover {
 	height: 54px;
 }
 .version_left {
-	background: url('/single/include/images/version_bk_left.png') no-repeat;
+	background: url('../single/include/images/version_bk_left.png') no-repeat;
 }
 .version_right {
-	background: url('/single/include/images/version_bk_right.png') no-repeat;
+	background: url('../single/include/images/version_bk_right.png') no-repeat;
 }
 .version_middle {
 	float: left;
 	height: 54px;
-	background: url('/single/include/images/version_bk_middle.png') 0px -1px repeat-x;
+	background: url('../single/include/images/version_bk_middle.png') 0px -1px repeat-x;
 	padding: 5px 10px 0 10px;
 	font-size: 10pt;
 }
@@ -244,44 +244,44 @@ ul#prodInfo3 li {
 	font-weight: bold;
 }
 .commentLink {
-	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>/single/include/images/cmt_bg1.png') 5px 2px no-repeat;
+	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>../single/include/images/cmt_bg1.png') 5px 2px no-repeat;
 }
 .commentLink:hover {
 	color: #e3007f;
-	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>/single/include/images/cmt_bg2.png') 5px 2px no-repeat;
+	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>../single/include/images/cmt_bg2.png') 5px 2px no-repeat;
 }
 .collectLink {
-	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>/single/include/images/clt_bg1.png') 2px 4px no-repeat;
+	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>../single/include/images/clt_bg1.png') 2px 4px no-repeat;
 }
 .collectLink:hover {
 	color: #e3007f;
-	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>/single/include/images/clt_bg2.png') 2px 4px no-repeat;
+	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>../single/include/images/clt_bg2.png') 2px 4px no-repeat;
 }
 .collectLink2, .collectLink2:hover {
 	color: #e3007f;
-	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>/single/include/images/clt_bg2.png') 2px 4px no-repeat;
+	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>../single/include/images/clt_bg2.png') 2px 4px no-repeat;
 }
 .wantSndLink {
-	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>/single/include/images/wnd_bg1.png') 0px 3px no-repeat;
+	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>../single/include/images/wnd_bg1.png') 0px 3px no-repeat;
 }
 .wantSndLink:hover {
 	color: #e3007f;
 	text-decoration: none;
-	background: url('/single/include/images/wnd_bg2.png') 0px 3px no-repeat;
+	background: url('../single/include/images/wnd_bg2.png') 0px 3px no-repeat;
 }
 .previewLink {
-	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>/single/include/images/pv_bg1.png') 2px no-repeat;
+	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>../single/include/images/pv_bg1.png') 2px no-repeat;
 }
 .previewLink:hover {
 	color: #e3007f;
-	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>/single/include/images/pv_bg2.png') 2px no-repeat;
+	background: url('<s:property value="#attr.INIT_SERVER_MAP.web_url"/>../single/include/images/pv_bg2.png') 2px no-repeat;
 }
 .shareLink {
-	background: url('/single/include/images/share_bg1.png') 2px no-repeat;
+	background: url('../single/include/images/share_bg1.png') 2px no-repeat;
 }
 .shareLink:hover {
 	color: #e3007f;
-	background: url('/single/include/images/share_bg2.png') 2px no-repeat;
+	background: url('../single/include/images/share_bg2.png') 2px no-repeat;
 }
 .table td {
 	border: 1px solid #d9d9d9;
@@ -301,7 +301,7 @@ ul#prodInfo3 li {
 	padding: 1px 15px 0 22px;
 	cursor: pointer;
 	color: #e3007f;
-	background: url('/single/include/images/wnd_bg2.png') 0px 3px no-repeat;
+	background: url('../single/include/images/wnd_bg2.png') 0px 3px no-repeat;
 	font-size: 11pt;
 	text-decoration: none;
 	font-weight: bold;
@@ -380,11 +380,11 @@ table.sale_range td.column_left, table.want_range td.column_left {
 	height: 40px;
 	padding: 10px 0px 0px 32px;
 	font-size: 10pt;
-	background: url('/single/include/images/btn_add_cart.png') no-repeat;
+	background: url('../single/include/images/btn_add_cart.png') no-repeat;
 }
 .btn_add_cart:hover {
 	color: #ffffff;
-	background: url('/single/include/images/btn_add_cart_hover.png') no-repeat;
+	background: url('../single/include/images/btn_add_cart_hover.png') no-repeat;
 }
 .btn_add_cart_m {
 	margin: 0px auto;
@@ -392,12 +392,12 @@ table.sale_range td.column_left, table.want_range td.column_left {
 	width: 30px;
 	height: 30px;
 	padding: 0px;
-	background: url('/single/include/images/ic_index_3@2x.png') no-repeat;
+	background: url('../single/include/images/ic_index_3@2x.png') no-repeat;
 	background-size: contain;
 }
 .btn_add_cart_m:hover {
 	color: #ffffff;
-	background: url('/single/include/images/ic_index_7@2x.png') no-repeat;
+	background: url('../single/include/images/ic_index_7@2x.png') no-repeat;
 	background-size: contain;
 }
 .more_btn {
@@ -406,11 +406,11 @@ table.sale_range td.column_left, table.want_range td.column_left {
 	padding: 8px 15px;
 	width: 102px;
 	height: 40px;
-	background: url('/single/include/images/btn_more.png') no-repeat;
+	background: url('../single/include/images/btn_more.png') no-repeat;
 }
 .more_btn:hover {
 	color: #ffffff;
-	background: url('/single/include/images/btn_more_hover.png') no-repeat;
+	background: url('../single/include/images/btn_more_hover.png') no-repeat;
 }
 .modal-header, .modal-footer {
 	border: 0px;
@@ -439,7 +439,7 @@ button.check {
 	height: 31px;
 	border: none;
 	background-color: #ffffff;
-	background-image: url('/include/images/C_image/btn/btn_12@2x.png');
+	background-image: url('../rwd/include/images/C_image/btn/btn_12@2x.png');
 	background-size: cover;
 	display: inline-block;
 	cursor: pointer;
@@ -501,7 +501,7 @@ button.check {
 	color: #e3007f;
 }
 .vod_btn {
-	background: url('/single/include/images/vod_btn.png ') no-repeat;
+	background: url('../single/include/images/vod_btn.png ') no-repeat;
 	padding-left: 25px;
 	padding-right: 25px;
 	cursor: pointer;
@@ -512,22 +512,22 @@ button.check {
 	margin: 2px 5px 2px 0px;
 }
 #fb_shared {
-	background: url('share/images/f.png') no-repeat;
+	background: url('new_ec/share/images/f.png') no-repeat;
 	width: 46px;
 	height: 20px;
 }
 #gmail_shared {
-	background: url('share/images/e.png') no-repeat;
+	background: url('new_ec/share/images/e.png') no-repeat;
 	width: 21px;
 	height: 20px;
 }
 #plurk_shared {
-	background: url('share/images/p.png') no-repeat;
+	background: url('new_ec/share/images/p.png') no-repeat;
 	width: 21px;
 	height: 20px;
 }
 #twitter_shared {
-	background: url('share/images/t.png') no-repeat;
+	background: url('new_ec/share/images/t.png') no-repeat;
 	width: 21px;
 	height: 20px;
 }
@@ -637,10 +637,10 @@ button.check {
 }
 </style>
 <!-- js include  -->
-<script type="text/javascript" src="/single/include/js/modernizr.js"></script>
+<script type="text/javascript" src="../single/include/js/modernizr.js"></script>
 <script type="text/javascript" src="<%=EcPathSetting.WEB_JS_PATH%>/jquery.tipsy.js"></script>
-<script type="text/javascript" src="/single/include/js/Chart.min.js"></script>
-<script src="/single/include/js/jquery.rateit.min.js"></script>
+<script type="text/javascript" src="../single/include/js/Chart.min.js"></script>
+<script src="../single/include/js/jquery.rateit.min.js"></script>
 <script type="text/javascript" src="/include2/js/alertify.js"></script>
 <script type="text/javascript" src="/include2/js/jquery.jgrowl.min.js"></script>
 <script type="text/javascript" src="/include2/tooltipster/js/tooltipster.bundle.min.js"></script>
@@ -669,7 +669,7 @@ jQuery.browser = {};
 	}
 })();
 </script>
-<jsp:include page="/include/marketingScript.jsp" flush="true"/>
+<jsp:include page="./include/marketingScript.jsp" flush="true"/>
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org/",
