@@ -100,7 +100,7 @@ if (cc != null) {
 }
 //相同版本
 JSONArray versionList = sing.getVersionList(sing.istProdId, sing.orgProdId);
-try {
+
 	Map<String, Integer> want_range = sing.getPriceRangeByWant(systemDao);
 	Map<String, JSONObject> sale_range = sing.getPriceRangeBySprod(systemDao);
 	Map<String, Integer> sprod_range = sing.getPriceRangeBySaleSprod(systemDao, sing.istProdId);
