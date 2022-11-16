@@ -33,7 +33,7 @@ out.print("ss");
 Connection cn = null;
 ResultSet rs = null;
 PreparedStatement pstmt = null;
-try {
+
 	DataSource ds = (DataSource) SpringUtil.getSpringBeanById(this.getServletConfig(), "datasource");
 	cn = ds.getConnection();
 	String query = "SELECT P.ORG_PROD_ID orgProdId, P.TITLE_MAIN titleMain, P.TITLE_NEXT titleNext, " +
@@ -50,7 +50,7 @@ try {
 		cn.close();
 	} catch (Exception e) {
 		
-		//out.println(e.getMessage());
+		out.println(e.getMessage());
 	} finally {
 		try {
 		
