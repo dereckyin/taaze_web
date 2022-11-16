@@ -72,6 +72,7 @@ try {
 	
 	String fbTitle = "讀冊【二手徵求好處多】|二手書交易資訊- TAAZE 讀冊生活";
 	String fbDes = "【二手徵求好處多】|";
+	String fbImage = "https://media.taaze.tw/showProdImage.html?sc=11100977212&width=200&height=283";
 	%>
 	
 	<!DOCTYPE html>
