@@ -24,9 +24,9 @@ JSONArray items = new JSONArray();
 try {
 	String s = SystemUtil.getEcJsonStrFromCacheByActionUrl("api/getWebEcSingleSameCatSaleDatas.html?p=" + pid);
 	items = JSONArray.fromObject(s);
-	// out.print(s);
+	out.print(s);
 } catch (Exception e) {
-	//out.print("pid:"+pid+",error:"+e.getMessage());
+	out.print("pid:"+pid+",error:"+e.getMessage());
 	items = null;
 }
 out.print("ss");
@@ -42,15 +42,14 @@ try {
 	"FROM PRODUCT P, PRODINFO_MAIN PM, PRODINFO_BOOK PB, PROD_PROFILE PP , PUBLISHER PUB " +                        "WHERE P.ORG_PROD_ID = PM.ORG_PROD_ID AND PM.ORG_PROD_ID = PB.ORG_PROD_ID(+) AND PM.PUB_ID = PUB.PUB_ID(+) AND PM.ORG_PROD_ID = PP.ORG_PROD_ID(+) AND P.PROD_CAT_ID IN ('11','12','13','24','27') " +                                   "AND P.STATUS_FLG = 'Y' AND P.ORG_FLG = 'A' " + "AND P.PROD_ID = ?";
 	pstmt = cn.prepareStatement(query);
 	pstmt.setString(1, "11100977212");
-	rs = pstmt.executeQuery();
-	if (rs.next()) {
-		//out.print(rs.getString("titleMain"));                                                                                                                                                                                             }
+	rs = pstmt.executeQuery();                                                                                      if (rs.next()) {
+		out.print(rs.getString("titleMain"));                                                                                                                                                                                             }
 		rs.close();
 		pstmt.close();
 		cn.close();
 	} catch (Exception e) {
 		
-		//out.println(e.getMessage());
+		out.println(e.getMessage());
 	} finally {
 		try {
 		
@@ -73,7 +72,7 @@ try {
 	
 	String fbTitle = "讀冊【二手徵求好處多】|二手書交易資訊- TAAZE 讀冊生活";
 	String fbDes = "【二手徵求好處多】|";
-	String fbImage = "https://media.taaze.tw/showProdImage.html?sc=11100977212&width=200&height=283";
+	String fbImage = "https://media.taaze.tw/showProdImage.html?sc=11100969668&width=200&height=283";
 	%>
 	
 	<!DOCTYPE html>
