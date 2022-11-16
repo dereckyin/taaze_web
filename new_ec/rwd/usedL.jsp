@@ -829,5 +829,14 @@ jQuery.browser = {};
 		</head>
 		
 		<body>
-		</body>
-		</html>
+
+		<script type="text/javascript"
+src="../single/include/js/singleUsed.js?22"></script>
+<script type="text/javascript"
+src="../../new_include/js/jquery.ba-hashchange.js"></script>
+<script type="text/javascript"
+src="../single/include/js/jquery.qtip.min.js"></script>
+<script type="text/javascript" src="./include/js/include_goods.js?v3"
+async></script>
+</body>
+</html>
