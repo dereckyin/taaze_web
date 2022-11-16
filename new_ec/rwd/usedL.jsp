@@ -829,5 +829,14 @@ jQuery.browser = {};
 		</head>
 		
 		<body>
+		<div id="body-div" class="plexi"></div>
+		<input id="USED_SIZE" type="hidden" value="0"/>
+		<input id="MAX_SHOW_SIZE" type="hidden" value="5"/>
+		<input id="USEDLIST_RANK" type="hidden" value="2"/>
+		<jsp:include page="/new_ec/rwd/include/jsp/include_header.jsp" flush="true"/>
+		<div style="position:absolute;left:-999999px">
+		<ul>
+		<li><h1> (二手書交易資訊)</h1></li>
+		<li><h2>最多人成交</h2></li>
 		</body>
 		</html>
