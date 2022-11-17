@@ -373,7 +373,7 @@ if(sing.catId!=null&&sing.catId.length()==12){
 }
 /* @@sitemap資料 	*/	
 
-showThumbnail = "https://media.taaze.tw/showThumbnail.html?sc="+sing.orgProdId +"&height=400&width=310";
+String showThumbnail = "https://media.taaze.tw/showThumbnail.html?sc="+sing.orgProdId +"&height=400&width=310";
 //加入判斷會員是否18歲20190617
 String birthDate = LoginUtil.isLoginCustomer(request) && cc!=null?cc.getBirthDate():"";
 int checkYear  =0;
