@@ -1207,5 +1207,59 @@ jQuery.browser = {};
 				</div>
 			</div>
 		</div>
+
+		<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+		<div class="row visible-xs-block">
+			<div class="col-sm-12 col-xs-12">
+			<%if (!sing.starLevel.equals("0")) { %>
+				<div style='float:left; padding: 2px 5px 0px 0px;' class="rateit" data-rateit-value="<%=sing.starLevel %>" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+			<%} %>
+
+				<div class="commentLink" style='float:left' onClick="gotoComment('<%=sing.orgProdId%>')">
+					<span class='commentCount'><%=startLevelSize > 0 ? startLevelSize : "" %></span>評價
+				</div>
+
+			<% if (collectSize > 0) { %>
+				<div id="collectLink" class="collectLink" style='float:left;display:none' onClick="addToCollection('<%=sing.orgProdId%>')"><span class='collectNum'><%=sing.collect_count > 0 ? sing.collect_count : "" %></span>收藏</div>
+				<div id="collectLink2" class="collectLink2" style='float:left;' onClick="cancelCollection('<%=sing.orgProdId%>')"><span class='collectNum'><%=sing.collect_count > 0 ? sing.collect_count : "" %></span>收藏</div>
+			<% } else { %>
+				<div id="collectLink" class="collectLink" style='float:left;' onClick="addToCollection('<%=sing.orgProdId%>')"><span class='collectNum'><%=sing.collect_count > 0 ? sing.collect_count : "" %></span>收藏</div>
+				<div id="collectLink2" class="collectLink2" style='float:left;display:none'	onClick="cancelCollection('<%=sing.orgProdId%>')"><span	class='collectNum'><%=sing.collect_count > 0 ? sing.collect_count : "" %></span>收藏</div>
+			<% } %>
+
+			<% if (IsWanted) { %>
+				<div id="wantSndLink" opid="<%=sing.orgProdId %>" onclick="wantBook()" class="wantSndLink" style='float:left;display:none;'><span class='wantNum'></span>二手徵求</div>
+				<div id="wantSndLink2" class="wantSndLink2"	onclick="cancelWantedSize2('<%=sing.orgProdId%>')" style='float:left;'><span class='wantNum'></span>二手徵求</div>
+			<% } else { %>
+				<div id="wantSndLink" opid="<%=sing.orgProdId %>" onclick="wantBook()" class="wantSndLink" style='float:left;'><span class='wantNum'></span>二手徵求</div>
+				<div id="wantSndLink2" class="wantSndLink2"	onclick="cancelWantedSize2('<%=sing.orgProdId%>')" style='float:left;display:none;'><span class='wantNum'></span>二手徵求</div>
+			<% } %>
+
+			<% if (previewCount != null && previewCount.length() > 0) {//線上試讀  %>
+				<%if (sing.prodCatId.equals("14") || sing.prodCatId.equals("25") || sing.prodCatId.equals("17")) { %>
+					<%if (cc != null && cc.getCuid().toString().length() > 0) { %>
+				<div class="previewLink" style='float:left' rel="Y"	onclick="location.href='http://ebook.taaze.tw/do/mobile/ebook_preview.ashx?oid=<%=sing.orgProdId %>&cuid=<%=cc.getCuid() %>'"
+					title='<div style="text-align:left; font-size:10pt;">你可以點進去，試讀電子書內容。</div><div style="text-align:left; margin-top:3px;"><a href="javascript:return false;" onClick="IKnow()" class="tool012">好，我知道了。</a></div>'>
+					<span><%=previewCount %></span>人次試讀
+				</div>
+					<%} else { %>
+				<div class="previewLink" rel="Y" style='float:left'
+					onclick="location.href='http://ebook.taaze.tw/do/mobile/ebook_preview.ashx?oid=<%=sing.orgProdId %>'"
+					title='<div style="text-align:left; font-size:10pt;">你可以點進去，試讀電子書內容。</div><div style="text-align:left; margin-top:3px;"><a href="javascript:return false;" onClick="IKnow()" class="tool012">好，我知道了。</a></div>'>
+					<span><%=previewCount %></span>人次試讀
+				</div>
+					<%} %>
+				<%} else { %>
+					<div class="previewLink" rel="N" style='float:left'
+					onclick="location.href='http://ebook.taaze.tw/do/preview/viewer2.aspx?oid=<%=sing.orgProdId %>'">
+					<span><%=previewCount %></span>人次試讀
+					</div>
+				<%} %>
+			<%} %>
+				<div class="shareLink" style="float:left">分享</div>
+			<div style="clear:both"></div>
+		</div>
+	</div>
+
 	</body>
 </html>
