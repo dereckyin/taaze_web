@@ -1342,7 +1342,7 @@ jQuery.browser = {};
 				<%=sing.getHyperLineBySnd() %>
 				<%=(sing.prodCatId != null && sing.prodCatId.length() == 2) ? sing.getHyperLineByProdCatId() : "" %>
 				<%=(sing.catId != null && sing.catId.length() == 12) ? sing.getHyperLineByCatId() : "" %>
-				<span class='span01'>&gt;</span><li class="active" style="color:#e3007f;display:inline-block"><%=title %></li>
+				<span class='span01'>&gt;</span> <li class="active" style="color:#e3007f;display:inline-block"><%=title %></li>
 			
 			</div>
 		</div>
