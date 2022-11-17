@@ -225,6 +225,9 @@ int review = 0;
 review = (int) (Math.random() * 300) + 400;
 //加入判斷會員是否18歲20191005
 String lock18 = "0";
+
+String showThumbnail = "https://media.taaze.tw/showThumbnail.html?sc="+sing.orgProdId +"&height=400&width=310";
+
 String birthDate = LoginUtil.isLoginCustomer(request) && LoginUtil.getLoginCustomer(request) != null ? LoginUtil.getLoginCustomer(request).getBirthDate() : "";
 if (LoginUtil.getLoginCustomer(request) != null && birthDate != null) {
 	int birthYear = Integer.parseInt(birthDate.substring(0, 4));
@@ -242,6 +245,7 @@ if (LoginUtil.getLoginCustomer(request) != null && birthDate != null) {
 		String lock = (String) session.getAttribute("lock");
 		if (lock == null || !lock.equals("unlocked")) {
 			lock18 = "1";
+			showThumbnail = "/new_ec/rwd/include/images/B_image/pic_book_1@2x.png";
 		}
 	}
 } else {
@@ -249,6 +253,7 @@ if (LoginUtil.getLoginCustomer(request) != null && birthDate != null) {
 		String lock = (String) session.getAttribute("lock");
 		if (lock == null || !lock.equals("unlocked")) {
 			lock18 = "1";
+			showThumbnail = "/new_ec/rwd/include/images/B_image/pic_book_1@2x.png";
 		}
 	}
 }
@@ -373,24 +378,7 @@ if(sing.catId!=null&&sing.catId.length()==12){
 }
 /* @@sitemap資料 	*/	
 
-String showThumbnail = "https://media.taaze.tw/showThumbnail.html?sc="+sing.orgProdId +"&height=400&width=310";
 
-if (cc!=null && birthDate !=null){
-	//有登入
-	if(sing.rank!=null && sing.rank.equals("D") &&
-	!(checkYear > 18 || (checkYear > 17 && ((checkMonth > 0) || (checkMonth > -1 && checkDate> -1))))) {
-		if(lock==null || !lock.equals("unlocked")){
-			showThumbnail = "/new_ec/rwd/include/images/B_image/pic_book_1@2x.png";
-		}
-	}
-}else{
-	//沒登入
-	if(sing.rank!=null && sing.rank.equals("D") ){
-		if(lock==null || !lock.equals("unlocked")){
-			showThumbnail = "/new_ec/rwd/include/images/B_image/pic_book_1@2x.png";
-		}
-	}
-}
 %>
 
 <!DOCTYPE html>
