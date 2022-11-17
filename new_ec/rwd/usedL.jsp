@@ -39,6 +39,21 @@ if (!sing.initState) {
 	out.print(sing.msgText);
 	return;
 }
+
+
+SingleLibs sing_o = null;
+if(pid.length()==11) {
+	sing_o = new SingleLibs(this.getServletConfig(), pid);
+} else {
+	sing_o = new SingleLibs();
+}
+
+if (!sing_o.initState) {
+	//response.sendRedirect(sing.getWebUrl(request));
+	out.print(sing_o.msgText);
+	return;
+}
+
 boolean logined = LoginUtil.isLoginCustomer(request);
 Customer cc = null;
 if (logined) {
@@ -387,23 +402,23 @@ SprodModel sprodAskModel = null;
 List<CustSprodSchoolinfo> custSprodSchoolinfo = null;
 List<CustSprodSchoolinfo> custSprodSchoolinfoByDiscipline = null;
 List<CustSprodSchoolinfo> queryCustSprodSchoolinfo = null;
-if(sing.orgFlg.equals("C")){
-	sprodAskModel = sing.querySprodAskDetailByProdId(sing.prodId, systemDao);
+if(sing_o.orgFlg.equals("C")){
+	sprodAskModel = sing_o.querySprodAskDetailByProdId(sing_o.prodId, systemDao);
 	if(sprodAskModel == null) {
-		response.sendRedirect(sing.getWebUrl(request));
+		response.sendRedirect(sing_o.getWebUrl(request));
 		return;
 	}
-	custSprodSchoolinfo = sing.SchoolBookBySchool();
-	custSprodSchoolinfoByDiscipline = sing.SchoolBookByDiscipline();
-	queryCustSprodSchoolinfo = sing.textbookInfoBySaler(sprodAskModel.getCustId());
+	custSprodSchoolinfo = sing_o.SchoolBookBySchool();
+	custSprodSchoolinfoByDiscipline = sing_o.SchoolBookByDiscipline();
+	queryCustSprodSchoolinfo = sing_o.textbookInfoBySaler(sprodAskModel.getCustId());
 }
 boolean video_exists = false;
 int video_count = 0;
-if(sing.orgFlg.equals("A") && sing.vdoShtFlg!=null && sing.vdoShtFlg.equals("Y")) {
+if(sing_o.orgFlg.equals("A") && sing_o.vdoShtFlg!=null && sing_o.vdoShtFlg.equals("Y")) {
 	video_exists = true;
 	video_count = 1;
 }
-if(sing.orgFlg.equals("C") && sprodAskModel.getUsedStatus()!=null && sprodAskModel.getVideoId()!=null) {
+if(sing_o.orgFlg.equals("C") && sprodAskModel.getUsedStatus()!=null && sprodAskModel.getVideoId()!=null) {
 	if(sprodAskModel.getUsedStatus().equals("Y") || sprodAskModel.getUsedStatus().equals("R")) {
 		video_exists = true;
 		video_count = 1;
