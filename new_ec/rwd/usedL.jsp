@@ -381,6 +381,35 @@ if(sing.catId!=null&&sing.catId.length()==12){
 
 String bindingType = "A"; 
 
+//video check
+//二手書資訊, 二手影片
+SprodModel sprodAskModel = null;
+List<CustSprodSchoolinfo> custSprodSchoolinfo = null;
+List<CustSprodSchoolinfo> custSprodSchoolinfoByDiscipline = null;
+List<CustSprodSchoolinfo> queryCustSprodSchoolinfo = null;
+if(sing.orgFlg.equals("C")){
+	sprodAskModel = sing.querySprodAskDetailByProdId(sing.prodId, systemDao);
+	if(sprodAskModel == null) {
+		response.sendRedirect(sing.getWebUrl(request));
+		return;
+	}
+	custSprodSchoolinfo = sing.SchoolBookBySchool();
+	custSprodSchoolinfoByDiscipline = sing.SchoolBookByDiscipline();
+	queryCustSprodSchoolinfo = sing.textbookInfoBySaler(sprodAskModel.getCustId());
+}
+boolean video_exists = false;
+int video_count = 0;
+if(sing.orgFlg.equals("A") && sing.vdoShtFlg!=null && sing.vdoShtFlg.equals("Y")) {
+	video_exists = true;
+	video_count = 1;
+}
+if(sing.orgFlg.equals("C") && sprodAskModel.getUsedStatus()!=null && sprodAskModel.getVideoId()!=null) {
+	if(sprodAskModel.getUsedStatus().equals("Y") || sprodAskModel.getUsedStatus().equals("R")) {
+		video_exists = true;
+		video_count = 1;
+	}
+}
+
 %>
 
 <!DOCTYPE html>
