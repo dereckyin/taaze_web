@@ -1172,19 +1172,40 @@ jQuery.browser = {};
 		
 		<c:choose>
 			<c:when test="${cookie['mobile'].value eq 'on'}">
-				<div class="row hidden-xs hidden-sm hidden-md hidden-lg">
+		<div class="row hidden-xs hidden-sm hidden-md hidden-lg">
 			</c:when>
 			<c:otherwise>
-				<div class="row visible-xs-block">
+		<div class="row visible-xs-block">
 			</c:otherwise>
 		</c:choose>
-		<div class="col-sm-10 col-xs-12">
-			<h4 style="font-weight:bold; margin-top:0px;line-height:30px;">
-				<div>讀冊【二手徵求好處多】|<%=sing.titleMain %><span style="color:#755e5f; font-weight: normal;font-size:20px;">（二手書交易資訊）</span></div>
-				<%if (sing.titleNext != null && sing.titleNext.length() > 0) {%>
-				<div class="title-next"><%=sing.titleNext %></div>
-				<%}%>
-			</h4>
+			<div class="col-sm-10 col-xs-12">
+				<h4 style="font-weight:bold; margin-top:0px;line-height:30px;">
+					<div>讀冊【二手徵求好處多】|<%=sing.titleMain %><span style="color:#755e5f; font-weight: normal;font-size:20px;">（二手書交易資訊）</span></div>
+					<%if (sing.titleNext != null && sing.titleNext.length() > 0) {%>
+					<div class="title-next"><%=sing.titleNext %></div>
+					<%}%>
+				</h4>
+			</div>
+
+			<div class="col-sm-2 col-xs-12">
+				<div class="market-status">
+					<ul style="padding:0px;margin:0px;list-style:none;">
+						<% if (saleStatus.equals("C")) { %>
+						<li style="float:left;height:25px;"><span class="span03">書市熱度</span></li>
+						<li style="float:left;height:25px;"><img class='status_text' src="new_ec/single/include/images/status_c.png"/></li>
+						<% } %>
+						<% if (saleStatus.equals("B")) { %>
+						<li style="float:left;height:25px;"><span class="span03">書市熱度</span></li>
+						<li style="float:left;height:25px;"><img class='status_text' src="new_ec/single/include/images/status_b.png"/></li>
+						<% } %>
+						<% if (saleStatus.equals("A")) { %>
+						<li style="float:left;height:25px;padding-top:5px;"><span class="span03">書市熱度</span></li>
+						<li style="float:left;height:25px;"><img class='status_text' src="new_ec/single/include/images/status_a.png"/></li>
+						<% } %>
+						<li style="clear:both"></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
