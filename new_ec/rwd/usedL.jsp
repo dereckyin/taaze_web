@@ -252,6 +252,77 @@ JSONArray versionList = sing.getVersionList(sing.istProdId, sing.orgProdId);
 			}
 		}
 	}
+
+	
+/* @@sitemap資料 	*/	
+JSONArray pathList = new JSONArray(); 
+
+JSONObject path = new JSONObject();
+path.put("title","首頁");
+path.put("url","/rwd_index.html");
+pathList.add(path);
+/*
+if(sing.orgFlg!=null&&sing.orgFlg.equals("C")){
+	path = new JSONObject();
+	path.put("title","二手書");
+	path.put("url","/container_snd.html?t=11&k=03&d=00");
+	pathList.add(path);
+}
+*/
+String siteUrl = "";
+if(sing.orgFlg!=null&&sing.orgFlg.equals("C")){
+	siteUrl = "t=11&k=03&d="+sing.prodCatId;
+}else{
+	if( sing.prodCatId.equals("27") ){//20190718 修正27業種，點選館別後到日文MOOK(24)館別頁
+		siteUrl = "t=24&k=01&d=00";
+	}else{
+		siteUrl = "t=" + sing.prodCatId + "&k=01&d=00";
+	}
+}
+
+if(sing.prodCatId!=null&&sing.prodCatId.length()==2){
+	path = new JSONObject();
+	path.put("title",sing.getProdCatIdWord());
+	path.put("url","/rwd_list.html?"+siteUrl);
+	pathList.add(path);
+}
+
+if(sing.catId!=null&&sing.catId.length()==12){
+	if(sing.orgFlg!=null&&sing.orgFlg.equals("C")){
+		if(sing.catName1!=null && sing.catName1.length()>0){
+			path = new JSONObject();
+			path.put("title",sing.catName1);
+			
+			path.put("url","/rwd_listView.html?t=11&k=03&d="+sing.prodCatId+"&a=00&c=" + sing.catId.substring(0,2)+ "0000000000&l=1");
+			
+			pathList.add(path);
+		}
+		if(sing.catName!=null && sing.catName.length()>0){
+			path = new JSONObject();
+			path.put("title",sing.catName);
+			path.put("url","/rwd_listView.html?t=11&k=03&d="+sing.prodCatId+"&a=00&c=" + sing.catId.substring(0,4)+ "00000000&l=2");
+			pathList.add(path);
+		}
+	}else{
+	if(sing.catName1!=null && sing.catName1.length()>0){
+		path = new JSONObject();
+		path.put("title",sing.catName1);
+		if(sing.prodCatId.equals("11")||sing.prodCatId.equals("12")){
+			path.put("url","/rwd_list.html?t=" + sing.prodCatId + "&k=01&d=00&a=00&c=" + sing.catId.substring(0,2)+ "0000000000&l=1");
+		}else{
+			path.put("url","/rwd_listView.html?t=" + sing.prodCatId + "&k=01&d=00&a=00&c=" + sing.catId.substring(0,2)+ "0000000000&l=1");
+		}
+		pathList.add(path);
+	}
+	if(sing.catName!=null && sing.catName.length()>0){
+		path = new JSONObject();
+		path.put("title",sing.catName);
+		path.put("url","/rwd_listView.html?t=" + sing.prodCatId + "&k=01&d=00&a=00&c=" + sing.catId.substring(0,4)+ "00000000&l=2");
+		pathList.add(path);
+	}
+	}
+}
+/* @@sitemap資料 	*/	
 	%>
 	
 	<!DOCTYPE html>
@@ -1046,7 +1117,7 @@ JSONArray versionList = sing.getVersionList(sing.istProdId, sing.orgProdId);
 					<%=(sing.catId != null && sing.catId.length() == 12) ? sing.getHyperLineByCatId() : "" %>
 
 					<div class="row">
-						<%@ include file="./include/jsp/listSiteMap.jsp"%>
+						<%@ include file="/new_ec/rwd/include/jsp/listSiteMap.jsp"%>
 					</div>
 
 					</div>
