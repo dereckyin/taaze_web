@@ -1046,7 +1046,7 @@ JSONArray versionList = sing.getVersionList(sing.istProdId, sing.orgProdId);
 					<%=(sing.catId != null && sing.catId.length() == 12) ? sing.getHyperLineByCatId() : "" %>
 
 					<div class="row">
-						<%@ include file="/new_ec/rwd/include/jsp/listSiteMap.jsp"%>
+						<%@ include file="./include/jsp/listSiteMap.jsp"%>
 					</div>
 
 					</div>
