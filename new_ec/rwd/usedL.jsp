@@ -1133,41 +1133,58 @@ jQuery.browser = {};
 		<input id="USEDLIST_RANK" type="hidden" value="2"/>
 		<jsp:include page="/new_ec/rwd/include/jsp/include_header.jsp" flush="true"/>
 		<div style="position:absolute;left:-999999px">
-		<ul>
-		<li><h1><%=title %> (二手書交易資訊)</h1></li>
-		<li><h2>最多人成交</h2></li>
-		<% if (feature_sale.length() > 0) { %>
-			<li><h2><%=feature_sale %>
-			</h2></li>
-			<% } %>
-			<% if (feature_want.length() > 0) { %>
-				<li><h2><%=feature_want %>
-				</h2></li>
+			<ul>
+				<li><h1><%=title %> (二手書交易資訊)</h1></li>
+				<li><h2>最多人成交</h2></li>
+				<% if (feature_sale.length() > 0) { %>
+					<li><h2><%=feature_sale %>
+					</h2></li>
+				<% } %>
+				<% if (feature_want.length() > 0) { %>
+					<li><h2><%=feature_want %>
+					</h2></li>
 				<% } %>
 				<li><h2>最近成交價(折扣)</h2></li>
 				<li><h2>銷售中的二手書</h2></li>
-				</ul>
-				</div>
-				<c:choose>
-				<c:when test="${cookie['mobile'].value eq 'on'}">
+			</ul>
+		</div>
+		<c:choose>
+			<c:when test="${cookie['mobile'].value eq 'on'}">
 				<div class="container container_PC_new wrap">
-				</c:when>
-				<c:otherwise>
+			</c:when>
+			<c:otherwise>
 				<div class="container wrap">
-				</c:otherwise>
-				</c:choose>
-				<!-- sitemap -->
-				<div class="row" style="margin-top:10px; padding:0 3px;">
-				<div class="col-sm-12 col-xs-12 site_map" style="margin-bottom: 15px;">
+			</c:otherwise>
+		</c:choose>
+		<!-- sitemap -->
+		<div class="row" style="margin-top:10px; padding:0 3px;">
+			<div class="col-sm-12 col-xs-12 site_map" style="margin-bottom: 15px;">
 				<span>
-				<a class="linkStyle01" href="<%=sing.getWebUrl(request) %>">首頁</a>
+					<a class="linkStyle01" href="<%=sing.getWebUrl(request) %>">首頁</a>
 				</span>
 				<%=sing.getHyperLineBySnd() %>
 				<%=(sing.prodCatId != null && sing.prodCatId.length() == 2) ? sing.getHyperLineByProdCatId() : "" %>
 				<%=(sing.catId != null && sing.catId.length() == 12) ? sing.getHyperLineByCatId() : "" %>
-				<li class="active" style="color:#e3007f;display:inline-block"><%=title %></li>
-				
-				</div>
-				</div>
-				</body>
-				</html>
+				<span class='span01'>&gt;</span><li class="active" style="color:#e3007f;display:inline-block"><%=title %></li>
+			
+			</div>
+		</div>
+		
+		<c:choose>
+			<c:when test="${cookie['mobile'].value eq 'on'}">
+				<div class="row hidden-xs hidden-sm hidden-md hidden-lg">
+			</c:when>
+			<c:otherwise>
+				<div class="row visible-xs-block">
+			</c:otherwise>
+		</c:choose>
+		<div class="col-sm-10 col-xs-12">
+			<h4 style="font-weight:bold; margin-top:0px;line-height:30px;">
+				<div>讀冊【二手徵求好處多】|<%=sing.titleMain %><span style="color:#755e5f; font-weight: normal;font-size:20px;">（二手書交易資訊）</span></div>
+				<%if (sing.titleNext != null && sing.titleNext.length() > 0) {%>
+				<div class="title-next"><%=sing.titleNext %></div>
+				<%}%>
+			</h4>
+		</div>
+	</body>
+</html>
