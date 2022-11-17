@@ -262,54 +262,54 @@ path.put("title","首頁");
 path.put("url","/rwd_index.html");
 pathList.add(path);
 
+String prodCatIdWord = "";
 
-private String getProdCatIdWord(SingleUsedLibs sing){
-	if(sing.orgFlg.equals("C")){
-		switch(Integer.parseInt(sing.prodCatId)){
-			case 11: return "二手中文書";
-			case 12: return "二手簡體書";
-			case 13: return "二手原文書";
-			case 14: return "中文電子書";
-			case 15: return "簡體電子書";
-			case 16: return "原文電子書";
-			case 17: return "日文電子書";
-			case 21: return "中文雜誌";
-			case 22: return "韓文雜誌";
-			case 23: return "歐美雜誌";
-			case 24: return "二手日文MOOK";
-			case 25: return "電子雜誌";
-			case 26: return "日文電子雜誌";
-			case 27: return "二手日文MOOK";
-			case 31: return "CD";
-			case 32: return "DVD";
-			case 61: return "創意文具";
-			case 62: return "生活百貨";
-			default : return sing.prodCatId;
-		}
-	}else{
-		switch(Integer.parseInt(sing.prodCatId)){
-			case 11: return "中文書";
-			case 12: return "簡體書";
-			case 13: return "原文書";
-			case 14: return "中文電子書";
-			case 15: return "簡體電子書";
-			case 16: return "原文電子書";
-			case 17: return "日文電子書";
-			case 21: return "中文雜誌";
-			case 22: return "韓文雜誌";
-			case 23: return "歐美雜誌";
-			case 24: return "日文MOOK";
-			case 25: return "電子雜誌";
-			case 26: return "日文電子雜誌";
-			case 27: return "日文MOOK";
-			case 31: return "CD";
-			case 32: return "DVD";
-			case 61: return "創意文具";
-			case 62: return "生活百貨";
-			default : return sing.prodCatId;
-		}
+if(sing.orgFlg.equals("C")){
+	switch(Integer.parseInt(sing.prodCatId)){
+		case 11: prodCatIdWord = "二手中文書";
+		case 12: prodCatIdWord = "二手簡體書";
+		case 13: prodCatIdWord = "二手原文書";
+		case 14: prodCatIdWord = "中文電子書";
+		case 15: prodCatIdWord = "簡體電子書";
+		case 16: prodCatIdWord = "原文電子書";
+		case 17: prodCatIdWord = "日文電子書";
+		case 21: prodCatIdWord = "中文雜誌";
+		case 22: prodCatIdWord = "韓文雜誌";
+		case 23: prodCatIdWord = "歐美雜誌";
+		case 24: prodCatIdWord = "二手日文MOOK";
+		case 25: prodCatIdWord = "電子雜誌";
+		case 26: prodCatIdWord = "日文電子雜誌";
+		case 27: prodCatIdWord = "二手日文MOOK";
+		case 31: prodCatIdWord = "CD";
+		case 32: prodCatIdWord = "DVD";
+		case 61: prodCatIdWord = "創意文具";
+		case 62: prodCatIdWord = "生活百貨";
+		default : prodCatIdWord = sing.prodCatId;
+	}
+}else{
+	switch(Integer.parseInt(sing.prodCatId)){
+		case 11: prodCatIdWord = "中文書";
+		case 12: prodCatIdWord = "簡體書";
+		case 13: prodCatIdWord = "原文書";
+		case 14: prodCatIdWord = "中文電子書";
+		case 15: prodCatIdWord = "簡體電子書";
+		case 16: prodCatIdWord = "原文電子書";
+		case 17: prodCatIdWord = "日文電子書";
+		case 21: prodCatIdWord = "中文雜誌";
+		case 22: prodCatIdWord = "韓文雜誌";
+		case 23: prodCatIdWord = "歐美雜誌";
+		case 24: prodCatIdWord = "日文MOOK";
+		case 25: prodCatIdWord = "電子雜誌";
+		case 26: prodCatIdWord = "日文電子雜誌";
+		case 27: prodCatIdWord = "日文MOOK";
+		case 31: prodCatIdWord = "CD";
+		case 32: prodCatIdWord = "DVD";
+		case 61: prodCatIdWord = "創意文具";
+		case 62: prodCatIdWord = "生活百貨";
+		default : prodCatIdWord = sing.prodCatId;
 	}
 }
+
 /*
 if(sing.orgFlg!=null&&sing.orgFlg.equals("C")){
 	path = new JSONObject();
@@ -331,7 +331,7 @@ if(sing.orgFlg!=null&&sing.orgFlg.equals("C")){
 
 if(sing.prodCatId!=null&&sing.prodCatId.length()==2){
 	path = new JSONObject();
-	path.put("title", this.getProdCatIdWord());
+	path.put("title", prodCatIdWord);
 	path.put("url","/rwd_list.html?"+siteUrl);
 	pathList.add(path);
 }
