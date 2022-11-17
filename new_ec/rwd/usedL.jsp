@@ -405,16 +405,16 @@ String[] imageTakeLook = null;
 String[] imageTakeLookTitle = null;
 String[] imageTakeLookDesc = null;
 String[] imageDesc = null;
-if(sing.prodImages!=null && sing.prodImages.length>0 && !Arrays.toString(sing.prodImages).equals("[]")){ //多個書封圖時顯示 ,重新排序及過濾Image Index大於1000
+if(sing_o.prodImages!=null && sing_o.prodImages.length>0 && !Arrays.toString(sing_o.prodImages).equals("[]")){ //多個書封圖時顯示 ,重新排序及過濾Image Index大於1000
 	//重新排序
 	String[] imageMap;
-	String[] imagePkNo = new String[sing.prodImages.length];
-	String[] imageInnerTitle = new String[sing.prodImages.length];
-	String[] imageInnerDes = new String[sing.prodImages.length];
-	int[] imageIndex =  new int[sing.prodImages.length];
+	String[] imagePkNo = new String[sing_o.prodImages.length];
+	String[] imageInnerTitle = new String[sing_o.prodImages.length];
+	String[] imageInnerDes = new String[sing_o.prodImages.length];
+	int[] imageIndex =  new int[sing_o.prodImages.length];
 
-	for(int i=1; i<(sing.prodImages.length+1); i++){
-		imageMap = sing.prodImages[(i-1)].split("_");
+	for(int i=1; i<(sing_o.prodImages.length+1); i++){
+		imageMap = sing_o.prodImages[(i-1)].split("_");
 		imageIndex[i-1] = Integer.parseInt(imageMap[0]);
 		imagePkNo[i-1] = imageMap[1];
 		if(imageMap[2]!=null) {
