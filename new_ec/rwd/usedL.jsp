@@ -379,6 +379,8 @@ if(sing.catId!=null&&sing.catId.length()==12){
 /* @@sitemap資料 	*/	
 
 
+String bindingType = "A"; 
+
 %>
 
 <!DOCTYPE html>
@@ -1282,9 +1284,9 @@ jQuery.browser = {};
 			<div class="" style="position: relative;width:310px;float:left;margin-right:20px;">
 				<a href="#">
 					<img class="" style="width:100%;margin-bottom:0px" src=<%=showThumbnail %> alt="...">
-					<%if(sing.bindingType!=null && sing.bindingType.equals("P")){ //pdf %>
+					<%if(bindingType!=null && bindingType.equals("P")){ //pdf %>
 					<img class="pdf_ebook_type" src='/new_ec/rwd/include/images/C_image/pic/pic_8@2x.png' />
-					<%}else if(sing.bindingType!=null && sing.bindingType.equals("Q")){ //epub %>
+					<%}else if(bindingType!=null && bindingType.equals("Q")){ //epub %>
 					<img class="ePub_ebook_type" src='/new_ec/rwd/include/images/C_image/pic/pic_9@2x.png' />
 					<%} %>
 					<%if(sing.orgFlg.equals("C")){ 
