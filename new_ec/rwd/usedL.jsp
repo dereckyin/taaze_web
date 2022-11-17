@@ -1261,5 +1261,49 @@ jQuery.browser = {};
 		</div>
 	</div>
 
+	<%-- 商品頁內容 --%>
+	<div class="row" style="margin-top:10px;">
+		<%-- 左邊區塊 --%>
+		<c:choose>  
+		<c:when test="${cookie['mobile'].value eq 'on'}">    		
+				<div class="col-xs-9" style="padding-left:0;padding-right:0;">
+			</c:when>  
+			<c:otherwise> 				
+				<div class="col-sm-8 col-md-9" style="padding-left:0;padding-right:0;">
+			</c:otherwise>  
+		</c:choose> 
+		<div class="" style="width:750px;">
+			<div class="" style="position: relative;width:310px;float:left;margin-right:20px;">
+				<a href="#">
+					<img class="" style="width:100%;margin-bottom:0px" src=<%=showThumbnail %> alt="...">
+					<%if(sing.bindingType!=null && sing.bindingType.equals("P")){ //pdf %>
+					<img class="pdf_ebook_type" src='/new_ec/rwd/include/images/C_image/pic/pic_8@2x.png' />
+					<%}else if(sing.bindingType!=null && sing.bindingType.equals("Q")){ //epub %>
+					<img class="ePub_ebook_type" src='/new_ec/rwd/include/images/C_image/pic/pic_9@2x.png' />
+					<%} %>
+					<%if(sing.orgFlg.equals("C")){ 
+						if(sprodAskModel != null && sprodAskModel.chrtFlg.equals("Y")){
+					%>
+					<img class="snd_type" src='/new_ec/rwd/include/images/C_image/pic/pic_12@2x.png' />
+						<%}else{%>
+					<img class="snd_type" src='/new_ec/rwd/include/images/C_image/pic/pic_7@2x.png' />
+						<%}%>
+					<%} %>
+				</a>
+				
+<%--take look carousel--%>
+<%--take look carousel改成用ajax抓取的方式 --%>
+<!--takelookajax_start-->
+<div id ="takelookajax" >
+<%	
+out.print(sing.get_takelookajax_DOM(takelookList,request,video_exists,lock18));
+%>
+</div>
+<!--takelookajax_end--> 
+
+<%--take look carousel --%>	
+				
+			</div>
+
 	</body>
 </html>
