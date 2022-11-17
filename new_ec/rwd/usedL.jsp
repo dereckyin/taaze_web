@@ -394,6 +394,9 @@ if(sing.catId!=null&&sing.catId.length()==12){
 /* @@sitemap資料 	*/	
 
 
+
+
+
 String bindingType = "A"; 
 
 //video check
@@ -422,6 +425,39 @@ if(sing_o.orgFlg.equals("C") && sprodAskModel.getUsedStatus()!=null && sprodAskM
 	if(sprodAskModel.getUsedStatus().equals("Y") || sprodAskModel.getUsedStatus().equals("R")) {
 		video_exists = true;
 		video_count = 1;
+	}
+}
+
+//將video與takelook組合再一起
+JSONArray takelookList = new JSONArray();
+JSONObject takelookItem = null;
+JSONObject cover = new JSONObject();
+cover.put("src", "cover");
+cover.put("pkNo", sing_o.orgProdId);
+takelookList.add(cover);
+if(video_exists){
+	takelookItem = new JSONObject();
+	takelookItem.put("src", "video");
+	takelookItem.put("pkNo", (sing_o.orgFlg.equals("C")?"snd":"new"));
+	takelookList.add(takelookItem);
+}else{
+	if(sing_o.orgFlg.equals("C")&&sprodAskModel.getProdRank()!=null){
+		if(sprodAskModel.getProdRank().equals("A") || sprodAskModel.getProdRank().equals("B")){
+			//全新 近全新無影片時，以圖片表示
+			takelookItem = new JSONObject();
+			takelookItem.put("src", "sndPic");
+			String prodRankImg = sprodAskModel.getProdRank().equals("A")?"/new_ec/rwd/include/images/C_image/pic/pic_1@3x.png":"/new_ec/rwd/include/images/C_image/pic/pic_2@3x.png";
+			takelookItem.put("pkNo", prodRankImg);
+			takelookList.add(takelookItem);
+		}
+	}
+}
+if(imageTakeLook!=null&&imageTakeLook.length>0){
+	for(int i=0; i<imageTakeLook.length; i++){
+		takelookItem = new JSONObject();
+		takelookItem.put("src", "image");
+		takelookItem.put("pkNo", imageTakeLook[i]);
+		takelookList.add(takelookItem);
 	}
 }
 
