@@ -1348,7 +1348,7 @@ jQuery.browser = {};
 <!--takelookajax_start-->
 <div id ="takelookajax" >
 <%	
-out.print(sing.get_takelookajax_DOM(takelookList,request,video_exists,lock18));
+out.print(sing_o.get_takelookajax_DOM(takelookList,request,video_exists,lock18));
 %>
 </div>
 <!--takelookajax_end--> 
