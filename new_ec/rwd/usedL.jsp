@@ -399,6 +399,95 @@ if(sing.catId!=null&&sing.catId.length()==12){
 
 String bindingType = "A"; 
 
+
+//take look resort
+String[] imageTakeLook = null;
+String[] imageTakeLookTitle = null;
+String[] imageTakeLookDesc = null;
+String[] imageDesc = null;
+if(sing.prodImages!=null && sing.prodImages.length>0 && !Arrays.toString(sing.prodImages).equals("[]")){ //多個書封圖時顯示 ,重新排序及過濾Image Index大於1000
+	//重新排序
+	String[] imageMap;
+	String[] imagePkNo = new String[sing.prodImages.length];
+	String[] imageInnerTitle = new String[sing.prodImages.length];
+	String[] imageInnerDes = new String[sing.prodImages.length];
+	int[] imageIndex =  new int[sing.prodImages.length];
+
+	for(int i=1; i<(sing.prodImages.length+1); i++){
+		imageMap = sing.prodImages[(i-1)].split("_");
+		imageIndex[i-1] = Integer.parseInt(imageMap[0]);
+		imagePkNo[i-1] = imageMap[1];
+		if(imageMap[2]!=null) {
+			imageInnerTitle[i-1] = imageMap[2];
+		} else {
+			imageInnerTitle[i-1] = "";	
+		}
+		if(imageMap[3]!=null) {
+			imageInnerDes[i-1] = imageMap[3];
+		} else {
+			imageInnerDes[i-1] = "";	
+		}
+	}
+	//泡沫排序法
+	for (int i=0;i<imageIndex.length-1;i++)  //從a[0]比到a[8]，比較a[9]沒有意義
+	{
+		for (int j=0;j<imageIndex.length-i-1;j++)
+		{
+			if (imageIndex[j+1]<imageIndex[j])
+			{
+				int temp = imageIndex[j+1];  //交換陣列元素
+				imageIndex[j+1]=imageIndex[j];
+				imageIndex[j]= temp;
+				String temp2 = imagePkNo[j+1];  //交換陣列元素
+				String temp3 = imageInnerTitle[j+1];  //交換陣列元素
+				String temp4 = imageInnerDes[j+1];  //交換陣列元素
+				
+				imagePkNo[j+1]=imagePkNo[j];
+				imageInnerTitle[j+1]=imageInnerTitle[j];
+				imageInnerDes[j+1]=imageInnerDes[j];
+				
+				imagePkNo[j]= temp2;
+				imageInnerTitle[j]= temp3;
+				imageInnerDes[j]= temp4;
+			}
+		}
+	}
+	List<String> tempTakeLook = new ArrayList<String>();
+	List<String> tempImageDesc = new ArrayList<String>();
+	List<String> tempImageInnerTitle = new ArrayList<String>();
+	List<String> tempImageInnerDesc = new ArrayList<String>();
+
+	for (int i=0;i<imagePkNo.length;i++){
+		if(imageIndex[i]>1000){
+			tempImageDesc.add(imagePkNo[i]);
+		}else{
+			tempTakeLook.add(imagePkNo[i]);
+			tempImageInnerTitle.add(imageInnerTitle[i]);
+			tempImageInnerDesc.add(imageInnerDes[i]);
+		}
+	}
+	if(tempImageDesc.size()>0){
+		imageDesc = new String[tempImageDesc.size()];
+		for (int i=0;i<tempImageDesc.size();i++){
+			imageDesc[i] = tempImageDesc.get(i);
+		}
+	}
+	if(tempTakeLook.size()>0){
+		//log.info(tempTakeLook.size());
+		imageTakeLook = new String[tempTakeLook.size()];
+		imageTakeLookTitle = new String[tempImageInnerTitle.size()];
+		imageTakeLookDesc = new String[tempImageInnerDesc.size()];
+		
+		for (int i=0;i<tempTakeLook.size();i++){
+			imageTakeLook[i] = tempTakeLook.get(i);
+			imageTakeLookTitle[i] = tempImageInnerTitle.get(i);
+			imageTakeLookDesc[i] = tempImageInnerDesc.get(i);
+		}
+		//log.info(imageTakeLook.length);
+	}
+}
+
+
 //video check
 //二手書資訊, 二手影片
 SprodModel sprodAskModel = null;
