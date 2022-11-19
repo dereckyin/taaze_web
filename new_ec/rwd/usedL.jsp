@@ -3525,9 +3525,9 @@ if(menuItems.size()>0) {
 			DOM += "<div id='m_"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
 			if(textAreaDOM.getJSONObject(i).getString("id").equals("prodPf")){
 				//編輯推薦 放在內容簡介
-				if(sing.singProdXsxRcmModel!=null && sing.singProdXsxRcmModel.getContent()!=null){
+				if(sing_o.singProdXsxRcmModel!=null && sing_o.singProdXsxRcmModel.getContent()!=null){
 					DOM += "<div style='width:100%;'>";
-					DOM += sing.singProdXsxRcmModel.getContent().replace("\r\n","<br />");
+					DOM += sing_o.singProdXsxRcmModel.getContent().replace("\r\n","<br />");
 					DOM += "</div>";
 				}
 				//編輯推薦 END
