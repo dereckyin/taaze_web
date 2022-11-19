@@ -4154,8 +4154,4 @@ src="/new_ec/single/include/js/jquery.qtip.min.js"></script>
 async></script>
 </body>
 </html>
-<%
-} catch (Exception e) {
-	log.error(e.getMessage());
-}
-%>
+
