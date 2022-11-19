@@ -763,6 +763,97 @@ if(sing_o.orgFlg.equals("A") && ( sing_o.prodCatId.equals("31") || sing_o.prodCa
 }
 
 
+//訂購日期
+String orderDate = null;
+
+//標籤雲,我的分類建議
+List<ProdKwModel> keyList = sing.queryProdKwAmountGroupByOrgProdId(sing.orgProdId, 30, systemDao);
+List<ProdKwModel> myKeyList = null;//我的標籤
+List<Cat4xsxModel> listCat4xsx = null;//我的分類建議
+List<String> listNCat4xsx = null; //延伸類別
+listNCat4xsx = sing.getNCat4xsx(sing.orgProdId, systemDao);
+if(cc!=null && cc.getCustId().length()>0){
+	myKeyList = sing.queryProdKwAmountGroupByOrgProdIdAndCustId(sing.orgProdId,  cc.getCustId(), systemDao);
+	listCat4xsx = sing.productService.queryCustCat4xsx(sing.orgProdId, cc.getCustId());
+	orderDate = sing.getOrderDate(cc.getCustId(), sing.orgProdId, systemDao);
+}
+StringBuffer tagSb = new StringBuffer();
+tagSb.append("<div style='margin:2px 0;'>");
+tagSb.append("<div style='display:block'>");
+tagSb.append("<div class='prodInfo_boldSpan' style='float:left;padding:0;'>標籤：</div>");
+tagSb.append("<div style='float:left; font-weight: normal; font-size: 10pt; max-width:280px; color: #666666;'>");
+tagSb.append("<div class='prodTag'>");
+if (keyList!=null && keyList.size()>0) {
+	if(keyList.size() > 10) {
+		tagSb.append("<div class='all_tag' style='display:none;'>");
+		for(int i = 0; i < keyList.size(); i++){
+			String href= searchProdTagUrlPattern + (keyList.get(i)!=null?URLEncoder.encode(keyList.get(i).getKwId(),"utf8"):"null");
+			tagSb.append("<a class='tag' href='");
+			tagSb.append(href+"' >");
+			tagSb.append(keyList.get(i)!=null?keyList.get(i).getKwId():"null");
+			tagSb.append("</a>");
+	 	}
+		tagSb.append("<span class='closeTag single_tags' style='margin-left:10px;width: 70px; padding: 0px 0px; font-size: 10pt; cursor: pointer; text-decoration: underline; padding-left:16px;'>收合</span>");
+		tagSb.append("</div>");
+		tagSb.append("<div class='part_tag'>");
+		for(int i = 0; i < 10; i++){
+			String href= searchProdTagUrlPattern + (keyList.get(i)!=null?URLEncoder.encode(keyList.get(i).getKwId(),"utf8"):"null");
+			tagSb.append("<a class='tag' href='");
+			tagSb.append(href+"' >");
+			tagSb.append(keyList.get(i)!=null?keyList.get(i).getKwId():"null");
+			tagSb.append("</a>");
+		}
+		tagSb.append("<span class='moreTag single_tags' style='margin-left:10px;width: 70px; padding: 0px 0px; font-size: 10pt; cursor: pointer; text-decoration: underline; padding-left:16px;'>看更多</span>");
+		tagSb.append("</div>");
+	} else {
+		tagSb.append("<div class='all_tag'>");
+		for(int i = 0; i < keyList.size(); i++){
+			String href= searchProdTagUrlPattern + (keyList.get(i)!=null?URLEncoder.encode(keyList.get(i).getKwId(),"utf8"):"null");
+			tagSb.append("<a class='tag' href='");
+			tagSb.append(href+"' >");
+			tagSb.append(keyList.get(i)!=null?keyList.get(i).getKwId():"null");
+			tagSb.append("</a>");
+		}
+		tagSb.append("</div>"); 
+	}
+} else {
+	tagSb.append("<span style='font-size: 10pt; color: #666666;word-break: break-all;'>目前無標籤</span>");
+}
+tagSb.append("</div>");
+tagSb.append("</div>");	
+tagSb.append("<div style='clear:both'></div>");
+tagSb.append("</div>");
+tagSb.append("</div>");
+tagSb.append("<div class='myTagFrame' style='line-height: 19pt;'>");
+tagSb.append("<span>");
+tagSb.append("<div class='prodInfo_boldSpan' style='float:left;padding:0;'>您的標籤：</div>");
+tagSb.append("<div style='float:left;font-weight: normal; font-size: 10pt; max-width:340px; color: #666666; word-break: break-all;' id='myProdTags'>");
+tagSb.append("<div class='my_all_tag'>");
+if(myKeyList!=null && myKeyList.size()>0){
+	for(int i = 0; i < myKeyList.size(); i++){
+		tagSb.append("<a class='tag tip03' href='javascript:return false;' onClick=\"prodKwDelete('");
+		tagSb.append(myKeyList.get(i)!=null?myKeyList.get(i).getKwId():"null"); 
+		tagSb.append("','"+sing.orgProdId+"',this)\" title='點擊刪除'>");
+		tagSb.append(myKeyList.get(i)!=null?myKeyList.get(i).getKwId():"null");
+		tagSb.append("</a>");
+	}
+}
+tagSb.append("</div>");
+if(cc!=null && cc.getCuid().toString().length()>0){
+	tagSb.append("<div class='tagAdd' style='cursor:pointer;font-weight:normal;'>");
+	tagSb.append("<img class='single_tags' />");
+	tagSb.append("<a class='tagAdd' href='javascript:void(0)'>新增您自己的標籤</a>");
+	tagSb.append("</div>");
+} else {
+	tagSb.append("<div style='font-weight:normal;'>");
+	tagSb.append("<img class='single_tags' />");
+	tagSb.append("<a onClick='loginFirst()' href='javascript:void(0)'>新增您自己的標籤</a>");
+	tagSb.append("</div>");
+}
+tagSb.append("</div>");
+tagSb.append("<br style='clear:both' />");
+tagSb.append("</span>");
+tagSb.append("</div>");
 
 
 //將video與takelook組合再一起
