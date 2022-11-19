@@ -115,7 +115,7 @@ if (cc != null) {
 	}
 }
 //相同版本
-JSONArray versionList = sing.getVersionList(sing.istProdId, sing.orgProdId);
+//JSONArray versionList = sing.getVersionList(sing.istProdId, sing.orgProdId);
 
 Map<String, Integer> want_range = sing.getPriceRangeByWant(systemDao);
 Map<String, JSONObject> sale_range = sing.getPriceRangeBySprod(systemDao);
@@ -518,7 +518,7 @@ if(sing_o.openFlg != 0) {
 }
 
 //出版日期距今
-int diffDay = 0;
+//int diffDay = 0;
 if(sing_o.publishDate!= null) {
 	diffDay = (int)sing_o.getDiffDay(new Date(), formatter.parse(sing_o.getDateFormat(sing_o.publishDate)));
 }
