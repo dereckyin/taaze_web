@@ -3487,11 +3487,7 @@ if (sprod_range.size() > 0) {
 		<% } %>
 	</div>
 </div>
-<%
-if (want_range.size() > 0) {
-	out.print(want_content_table);
-}
-%>
+
 <input type="hidden" id="TOTAL_WANT" value="<%=total_want %>"/>
 </div>
 </div>
@@ -3548,5 +3544,11 @@ if (want_range.size() > 0) {
 
 <%-- 商品簡介 --%>
 
+
+<%
+if (want_range.size() > 0) {
+	out.print(want_content_table);
+}
+%>
 	</body>
 </html>
