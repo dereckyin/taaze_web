@@ -2410,5 +2410,435 @@ jQuery.browser = {};
 <div style="clear:both;"></div>
 </div><!-- <div class="media"> -->
 
+</div>
+<%-- 左邊區塊 --%>
+		
+<%-- 右邊區塊 --%>
+<c:choose>  
+<c:when test="${cookie['mobile'].value eq 'on'}">   		
+<div class="col-xs-3">
+</c:when>  
+<c:otherwise> 		
+<div class="col-sm-4 col-md-3">
+</c:otherwise>  
+</c:choose> 		
+	<div id="cartArea" style='text-align: center;'>
+	<%--行銷活動_feynamn_換成sing.setMcData()決定的  --%>
+	<%if(orgAndQtyFlg){ %>
+		<%if(sing_o.mcName2!=null && sing_o.mcName2.length()>0 && sing_o.mcUrl2!=null){//行銷活動 %>
+		<div style="min-width:198px;">
+			<div>
+				 <!--<div class="arrow"></div>-->
+				  <!--<h3 class="popover-title">Popover top</h3>-->
+				  <div style="text-align:center;background-color:#FFF0F5;width: 215px;margin: 0 auto;">
+					  <%if(sing_o.mcUrl2!=null){ %>
+						<p style='padding:5px 5px;'><span style="font-weight:bold"><a id="mcUrl2" data-mccode2="<%=sing_o.mcCode2%>" target='_blank' href="<%=sing_o.mcUrl2%>" style="color:#e3007f;"><%=sing_o.mcName2%></a></span></p>
+					<%}else{ %>
+						<p><%=sing_o.mcName2%></p>
+					<%} %>
+				  </div>
+			</div>
+		  </div>				
+		<%}%>
+	<%}%>
+	<%--行銷活動  --%>
+	
+	<%--購物車按鈕組  --%>
+	<div class="panel-default" style="min-width:198px;border:none;margin-bottom: 20px;">
+		<div class="panel-body" style='padding:0px;'>
+		<%if(orgAndQtyFlg){ %>
+			<%if(sing_o.openFlg==-1 || sing_o.openFlg==1){ %>
+				<%if(sing_o.salePrice==0 && sing_o.orgFlg.equals("A") && (sing_o.prodCatId.equals("14")||sing_o.prodCatId.equals("25")||sing_o.prodCatId.equals("17"))){ //電子書欄位%>
+					<%-- 電子書欄位 --%>
+					<button id="readButton" onClick="readEbook('<%=sing_o.prodId%>','<%=sing_o.orgProdId%>')" type="button" class="btn btn-taaze-a btn-lg btn-block" style="padding-top:15px; padding-bottom:15px; margin-bottom: 15px;">免費閱讀</button>							
+				<%}else{ %>	
+					<%buyNowHtml = "<button type='button' name='shoppingBuy' class='shoppingBuy'>直接購買</button>"; %>
+					<button type="button" name="saveToCart" class="saveToCart">放入購物車</button>
+				<%} %>
+				
+	<%-- 二手書義賣所得 --%>
+	<% if(sprodAskModel != null && sprodAskModel.chrtFlg.equals("Y") && sprodAskModel.welfareId!=null) { %>
+	<span style="text-align:left;">
+	<div class="bubbleInfo3" style="line-height: 16px;width: 160px; margin: 0px auto 7px; color:#666666; font-size:10pt;position:relative;">
+	此本二手書販售所得，賣家將捐贈予：<%=sprodAskModel.welfareName %><a onmouseover="overShow()" onmouseout="outHide()" href="javascript:void(0);"><img style="vertical-align: bottom;" src="/include/default/imgs/question.gif"/></a>
+	<div  id="showDiv" style="display:none; width:230px; border: 1px solid #C2C2C2; border-radius: 3px; padding:5px; position: absolute; color:#808080; background-color:#ffffff;"></div>
+	</div>
+	</span>
+	<% } %>
+				<%--直接購買  --%>
+				<%=buyNowHtml %>
+				<%--已購買提示  --%>
+				<%if(orderDate!=null&&orderDate.length()>0){ %>
+					<p style="padding:10px 5px 0 5px;">
+						<s:text name="shop.main"></s:text>：您已於<%=orderDate %><s:text name="shop.aready"></s:text>。
+					</p>							
+				<%} %>
+			<%}else if(sing_o.openFlg==0){ %>
+				<%if(sing_o.outOfPrint.equals("Y")){ %>
+					<%
+					//二手書徵求
+					if(wantedSndFlg){ 
+					%>
+						<%if(IsWanted){//已徵求 %>
+							<button type="button" class="btn btn-taaze-a btn-lg btn-block" style="padding-top:15px; padding-bottom:15px;margin-bottom: 10px;" onclick='wantSnd(event)'>二手徵求</button>
+						<%}else{//未徵求 %>
+							<button type="button" class="btn btn-taaze-a btn-lg btn-block" style="padding-top:15px; padding-bottom:15px;margin-bottom: 10px;" onclick='wantSnd(event)'>二手徵求</button>
+						<%} %>
+					<%}%>
+				<%}else{ %>
+				
+					<button type="button" name='shoppingNotic' class="saveTolistWatch">可購買時通知我</button>
+					
+				<%} %>
+			<%} %>
+			
+			<!-- 訂閱 -->
+			<% if(sing_o.prodCatId.equals("25")) { %>
+				<% if(mag_scribe.getInt("error_code")==100 && !subscribe) { %>
+				<!-- 訂閱按鈕 -->
+				<button type="button" name="magScribe" class="magScribe" data-toggle='modal' data-target ='#msg_sub_Modal'>訂閱</button>
+				<%} %>
+			<%} %>
+			
+			<!-- 放入暫存清單 -->
+			<button type="button" name="wishButton" rel="false" class="saveTolistWatch">放入暫存清單</button>
+			
+		<%}else{%>
+			<div type="button" name='saleout' class="saleout">限量商品已售完</div>
+		<%} %>
+		</div>
+	</div>			
+	<%--購物車按鈕組  --%>
+	</div><!-- cartArea -->	
+	
+	<%--贈品  --%>
+	<% 
+	
+	if(gifts != null && gifts.size()>0){
+		giftsCarousel.append("<div class='panel-default giftPanel'>");
+		giftsCarousel.append("<div style='width:100%;height:26px;background:#F0F0F0;vertical-align: middle;padding:4px 10px;'>");
+		giftsCarousel.append("<span>限量贈品</span>");
+		giftsCarousel.append("</div>");
+		giftsCarousel.append("<div class='panel-body giftPanelBody' >");
+		giftsCarousel.append("<div id='giftCarousel' class='carousel slide' data-ride='carousel' data-interval='false' style='padding:0px;font-size: 12px;'>");
+		//補充ol的部分，讓輪播下面有點顯示切換
+		
+		giftsCarousel.append("<ol class='carousel-indicators'>");
+		for(int j=0; j<gifts.size();j++){
+		giftsCarousel.append("<li data-target='#giftCarousel' data-slide-to='"+ j +"'"+( (j==0)?"class='active'":"" ) +"></li>");
+		}
+		giftsCarousel.append("</ol>");   
+		//補充完畢
+		giftsCarousel.append("<div class='carousel-inner' role='listbox'>");
+		
+	%>
+						<%
+						StringBuilder giftsSb = new StringBuilder();
+						giftsSb.append("<div style='display:none'>");
+						boolean aflg = false;
+					int n_aflg=0;
+					for(int j=0; j<gifts.size();j++){
+						JSONObject gift_mas = JSONObject.fromObject(gifts.get(j));
+						JSONArray gift_item = JSONArray.fromObject(gift_mas.get("items"));
+					//feynman
+					n_aflg+=gift_item.size();
+						if(n_aflg>1){
+							aflg = true;
+						}
+					
+						for(int i=0; i<gift_item.size(); i++){
+						//System.out.println(gift_item.get(i));
+						JSONArray it = JSONArray.fromObject(gift_item.get(i));
+							JSONObject gift_data = JSONObject.fromObject(it.get(0));
+							int qty = gift_data.getInt("qty");
+							
+							giftsSb.append("<div style='display:none'><a class='gift_content' rel='"+gift_data.getString("prod_id")+"' href='#"+gift_data.getString("prod_id")+"'></a></div>");
+							giftsSb.append("<div id='"+gift_data.getString("prod_id")+"' style='width:100%;padding-bottom:10px;' remark='"+gift_mas.getString("remark")+"' repeat_flg='"+gift_mas.getString("repeat_flg")+"' type='"+gift_mas.getString("gift_type")+"'>");
+							//giftsSb.append("<div>");
+							giftsSb.append("<div style='float:left;margin-left:10px;max-width: 180px;'><img style='max-width:180px;' src='https://media.taaze.tw/showLargeImage.html?sc="+gift_data.getString("prod_id")+"&width=300' /></div>");
+							giftsSb.append("<div style='max-width:570px;float:left;padding: 5px 10px 12px 10px;line-height: 25px;font-size: 10pt;color: #666666;'>");
+							giftsSb.append("<div><span style='font-weight:bold;'>限量贈品</span></div>");
+							giftsSb.append("<div>"+gift_data.getString("prod_name")+"</div>");
+							//sb2.append(" <div>剩餘數量："+qty+"</div>");
+							if(!gift_data.getString("prod_id").substring(0,2).equals("14") && !gift_data.getString("prod_id").substring(0,2).equals("25")) {
+								if(qty == 0) {
+									giftsSb.append(" <div style='color:#e2008e'>已全數贈送完畢</div>");
+								} else {
+									if(qty > 5) {
+										giftsSb.append(" <div><span style=''>剩餘數量</span><span style='margin:0 3px; font-weight:normal;'>&gt;</span>5</div>");
+									} else {
+										giftsSb.append(" <div><span style=''>剩餘數量 =</span>"+qty+"</div>");
+									}
+								}
+							}
+							if(gift_mas.getString("remark").length() > 0) {
+								giftsSb.append("<div style='padding-top:10px;'><span style='font-weight:bold;'>活動辦法：</span></div>");
+								giftsSb.append("<div>"+gift_mas.getString("remark").replaceAll("\n","<br/>")+"</div>");
+							}
+							giftsSb.append("<div class='item_info' >");
+							if(gift_data.getString("material_desc").length() > 0) {
+								giftsSb.append("<div style='padding-top: 10px;'><span style='font-weight:bold;'>贈品說明：</span></div>");
+								giftsSb.append("<div><span>"+gift_data.getString("material_desc")+"</span></div>");
+							}
+							if(gift_mas.getString("repeat_flg").equals("A")) {
+								giftsSb.append("<div style='padding-top:10px;'><span style='font-weight:bold;'>注意事項：</span></div><div>單筆訂單不可累送。</div>");
+							} else {
+								giftsSb.append("<div style='padding-top:10px;'><span style='font-weight:bold;'>注意事項：</span></div><div>單筆訂單可累送。</div>");
+							}
+							if(gift_data.getString("sale_area").equals("A")) {
+								giftsSb.append("<div style='padding-top:10px;'><span  style='font-weight:bold;'>寄送地區限制：</span></div><div>沒有限制</div>");
+							} else if(gift_data.getString("sale_area").equals("B")) {
+								giftsSb.append("<div style='padding-top:10px;'><span  style='font-weight:bold;'>寄送地區限制：</span></div><div>限台灣本島加離島</div>");
+							} else {
+								giftsSb.append("<div style='padding-top:10px;'><span  style='font-weight:bold;'>寄送地區限制：</span></div><div>限台灣本島</div>");
+							}
+							giftsSb.append("</div>");
+							
+							giftsSb.append("</div>");
+							//giftsSb.append("</div>");
+							giftsSb.append("<div style='clear:both' ></div>");
+							giftsSb.append("</div>");
+							
+							giftsCarousel.append("<div class='item " +( (j==0&&i==0)?"active":"" )+"' style='width:215px'>");
+							giftsCarousel.append("<div onclick='showGiftDetailByPk("+gift_data.getString("prod_id")+")' class='giftImg' style='background-image:url(\"https://media.taaze.tw/showLargeImage.html?sc=" + gift_data.getString("prod_id") + "&height=170&width=120\");' data-pid='" +gift_data.getString("prod_id") +"'></div>");
+							giftsCarousel.append("<div style='word-wrap:break-word; word-break:break-all;'>");
+							giftsCarousel.append("<ul style='list-style:none; margin:0; padding:10%;'>");
+							giftsCarousel.append("<li>"+EcPathSettingImp.LimitString(gift_data.getString("prod_name"),42,"...") +"</li>");
+							
+						%>
+									<%
+									if(!gift_data.getString("prod_id").substring(0,2).equals("14") && !gift_data.getString("prod_id").substring(0,2).equals("25")) {
+										if(qty == 0) {
+											giftsCarousel.append("<li style='color:#e2008e;'>已全數贈送完畢</li>");
+//     													out.print("<li style='color:#e2008e;'>已全數贈送完畢</li>");
+										} else {
+											if(qty > 5) {
+												giftsCarousel.append("<li style='color:#e2008e;'>贈品庫存&gt;5</li>");
+//     														out.print("<li style='color:#e2008e;'>贈品庫存&gt;5</li>");
+											} else {
+												giftsCarousel.append("<li style='color:#e2008e;'>贈品庫存="+qty+"</li>");
+//     														out.print("<li style='color:#e2008e;'>贈品庫存="+qty+"</li>");
+											}
+										}
+									}
+									%>
+
+					<%	
+						giftsCarousel.append("<li style='cursor:pointer;' onclick='showGiftDetailByPk("+gift_data.getString("prod_id")+")'><a>見活動詳情</a></li>");
+					giftsCarousel.append("</ul>");
+					giftsCarousel.append("</div>");
+					giftsCarousel.append("</div>");
+						} 
+					}
+						
+					giftsSb.append("</div>");		
+					out.print(giftsSb.toString());
+					
+					giftsCarousel.append("</div>");
+					if(aflg){
+						giftsCarousel.append("<div style='position:absolute;z-index:5;top:40%;left:-10px;'>");
+						giftsCarousel.append("<a href='#giftCarousel' role='button' data-slide='prev'>");
+						giftsCarousel.append("<img class='arrowForLeftImg_s' />");
+						giftsCarousel.append("<span class='sr-only'>Previous</span>");
+						giftsCarousel.append("</a>");
+						giftsCarousel.append("</div>");
+						giftsCarousel.append("<div style='position:absolute;z-index:5;top:40%;right:-10px;'>");
+						giftsCarousel.append("<a href='#giftCarousel' role='button' data-slide='next'>");
+						giftsCarousel.append("<img class='arrowForRightImg_s' />");
+						giftsCarousel.append("<span class='sr-only'>Next</span>");
+						giftsCarousel.append("</a>");
+						giftsCarousel.append("</div>");
+					}
+					
+					giftsCarousel.append("</div>");
+					giftsCarousel.append("</div>");
+					giftsCarousel.append("</div>");
+					%>
+
+	<%
+		out.print(giftsCarousel.toString());
+	} 
+	%>
+	<%--贈品  --%>
+	
+	<%-- 我想讀 --%>
+	<%if(sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14")) { %>
+	<div id='iWantRead' style='width:215px;margin:0 auto 3px auto;'>
+		<div class='dropdown'>
+			<ul class='dropdown-menu hidden_menu' style='width:100%;margin-top:-1px;'>
+				<li class='want_read_action' rel='W'><a>我想讀</a></li>
+				<li class='reading_action' rel='A'><a>正在讀</a></li>
+				<li class='readed_action' rel='D'><a>已讀完</a></li>
+				<li style='border-bottom:1px solid #C2C2C2;'></li>
+				<li onclick='changeCheckDiv(this)' class='collect_action' style='<%=collectArray[0]==0?"":"display:none"%>'>
+					<div title="勾選這個欄位將書本收藏到書櫃中" class='checkDiv'>
+						<div class='checkY <%=collectArray[0]==0?"active":"" %>' rel='Y'>
+							<span class='glyphicon glyphicon-ok'></span>
+						</div>
+					</div>
+					<span style='clear:both;letter-spacing:0.5px; line-height:19px;'>同步收藏</span>
+				</li>
+				<li onclick='changeCheckDiv(this)' class='fb_check'>
+					<div title="勾選這個欄位將你發表的評論同步到facebook上"  rel="uncheck" class="fb_shared checkDiv">
+						<div class='checkY' rel='N'>
+							<span class='glyphicon glyphicon-ok'></span>
+						</div>
+					</div>
+					<span style='clear:both;letter-spacing:0.5px; line-height:19px;'>分享至臉書</span>
+				</li>
+			</ul>
+			<div style='float:left;text-align:center;display:inline-block;width:165px;height:45px;border-color: #E3007F;border-width: 1px 0px 1px 1px;border-style: solid;border-radius: 100px 0 0 100px;'>
+				<div style='vertical-align:middle;height:100%;display:inline-block;'></div>
+				<div class='read_state action_frame' rel='0' style='color:#E3007F;letter-spacing:2px; line-height:24px;font-size:17px;font-weight:700;display:inline-block;vertical-align:middle;'>我想讀</div>
+			</div>
+			<div data-toggle="dropdown" class="dropdown-toggle" style='padding-top:10px;text-align:center;float:left;width:50px;height:45px;border: 1px solid #E3007F;border-radius: 0 100px 100px 0;'>
+				<img style='width:20px;height:10px;' src='/new_ec/rwd/include/images/C_image/ic/ic_5@2x.png' />
+			</div>
+			<div style='clear:both;'></div>
+		</div>
+		<%-- 收藏這本書的人 --%>
+		<%
+		
+		if(recommendZekea!=null && recommendZekea.getString("error_code").equals("100") && recommendZekea.getInt("total_size") > 0){
+			StringBuffer sb = new StringBuffer();
+			sb.append("<div class='panel-default' style='width:215px;border:none;margin-bottom:0px;'>");
+			sb.append("<div class='panel-body' style='width:100%'>");
+			sb.append("<div class='collectCount'><span style='color:#e3007f;font-weight:bold;'>"+collectArray[2]+"</span><font style='color:#e3007f;font-weight:bold;'>人</font>收藏這本書</div>");
+			
+			sb.append("<div id='recommendZekeaCarousel' class='carousel slide' data-ride='carousel' data-interval='false' style='padding:0px;'>");
+			sb.append("<div class='carousel-inner' style='padding-left:5px;' role='listbox'>");
+			int pageSize = 5;
+			JSONArray recommendList = recommendZekea.getJSONArray("custs"); 
+			for(int i = 0; i <recommendList.size(); i++){
+				JSONObject cust = recommendList.getJSONObject(i);
+				if(i == 0 ){	
+					sb.append("<div class='item active'>");
+				}else if((i%pageSize) == 0){
+					sb.append("<div class='item'>");
+				}
+				
+				sb.append("<div style='margin-left:5px;display:inline-block;width:25px;height:25px;'><a title='"+cust.getString("nick_name")+"' href='/container_zekeaclt_view.html?ci=" + cust.getString("cuid") + "' target='_blank' >");
+				sb.append("<img style='border-radius:50%;' src='https://media.taaze.tw/showMemImage.html?no=" + cust.getString("cuid") + "&width=50&height=50' width='25' height='25' border='0' />");
+				sb.append("</a></div>");
+
+				if(i==(recommendList.size()-1) || (i%pageSize) == (pageSize-1)){
+					sb.append("<div style='clear:both;'></div>");
+					sb.append("</div>");
+				}
+			}
+			sb.append("</div>");
+			if(recommendList.size()>pageSize){	
+			sb.append("<div style='position:absolute;z-index:5;top:25%;left:-10px;'>");
+			sb.append("<a href='#recommendZekeaCarousel' role='button' data-slide='prev'>");
+			sb.append("<img class='arrowForLeftImg_s' />");
+			sb.append("<span class='sr-only'>Previous</span>");
+			sb.append("</a>");
+			sb.append("</div>");
+			
+			sb.append("<div style='position:absolute;z-index:5;top:25%;right:-10px;'>");
+			sb.append("<a href='#recommendZekeaCarousel' role='button' data-slide='next'>");
+			sb.append("<img class='arrowForRightImg_s' />");
+			sb.append("<span class='sr-only'>Next</span>");
+			sb.append("</a>");
+			sb.append("</div>");
+			}
+			
+			sb.append("</div>");
+			sb.append("</div>");
+			sb.append("</div>");
+			
+			out.print(sb.toString());
+		}
+		
+		%>
+		<%-- 收藏這本書的人 End--%>
+		<%-- 收藏這本書的朋友--%>
+		<div class='friend_bookAction' style='display:none;'>
+			
+			<div class='panel panel-default' style='width:195px;border:none;margin-bottom:0px;'>
+				<div class='panel-body' style='width:100%'>
+					<div class='friendCount2'></div>
+					<div id='friendShow2' class='friendShow2 carousel slide' data-ride='carousel' data-interval='false' style='padding:0px;'></div>
+				</div>
+			</div>
+		</div>
+		<%-- 收藏這本書的朋友 End--%>
+	</div>
+	<%} %>
+	<%-- 我想讀 --%>
+	
+	<%-- 其他功能 --%>
+	<div class='other'>
+	<%
+	String nextPositionTop = "";
+	if(sndSale && (sing_o.prodCatId.equals("11")|| sing_o.prodCatId.equals("24") || sing_o.prodCatId.equals("27") || sing_o.prodCatId.equals("12") || sing_o.prodCatId.equals("13"))){ //sele form
+		nextPositionTop="45px";
+	%>
+		<div id='sndSale' class='dropdown' style='display:inline-block;'>
+			<img class='bay' />
+	<%
+		if(cc!=null && cc.getMobileVerifyFlg().equals("Y")){
+	%>
+			<a style='cursor:pointer;' type="button" data-toggle='modal' data-target ='#sendToSellModal'>我要賣</a>
+	<%		
+		}else if(cc!=null && cc.getCustId().equals("tch1050818@gmail.com")){
+			out.print("<a style='cursor:pointer;' type='button' data-toggle='modal' data-target ='#sendToSellModal'>我要賣</a>");
+		}else{
+	%>
+			<a data-toggle="dropdown" class="dropdown-toggle" style='cursor:pointer;' <%=cc==null?"onclick='loginFirst()'":"" %>>我要賣</a>
+			<ul class="dropdown-menu" style='width:130px;margin-top:-1px;'>
+				<li><a href='/sell_used_books.html'><s:text name="single.understand_more" /></a></li>
+			</ul>
+			<div style='display:none;' id='whatISale_info'>
+				<s:text name="single.i_sell_icon_info.msg"/>
+			</div>
+	<%		
+		}
+	%>
+		</div>
+	<%
+	}
+	%>
+		<div id='salebonus' class='dropdown' style='display:inline-block;'>
+			<img class='money' />
+			<a data-toggle="dropdown" class="dropdown-toggle" href="#">行銷分紅</a>
+	<%
+	if(cc!=null && cc.getMobileVerifyFlg().equals("Y") &&  cc.getPrFlg()!=null && cc.getPrFlg().equals("Y")){ //通過行銷分紅驗證
+	%>	
+			<ul class="dropdown-menu dropdown-menu-right" style='width:330px;margin-top:-1px;'>
+				<li><a href='/member_serviceCenter.html?qa_type=l'><s:text name="single.understand_more" /></a></li>
+				<li><a href='/mobileValidate.html?typeFlg=IA'><s:text name="single.immediately_open_access" /></a></li>
+				<li class='whatAp'><a href='#'><s:text name="single.what's_ap" /><img style="margin-left:3px;width:15px;height:15px;vertical-align: text-top;" src="/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png" /></a></li>				
+				<li>
+				<div style="padding-top: 6px;"> 
+				<a class="linkStyle02" style="margin-left: 12px;" href="javascript:void(0);" onClick="selectApUrl()">點此全選下列網址</a><span style="padding-left: 5px;">再按右鍵複製</span>
+					<input type="text" id="apUrl" name="apUrl" size="37" value="<%=sing_o.getWebUrl(request) %>/apredir.html?<%=ApUtil.encryptForCuid(new Long(cc.getCuid())) %>/<%=sing_o.getWebUrl(request) %>/goods/<%=sing_o.prodId %>.html?a=b"  readonly="readonly" style="margin-left: 12px;">
+				</div>
+				</li>
+				<li>
+				<div style="padding-top: 6px;">
+				<a class="linkStyle02" style="margin-left: 12px;" href="javascript:void(0);" onClick="selectApCode()">點此全選下列Html碼</a><span style="padding-left: 5px;">再按右鍵複製</span>
+					<textarea id="apCode" name="apCode" rows="5" cols="40" style="margin-left: 12px;"><a href="<%=sing_o.getWebUrl(request) %>/apredir.html?<%=ApUtil.encryptForCuid(new Long(cc.getCuid())) %>/<%=sing_o.getWebUrl(request) %>/goods/<%=sing_o.prodId %>.html?a=b" target="_blank"><%=sing_o.titleMain %></a></textarea>
+				</div>
+				</li>	
+			</ul>
+			<div style='display:none;' id='whatAp_info'>
+				<s:text name="single.show_ap_info.msg"/>
+			</div>
+	<%}else{%>
+			<ul class="dropdown-menu dropdown-menu-right" style='width:130px;margin-top:-1px;'>
+				<li><a href='/member_serviceCenter.html?qa_type=l'><s:text name="single.understand_more" /></a></li>
+				<li><a href='/mobileValidate.html?typeFlg=IA'><s:text name="single.immediately_open_access" /></a></li>
+				<li class='whatAp'><a href='#'><s:text name="single.what's_ap" /><img style="margin-left:3px;width:15px;height:15px;vertical-align: text-top;" src="/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png" /></a></li>
+			</ul>
+			<div style='display:none;' id='whatAp_info'>
+				<s:text name="single.show_ap_info.msg"/>
+			</div>
+	<%} %>
+		</div>
+	</div>
+	<%-- 其他功能 --%>		</div>
+<%-- 右邊區塊 --%>
+</div>
 	</body>
 </html>
