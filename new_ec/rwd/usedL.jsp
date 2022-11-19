@@ -2210,6 +2210,15 @@ jQuery.browser = {};
 		
 		<body>
 		<div id="body-div" class="plexi"></div>
+		<input id="SINGLE_ISLOGIN" type="hidden" value="<%=LoginUtil.isLoginCustomer(request) %>"/>
+		<input id='OPEN_WECOLLECTFUN_FLG' type="hidden" value="<%=openNewCollectFriendsFlg %>" />
+		<input id="SINGLE_CUST_ID" type="hidden" value="<%=cc != null ? cc.getCustId():"null" %>"/>
+		<input id="ORG_PROD_ID" type="hidden" value="<%=sing.orgProdId %>"/>
+		<input id="IMG_URL" type="hidden" value="<%=sing.getImgUrl() %>"/>
+		<input id="WEB_URL" type="hidden" value="<s:property value="#attr.INIT_SERVER_MAP.web_url"/>"/>
+		<input id="PROD_CAT_ID_HIDE" type="hidden" value="<%=sing.prodCatId %>"/>
+		<input id="LIST_PRICE" type="hidden" value="<%=Math.round(sing.listPrice) %>"/>
+		<input id="TOTAL_SALER" type="hidden" value="<%=sing.total_saler %>"/>
 		<input id="USED_SIZE" type="hidden" value="0"/>
 		<input id="MAX_SHOW_SIZE" type="hidden" value="5"/>
 		<input id="USEDLIST_RANK" type="hidden" value="2"/>
