@@ -1015,6 +1015,103 @@ if(sing_o.orgFlg.equals("B") || sing_o.orgFlg.equals("C")){
 //直接購買顯示html字串
 String buyNowHtml = "";
 
+
+//電子雜誌訂閱
+JSONObject mag_scribe = null;
+JSONArray mag_scribe_list = new JSONArray();
+boolean subscribe = false;
+String mag_full_name = "";
+String mag_pub = "";
+String mag_new_issue = "";
+String mag_publish_date = "";
+String mag_timing = "";
+String mag_print_type = "";
+String mag_src = "";
+String mag_sList_btn = "";
+try {
+	if(sing_o.prodCatId.equals("25")) {
+		if(cc!= null) {
+			mag_scribe = sing_o.queryProdMagzneInfo(sing_o.orgProdId,String.valueOf(cc.getCuid()),systemDao);
+		} else {
+			mag_scribe = sing_o.queryProdMagzneInfo(sing_o.orgProdId,null,systemDao);
+		}
+	}
+	if(mag_scribe!= null) {
+		if(mag_scribe.getInt("error_code") == 100) {
+			mag_scribe_list = (JSONArray)mag_scribe.get("items");
+			if(mag_scribe.getString("scribe_count").equals("1")) {
+				subscribe = true;
+			}
+			if(mag_scribe.containsKey("mag_publisher")) {
+				mag_pub = mag_scribe.getString("mag_publisher");
+			}
+			if(mag_scribe.containsKey("full_name")) {
+				mag_full_name = mag_scribe.getString("full_name");
+			}
+			if(mag_scribe.containsKey("mag_new_issue")) {
+				mag_new_issue = mag_scribe.getString("mag_new_issue");
+			}
+			if(mag_scribe.containsKey("mag_publish_date")) {
+				mag_publish_date = mag_scribe.getString("mag_publish_date");
+			}
+			if(mag_scribe.containsKey("mag_timing")) {
+				mag_timing = mag_scribe.getString("mag_timing");
+			}
+			if(mag_scribe.containsKey("mag_print_type")) {
+				mag_print_type = mag_scribe.getString("mag_print_type");
+			}
+			if(mag_scribe.containsKey("img_src")) {
+				mag_src = mag_scribe.getString("img_src");
+			}
+			
+			if( mag_scribe_list!=null) { 
+				StringBuilder sb = new StringBuilder();
+				for(int i =0 ; i < mag_scribe_list.size(); i++) {
+					JSONObject item = (JSONObject)mag_scribe_list.get(i);
+					String mag_id = "";
+					String name = "";
+					String disc = "";
+					String price = "";
+					
+					if(item.containsKey("org_prod_id")) {
+						mag_id = item.getString("org_prod_id");
+					}
+					if(item.containsKey("name")) {
+						name = item.getString("name");
+					}
+					if(item.containsKey("sale_disc")) {
+						disc = item.getString("sale_disc");
+					}
+					if(item.containsKey("sale_price")) {
+						price = item.getString("sale_price");
+					}
+					
+					if(Integer.parseInt(price) == 0) {
+						sb.append("<div style='float:left;cursor: pointer;margin-right:5px;' class='highlight' rel='"+ mag_id +"' onclick=\"scribeFreeMagazine('"+pid+"','"+mag_id+"')\" >");
+					} else {
+						sb.append("<div style='float:left;cursor: pointer;margin-right:5px;' class='highlight' rel='"+ mag_id +"' onclick=\"add2ShoppingCart('"+mag_id+"','"+mag_id+"')\" >");
+					}
+					
+					sb.append("<div style='padding:0px;text-align: center;'>"+ name +"</div>");
+					if(disc.length() > 0) {
+						sb.append("<div class='discPrice' style='padding:0px;margin:0;text-align: center;'><span>"+ disc +"</span>折<span>"+ price +"</span>元</div>");
+					} else {
+						sb.append("<div class='discPrice' style='padding:0px;margin:0;text-align: center;'><span>"+ price +"</span>元</div>");
+					}
+					
+					sb.append("<div style='clear:both'></div>");
+					sb.append("</div>");
+				}
+				sb.append("<div style='clear:both'></div>");
+				mag_sList_btn = sb.toString();
+			}
+		}
+	}
+} catch(Exception e) {
+	sing_o.logger.error("mag subscribe:"+e.getMessage());
+}
+
+
 %>
 
 <!DOCTYPE html>
