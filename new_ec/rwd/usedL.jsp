@@ -892,7 +892,7 @@ if(imageTakeLook!=null&&imageTakeLook.length>0){
 	}
 }
 
-<!-- begin of 內容簡介 -->
+// begin of 內容簡介 -->
 //內容簡介.....
 JSONArray menuItems = new JSONArray();
 //手機顯示以下內容簡介
@@ -968,10 +968,10 @@ if(imageDesc!=null || sing_o.prodPf != null || sing_o.authorPf!=null || sing_o.t
 	//影音商品嵌入影片
 	if(sing_o.prodCatId.equals("31") || sing_o.prodCatId.equals("32")) { 
 		if(videoList!=null) {
-		   for(int i = 0; i < videoList.size(); i++) {
-	   		    JSONObject obj = (JSONObject)videoList.get(i);
-	   		    sb2.append(obj.getString("video")!=""?"<center>"+obj.getString("video")+"</center><br/>":"");
-	   	   }
+			for(int i = 0; i < videoList.size(); i++) {
+				JSONObject obj = (JSONObject)videoList.get(i);
+				sb2.append(obj.getString("video")!=""?"<center>"+obj.getString("video")+"</center><br/>":"");
+			}
 		}
 	}
 	//商品說明
@@ -1203,8 +1203,7 @@ if(sing_o.orgFlg.equals("C")){ //二手書
 }
 textAreaDOM.add(sing_o.setMenuItemContent("howBuy", "購物須知", sb2.toString()));
 
-
-<!-- end of 內容簡介 -->
+// end of 內容簡介 -->
 
 
 String schoolBookUrlPattern = "/container_snd_actview.html?t=11&k=03&d=00&a=08#";
