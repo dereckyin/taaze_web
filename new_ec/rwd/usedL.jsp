@@ -3074,9 +3074,11 @@ jQuery.browser = {};
 	<%-- 其他功能 --%>		</div>
 <%-- 右邊區塊 --%>
 
-<div>wwwwwwww</div>
-
 </div>
+
+<%-- tags --%>
+<div>wwwwwwww</div>
+<%-- tags --%>
 
 	</body>
 </html>
