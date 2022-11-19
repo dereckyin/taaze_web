@@ -96,7 +96,7 @@ String feature_want = "";
 int total_want = 0;
 String want_content_table = "";
 //線上試讀
-String previewCount = sing.displayDL(sing.orgProdId, systemDao);
+//String previewCount = sing.displayDL(sing.orgProdId, systemDao);
 //出版日期距今
 int diffDay = 0;
 //評論筆數
