@@ -394,6 +394,75 @@ if(sing.catId!=null&&sing.catId.length()==12){
 /* @@sitemap資料 	*/	
 
 
+//圖檔
+sing_o.setImgUrl(request);
+//評價數(星評數)
+int startLevelSize = sing_o.getSizeStartLevelByOrgProdId(sing_o.orgProdId, systemDao);
+int startLevel = sing_o.getStartLevelByOrgProdId(sing_o.orgProdId, systemDao);
+int myStartLevel = 0;
+
+//無星評數的要生成
+int orgProdIdsum = 0;//2
+int orgProdIdrating = 0;//4 
+
+char[] ch_orgProdIdsum = sing_o.orgProdId.substring(9).toCharArray();//將字串轉成字元陣列 
+orgProdIdrating = Integer.parseInt(sing_o.orgProdId.substring(7));
+
+for(int i=0;i<ch_orgProdIdsum.length;i++){
+	int c = ch_orgProdIdsum[i]-'0';
+orgProdIdsum += c ;//加總 
+} 
+
+float rate2 =0;
+rate2 = (float) (orgProdIdrating)/30000+4;
+DecimalFormat df1 = new DecimalFormat(".00");
+String rate3 = df1.format(rate2);
+
+//System.out.println("星評:"+startLevel);
+//System.out.println("第二個加總:"+orgProdIdsum);
+//System.out.println("第一個加總:" + rate3);
+
+JSONArray commentList = null;
+JSONObject cust_cmt = null;
+String comment_pk = "";
+String comment_text = "";
+String comment_html = "";
+String comment_title = "";
+String comment_status = "A";
+String comment_date = "";
+try {
+	if(cc!=null) {
+		//commentList = sing_o.queryHotCommentMasByOrgProdId(cc.getCustId(), sing_o.orgProdId, systemDao);
+		cust_cmt = sing_o.queryCustComment(cc.getCustId(), sing_o.orgProdId, systemDao);
+		if(cust_cmt != null) {
+			myStartLevel = Integer.valueOf(cust_cmt.getString("stars"));
+			comment_pk = cust_cmt.getString("pk_no");
+			comment_text = cust_cmt.getString("content");
+			comment_html = comment_text.replaceAll("\n", "<br/>");
+			comment_title = cust_cmt.getString("title");
+			comment_status = cust_cmt.getString("status_flg");
+			String[] dates = cust_cmt.getString("crt_time").split("-");
+			comment_date = dates[0]+"年"+dates[1]+"月"+dates[2]+"日";
+		}
+	} 
+} catch(Exception e) {
+	sing_o.logger.error("query comment occur error : "+e.getMessage());
+}
+
+//收藏
+int collectArray[];
+if(cc!=null) {
+	collectArray = sing_o.getCollectionItemSizeByOrgProdIdAndCustId(cc.getCustId(), sing_o.orgProdId, systemDao);
+} else {
+	collectArray = sing_o.getCollectionItemSize(sing_o.orgProdId, systemDao);
+}
+if(collectArray==null){
+	collectArray = new int[3];
+	collectArray[0] = 0;
+	collectArray[1] = 0;
+	collectArray[2] = 0;
+}
+
 
 
 
