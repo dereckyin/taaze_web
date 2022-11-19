@@ -1141,7 +1141,7 @@ if(gift_info != null) {
 
 //new 格主推薦
 JSONObject recommendZekea = null;
-recommendZekea = sing.getRecommend(sing.orgProdId, systemDao);
+recommendZekea = sing_o.getRecommend(sing.orgProdId, systemDao);
 
 %>
 
