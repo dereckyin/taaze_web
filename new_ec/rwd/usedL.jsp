@@ -763,6 +763,7 @@ if(sing_o.orgFlg.equals("A") && ( sing_o.prodCatId.equals("31") || sing_o.prodCa
 	}
 }
 
+String searchProdTagUrlPattern = "/rwd_searchResult.html?keyType%5B%5D=4&keyword%5B%5D=";
 
 //訂購日期
 String orderDate = null;
