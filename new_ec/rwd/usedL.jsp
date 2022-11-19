@@ -893,6 +893,61 @@ if(imageTakeLook!=null&&imageTakeLook.length>0){
 }
 
 
+//內容簡介.....
+JSONArray menuItems = new JSONArray();
+//手機顯示以下內容簡介
+String spam[] = {"prodPf","mediaRm","personGuide","howBuy","catalogue","viewData","prodSpec","authorPf","preface","brand"};
+List<String> menuItemsForM = Arrays.asList(spam);
+int showItem=0;
+if(sing_o.prodPf!=null || imageDesc!=null || sing_o.authorPf!=null || sing_o.translatorPf!=null){
+	menuItems.add(sing_o.setMenuItem("prodPf",prodContentText));
+	
+	fbDes2 = sing_o.prodPf!=null?sing_o.prodPf.replaceAll("<[^>]+>", "").replaceAll("\r\n","").replaceAll("\n","").trim():"";
+	if(fbDes.length()>40){
+		fbDes = fbDes.substring(0,40) + "...";
+	}
+	if(fbDes2.length()>150){
+		fbDes2 = fbDes2.substring(0,150) + "...";
+		fbDes2 = fbDes2.replaceAll("\"","\'");
+	}
+}
+if(sing_o.prodCatId.equals("61") || sing_o.prodCatId.equals("62")) {
+	if(sing_o.prodSpec!=null && sing_o.prodSpec.length() > 0) {
+		menuItems.add(sing_o.setMenuItem("prodSpec","產品規格"));
+	}
+	if(sing_o.authorPf!=null && sing_o.authorPf.length() > 0) {
+		menuItems.add(sing_o.setMenuItem("authorPf","設計師簡介"));
+	}
+}
+if(sing_o.prodCatId.equals("31") || sing_o.prodCatId.equals("32")) {
+	if(sing_o.awardRec!=null && sing_o.awardRec.length() > 0) {
+		menuItems.add(sing_o.setMenuItem("mediaRm","得獎紀錄"));
+	}
+} else {
+	if(sing_o.mediaRcm!=null || sing_o.awardRec!=null || sing_o.personRcm!=null || sing_o.spRec!=null){
+		menuItems.add(sing_o.setMenuItem("mediaRm","各界推薦"));
+	}
+}
+if(sing_o.viewData != null && sing_o.viewData.length() > 0){
+	menuItems.add(sing_o.setMenuItem("viewData","章節試閱"));
+}
+if(sing_o.personGuide != null && sing_o.personGuide.length() > 0){
+	menuItems.add(sing_o.setMenuItem("personGuide","推薦序"));
+}
+if(sing_o.preface != null && sing_o.preface.length() > 0){
+	menuItems.add(sing_o.setMenuItem("preface","作者序"));
+}
+if(sing_o.catalogue != null && sing_o.catalogue.length() > 0){
+	menuItems.add(sing_o.setMenuItem("catalogue","目錄"));
+}
+if(sing_o.brandNm != null || sing_o.brandPf != null){
+	if(!sing_o.prodCatId.equals("32")){
+		menuItems.add(sing_o.setMenuItem("brand","品牌簡介"));
+	}
+	
+}
+//品牌簡介新增排除業種32
+menuItems.add(sing_o.setMenuItem("howBuy","購物須知"));
 
 
 
@@ -1142,7 +1197,7 @@ if(gift_info != null) {
 
 //new 格主推薦
 JSONObject recommendZekea = null;
-recommendZekea = sing_o.getRecommend(sing.orgProdId, systemDao);
+recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 
 %>
 
@@ -3186,10 +3241,73 @@ if (want_range.size() > 0) {
 </div>
 </div>
 
-
-
-
 <%-- 二手與徵求 --%>
+
+
+<%-- 商品簡介 --%>
+
+		
+<%--內容簡介/各界推薦/章節試閱/作者序/目錄/購物須知....--%>
+<%-- 手機板只顯示內容簡介跟購物須知 --%>
+
+<%
+if(menuItems.size()>0) {
+	int tmp = 1; 
+	
+	for(int i = 0; i < menuItems.size(); i++) {
+		if(menuItemsForM.contains(menuItems.getJSONObject(i).get("id"))){
+		//if(menuItems.getJSONObject(i).get("id").equals("prodPf") || menuItems.getJSONObject(i).get("id").equals("howBuy")){
+%>
+<div class="panel-default" style="margin-top:0px;word-wrap: break-word;">
+<div class="panel-heading" style='position:relative;' onclick="showContent(<%=tmp %>)">
+		<%=menuItems.getJSONObject(i).get("title") %><a style='float:right;'><img class='downArrow' id='arrow<%=tmp %>'/></a>
+</div>
+<div class ="mHideContent" style='display:none'>
+	<%
+	for(int j = 0; j < textAreaDOM.size(); j++) {
+		String DOM = "";
+		if(textAreaDOM.getJSONObject(j).getString("id").equals(menuItems.getJSONObject(i).get("id"))) {
+			DOM += "<div id='m_"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
+			if(textAreaDOM.getJSONObject(i).getString("id").equals("prodPf")){
+				//編輯推薦 放在內容簡介
+				if(sing.singProdXsxRcmModel!=null && sing.singProdXsxRcmModel.getContent()!=null){
+					DOM += "<div style='width:100%;'>";
+					DOM += sing.singProdXsxRcmModel.getContent().replace("\r\n","<br />");
+					DOM += "</div>";
+				}
+				//編輯推薦 END
+			}
+			if(i > 0) {
+				//DOM += String.format(htmlBuild1, textAreaDOM.getJSONObject(i).getString("title"));
+			}
+			StringBuffer content = new StringBuffer(textAreaDOM.getJSONObject(i).getString("content"));
+			//while(content.indexOf("<iframe") > -1 && content.indexOf("</iframe>")+9 > content.indexOf("<iframe")){
+				//content.replace(content.indexOf("<iframe"), content.indexOf("</iframe>")+9, "");
+			//}
+			DOM += content.toString();
+		DOM += "</div>";
+		DOM = DOM.replaceAll("<iframe", "<div class='video-container'><iframe");
+		DOM = DOM.replaceAll("</iframe>","</iframe></div>");
+			DOM = DOM.replaceAll("class='topBtn'", "style='display:none'");
+		}else{
+			continue;
+		}
+
+		out.print(DOM);
+	}
+	
+	%>
+</div>
+</div>
+<%	
+			tmp++;
+		}
+	}
+}
+%>
+<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
+
+<%-- 商品簡介 --%>
 
 	</body>
 </html>
