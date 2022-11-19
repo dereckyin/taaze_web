@@ -1,5 +1,6 @@
 <%@page import="com.xsx.ec.model.Cat4xsxModel"%>
 <%@page import="com.enjar.system.LoginUtil" %>
+<%@page import="com.enjar.system.product.ProductUtil"%>
 <%@page import="com.taaze.system.util.CookieSecure" %>
 <%@page import="com.xsx.customer.service.CustQingdanService" %>
 <%@page import="com.xsx.ec.service.EcPathSetting" %>
@@ -3691,11 +3692,11 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 <div id="mCartArea" class='visible-xs-block visible-sm-block visible-md-block'>
 </c:otherwise>
 </c:choose>
-<%if (sing.salePrice<=0 && ProductUtil.isEbook(sing.prodId)) { //0元電子書欄位%>
-<%if(sing.openFlg==-1 || sing.openFlg==1){ %>
-<%if(sing.salePrice==0 && sing.orgFlg.equals("A") && (ProductUtil.isEbook(sing.prodId))){%>
+<%if (sing_o.salePrice<=0 && ProductUtil.isEbook(sing_o.prodId)) { //0元電子書欄位%>
+<%if(sing_o.openFlg==-1 || sing_o.openFlg==1){ %>
+<%if(sing_o.salePrice==0 && sing_o.orgFlg.equals("A") && (ProductUtil.isEbook(sing_o.prodId))){%>
 <%-- 免费领取（已领取）手机 --%>
-<div class="readButton" onClick="readEbook('<%=sing.prodId%>','<%=sing.orgProdId%>','M')" style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);'>免費領取</div>
+<div class="readButton" onClick="readEbook('<%=sing_o.prodId%>','<%=sing_o.orgProdId%>','M')" style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);'>免費領取</div>
 <%}%>
 <%}else{%>
 <div name='shoppingNotic' style='height:100%;width:100%;color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);float:left'>可領取時通知我</div>
@@ -3703,13 +3704,13 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 <%} else {%>
 <div id='mCart_watchList' name='wishButton' rel='false' style='float:left;'>暫存清單</div>
 <%if(orgAndQtyFlg){ %>
-<%if(sing.openFlg==-1 || sing.openFlg==1){ %>		<%-- mShoppingNotic --%>
+<%if(sing_o.openFlg==-1 || sing_o.openFlg==1){ %>		<%-- mShoppingNotic --%>
 <div id='mCart_cart' name='saveToCart' style='float:left;border-left:1px solid #e3007e;width: 34%;height: 100%;color: #e3007f;background-color: #ffffff;'>放入購物車</div>
 <div id='mCart_buy' style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);'>立即結帳</div>
 <%--直接購買  --%>
-<%}if(sing.openFlg==0){ %>
-<%if("Y".equals(sing.outOfPrint)){
-if((sing.prodCatId.equals("11") || sing.prodCatId.equals("14")|| sing.prodCatId.equals("17")) && !sing.orgFlg.equals("C")) {%>
+<%}if(sing_o.openFlg==0){ %>
+<%if("Y".equals(sing_o.outOfPrint)){
+if((sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14")|| sing_o.prodCatId.equals("17")) && !sing_o.orgFlg.equals("C")) {%>
 <div name='wantSnd' class="mShoppingNotic" style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);float:left' onclick="wantSnd(event);">二手徵求</div>
 <%}else{%>
 <script type="text/javascript">
@@ -3720,7 +3721,7 @@ document.getElementById( "mCart_watchList" ).style.width = "100%";
 </script>
 <%}} else{ %>
 <div name='shoppingNotic' class="mShoppingNotic" style='float:left'>
-<%if (ProductUtil.isEbook(sing.prodId)&& sing.salePrice<=0) {out.print("可領取時通知我");}else{out.print("可購買時通知我");};%></div>
+<%if (ProductUtil.isEbook(sing_o.prodId)&& sing_o.salePrice<=0) {out.print("可領取時通知我");}else{out.print("可購買時通知我");};%></div>
 <%} %>
 <%} %>
 <%}else{%>
@@ -3993,42 +3994,42 @@ src="https://www.facebook.com/tr?id=1691589381072988&ev=PageView&noscript=1"
 
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function() {
-	  let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
-	  let active = false;
+		let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+		let active = false;
 
-	  const lazyLoad = function() {
-	    if (active === false) {
-	      active = true;
+		const lazyLoad = function() {
+		if (active === false) {
+			active = true;
 
-	      setTimeout(function() {
-	        lazyImages.forEach(function(lazyImage) {
-	          if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
-	            lazyImage.src = lazyImage.dataset.src;
-	            //lazyImage.srcset = lazyImage.dataset.srcset;
-	            lazyImage.classList.remove("lazy");
+			setTimeout(function() {
+			lazyImages.forEach(function(lazyImage) {
+				if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
+				lazyImage.src = lazyImage.dataset.src;
+				//lazyImage.srcset = lazyImage.dataset.srcset;
+				lazyImage.classList.remove("lazy");
 
-	            var vBakClass = lazyImage.getAttribute("data");
-	            if( vBakClass != null ){
-	            	lazyImage.classList.toggle(vBakClass);
-	            }
+				var vBakClass = lazyImage.getAttribute("data");
+				if( vBakClass != null ){
+					lazyImage.classList.toggle(vBakClass);
+				}
 
-	            lazyImages = lazyImages.filter(function(image) {
-	              return image !== lazyImage;
-	            });
+				lazyImages = lazyImages.filter(function(image) {
+					return image !== lazyImage;
+				});
 
-	            if (lazyImages.length === 0) {
-	              document.removeEventListener("scroll", lazyLoad);
-	              window.removeEventListener("resize", lazyLoad);
-	              window.removeEventListener("orientationchange", lazyLoad);
-	            }
-	          }
-	        });
+				if (lazyImages.length === 0) {
+					document.removeEventListener("scroll", lazyLoad);
+					window.removeEventListener("resize", lazyLoad);
+					window.removeEventListener("orientationchange", lazyLoad);
+				}
+				}
+			});
 
-	        active = false;
-	      }, 200);
-	    }
-	  };
-	  
+			active = false;
+			}, 200);
+		}
+		};
+
 
 		$('#mFootLazyLoad').lazyload({
 			  // Sets the pixels to load earlier. Setting threshold to 200 causes image to load 200 pixels
