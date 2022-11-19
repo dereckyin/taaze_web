@@ -4479,8 +4479,12 @@ out.print(m_gift);
 </div>
 <div class ="mHideContent" style='display:none'>
 <div class="">
-<%=prodDataSb.toString() %>
-<%=tagSb.toString() %>
+ 
+
+
+
+
+
 </div>
 </div>
 </div>
