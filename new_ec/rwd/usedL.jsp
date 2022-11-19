@@ -809,100 +809,106 @@ if(sing_o.orgFlg.equals("C")){
 	sndInfo.append("<div class='sndInfo'>");
 	if(custSprodSchoolinfo!=null && custSprodSchoolinfo.size()>0){//校系
 		sndInfo.append("<div>");
-  		sndInfo.append("<span style=''>教科書校系檢索：</span><span style='font-weight: normal;'><a href='" +sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), "", "", "", ""),"utf8") + "'>"+custSprodSchoolinfo.get(0).getCityNm() +"</a></span>"); 
-  		sndInfo.append("<span style='font-weight: normal;'>&gt;</span>");
-  		sndInfo.append("<span style='font-weight: normal;'><a href='"+sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), custSprodSchoolinfo.get(0).getSchoolNo(),"", "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(0).getSchoolName() +"</a></span>"); 
-  		if(custSprodSchoolinfo.get(0).getDepartmentNo()!=null && !custSprodSchoolinfo.get(0).getDepartmentNo().equals("0")) { 
-  			sndInfo.append("<span class='span01' style='font-weight: normal;'>&gt;</span>"); 
-  			sndInfo.append("<span style='font-weight: normal;'><a href='" + sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), custSprodSchoolinfo.get(0).getSchoolNo(), custSprodSchoolinfo.get(0).getDepartmentNo(), "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(0).getDepartmentName() +"</a></span>"); 
-  		}
- 		sndInfo.append("<span style='font-weight: normal; margin-left: 10px;'><a href='javascript:void(0);' id='showSprodSchool'>&nabla;</a> </span>"); 
-  		sndInfo.append("</div>");
-  		sndInfo.append("<li style='display: none;' id='spordSchool'>");
-  		for(int i=0; i<custSprodSchoolinfo.size(); i++){ 
-  		sndInfo.append("<div>");
-  		sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+ schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter,custSprodSchoolinfo.get(i).getCityId(), "", "", "", ""),"utf8") +"'>"+ custSprodSchoolinfo.get(i).getCityNm()+"</a></span>");
-  		sndInfo.append("<span class='span01' style='font-weight: normal;'>&gt;</span>");
-  		sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+ schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter,custSprodSchoolinfo.get(i).getCityId(), custSprodSchoolinfo.get(i).getSchoolNo(), "", "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(i).getSchoolName() +"</a></span>");
-  		if(custSprodSchoolinfo.get(i).getDepartmentNo()!=null && !custSprodSchoolinfo.get(i).getDepartmentNo().equals("0")) { 
-  			sndInfo.append("<span class='span01' style='font-weight: normal;'>&gt;</span>");
-  			sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter,custSprodSchoolinfo.get(i).getCityId(), custSprodSchoolinfo.get(i).getSchoolNo(), custSprodSchoolinfo.get(i).getDepartmentNo(), "", ""),"utf8")+"'>"+custSprodSchoolinfo.get(i).getDepartmentName()+"</a></span>");
-  		 }
-  		sndInfo.append("</div>");
-  		 } 
-  		sndInfo.append("</li>");
-  	}
-  	if(custSprodSchoolinfoByDiscipline!=null && custSprodSchoolinfoByDiscipline.size()>0){ //學門學類
-  		sndInfo.append("<div>");
-  		sndInfo.append("<span style=''>教科書學科檢索：</span><span style='font-weight: normal;''><a href='" + sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(0).getDisciplineNo(), ""),"utf8") +"'>" + custSprodSchoolinfoByDiscipline.get(0).getDisciplineName() +"</a></span>"); 
-  		sndInfo.append("<span style='font-weight: normal;'>&gt;</span>");
-  		sndInfo.append("<span style='font-weight: normal;'><a href='"+ sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(0).getDisciplineNo(), custSprodSchoolinfoByDiscipline.get(0).getClassNo()),"utf8") +"'>"+custSprodSchoolinfoByDiscipline.get(0).getClassName() +"</a></span>"); 
-  		sndInfo.append("<span style='font-weight: normal; margin-left: 10px;'><a href='javascript:void(0);'id='showSprodDiscipline' class='linkStyle02' >&nabla;</a></span>");
-  		sndInfo.append("</div>");
-  		sndInfo.append("<li style='display: none;' id='spordDiscipline' class='linkStyle02'>");
-  		for(int i=0; i<custSprodSchoolinfoByDiscipline.size(); i++){ 
-  		sndInfo.append("<div>");
-  		sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+ schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(i).getDisciplineNo(), ""),"utf8") +"'>"+ custSprodSchoolinfoByDiscipline.get(i).getDisciplineName()+"</a></span> ");
-  		sndInfo.append("<span class='span01' style='font-weight: normal;'>&gt;</span>");
-  		sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+ schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(i).getDisciplineNo(), custSprodSchoolinfoByDiscipline.get(i).getClassNo()),"utf8") +"'>"+ custSprodSchoolinfoByDiscipline.get(i).getClassName() +"</a></span>");
-  		sndInfo.append("</div>");
-  		 } 
-  		sndInfo.append("</li>");  		 
-  	}
-  	if(queryCustSprodSchoolinfo!=null && queryCustSprodSchoolinfo.size()>0){
-  		if(queryCustSprodSchoolinfo.get(0).getEdition()!=null){//賣家註記教科書版本
-  			sndInfo.append("<div>");
-  			sndInfo.append("<span>賣家註記教科書版本：</span><span style='font-weight: normal;'>第" + queryCustSprodSchoolinfo.get(0).getEdition() +"版</span>"); 
-  			sndInfo.append("</div>");
-  		}
-  		if(queryCustSprodSchoolinfo.get(0).getPubYear()!=null){//賣家註記教科書出版年
-  			sndInfo.append("<div>");
-  			sndInfo.append("<span>賣家註記教科書出版年：</span><span style='font-weight: normal;'>第" + queryCustSprodSchoolinfo.get(0).getPubYear() +"版</span>"); 
-  			sndInfo.append("</div>");
-  		}
-  	}
-  	//賣家
-  	sndInfo.append("<div>");
-  	sndInfo.append("<span>賣家：</span><span style='font-weight: normal;'><a href='/container_seller_view.html?t=11&k=03&d=00&ci="+sprodAskModel.getCuid() +"'>"+sprodAskModel.getNikeName() +"</a></span>");				
-  	sndInfo.append("</div>");
-  				
-  	//書況
-  	sndInfo.append("<div>");
-  	sndInfo.append("<span>書況(讀冊判定)：</span><span rel='"+sprodAskModel.getProdRank() +"' class='sndProdRank'>"+sing_o.getProdRankText(sprodAskModel.getProdRank())+"</span>");
-  	sndInfo.append("<div id='sndProdRank_info' style='display:none;'>");
-  	sndInfo.append("<ul style='list-style:none;padding:0'>");
-  	sndInfo.append("<li style='font-weight:bold; padding-bottom:3px;'>書況說明：</li>");
-  	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_A'>A. 全新：膠膜未拆，無瑕疵。</span></li>");
-  	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_B'>B. 近全新：未包膜，翻閱痕跡不明顯，如實體賣場陳列販售之書籍。</span></li>");
-  	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_C'>C. 良好：有使用痕跡，不如新書潔白、小範圍瑕疵，如摺角、碰撞、汙點或泛黃等。</span></li>");
-  	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_D'>D. 普通：有使用痕跡，並因時間因素，有大範圍黃、黑斑及瑕疵。</span></li>");
-  	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_E'>E. 差強人意：差強人意：印刷褪色、模糊或其它更糟之書況。</span></li>");
-  	sndInfo.append("</ul>");
-  	sndInfo.append("</div>");
-  	sndInfo.append("</div>");
-  				
-  	//備註
-  	sndInfo.append("<div>");
-  	sndInfo.append("<span>備註(賣家自填)：<span style='font-weight: normal;'>" +sing_o.getAddMarkText(sprodAskModel.getAddMarkFlg(), sprodAskModel.getNote()) +"</span></span>");
-  	sndInfo.append("</div>");
-  	sndInfo.append("<div>");
-  	sndInfo.append("<span class='whatAddMarkText'>");
-  	sndInfo.append("商品備註與退貨說明");
-  	sndInfo.append("<img style='width:15px;height:15px;vertical-align: text-top;' src='/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png'/>");
-  	sndInfo.append("</span>");
-  	sndInfo.append("<div id='whatAddMarkText_info' style='display:none;'>");
-  	sndInfo.append("<ul style='margin:0; padding:0; list-style:none; text-align: left;line-height: 15px;'>");
-  	sndInfo.append("<li style='font-weight:bold; padding-bottom:3px;'>備註說明：</li>");
-  	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'>備註內容與書況影片有出入時，以書況影片為準。商品之附件或贈品，亦以書況影片為準。</li>");
-  	sndInfo.append("<li style='font-weight:bold; padding-bottom:3px;'>商品退貨說明：</li>");
-  	sndInfo.append("<li style='font-weight:normal;'>會員購買二手商品皆擁有10天的鑑賞期。若收到的商品狀況與網站描述不符合時，在鑑賞期內，皆可退貨。退貨辦法請詳見，<a target='_blank' href='http://www.taaze.tw/member_serviceCenter.html?qa_type=g' style='color:#e3007f;text-decoration:underline;'>客服退換貨說明</a></li>");
-  	sndInfo.append("</ul>");
-  	sndInfo.append("</div>");
-  	sndInfo.append("</div>");
-  				
-  	sndInfo.append("</div>");
+		sndInfo.append("<span style=''>教科書校系檢索：</span><span style='font-weight: normal;'><a href='" +sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), "", "", "", ""),"utf8") + "'>"+custSprodSchoolinfo.get(0).getCityNm() +"</a></span>"); 
+		sndInfo.append("<span style='font-weight: normal;'>&gt;</span>");
+		sndInfo.append("<span style='font-weight: normal;'><a href='"+sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), custSprodSchoolinfo.get(0).getSchoolNo(),"", "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(0).getSchoolName() +"</a></span>"); 
+		if(custSprodSchoolinfo.get(0).getDepartmentNo()!=null && !custSprodSchoolinfo.get(0).getDepartmentNo().equals("0")) { 
+			sndInfo.append("<span class='span01' style='font-weight: normal;'>&gt;</span>"); 
+			sndInfo.append("<span style='font-weight: normal;'><a href='" + sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), custSprodSchoolinfo.get(0).getSchoolNo(), custSprodSchoolinfo.get(0).getDepartmentNo(), "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(0).getDepartmentName() +"</a></span>"); 
+		}
+		sndInfo.append("<span style='font-weight: normal; margin-left: 10px;'><a href='javascript:void(0);' id='showSprodSchool'>&nabla;</a> </span>"); 
+		sndInfo.append("</div>");
+		sndInfo.append("<li style='display: none;' id='spordSchool'>");
+		for(int i=0; i<custSprodSchoolinfo.size(); i++){ 
+		sndInfo.append("<div>");
+		sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+ schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter,custSprodSchoolinfo.get(i).getCityId(), "", "", "", ""),"utf8") +"'>"+ custSprodSchoolinfo.get(i).getCityNm()+"</a></span>");
+		sndInfo.append("<span class='span01' style='font-weight: normal;'>&gt;</span>");
+		sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+ schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter,custSprodSchoolinfo.get(i).getCityId(), custSprodSchoolinfo.get(i).getSchoolNo(), "", "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(i).getSchoolName() +"</a></span>");
+		if(custSprodSchoolinfo.get(i).getDepartmentNo()!=null && !custSprodSchoolinfo.get(i).getDepartmentNo().equals("0")) { 
+			sndInfo.append("<span class='span01' style='font-weight: normal;'>&gt;</span>");
+			sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter,custSprodSchoolinfo.get(i).getCityId(), custSprodSchoolinfo.get(i).getSchoolNo(), custSprodSchoolinfo.get(i).getDepartmentNo(), "", ""),"utf8")+"'>"+custSprodSchoolinfo.get(i).getDepartmentName()+"</a></span>");
+			}
+		sndInfo.append("</div>");
+			} 
+		sndInfo.append("</li>");
+	}
+	if(custSprodSchoolinfoByDiscipline!=null && custSprodSchoolinfoByDiscipline.size()>0){ //學門學類
+		sndInfo.append("<div>");
+		sndInfo.append("<span style=''>教科書學科檢索：</span><span style='font-weight: normal;''><a href='" + sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(0).getDisciplineNo(), ""),"utf8") +"'>" + custSprodSchoolinfoByDiscipline.get(0).getDisciplineName() +"</a></span>"); 
+		sndInfo.append("<span style='font-weight: normal;'>&gt;</span>");
+		sndInfo.append("<span style='font-weight: normal;'><a href='"+ sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(0).getDisciplineNo(), custSprodSchoolinfoByDiscipline.get(0).getClassNo()),"utf8") +"'>"+custSprodSchoolinfoByDiscipline.get(0).getClassName() +"</a></span>"); 
+		sndInfo.append("<span style='font-weight: normal; margin-left: 10px;'><a href='javascript:void(0);'id='showSprodDiscipline' class='linkStyle02' >&nabla;</a></span>");
+		sndInfo.append("</div>");
+		sndInfo.append("<li style='display: none;' id='spordDiscipline' class='linkStyle02'>");
+		for(int i=0; i<custSprodSchoolinfoByDiscipline.size(); i++){ 
+		sndInfo.append("<div>");
+		sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+ schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(i).getDisciplineNo(), ""),"utf8") +"'>"+ custSprodSchoolinfoByDiscipline.get(i).getDisciplineName()+"</a></span> ");
+		sndInfo.append("<span class='span01' style='font-weight: normal;'>&gt;</span>");
+		sndInfo.append("<span style='color: #666666; font-weight: normal;'><a class='linkStyle02' href='"+ schoolBookUrlPattern + URLEncoder.encode(String.format(schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(i).getDisciplineNo(), custSprodSchoolinfoByDiscipline.get(i).getClassNo()),"utf8") +"'>"+ custSprodSchoolinfoByDiscipline.get(i).getClassName() +"</a></span>");
+		sndInfo.append("</div>");
+			} 
+		sndInfo.append("</li>");  		 
+	}
+	if(queryCustSprodSchoolinfo!=null && queryCustSprodSchoolinfo.size()>0){
+		if(queryCustSprodSchoolinfo.get(0).getEdition()!=null){//賣家註記教科書版本
+			sndInfo.append("<div>");
+			sndInfo.append("<span>賣家註記教科書版本：</span><span style='font-weight: normal;'>第" + queryCustSprodSchoolinfo.get(0).getEdition() +"版</span>"); 
+			sndInfo.append("</div>");
+		}
+		if(queryCustSprodSchoolinfo.get(0).getPubYear()!=null){//賣家註記教科書出版年
+			sndInfo.append("<div>");
+			sndInfo.append("<span>賣家註記教科書出版年：</span><span style='font-weight: normal;'>第" + queryCustSprodSchoolinfo.get(0).getPubYear() +"版</span>"); 
+			sndInfo.append("</div>");
+		}
+	}
+	//賣家
+	sndInfo.append("<div>");
+	sndInfo.append("<span>賣家：</span><span style='font-weight: normal;'><a href='/container_seller_view.html?t=11&k=03&d=00&ci="+sprodAskModel.getCuid() +"'>"+sprodAskModel.getNikeName() +"</a></span>");				
+	sndInfo.append("</div>");
+				
+	//書況
+	sndInfo.append("<div>");
+	sndInfo.append("<span>書況(讀冊判定)：</span><span rel='"+sprodAskModel.getProdRank() +"' class='sndProdRank'>"+sing_o.getProdRankText(sprodAskModel.getProdRank())+"</span>");
+	sndInfo.append("<div id='sndProdRank_info' style='display:none;'>");
+	sndInfo.append("<ul style='list-style:none;padding:0'>");
+	sndInfo.append("<li style='font-weight:bold; padding-bottom:3px;'>書況說明：</li>");
+	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_A'>A. 全新：膠膜未拆，無瑕疵。</span></li>");
+	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_B'>B. 近全新：未包膜，翻閱痕跡不明顯，如實體賣場陳列販售之書籍。</span></li>");
+	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_C'>C. 良好：有使用痕跡，不如新書潔白、小範圍瑕疵，如摺角、碰撞、汙點或泛黃等。</span></li>");
+	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_D'>D. 普通：有使用痕跡，並因時間因素，有大範圍黃、黑斑及瑕疵。</span></li>");
+	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'><span class='rank_E'>E. 差強人意：差強人意：印刷褪色、模糊或其它更糟之書況。</span></li>");
+	sndInfo.append("</ul>");
+	sndInfo.append("</div>");
+	sndInfo.append("</div>");
+				
+	//備註
+	sndInfo.append("<div>");
+	sndInfo.append("<span>備註(賣家自填)：<span style='font-weight: normal;'>" +sing_o.getAddMarkText(sprodAskModel.getAddMarkFlg(), sprodAskModel.getNote()) +"</span></span>");
+	sndInfo.append("</div>");
+	sndInfo.append("<div>");
+	sndInfo.append("<span class='whatAddMarkText'>");
+	sndInfo.append("商品備註與退貨說明");
+	sndInfo.append("<img style='width:15px;height:15px;vertical-align: text-top;' src='/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png'/>");
+	sndInfo.append("</span>");
+	sndInfo.append("<div id='whatAddMarkText_info' style='display:none;'>");
+	sndInfo.append("<ul style='margin:0; padding:0; list-style:none; text-align: left;line-height: 15px;'>");
+	sndInfo.append("<li style='font-weight:bold; padding-bottom:3px;'>備註說明：</li>");
+	sndInfo.append("<li style='font-weight:normal;padding-bottom:6px;'>備註內容與書況影片有出入時，以書況影片為準。商品之附件或贈品，亦以書況影片為準。</li>");
+	sndInfo.append("<li style='font-weight:bold; padding-bottom:3px;'>商品退貨說明：</li>");
+	sndInfo.append("<li style='font-weight:normal;'>會員購買二手商品皆擁有10天的鑑賞期。若收到的商品狀況與網站描述不符合時，在鑑賞期內，皆可退貨。退貨辦法請詳見，<a target='_blank' href='http://www.taaze.tw/member_serviceCenter.html?qa_type=g' style='color:#e3007f;text-decoration:underline;'>客服退換貨說明</a></li>");
+	sndInfo.append("</ul>");
+	sndInfo.append("</div>");
+	sndInfo.append("</div>");
+				
+	sndInfo.append("</div>");
 
 }
+
+
+//app下載
+String app_download = sing_o.getAvailableApp(sing.pubId);
+
+
 
 %>
 
