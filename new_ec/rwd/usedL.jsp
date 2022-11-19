@@ -3502,65 +3502,49 @@ if (want_range.size() > 0) {
 <%-- 商品簡介 --%>
 
 		
-<%--內容簡介/各界推薦/章節試閱/作者序/目錄/購物須知....--%>
-<%-- 手機板只顯示內容簡介跟購物須知 --%>
-
-<%
-if(menuItems.size()>0) {
-	int tmp = 1; 
-	
-	for(int i = 0; i < menuItems.size(); i++) {
-		if(menuItemsForM.contains(menuItems.getJSONObject(i).get("id"))){
-		//if(menuItems.getJSONObject(i).get("id").equals("prodPf") || menuItems.getJSONObject(i).get("id").equals("howBuy")){
-%>
-<div class="panel-default" style="margin-top:0px;word-wrap: break-word;">
-<div class="panel-heading" style='position:relative;' onclick="showContent(<%=tmp %>)">
-		<%=menuItems.getJSONObject(i).get("title") %><a style='float:right;'><img class='downArrow' id='arrow<%=tmp %>'/></a>
-</div>
-<div class ="mHideContent" style='display:none'>
+	<%--內容簡介/各界推薦/章節試閱/作者序/目錄/購物須知....--%>
+	<ul class="nav nav-tabs textArea" style='margin-bottom:20px;'>
 	<%
-	for(int j = 0; j < textAreaDOM.size(); j++) {
-		String DOM = "";
-		if(textAreaDOM.getJSONObject(j).getString("id").equals(menuItems.getJSONObject(i).get("id"))) {
-			DOM += "<div id='m_"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
-			if(textAreaDOM.getJSONObject(i).getString("id").equals("prodPf")){
-				//編輯推薦 放在內容簡介
-				if(sing_o.singProdXsxRcmModel!=null && sing_o.singProdXsxRcmModel.getContent()!=null){
-					DOM += "<div style='width:100%;'>";
-					DOM += sing_o.singProdXsxRcmModel.getContent().replace("\r\n","<br />");
-					DOM += "</div>";
-				}
-				//編輯推薦 END
+	if(menuItems.size()>0) {
+		for(int i = 0; i < menuItems.size(); i++) {
+	%>
+		<li data-toggle="tab" class="<%=i==0?"active":"" %>"><a style="cursor:pointer;" rel="pr<%=i%>"><%=menuItems.getJSONObject(i).get("title") %></a></li>
+	<%	
+		}
+	}
+	%>
+	</ul>
+	<div class="panel panel-default" style="margin-top:0px;border:none">				
+		<div class="">
+			<div style="text-align: right;">
+				<span>文字字級</span>
+				<img id="word1" style="cursor:pointer;width:30px;height:30px;" src='/new_ec/rwd/include/images/C_image/ic/ic_9@2x.png'></img>
+				<img id="word2" style="cursor:pointer;width:30px;height:30px;" src='/new_ec/rwd/include/images/C_image/ic/ic_10@2x.png'></img>
+				<img id="word3" style="cursor:pointer;width:30px;height:30px;" src='/new_ec/rwd/include/images/C_image/ic/ic_12@2x.png'></img>
+			</div>
+			<div id="textArea" style="font-size: 14px;line-height:22px">
+		<%
+		for(int i = 0; i < textAreaDOM.size(); i++) {
+			String DOM = "";
+			DOM += "<a name='pr"+i+"' ></a>";
+			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
+				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div' class='prodContent'>";
+			} else {
+				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
 			}
 			if(i > 0) {
-				//DOM += String.format(htmlBuild1, textAreaDOM.getJSONObject(i).getString("title"));
-			}
-			StringBuffer content = new StringBuffer(textAreaDOM.getJSONObject(i).getString("content"));
-			//while(content.indexOf("<iframe") > -1 && content.indexOf("</iframe>")+9 > content.indexOf("<iframe")){
-				//content.replace(content.indexOf("<iframe"), content.indexOf("</iframe>")+9, "");
-			//}
-			DOM += content.toString();
-		DOM += "</div>";
-		DOM = DOM.replaceAll("<iframe", "<div class='video-container'><iframe");
-		DOM = DOM.replaceAll("</iframe>","</iframe></div>");
-			DOM = DOM.replaceAll("class='topBtn'", "style='display:none'");
-		}else{
-			continue;
+				DOM += String.format(htmlBuild1, textAreaDOM.getJSONObject(i).getString("title"));
+			} 
+			DOM += textAreaDOM.getJSONObject(i).getString("content");
+			DOM += "</div>";
+			out.print(DOM);
 		}
-
-		out.print(DOM);
-	}
-	
-	%>
-</div>
-</div>
-<%	
-			tmp++;
-		}
-	}
-}
-%>
-<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
+		
+		%>
+			</div>
+		</div>
+	</div>
+	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
 
 <%-- 商品簡介 --%>
 
