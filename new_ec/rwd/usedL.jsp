@@ -768,7 +768,8 @@ if(imageTakeLook!=null&&imageTakeLook.length>0){
 
 
 
-
+String schoolBookUrlPattern = "/container_snd_actview.html?t=11&k=03&d=00&a=08#";
+String schoolBookUrlParameter = "AA1,2,30,2,%s,%s,%s,%s,%s";
 
 //二手書訊息
 StringBuffer sndInfo =  new StringBuffer();
