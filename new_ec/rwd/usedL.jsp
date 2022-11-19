@@ -1456,7 +1456,7 @@ JSONObject recommendZekea = null;
 recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 
 
-/商品图右上角icon
+//商品图右上角icon
 private String getProdRightTopIcon(String orgFlg,String adoFlg,String bindingType,String prodCatId,String sprodChrtFlg) {
 StringBuilder sb = new StringBuilder();
 if("C".equals(orgFlg)){
