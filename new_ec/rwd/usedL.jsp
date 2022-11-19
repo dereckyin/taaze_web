@@ -798,6 +798,7 @@ if(imageTakeLook!=null&&imageTakeLook.length>0){
 <link rel="stylesheet" type="text/css" href="/include2/css/alertify.core.css"/>
 <link rel="stylesheet" type="text/css" href="/include2/css/alertify.default.css"/>
 <link rel="stylesheet" type="text/css" href="/include2/css/jquery.jgrowl.min.css"/>
+<link rel="stylesheet" type="text/css" href="/new_ec/rwd/include/css/goods.css?v=201908061" />
 <link rel="stylesheet" type="text/css" href="/include2/tooltipster/css/tooltipster.bundle.min.css"/>
 <link rel="stylesheet" type="text/css"
 href="/include2/tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css"/>
