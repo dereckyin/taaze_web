@@ -398,9 +398,6 @@ if(sing.catId!=null&&sing.catId.length()==12){
 
 
 String bindingType = "A"; 
-String author_text = "";
-String prodFormatAndSpec = "";
-
 
 //take look resort
 String[] imageTakeLook = null;
@@ -518,6 +515,109 @@ if(sing_o.orgFlg.equals("C") && sprodAskModel.getUsedStatus()!=null && sprodAskM
 		video_count = 1;
 	}
 }
+
+
+//優惠組合
+JSONObject buy_together = sing_o.getBougthTogethe(sing_o.prodId);
+
+//也買了
+JSONObject also_buy = sing_o.getAlsoBuy(sing_o.prodId,sing_o.orgProdId,sing_o.catId);
+
+String prodAuthorText = "作者";
+String prodPublishText = "出版社";
+String prodPublishDateText = "出版日期";
+String prodContentText = "內容簡介";
+String fbDes = "";
+String fbDes2 = "";
+String fbTitle = sing_o.titleMain!=null?sing_o.titleMain+"- TAAZE 讀冊生活":"";
+String fbArthor = sing_o.author!=null?sing_o.author:"";
+
+//唱片
+String sing_oer_main = "";
+String sing_oer_next = "";
+String author_text = "";
+String producers = "";
+String musical_instruments = "";
+String prodFormatAndSpec = "";
+String eancode = "";
+JSONArray musicList = null;
+JSONArray videoList = null;
+
+if(sing_o.prodCatId.equals("61") || sing_o.prodCatId.equals("62")){
+	prodAuthorText = "作者／設計師";
+	prodPublishText = "出版／製造／代理商";
+	prodPublishDateText = "上架日期";
+	//廠牌
+	sing_o.setBrandData(sing_o.brandId, systemDao);
+}else if(sing_o.prodCatId.equals("31") || sing_o.prodCatId.equals("32")){
+	prodPublishDateText = "上架日期";
+}
+
+//CD、DVD
+JSONObject avInfo = null;
+if(sing_o.orgFlg.equals("A") && ( sing_o.prodCatId.equals("31") || sing_o.prodCatId.equals("32")) ){
+	if(sing_o.brandId!=null) {
+		sing_o.setBrandData(sing_o.brandId, systemDao);
+	}
+	JSONObject o = null;
+	try {
+		o = sing_o.queryProdInfoAv(sing_o.orgProdId, sing_o.prodCatId, systemDao);
+	} catch(Exception e) {
+		sing_o.logger.error("get "+sing_o.prodId+" vod info error: "+e);
+	}
+	if(o!=null && o.getString("error_code").equals("100")) {
+		avInfo = o;
+		singer_main = o.getString("author_main");
+		singer_next = o.getString("author_next");
+		producers = o.getString("producers")!=null? o.getString("producers"):"";
+		eancode = o.getString("eancode")!=null? o.getString("eancode"):"";
+		musical_instruments = o.getString("musical_instruments")!=null? o.getString("musical_instruments"):"";
+		if(singer_main!=null && singer_main.length() > 0) {
+			author_text += "<a href='"+ searchProdAuthorUrlPattern + URLEncoder.encode(singer_main,"utf8")+"'>"+ singer_main+"</a>";
+		}
+		if(singer_next!=null && singer_next.length() > 0) {
+			if(author_text.length() > 0) {
+				author_text += ", ";
+			}
+			author_text += "<a href='" +searchProdAuthorUrlPattern + URLEncoder.encode(singer_next,"utf8") +"'>"+ singer_next+"</a>";
+		}
+		if(sing_o.prodCatId.equals("31")) {
+			musicList = (JSONArray)o.get("music_list");
+		}
+	}
+	//log.info(o.toString());
+	if(o.get("video_list") != null) {
+		videoList = (JSONArray)o.get("video_list");
+	}
+	if(author_text.length() == 0 && sing_o.author!=null && sing_o.author.length() > 0) {
+		author_text += "<a href='" + searchProdAuthorUrlPattern + URLEncoder.encode(sing_o.author,"utf8") +"'>"+ sing_o.author+"</a>";
+	}
+	prodPublishDateText = "上架日期";
+	prodAuthorText = "演出者";
+	prodPublishText = "廠牌";
+	if(sing_o.prodCatId.equals("31")) {
+		prodContentText = "專輯簡介";
+	}
+	if(sing_o.prodFormat!=null) {
+		if(sing_o.prodFormat.equals("A")) {
+			prodFormatAndSpec += "台壓專輯";
+		} else if(sing_o.prodFormat.equals("B")) {
+			prodFormatAndSpec += "進口專輯";
+		} else {
+			prodFormatAndSpec += "數位音樂";
+		}
+		if(sing_o.prodSpec!=null) {
+			if(prodFormatAndSpec.length() > 0) {
+				prodFormatAndSpec += " "+sing_o.prodSpec;
+			} else {
+				prodFormatAndSpec += sing_o.prodSpec;
+			}
+		}
+	}
+}
+
+
+
 
 //將video與takelook組合再一起
 JSONArray takelookList = new JSONArray();
