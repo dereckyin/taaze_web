@@ -100,7 +100,7 @@ String previewCount = sing.displayDL(sing.orgProdId, systemDao);
 //出版日期距今
 int diffDay = 0;
 //評論筆數
-int startLevelSize = sing.getSizeStartLevelByOrgProdId(sing.orgProdId, systemDao);
+// int startLevelSize = sing.getSizeStartLevelByOrgProdId(sing.orgProdId, systemDao);
 int collectSize = sing.getProdCollect(sing.orgProdId, cc, systemDao);
 if (sing.publishDate != null && sing.publishDate.trim().length() == 8) {
 	diffDay = (int) sing.getDiffDay(new Date(), formatter.parse(sing.getDateFormat(sing.publishDate)));
