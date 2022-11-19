@@ -23,6 +23,98 @@
 pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ include file="../single/include/jsp/SingleUsedLibs.jsp" %>
+
+<%!
+//商品图右上角icon
+private String getProdRightTopIcon(String orgFlg,String adoFlg,String bindingType,String prodCatId,String sprodChrtFlg) {
+	StringBuilder sb = new StringBuilder();
+	if("C".equals(orgFlg)){
+	if ("Y".equals(sprodChrtFlg)) {
+	sb.append("<img class='snd_type' src='/new_ec/rwd/include/images/C_image/pic/pic_12@2x.png' />");
+	}else {
+	sb.append("<img class='snd_type' src='/new_ec/rwd/include/images/C_image/pic/pic_7@2x.png' />");
+	}
+	return sb.toString();
+	}
+	if("Y".equals(adoFlg)) {
+	sb.append("<img class='new_ebook_type_sound' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_sound@1x.png' />");
+	}else if("S".equals(bindingType)){//電子雜誌訂閱
+	sb.append("<img class='new_ebook_type_sound' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_sub@1x.png' />");
+	}else if("25".equals(prodCatId) ||"26".equals(prodCatId)){//電子雜誌
+	sb.append("<img class='new_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_magazine@1x.png' />");
+	}else if("P".equals(bindingType) || "Q".equals(bindingType) || "O".equals(bindingType)){
+	sb.append("<img class='new_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook@1x.png' />");//电子书
+	}else if(bindingType!=null && bindingType.equals("Q")){
+	sb.append("<img class='ePub_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/pic_9@2x.png' />");
+	}
+	// if(sing.bindingType!=null && sing.bindingType.equals("P")){
+	// 	mImg += "<img class='pdf_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/pic_8@2x.png' />";
+	// }else if(sing.bindingType!=null && sing.bindingType.equals("Q")){
+	// 	mImg += "<img class='ePub_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/pic_9@2x.png' />";
+	// }
+	return sb.toString();
+	}
+	//标题
+	private String getProdMainTitleHtml(String orgFlg,String adoFlg,String bindingType,String prodCatId,String titleMain,String prodFgInfo){
+	StringBuilder sb = new StringBuilder();
+	sb.append(titleMain);
+	if ("A".equals(orgFlg) && prodFgInfo != null && prodFgInfo.length() > 0) {
+	sb.append("<span class='prod-title-txt'>").append(prodFgInfo).append("</span>");
+	}
+	sb.append("<span class='prod-title-txt'>");
+	if("C".equals(orgFlg)){
+	sb.append("（二手書）");
+	}else if("B".equals(orgFlg)){
+	sb.append("（回頭書）");
+	}else if("A".equals(orgFlg) && ProductUtil.isEbookByProdCatId(prodCatId)){
+	if("Y".equals(adoFlg)){
+	sb.append("（電子有聲書）");
+	} else if(bindingType!=null && bindingType.equals("S")){
+	sb.append("（電子雜誌訂閱）");
+	}else if("25".equals(prodCatId) || "26".equals(prodCatId)){
+	sb.append("（電子雜誌）");
+	}else if("P".equals(bindingType) || "Q".equals(bindingType) || "O".equals(bindingType)){
+	sb.append("（電子書）");
+	}else{
+	sb.append("（電子書）");
+	}
+	}
+	sb.append("</span>");
+	return sb.toString();
+	}
+	//適用裝置图&文本
+	private String getReadingDevHtml(String prodCatId, String bindingType,String adoFlg) {
+	StringBuilder sb = new StringBuilder();
+	sb.append("<div>");
+	sb.append("<span>適用裝置：</span>");
+	//sb.append("<span>手機</span>");
+	if ("Y".equals(adoFlg)) {//有声图
+	if ("Q".equals(bindingType)) {//手机,桌机,耳机
+	sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_phone_pc@1x.png' style='vertical-align:middle;margin:0px 5px'>");
+	sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_sound3@1x.png' style='vertical-align:middle;margin:0px 5px'>");
+	}else {//O,P桌机,耳机
+	sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_pc2@1x.png' style='vertical-align:middle;margin:0px 5px'>");
+	sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_sound3@1x.png' style='vertical-align:middle;margin:0px 5px'>");
+	}
+	} else {
+	if ("Q".equals(bindingType)) {//固定与流式图
+	sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_phone_pc@1x.png' style='vertical-align:middle;margin:0px 5px'>");
+	}else{//固定图
+	sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_pc2@1x.png' style='vertical-align:middle;margin:0px 5px'>");
+	}
+	}
+	// sb.append("<span>、平板</span>");
+	// if (!"K".equals(bindingType)) {
+	// 	sb.append("<span>、PC</span>");
+	// }
+	sb.append("<a href='http://www.taaze.tw/static_act/201403/ebookapp/index.htm' target='_blank'><img style='width:15px;height:15px;vertical-align: text-top;margin-left:5px;' src='/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png'/></a>\n");
+	sb.append("</div>");
+	return sb.toString();
+	}
+	
+
+%>
+
 <%
 Log log = LogFactory.getLog(this.getClass());
 SystemDAO systemDao = (SystemDAO) SpringUtil.getSpringBeanById(this.getServletConfig(), "SystemDAO");
@@ -1455,93 +1547,6 @@ if(gift_info != null) {
 JSONObject recommendZekea = null;
 recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 
-
-//商品图右上角icon
-final String getProdRightTopIcon(String orgFlg,String adoFlg,String bindingType,String prodCatId,String sprodChrtFlg) {
-StringBuilder sb = new StringBuilder();
-if("C".equals(orgFlg)){
-if ("Y".equals(sprodChrtFlg)) {
-sb.append("<img class='snd_type' src='/new_ec/rwd/include/images/C_image/pic/pic_12@2x.png' />");
-}else {
-sb.append("<img class='snd_type' src='/new_ec/rwd/include/images/C_image/pic/pic_7@2x.png' />");
-}
-return sb.toString();
-}
-if("Y".equals(adoFlg)) {
-sb.append("<img class='new_ebook_type_sound' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_sound@1x.png' />");
-}else if("S".equals(bindingType)){//電子雜誌訂閱
-sb.append("<img class='new_ebook_type_sound' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_sub@1x.png' />");
-}else if("25".equals(prodCatId) ||"26".equals(prodCatId)){//電子雜誌
-sb.append("<img class='new_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_magazine@1x.png' />");
-}else if("P".equals(bindingType) || "Q".equals(bindingType) || "O".equals(bindingType)){
-sb.append("<img class='new_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook@1x.png' />");//电子书
-}else if(bindingType!=null && bindingType.equals("Q")){
-sb.append("<img class='ePub_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/pic_9@2x.png' />");
-}
-// if(sing.bindingType!=null && sing.bindingType.equals("P")){
-// 	mImg += "<img class='pdf_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/pic_8@2x.png' />";
-// }else if(sing.bindingType!=null && sing.bindingType.equals("Q")){
-// 	mImg += "<img class='ePub_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/pic_9@2x.png' />";
-// }
-return sb.toString();
-}
-//标题
-final String getProdMainTitleHtml(String orgFlg,String adoFlg,String bindingType,String prodCatId,String titleMain,String prodFgInfo){
-StringBuilder sb = new StringBuilder();
-sb.append(titleMain);
-if ("A".equals(orgFlg) && prodFgInfo != null && prodFgInfo.length() > 0) {
-sb.append("<span class='prod-title-txt'>").append(prodFgInfo).append("</span>");
-}
-sb.append("<span class='prod-title-txt'>");
-if("C".equals(orgFlg)){
-sb.append("（二手書）");
-}else if("B".equals(orgFlg)){
-sb.append("（回頭書）");
-}else if("A".equals(orgFlg) && ProductUtil.isEbookByProdCatId(prodCatId)){
-if("Y".equals(adoFlg)){
-sb.append("（電子有聲書）");
-} else if(bindingType!=null && bindingType.equals("S")){
-sb.append("（電子雜誌訂閱）");
-}else if("25".equals(prodCatId) || "26".equals(prodCatId)){
-sb.append("（電子雜誌）");
-}else if("P".equals(bindingType) || "Q".equals(bindingType) || "O".equals(bindingType)){
-sb.append("（電子書）");
-}else{
-sb.append("（電子書）");
-}
-}
-sb.append("</span>");
-return sb.toString();
-}
-//適用裝置图&文本
-final String getReadingDevHtml(String prodCatId, String bindingType,String adoFlg) {
-StringBuilder sb = new StringBuilder();
-sb.append("<div>");
-sb.append("<span>適用裝置：</span>");
-//sb.append("<span>手機</span>");
-if ("Y".equals(adoFlg)) {//有声图
-if ("Q".equals(bindingType)) {//手机,桌机,耳机
-sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_phone_pc@1x.png' style='vertical-align:middle;margin:0px 5px'>");
-sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_sound3@1x.png' style='vertical-align:middle;margin:0px 5px'>");
-}else {//O,P桌机,耳机
-sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_pc2@1x.png' style='vertical-align:middle;margin:0px 5px'>");
-sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_sound3@1x.png' style='vertical-align:middle;margin:0px 5px'>");
-}
-} else {
-if ("Q".equals(bindingType)) {//固定与流式图
-sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_phone_pc@1x.png' style='vertical-align:middle;margin:0px 5px'>");
-}else{//固定图
-sb.append("<img src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_pc2@1x.png' style='vertical-align:middle;margin:0px 5px'>");
-}
-}
-// sb.append("<span>、平板</span>");
-// if (!"K".equals(bindingType)) {
-// 	sb.append("<span>、PC</span>");
-// }
-sb.append("<a href='http://www.taaze.tw/static_act/201403/ebookapp/index.htm' target='_blank'><img style='width:15px;height:15px;vertical-align: text-top;margin-left:5px;' src='/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png'/></a>\n");
-sb.append("</div>");
-return sb.toString();
-}
 
 %>
 
