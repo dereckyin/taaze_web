@@ -1487,24 +1487,24 @@ jQuery.browser = {};
 			<div class="row">
 				<div class="col-xs-12">
 					<h1 style="line-height: 24px;letter-spacing: 0.5px;font-size:20px;font-weight:bold; letter-spacing:1px;margin: 0;">
-						<%=sing.titleMain %>
-					<% if(sing.orgFlg.equals("A")&&sing.prodFgInfo!=null&&sing.prodFgInfo.length()>0){%>
-						<span style="padding-left: 10px; font-size: 10pt; color: #333333;"><%=sing.prodFgInfo %></span>
+						<%=sing_o.titleMain %>
+					<% if(sing_o.orgFlg.equals("A")&&sing_o.prodFgInfo!=null&&sing_o.prodFgInfo.length()>0){%>
+						<span style="padding-left: 10px; font-size: 10pt; color: #333333;"><%=sing_o.prodFgInfo %></span>
 					<%} %>
-					<%if(sing.orgFlg.equals("C")){ %>
+					<%if(sing_o.orgFlg.equals("C")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（二手書）</span>
-					<%}else if(sing.orgFlg.equals("B")){ %>
+					<%}else if(sing_o.orgFlg.equals("B")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（回頭書）</span>
-					<%}else if(sing.orgFlg.equals("A") && (sing.prodCatId.equals("14")||sing.prodCatId.equals("25")||sing.prodCatId.equals("17"))){ %>
-	<%-- 								<%if(sing.bindingType!=null && sing.bindingType.equals("P")){ %> --%>
+					<%}else if(sing_o.orgFlg.equals("A") && (sing_o.prodCatId.equals("14")||sing_o.prodCatId.equals("25")||sing_o.prodCatId.equals("17"))){ %>
+	<%-- 								<%if(sing_o.bindingType!=null && sing_o.bindingType.equals("P")){ %> --%>
 	<%-- 								<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（PDF版）</span> --%>
-	<%-- 								<%}else if(sing.bindingType!=null && sing.bindingType.equals("Q")){ %> --%>
+	<%-- 								<%}else if(sing_o.bindingType!=null && sing_o.bindingType.equals("Q")){ %> --%>
 	<%-- 								<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（ePub版）</span> --%>
-						<%if(sing.bindingType!=null && sing.bindingType.equals("K")){ %>
+						<%if(sing_o.bindingType!=null && sing_o.bindingType.equals("K")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子有聲書）</span>
-						<%}else if(sing.bindingType!=null && sing.bindingType.equals("S")){ %>
+						<%}else if(sing_o.bindingType!=null && sing_o.bindingType.equals("S")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子雜誌訂閱）</span>
-						<%}else if(sing.prodCatId.equals("25")){ %>
+						<%}else if(sing_o.prodCatId.equals("25")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子雜誌）</span>
 						<%}else{ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子書）</span>
@@ -1512,10 +1512,10 @@ jQuery.browser = {};
 					<%} %>
 					</h1>
 				</div>
-			<%if(sing.titleNext!=null&&sing.titleNext.length()>0){ %>
+			<%if(sing_o.titleNext!=null&&sing_o.titleNext.length()>0){ %>
 				<div class="col-xs-12" style="margin-top:10px;">
 					<h2 style="font-size:16px; letter-spacing:1px; color:#8c8c8c; margin: 0;">
-					<%=sing.titleNext %>
+					<%=sing_o.titleNext %>
 					</h2>
 				</div>
 			<%} %>		
