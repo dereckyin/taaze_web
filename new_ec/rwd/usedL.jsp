@@ -3150,6 +3150,123 @@ if (sprod_range.size() > 0) {
 <input type="hidden" id="TOTAL_SALE" value="<%=total_sale %>"/>
 </div>
 
+<!-- 	我要徵求及我要賣 -->
+
+			<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
+		
+		<div class="col-sm-12 col-xs-12"
+		style='padding:0px; margin-bottom: 10px;'>
+		<div class="col-sm-12 col-xs-12"
+		style='padding:0px;text-align: center;'>
+		<label class="sprod_want_text"><%=want_range.size() > 0 ? wnd_text : "目前沒有人徵求" %>
+		</label>
+	</div>
+	<div class="col-sm-12 col-xs-12" style='padding:0px;'>
+		<% if (sndSale) { %>
+		<% if (cc != null && cc.getMobileVerifyFlg().equals("Y")) { %>
+		<div class="btn_sale">我要賣</div>
+		<% } else { %>
+		<% if (cc != null) { %>
+		<div class="btn_sale_verify">我要賣</div>
+		<% } else { %>
+		<div class="btn_sale">我要賣</div>
+		<% } %>
+		<% } %>
+		<% } else { %>
+		<div class="btn_no_sale">暫不開放上架</div>
+		<% } %>
+	</div>
+</div>
+<%
+if (want_range.size() > 0) {
+	out.print(want_content_table);
+}
+%>
+<input type="hidden" id="TOTAL_WANT" value="<%=total_want %>"/>
+</div>
+</div>
+<!-- 	銷售中的二手書 -->
+<% if(sing.total_saler > 0) { %>
+<div class="row" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+<div class="row">
+	<div id="sprodConetnt3" class="col-sm-12 col-xs-12" style="margin:10px 0px;">
+		<a id="#r1"></a>
+		<a id="#r2"></a>
+		<a id="#r3"></a>
+		<div class="col-sm-12 col-xs-12" style="padding-left:0px;padding-right: 0px;">
+			<div class="col-sm-8 col-xs-6" style="padding-left: 0px;">
+				<p><span class="span03">銷售中的二手書</span></p>
+			</div>
+			<div class="col-sm-4 col-xs-6" style="text-align: right;padding-right: 0px;">
+				<select class="usedListRank">
+					<option value="1">依上架日期排序</option>
+					<option value="2" selected>依價格低到高排序</option>
+					<option value="3">依書況新舊排序</option>
+					<option value="4">義賣</option><!--測試-->
+				</select>
+			</div>
+		</div>
+		<div class="col-sm-12 col-xs-12 sprod_list"></div>
+		<div class='act_bottom' style='height:0px; clear:both;'></div>
+		<div class="col-sm-12 col-xs-12 sprod_btn">
+			<div class='more_btn' style="display:none">看全部賣家</div>
+		</div>
+	</div>
+	<% } %>
+	<!-- 	最多人成交 -->
+	<%if (sing.averge_sale_price > 0) {%>
+	<div class="row"
+	style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
+	<div class="row">
+		<div class="col-sm-12 col-xs-12" style=" margin: 10px 0px;">
+			<%
+			sb = new StringBuilder();
+			int averge_disc = Math.round((sing.averge_sale_price / sing.listPrice) * 100);
+			sb.append("<p><span class='span03'>最多人成交</span></p>");
+			sb.append("<p style=' margin-bottom: 0px;'><span class='span03' style=\"background:url('/new_ec/single/include/images/avg_sale.jpg') 0px -2px no-repeat; padding-left: 30px;\">平均成交價<span class='highlightu'>" + sing.discString(String.valueOf(averge_disc)) + "</span>折<span class='highlightu'>" + sing.averge_sale_price + "</span>元</span></p>");
+			out.print(sb.toString());
+		%>
+	</div>
+</div>
+<%}%>
+<!-- 	最近成交價(折扣) -->
+<%if (sale_range.size() > 0) {%>
+<div class="row"
+style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+<div class="row" style="margin-bottom: 15px;">
+	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 0px;">
+		<%
+		List sortedKeys = new ArrayList(sale_range.keySet());
+		Collections.sort(sortedKeys);
+		sb = new StringBuilder();
+		JSONArray recordList = new JSONArray();
+		for (int i = 0; i < sortedKeys.size(); i++) {
+			String key = sortedKeys.get(i).toString();
+			JSONObject record = sale_range.get(key);
+			record.put("sale_month", key);
+			int price_total = record.getInt("sale_price");
+			int count = record.getInt("prod_count");
+			float disc_total = Float.valueOf(record.getString("disc"));
+			record.put("avg_price", Math.round(price_total / count));
+			if (disc_total / count < 1) {
+				record.put("avg_disc", 1);
+			}
+			if (disc_total / count > 1) {
+				record.put("avg_disc", Math.round(disc_total / count));
+			}
+			recordList.add(record);
+		}
+		out.print("<div class='recordList' style='display:none'>" + recordList.toString() + "</div>");
+		out.print("<p><span class='span03'>最近成交價(折扣)</span></p>");
+	%>
+	<div>
+		<canvas id="myChart" width="800" height="400"></canvas>
+	</div>
+</div>
+</div>
+<%
+}
+%>
 <%-- 二手與徵求 --%>
 
 	</body>
