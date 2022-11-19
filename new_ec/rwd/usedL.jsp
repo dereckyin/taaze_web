@@ -1549,6 +1549,7 @@ recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 
 //商品資料
 StringBuffer prodDataSb = new StringBuffer();
+/*
 prodDataSb.append("<div style='margin:2px 0;'>");
 if(sing_o.orgFlg.equals("A") && sing_o.prodCatId.equals("31")) {
 if(author_text.length() > 0) {
@@ -1791,7 +1792,7 @@ prodDataSb.append("	</div> ");
 prodDataSb.append("	<br style='clear: both;' />");
 prodDataSb.append("</div>");
 }
-
+*/
 %>
 
 <!DOCTYPE html>
