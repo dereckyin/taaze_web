@@ -1065,7 +1065,7 @@ try {
 			}
 			
 			if( mag_scribe_list!=null) { 
-				StringBuilder sb = new StringBuilder();
+				StringBuilder sb_mag = new StringBuilder();
 				for(int i =0 ; i < mag_scribe_list.size(); i++) {
 					JSONObject item = (JSONObject)mag_scribe_list.get(i);
 					String mag_id = "";
@@ -1087,23 +1087,23 @@ try {
 					}
 					
 					if(Integer.parseInt(price) == 0) {
-						sb.append("<div style='float:left;cursor: pointer;margin-right:5px;' class='highlight' rel='"+ mag_id +"' onclick=\"scribeFreeMagazine('"+pid+"','"+mag_id+"')\" >");
+						sb_mag.append("<div style='float:left;cursor: pointer;margin-right:5px;' class='highlight' rel='"+ mag_id +"' onclick=\"scribeFreeMagazine('"+pid+"','"+mag_id+"')\" >");
 					} else {
-						sb.append("<div style='float:left;cursor: pointer;margin-right:5px;' class='highlight' rel='"+ mag_id +"' onclick=\"add2ShoppingCart('"+mag_id+"','"+mag_id+"')\" >");
+						sb_mag.append("<div style='float:left;cursor: pointer;margin-right:5px;' class='highlight' rel='"+ mag_id +"' onclick=\"add2ShoppingCart('"+mag_id+"','"+mag_id+"')\" >");
 					}
 					
-					sb.append("<div style='padding:0px;text-align: center;'>"+ name +"</div>");
+					sb_mag.append("<div style='padding:0px;text-align: center;'>"+ name +"</div>");
 					if(disc.length() > 0) {
-						sb.append("<div class='discPrice' style='padding:0px;margin:0;text-align: center;'><span>"+ disc +"</span>折<span>"+ price +"</span>元</div>");
+						sb_mag.append("<div class='discPrice' style='padding:0px;margin:0;text-align: center;'><span>"+ disc +"</span>折<span>"+ price +"</span>元</div>");
 					} else {
-						sb.append("<div class='discPrice' style='padding:0px;margin:0;text-align: center;'><span>"+ price +"</span>元</div>");
+						sb_mag.append("<div class='discPrice' style='padding:0px;margin:0;text-align: center;'><span>"+ price +"</span>元</div>");
 					}
 					
-					sb.append("<div style='clear:both'></div>");
-					sb.append("</div>");
+					sb_mag.append("<div style='clear:both'></div>");
+					sb_mag.append("</div>");
 				}
-				sb.append("<div style='clear:both'></div>");
-				mag_sList_btn = sb.toString();
+				sb_mag.append("<div style='clear:both'></div>");
+				mag_sList_btn = sb_mag.toString();
 			}
 		}
 	}
