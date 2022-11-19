@@ -1457,7 +1457,7 @@ recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 
 
 //商品图右上角icon
-private String getProdRightTopIcon(String orgFlg,String adoFlg,String bindingType,String prodCatId,String sprodChrtFlg) {
+private final  String getProdRightTopIcon(String orgFlg,String adoFlg,String bindingType,String prodCatId,String sprodChrtFlg) {
 StringBuilder sb = new StringBuilder();
 if("C".equals(orgFlg)){
 if ("Y".equals(sprodChrtFlg)) {
@@ -1486,7 +1486,7 @@ sb.append("<img class='ePub_ebook_type' src='/new_ec/rwd/include/images/C_image/
 return sb.toString();
 }
 //标题
-private String getProdMainTitleHtml(String orgFlg,String adoFlg,String bindingType,String prodCatId,String titleMain,String prodFgInfo){
+private final  String getProdMainTitleHtml(String orgFlg,String adoFlg,String bindingType,String prodCatId,String titleMain,String prodFgInfo){
 StringBuilder sb = new StringBuilder();
 sb.append(titleMain);
 if ("A".equals(orgFlg) && prodFgInfo != null && prodFgInfo.length() > 0) {
@@ -1514,7 +1514,7 @@ sb.append("</span>");
 return sb.toString();
 }
 //適用裝置图&文本
-private String getReadingDevHtml(String prodCatId, String bindingType,String adoFlg) {
+private final  String getReadingDevHtml(String prodCatId, String bindingType,String adoFlg) {
 StringBuilder sb = new StringBuilder();
 sb.append("<div>");
 sb.append("<span>適用裝置：</span>");
