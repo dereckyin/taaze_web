@@ -22,7 +22,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<%@ include file="../single/include/jsp/SingleUsedLibs.jsp" %>
 
 <%!
 //商品图右上角icon
@@ -121,13 +121,13 @@ SystemDAO systemDao = (SystemDAO) SpringUtil.getSpringBeanById(this.getServletCo
 boolean openNewCollectFriendsFlg = SystemUtil.openWecollectfunFlg || SystemUtil.isHomeIP(request);
 CustQingdanService custQingdanService = (CustQingdanService) SpringUtil.getSpringBeanById(this.getServletConfig(), "CustQingdanService");
 String pid = "11100764589";
-SingleLibs sing = null;
+SingleUsedLibs sing = null;
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //log.info(request.getRemoteAddr());
 if (pid.length() == 11) {
-	sing = new SingleLibs(this.getServletConfig(), pid);
+	sing = new SingleUsedLibs(this.getServletConfig(), pid);
 } else {
-	sing = new SingleLibs();
+	sing = new SingleUsedLibs();
 }
 if (!sing.initState) {
 	//response.sendRedirect(sing.getWebUrl(request));
