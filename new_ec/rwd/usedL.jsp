@@ -892,7 +892,7 @@ if(imageTakeLook!=null&&imageTakeLook.length>0){
 	}
 }
 
-
+<!-- begin of 內容簡介 -->
 //內容簡介.....
 JSONArray menuItems = new JSONArray();
 //手機顯示以下內容簡介
@@ -949,6 +949,262 @@ if(sing_o.brandNm != null || sing_o.brandPf != null){
 //品牌簡介新增排除業種32
 menuItems.add(sing_o.setMenuItem("howBuy","購物須知"));
 
+
+String htmlBuild1 = "";
+int indexFlag = 0;
+String appendStr = "";
+String tempStr = "";
+String topBtn = "";
+//String topBtn = "<div><div class='topBtn'>TOP</div><br style='clear: right;' /></div>";
+String moreBtn = "<div class='moreBtn' style='margin-top: 10px;'><div viewall='0' style='width: 88px; padding: 2px 0;font-weight:bold; font-size: 10pt; text-align: center; cursor: pointer;'>顯示全部內容</div></div>";
+htmlBuild1 = "<div style='height:25px; border-bottom:solid 1px #cccccc; margin:0 auto;'></div>";
+htmlBuild1 += "<div style='height:1px; border-bottom:dotted 1px #cccccc; margin:0 auto;'></div>";
+htmlBuild1 += "<div style='padding:25px 0 10px 0; font-size:12pt; font-weight:bold; color:#333333;'>%s</div>";
+JSONArray textAreaDOM = new JSONArray();
+StringBuilder sb2 = new StringBuilder();
+//商品簡介
+if(imageDesc!=null || sing_o.prodPf != null || sing_o.authorPf!=null || sing_o.translatorPf!=null){
+	sb2 = new StringBuilder();
+	//影音商品嵌入影片
+	if(sing_o.prodCatId.equals("31") || sing_o.prodCatId.equals("32")) { 
+		if(videoList!=null) {
+		   for(int i = 0; i < videoList.size(); i++) {
+	   		    JSONObject obj = (JSONObject)videoList.get(i);
+	   		    sb2.append(obj.getString("video")!=""?"<center>"+obj.getString("video")+"</center><br/>":"");
+	   	   }
+		}
+	}
+	//商品說明
+	sb2.append(sing_o.prodPf != null ? "<p>" + sing_o.prodPf.replaceAll("(\r\n|\n|\r)", "<br />") + "</p>":"");
+	//作者、譯者簡介
+	if(!sing_o.prodCatId.equals("61") && !sing_o.prodCatId.equals("62")){
+		sb2.append(sing_o.authorPf != null ? "<p style='margin:0; padding:0px; font-weight:bold;'>"+prodAuthorText+"簡介：</p><p>" + sing_o.authorPf.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n").replaceAll("(\r\n|\n)", "<br /><br />") + "</p>" : "");
+		sb2.append(sing_o.translatorPf != null ? "<p style='margin:0; padding:0px; font-weight:bold;'>譯者簡介：</p><p>" + sing_o.translatorPf.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n").replaceAll("(\r\n|\n)", "<br /><br />") + "</p>" : "");
+	}
+	//導演 / 演出者簡介
+	if(sing_o.prodCatId.equals("32")){
+		sb2.append(sing_o.authorPf != null ? "<p style='margin:0; padding:0px; font-weight:bold;'>導演 / 演出者簡介：</p><p>" + sing_o.authorPf.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n").replaceAll("(\r\n|\n)", "<br /><br />") + "</p>" : "");
+	}
+	//創意生活圖檔簡介
+	if(imageDesc!=null && imageDesc.length>0){
+		for(int i=0; i<imageDesc.length; i++){
+			sb2.append("<p style='text-align:center;'><img style='max-width:700px' src='" + sing_o.getImgUrl() + "/showProdImageByPK/" + imageDesc[i] + "/800/1280/img.jpg' alt='' /></p>");
+		}
+	}
+	sb2.append(topBtn);
+	textAreaDOM.add(sing_o.setMenuItemContent("prodPf", prodContentText, sb2.toString()));
+}
+if(sing_o.prodCatId.equals("61") || sing_o.prodCatId.equals("62")) {
+	//產品規格
+	if(sing_o.prodSpec!=null && sing_o.prodSpec.length() > 0) { 
+		sb2 = new StringBuilder();
+		tempStr = sing_o.prodSpec.replaceAll("\n\n", "\r\n");
+		//sb2.append("<div class='contentFull'>"+sing_o.setPordContentDOM(sing_o.prodSpec)+"</div>");
+		sb2.append("<div class='contentFull'>"+tempStr.replaceAll("(\r\n|\n|\r)", "<br />")+"</div>");
+		sb2.append(topBtn);
+		textAreaDOM.add(sing_o.setMenuItemContent("prodSpec", "產品規格", sb2.toString()));
+	}
+	//設計師簡介
+	if(sing_o.authorPf!=null && sing_o.authorPf.length() > 0) { 
+		sb2 = new StringBuilder();
+		//tempStr = sing_o.authorPf.replaceAll("\n\n", "\r\n");
+		tempStr = sing_o.authorPf;
+		//sb2.append("<div class='contentFull'>"+sing_o.setPordContentDOM(sing_o.authorPf) +"</div>");
+		sb2.append("<div class='contentFull'>"+tempStr.replaceAll("(\r\n|\n|\r)", "<br />") +"</div>");
+		sb2.append(topBtn);
+		textAreaDOM.add(sing_o.setMenuItemContent("authorPf", "設計師簡介", sb2.toString()));
+	}
+}
+//得獎紀錄
+if(sing_o.prodCatId.equals("31") || sing_o.prodCatId.equals("32")) { 
+	if(sing_o.awardRec!=null && sing_o.awardRec.length() > 0) {
+		sb2 = new StringBuilder();
+		sb2.append("<div class='content'>"+"<p>" + sing_o.setPordContentDOM(sing_o.awardRec) + "</p>"+"</div>");
+		sb2.append(topBtn);
+		textAreaDOM.add(sing_o.setMenuItemContent("mediaRm", "得獎紀錄", sb2.toString()));
+	}
+} else {
+	if(sing_o.mediaRcm!=null || sing_o.awardRec!=null || sing_o.personRcm!=null || sing_o.spRec!=null){ 
+		sb2 = new StringBuilder();
+		tempStr = "";
+		tempStr += sing_o.awardRec != null ? "<p style='margin:0; padding:0px; font-weight:bold;'>得獎紀錄：</p><p>" + sing_o.awardRec.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n") + "</p>" : "";
+		tempStr += sing_o.personRcm != null ? "<p style='margin:0; padding:0px; font-weight:bold;'>名人推薦：</p><p>" + sing_o.personRcm.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n") + "</p>" : "";
+		tempStr += sing_o.mediaRcm != null ? "<p style='margin:0; padding:0px; font-weight:bold;'>媒體推薦：</p><p>" + sing_o.mediaRcm.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n") + "</p>" : "";
+		tempStr += sing_o.spRec != null ? "<p style='margin:0; padding:0px; font-weight:bold;'>特別收錄 / 編輯的話：</p><p>" + sing_o.spRec.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n") + "</p>" : "";
+		sb2.append("<div class='content' style='display: none;'>"+tempStr.replaceAll("(\r\n|\n)", "<br /><br />")+"</div>");
+		sb2.append("<div class='content'>"+EcPathSettingImp.LimitString(tempStr.replaceAll("\\<.*?\\>", ""),500,"...").replaceAll("(\r\n|\n)", "<br /><br />")+"</div>");
+		if(tempStr.length()> 250){
+			sb2.append(moreBtn);
+		}
+		sb2.append(topBtn);
+		textAreaDOM.add(sing_o.setMenuItemContent("mediaRm", "各界推薦", sb2.toString()));
+	}
+}
+//章節試閱
+if(sing_o.viewData != null && sing_o.viewData.length() > 0){ 
+	sb2 = new StringBuilder();
+	if(sing_o.orgProdId.equals("11100763903")) {
+		tempStr = sing_o.viewData;
+		sb2.append("<div class='content' style='display: none;'>"+tempStr.replaceAll("\\<.*?\\>", "").replaceAll("(\r\n|\n)", "<br />")+"</div>");
+		sb2.append("<div class='content'>"+EcPathSettingImp.LimitString(tempStr.replaceAll("\\<.*?\\>", ""),500,"...").replaceAll("(\r\n|\n)", "<br />")+"</div>");
+		if(tempStr.length()> 250){
+			sb2.append(moreBtn);
+		}
+		sb2.append(topBtn);
+	}
+	if(!sing_o.orgProdId.equals("11100763903")) {
+		tempStr = sing_o.viewData.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n");
+		sb2.append("<div class='content' style='display: none;'>"+tempStr.replaceAll("(\r\n|\n)", "<br /><br />")+"</div>");
+		sb2.append("<div class='content'>"+EcPathSettingImp.LimitString(tempStr.replaceAll("\\<.*?\\>", ""),500,"...").replaceAll("(\r\n|\n)", "<br /><br />")+"</div>");
+		if(tempStr.length()> 250){
+			sb2.append(moreBtn);
+		}
+		sb2.append(topBtn);
+	}
+	
+	textAreaDOM.add(sing_o.setMenuItemContent("viewData", "章節試閱", sb2.toString()));
+}
+//推薦序
+if(sing_o.personGuide != null && sing_o.personGuide.length() > 0){
+	sb2 = new StringBuilder();
+	tempStr = sing_o.personGuide.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n");
+	sb2.append("<div class='content' style='display: none;'>"+tempStr.replaceAll("(\r\n|\n)", "<br /><br />")+"</div>");
+	sb2.append("<div class='content'>"+EcPathSettingImp.LimitString(tempStr.replaceAll("\\<.*?\\>", ""),500,"...").replaceAll("(\r\n|\n)", "<br /><br />")+"</div>");
+	if(tempStr.length()> 250){
+		sb2.append(moreBtn);
+	}
+	sb2.append(topBtn);
+	textAreaDOM.add(sing_o.setMenuItemContent("personGuide", "推薦序", sb2.toString()));
+}
+//作者序
+if(sing_o.preface != null && sing_o.preface.length() > 0){
+	sb2 = new StringBuilder();
+	tempStr = sing_o.preface.replaceAll("\r\n\r\n", "\r\n").replaceAll("\n\n", "\r\n");
+	sb2.append("<div class='content' style='display: none;'>"+tempStr.replaceAll("(\r\n|\n)", "<br /><br />")+"</div>");
+	sb2.append("<div class='content'>"+EcPathSettingImp.LimitString(tempStr.replaceAll("\\<.*?\\>", ""),500,"...").replaceAll("(\r\n|\n)", "<br /><br />")+"</div>");
+	if(tempStr.length()> 250){
+		sb2.append(moreBtn);
+	}
+	sb2.append(topBtn);
+	textAreaDOM.add(sing_o.setMenuItemContent("preface", "作者序", sb2.toString()));
+}
+//目錄
+if(sing_o.catalogue != null && sing_o.catalogue.length() > 0){
+	sb2 = new StringBuilder();
+	tempStr = sing_o.catalogue.replaceAll("\n\n", "\r\n");
+	sb2.append("<div class='content' style='display: none;'>"+tempStr.replaceAll("(\r\n|\n|\r)", "<br />")+"</div>");
+	sb2.append("<div class='content'>"+EcPathSettingImp.LimitString(tempStr.replaceAll("\\<.*?\\>",""),500,"...").replaceAll("(\r\n|\n|\r)", "<br />")+"</div>");
+	if(tempStr.length()> 250){
+		sb2.append(moreBtn);
+	}
+	sb2.append(topBtn);
+	textAreaDOM.add(sing_o.setMenuItemContent("catalogue", "目錄", sb2.toString()));
+}
+//品牌簡介
+if(sing_o.brandNm != null || sing_o.brandPf != null){
+	sb2 = new StringBuilder();
+	tempStr = "";
+	tempStr += "<div><img style='max-height:230px' src='" + sing_o.getImgUrl() + "/showBrandImage.html?pk=" + sing_o.brandId + "&width=600' alt='' /></div>";
+	tempStr += sing_o.brandNm != null ? "<p style='font-size:12pt; font-weight:bold;'>" + sing_o.setPordContentDOM(sing_o.brandNm) + "</p>" : "";
+	tempStr += sing_o.brandPf != null ? "<p>" + sing_o.brandPf.replaceAll("\n\n", "\r\n").replaceAll("(\r\n|\n|\r)", "<br />") + "</p>" : "";
+	sb2.append("<div>"+tempStr+"</div>");
+	sb2.append(topBtn);
+	textAreaDOM.add(sing_o.setMenuItemContent("brand", "品牌簡介", sb2.toString()));
+}
+//購物須知
+sb2 = new StringBuilder();
+
+
+if(sing_o.orgFlg.equals("C")){ //二手書
+	sb2.append("<p style='font-weight: bold;'>關於二手書說明：</p>");
+	sb2.append("<p>購買二手書時，請檢視商品書況、備註說明或書況影片。</p>");
+	sb2.append("<p style='font-weight: bold;'>商品版權法律說明：</p>");
+	sb2.append("<p>TAAZE 單純<strong>提供網路二手書託售平台予消費者</strong>，並不涉入書本作者與原出版商間之任何糾紛；敬請各界鑒察。</p>");
+	sb2.append("<p style='font-weight: bold;'>退換貨說明：</p>");
+	sb2.append("<p>二手書籍商品享有10天的商品猶豫期（含例假日）。若您欲辦理退貨，請於取得該商品10日內寄回。</p>");
+	sb2.append("<p>二手影音商品（例如CD、DVD等），恕不提供10天猶豫期退貨。</p>");
+	sb2.append("<p>二手商品無法提供換貨服務，僅能辦理退貨。如須退貨，請保持該商品及其附件的完整性(包含書籍封底之TAAZE物流條碼)。<strong>若退回商品無法回復原狀者</strong>，可能影響退換貨權利之行使或須負擔部分費用。</p>");
+	sb2.append("訂購本商品前請務必詳閱<a class='linkStyleTextArea' href='https://taaze.tw/member_serviceCenter.html?qa_type=g#a1' target='_blank'>退換貨原則</a>、<a class='linkStyleTextArea' href='https://www.taaze.tw/member_serviceCenter.html?qa_type=m#a3' target='_blank'>二手CD、DVD退換貨說明</a>。");
+	//免責聲明文字
+	if(sing_o.crtSource!=null&&sing_o.crtSource.equals("B")){
+		sb2.append("<p>本商品資料由TAAZE會員提供，TAAZE並已依據現貨及一般人之認知對其進行審核；TAAZE對其正確性不負連帶責任。若對商品資料有疑義請聯絡TAAZE客服。</p>");
+	}
+}else if(sing_o.prodCatId.equals("21") || sing_o.prodCatId.equals("23") || sing_o.prodCatId.equals("24") || sing_o.prodCatId.equals("27") || sing_o.prodCatId.equals("22")){
+// 	雜誌/中文雜誌/業種別代碼21
+// 	雜誌/日文MOOK/業種別代碼24
+// 	雜誌/日文雜誌/業種別代碼27
+// 	雜誌/歐美雜誌/業種別代碼23
+// 	雜誌/韓文雜誌/業種別代碼22
+	
+	sb2.append("<p style='font-weight: bold;'>退換貨說明：</p>");
+	sb2.append("<p>雜誌商品，恕不提供10天猶豫期退貨。</p>");
+	sb2.append("<strong>訂購本商品前請務必詳閱</strong><a class='linkStyleTextArea' href='https://www.taaze.tw/member_serviceCenter.html?qa_type=g#a1' target='_blank'>退換貨原則</a>。");
+}else if(sing_o.prodCatId.equals("14") || sing_o.prodCatId.equals("25") || sing_o.prodCatId.equals("17") || sing_o.prodCatId.equals("26")){  //電子書
+// 	電子書/中文電子書/業種別代碼14
+// 	電子書/中文電子雜誌/業種別代碼25
+	
+	sb2.append("<p style='font-weight: bold;'>電子書閱讀方式</p>");
+	sb2.append("<p>您所購買的電子書，系統將自動儲存於您的雲端書櫃，您可透過PC（Windows / Mac）、行動裝置（手機、平板），輕鬆閱讀。</p>");
+	sb2.append("<ul>");
+	sb2.append("<li style='text-decoration:underline;'>");
+	sb2.append("Ｗindows / Ｍac 電腦");
+	sb2.append("</li>");
+	sb2.append("<li style='list-style: none;'>");
+	sb2.append("請先安裝<img src='/new_ec/rwd/include/images/C_image/pic/chrome.png'/>瀏覽器，並以Chrome開啟雲端書櫃後，點選『線上閱讀』，即可閱讀您已購買的電子書。");
+	sb2.append("</li>");
+	sb2.append("<li style='text-decoration:underline;'>");
+	sb2.append("手機／平板");
+	sb2.append("</li>");
+	sb2.append("<li style='list-style: none;'>");
+	sb2.append("請先安裝TAAZE eBook App<a target='_blank' href='https://itunes.apple.com/tw/app/taaze/id661669580?mt=8'><img src='/new_include/images/ebook-iosDownload.png' width='60' height='18' border='0' alt='' style='vertical-align:middle;'></a><a target='_blank' href='https://play.google.com/store/apps/details?id=tw.taaze.yaimmreader'><img src='/new_include/images/ebook-googlePlay.png' width='60' height='18' border='0' alt='' style='vertical-align:middle;'></a>後，依照提示登入您的TAAZE會員帳號，並下載您所購買的電子書。完成下載後，點選任一書籍即可開始離線閱讀。");
+	sb2.append("</li>");
+	sb2.append("</ul>");
+	sb2.append("<p style='line-height:30px;'><strong>注意事項：</strong><br />");
+	sb2.append("使用讀冊生活電子書服務即為同意<a target='_blank' style='color:blue;' href='/static_act/ebookpolicy/index.htm'>讀冊生活電子書服務條款</a>。<br />");
+	sb2.append("下單後電子書可開啟閱讀的時間請參考：<a target='_blank' style='color:blue;' href='/member_serviceCenter.html?qa_type=h#c2'>不同的付款方式，何時可開啟及閱讀電子書?</a><br/>因版權保護，您在TAAZE所購買的電子書/雜誌僅能以TAAZE專屬的閱讀軟體開啟閱讀，無法以其他閱讀器或直接下載檔案。");
+	sb2.append("<br />");
+	sb2.append("<strong>退換貨說明：</strong>電子書、電子雜誌商品，恕不提供10天猶豫期退貨，若您對電子書閱讀有疑慮，建議您可於購買前先行試讀。並於訂購本商品前請務必詳閱<a target='_blank' style='color:blue;' href='/member_serviceCenter.html?qa_type=h#c9'>電子書商品退換貨原則</a>。");
+	sb2.append("</p>");
+
+}else if(sing_o.prodCatId.equals("61") || sing_o.prodCatId.equals("62") ){  
+// 	創意生活/生活雜貨/業種別代碼62 創意生活/創意文具/業種別代碼61
+	sb2.append("請留意以下狀況，若未符合標準，恕無法退換貨：");
+	sb2.append("<br>");
+	sb2.append("1.猶豫期非試用期，若您收到商品有任何不合意之處，請勿拆開使用。");
+	sb2.append("<br>");
+	sb2.append("2.辦理退換貨時，請保持商品原來狀態與完整包裝（包含商品本身、附件、內外包裝、附件文件、保證書、贈品等）一併寄回。若退回商品無法回復原狀者，可能影響退換貨權利之行使或須負擔部分費用。");
+	sb2.append("<br>");
+	sb2.append("3.3C電子商品若因本身有故障瑕疵，須退回已拆封商品時，外包裝不得有刮傷、破損、碰壞、受潮等狀況，並連同完整包裝(商品、附件、原廠外盒、保護袋、配件收納紙箱、 隨貨文件、贈品等)一併退回。");
+	sb2.append("<br>");
+	sb2.append("4.個人或消耗性商品請勿拆封試用（服飾、襪子、貼身衣物、個人衛生用品、寢具用品、清潔用具、食品…等），試用後將無法受理退貨。");
+	sb2.append("<br>");
+	sb2.append("5.活動票券類商品，恕不提供10天猶豫期退貨。");
+	sb2.append("</p>");
+	sb2.append("<p>注意1：拆封係指除了運送過程中所必須包裝(如紙箱、破壞袋、氣泡袋…等)之外的其他包裝。</p>");
+	sb2.append("<p>注意2：讀冊提供10天商品猶豫期（含例假日），若要辦理退換貨，請保持商品原來狀態及完整包裝，於收到商品10天內寄回。</p>");
+	sb2.append("<strong>訂購本商品前請務必詳閱</strong><a class='linkStyleTextArea' href='https://www.taaze.tw/member_serviceCenter.html?qa_type=g#b1' target='_blank'>創意生活館退換貨原則</a>。");
+}else if(sing_o.prodCatId.equals("31") || sing_o.prodCatId.equals("32")){  
+// 	創意生活/唱片CD/業種別代碼31
+	
+	sb2.append("<p style='font-weight: bold;'>退換貨說明：</p>");
+	sb2.append("<p>商品若遭拆封或已非全新狀態(外觀有刮傷、破損、受潮…等情形)或包裝不完整(含商品、外盒、封膜及封膜上之貼紙、側標、贈品等損毀或遺失)，恕無法接受退貨退款。</p>");
+	sb2.append("<p>注意：拆封係指除了運送過程中所必需包裝(如紙箱、破壞袋、氣泡袋…等)之外的其他包裝。</p>");
+	sb2.append("<p>若有無法順利讀取的狀況時，請先改用其他播放器試播看看，如確認是商品本身之瑕疵( EX：光碟有刮痕、光碟盒破損、專輯說明掉頁…等 )，請洽詢<a class='linkStyleTextArea' href='https://www.taaze.tw/member_serviceCenter.html?act=mail' target='_blank'>客服信箱</a>協助您辦理換貨。</p>");
+	sb2.append("<strong>訂購本商品前請務必詳閱</strong><a class='linkStyleTextArea' href='https://www.taaze.tw/member_serviceCenter.html?qa_type=m#a1' target='_blank'>影音商品退換貨原則</a>。");
+}else{
+// 	書籍/中文書/業種別代碼11
+// 	書籍/簡體書/業種別代碼12
+// 	書籍/原文書/業種別代碼13
+	
+	sb2.append("<p style='font-weight: bold;'>退換貨說明：</p>");
+	sb2.append("<p>會員均享有10天的商品猶豫期（含例假日）。若您欲辦理退換貨，請於取得該商品10日內寄回。</p>");
+	sb2.append("<p>辦理退換貨時，請保持商品全新狀態與完整包裝（商品本身、贈品、贈票、附件、內外包裝、保證書、隨貨文件等）一併寄回。若退回商品無法回復原狀者，可能影響退換貨權利之行使或須負擔部分費用。</p>");
+	sb2.append("<strong>訂購本商品前請務必詳閱</strong><a class='linkStyleTextArea' href='https://www.taaze.tw/member_serviceCenter.html?qa_type=g#a1' target='_blank'>退換貨原則</a>。");
+}
+textAreaDOM.add(sing_o.setMenuItemContent("howBuy", "購物須知", sb2.toString()));
+
+
+<!-- end of 內容簡介 -->
 
 
 String schoolBookUrlPattern = "/container_snd_actview.html?t=11&k=03&d=00&a=08#";
