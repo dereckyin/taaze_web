@@ -2740,6 +2740,8 @@ jQuery.browser = {};
 	
 	<%--贈品  --%>
 	<% 
+
+	StringBuilder giftsCarousel = new StringBuilder();
 	
 	if(gifts != null && gifts.size()>0){
 		giftsCarousel.append("<div class='panel-default giftPanel'>");
