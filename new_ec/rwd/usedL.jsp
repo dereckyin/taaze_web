@@ -1,3 +1,4 @@
+<%@page import="com.xsx.ec.model.Cat4xsxModel"%>
 <%@page import="com.enjar.system.LoginUtil" %>
 <%@page import="com.taaze.system.util.CookieSecure" %>
 <%@page import="com.xsx.customer.service.CustQingdanService" %>
