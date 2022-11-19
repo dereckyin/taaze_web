@@ -3431,7 +3431,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 </div>
 </div>
 
-<input type="hidden" id="TOTAL_SALE" value="<%=total_sale %>"/>
+
 </div>
 
 <!-- 	我要徵求及我要賣 -->
@@ -3462,7 +3462,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	</div>
 </div>
 
-<input type="hidden" id="TOTAL_WANT" value="<%=total_want %>"/>
+
 </div>
 </div>
 
@@ -3545,11 +3545,12 @@ if (sprod_range.size() > 0) {
 	out.print(sb.toString());
 }
 %>
-
+<input type="hidden" id="TOTAL_SALE" value="<%=total_sale %>"/>
 <%
 if (want_range.size() > 0) {
 	out.print(want_content_table);
 }
 %>
+<input type="hidden" id="TOTAL_WANT" value="<%=total_want %>"/>
 	</body>
 </html>
