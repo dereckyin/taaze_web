@@ -1575,10 +1575,10 @@ StringBuffer prodDataSb = new StringBuffer();
 </c:otherwise>
 </c:choose>
 <title><%=fbTitle %></title>
-<%@ include file="/new_ec/rwd/include/jsp/include_goods.jsp" %>
-<%@ include file="/new_ec/gift/include/css_include.jsp" %>
-<%@ include file="/new_ec/rwd/include/js.jsp" %>
-<%@ include file="/new_ec/rwd/include/css.jsp" %>
+<jsp:include  page="/new_ec/rwd/include/jsp/include_goods.jsp" />
+<jsp:include  page="/new_ec/gift/include/css_include.jsp" />
+<jsp:include  page="/new_ec/rwd/include/js.jsp" />
+<jsp:include  page="/new_ec/rwd/include/css.jsp" />
 <link href="<%=EcPathSetting.WEB_JS_PATH%>/tipsy.css" rel="stylesheet" type="text/css"/>
 <link href="/new_ec/single/include/js/rateit.css" media="screen, projection" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="/include2/css/alertify.core.css"/>
