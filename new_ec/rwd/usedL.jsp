@@ -3660,19 +3660,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 
 
 
-<%@page import="org.apache.commons.logging.LogFactory"%>
-<%@page import="org.apache.commons.logging.Log"%>
-<%@page import="com.enjar.system.SystemUtil"%>
-<%@page import="net.sf.json.JSONObject"%>
-<%@page import="net.sf.json.JSONArray"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
-<%
 
-Log log = LogFactory.getLog(this.getClass());
-
-%>
 
 
 <!-- fixed footer -->
