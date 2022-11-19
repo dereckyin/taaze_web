@@ -273,6 +273,8 @@ if (LoginUtil.getLoginCustomer(request) != null && birthDate != null) {
 	}
 }
 
+SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
+Calendar nowCal = Calendar.getInstance();
 
 /* @@sitemap資料 	*/	
 JSONArray pathList = new JSONArray(); 
