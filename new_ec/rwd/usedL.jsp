@@ -463,7 +463,52 @@ if(collectArray==null){
 	collectArray[2] = 0;
 }
 
+//業種 11：繁體書,12：簡體書,13：外文書才能加入二手徵求
+//2016-10-05加入24,27
+boolean wantedSndFlg = false;
+int wantedSndSize = 0;
+boolean IsWanted = false;
+if ((sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("27") || sing_o.prodCatId.equals("24") || sing_o.prodCatId.equals("12") || sing_o.prodCatId.equals("13"))) {
+	/** 取得二手徵求量 * */
+	wantedSndFlg = true;//業種 11：繁體書,12：簡體書,13：外文書顯示標記
+	CustQingdanService custQingdanService = (CustQingdanService)SpringUtil.getSpringBeanById(this, "CustQingdanService");
+	List<Object> paraList = new ArrayList<Object>();
+	paraList.add(sing_o.orgProdId);
+	String whCond = " where model.orgProdId = ?";
+	wantedSndSize = custQingdanService.getCustProdSeeklistSizeByWhcond(whCond, paraList);
+	if (cc != null && cc.getCustId().length() > 0) {
+		paraList.clear();
+		paraList.add(cc.getCustId());
+		paraList.add(sing_o.orgProdId);
+		int IsWantedCheck = custQingdanService.getCustProdSeeklistSizeByWhcond(" where model.custId=? and model.orgProdId=?", paraList);
+		if (IsWantedCheck>0) {
+			IsWanted = true;
+		}
+	}
+}
+//試讀
+String previewCount = sing_o.displayDL(sing_o.orgProdId, systemDao);
 
+//回饋金
+SingeBookService singeBookService = (SingeBookService)SpringUtil.getSpringBeanById(this, "SingeBookService");
+int bonusPctValue = singeBookService.getBonusPctValue(new BigDecimal(sing_o.salePrice),pid,null,null,sing_o.mcPk);
+
+//回饋金 new 
+JSONObject pct_result = sing_o.findMaxBonusPct(sing_o.orgProdId, (int)sing_o.salePrice, sing_o.pubId, sing_o.supId, sing_o.prodCatId, sing_o.catId, sing_o.orgFlg, systemDao);
+String bonus_text = "";
+boolean showBonusFlag = true;
+//Date hideBonusDate = formatter.parse("2017-09-01");
+//活動網址
+String act_url = "";
+if(pct_result.getString("bonus_text")!=null) {
+	bonus_text = pct_result.getString("bonus_text");
+}
+if(pct_result.getString("act_url")!=null) {
+	act_url = pct_result.getString("act_url");
+}
+if("".equals(bonus_text)){
+	showBonusFlag= false;
+}
 
 
 String bindingType = "A"; 
