@@ -1526,7 +1526,7 @@ jQuery.browser = {};
 		<div class="authorBrand">
 		<%if(sing_o.prodCatId.equals("61") || sing_o.prodCatId.equals("62")){
 			if(sing_o.brandId!=null && sing_o.brandId.length() > 0) {
-				StringBuffer sb = new StringBuffer();
+				sb = new StringBuffer();
 				sb.append("<div style='margin-top:10px;'><span>品牌:");
 				sb.append("<a href='"+ searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"'>");
 				sb.append(sing_o.brandNm);
