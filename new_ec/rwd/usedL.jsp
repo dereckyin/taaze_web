@@ -3657,7 +3657,459 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 <div class="row" style="height:20px;background: #f7f7f7;"></div>
 -->
 </div>
-<jsp:include page="/new_ec/rwd/include/jsp/include_footer.jsp" flush="true"/>
+
+
+
+<%@page import="org.apache.commons.logging.LogFactory"%>
+<%@page import="org.apache.commons.logging.Log"%>
+<%@page import="com.enjar.system.SystemUtil"%>
+<%@page import="net.sf.json.JSONObject"%>
+<%@page import="net.sf.json.JSONArray"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
+<%
+
+Log log = LogFactory.getLog(this.getClass());
+
+%>
+
+
+<!-- fixed footer -->
+
+
+<%-- pc --%>
+<div id="fb-root" class=" fb_reset">
+<div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
+<div>
+<iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="https://staticxx.facebook.com/connect/xd_arbiter/r/D6ZfFsLEB4F.js?version=42#channel=f2f4016cda722&amp;origin=https%3A%2F%2F<%=request.getServerName()%>" style="border: none;">
+</iframe>
+<iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="https://staticxx.facebook.com/connect/xd_arbiter/r/D6ZfFsLEB4F.js?version=42#channel=f2f4016cda722&amp;origin=https%3A%2F%2F<%=request.getServerName()%>" style="border: none;">
+</iframe>
+</div>
+</div>
+</div>
+<script defer>
+window.fbAsyncInit = function() {
+    FB.init({
+        appId: '116787935057056',
+        status : true,
+        //cookie : true,
+        xfbml: true, // parse XFBML
+        version: 'v2.8'
+    });
+};
+(function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/zh_TW/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));
+</script> 
+<c:choose>  
+   <c:when test="${cookie['mobile'].value eq 'on' && param.current_page_nm !='cart.html'}">    
+   <div class="container container_PC" style="margin-top:30px; background:#f7f7f7;width: 1080px;">
+	<div class="container container_PC">	
+	</c:when>  
+	<c:otherwise> 
+<div class="hidden-xs hidden-sm hidden-md" style="margin-top:30px; background:#f7f7f7;">
+	<div class="container">
+	</c:otherwise>  
+</c:choose> 
+<%
+		/* footer_banner-- start */
+		JSONArray footerBanner = new JSONArray();
+		footerBanner = SystemUtil.parseActJson2Array("00","00","N","0");
+		String footerBannerhomepagecode = SystemUtil.homepageTypeMap.get("00".concat("00").concat("N"));		
+		if (footerBanner!=null && footerBanner.size()>0){
+				int i = 0;
+				out.print("<div id='mLazyFoot' class='row' style='margin-top:20px;'>");
+				for(Object obj : footerBanner){
+					JSONObject jobj = new JSONObject();
+					jobj = JSONObject.fromObject(obj);
+					String url=jobj.getString("activityUrl");
+					String imgSrc = "https://media.taaze.tw/showBanaerImage.html?pk="+jobj.getString("bannerPkNo")+"&width=310&height=100";
+					
+					out.print("<div class='col-xs-4'>");				
+					out.print("<a target='_parent' href='"+url+"'>");				
+					out.print("<img class='lazy' src='' data-src='"+imgSrc+"'>");				
+					out.print("</a>");				
+					out.print("</div>");			
+					
+	  				i++;
+				}
+				out.print("</div>");
+		}
+%>
+
+		<div class="row" style="margin-top:20px;">
+			<div style="border-bottom:1px dotted #bdbdbd;"></div>
+		</div>
+		
+		<div class="row" style="margin-top:20px;">
+			<div class="col-xs-3" style="padding-left:105px;">
+				<h4 style="font-weight: bold;font-size: 18px;color:#472a2b;">認識TAAZE</h4>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/about/index.htm">關於我們</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/starthere/index.htm">第一次購物</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/sell_used_books.html">第一次賣二手書</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/201012/1201ecoupon/index.htm">現金回饋</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/join_taaze.html">加入會員</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/children_index.html">偏鄉孩童閱讀專戶</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/librarysearch/index.htm">圖書館借閱查詢</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/jobs/index.htm">工作機會</a></div>
+			</div>
+			<div class="col-xs-2">
+				<h4 style="font-weight: bold;font-size: 18px;color:#472a2b;">合作提案</h4>
+				
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/partner/index.htm">加入書籍供應商</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/ebook/index.htm">加入電子書供應商</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/zakka/index.htm">加入創意生活供應商</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/affiliateprogram/index.jsp">行銷分紅夥伴計畫</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/cooperation/index.htm">異業合作</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/static_act/201404/taaze_ads/index.htm">廣告合作</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="https://www.taaze.tw/snd161124_index.html">加入二手書義賣受捐單位</a></div>
+
+			</div>
+			<div class="col-xs-2">
+				<h4 style="font-weight: bold;font-size: 18px;color:#472a2b;">顧客服務</h4>
+				
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="/qa/view/b.html">訂購、訂單查詢</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="/qa/view/c.html">取貨方式</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="/qa/view/c.html#a2">付款方式與運費</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="/qa/view/g.html">退換貨</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="/rwd_qa.html">常見Q&amp;A</a></div>
+				<div style="margin:5px 0 0 0;"><a target="_parent" href="/rwd_inquiry.html">客服信箱</a></div>
+
+			</div>
+			<div class="col-xs-5">
+				<ul style="list-style:none;padding:5px;margin:0px;">
+					<li style="font-weight: bold;font-size: 18px;color:#472a2b;">保持聯繫</li>
+					<li style='margin-top: 3px'>
+						<a target="_parent" href="http://www.facebook.com/TAAZE"><img src="/new_ec/rwd/include/images/A_image/ic/ic_footer_1@2x.png" width='30' height='30' alt="" border="0"></a>
+						<a style="padding-left:5px;" target="_parent" href="https://www.instagram.com/taaze.tw/"><img src="/new_ec/rwd/include/images/A_image/ic/ic_ig_index_normal@1x.png" width='30' height='30' alt="" border="0"></a>
+						<a style="padding-left:5px;" target="_parent" href="http://ebook.taaze.tw/do/rssfeed/rssindex.aspx"><img src="/new_ec/rwd/include/images/A_image/ic/ic_footer_2@2x.png" width='30' height='30' alt="" border="0"></a>
+						
+					</li>
+					<li style="font-weight: bold;font-size: 18px;margin-top:44px;color:#472a2b;">網站認證</li>
+					<li title="EV SSL.">
+						<div id="twcaseal" style="cursor:pointer;">
+							<img src="/new_ec/rwd/include/images/A_image/ic/ic_footer_3@2x.png" width='35' height='32' alt="" border="0">
+						</div>
+						<script defer type="text/javascript" src="https://ssllogo.twca.com.tw/twcaseal2_v3.js" charset="utf-8"></script> 
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="row" style="margin-top:20px;">
+			<div style="border-bottom:1px dotted #bdbdbd;"></div>
+		</div>
+		
+		<div class="row" style="margin-top:30px; margin-bottom:30px;">
+			<div class='footMsg'>
+				<span><a target="_parent" href="https://www.taaze.tw">學思行數位行銷股份有限公司</a></span>
+				<span>台北市松山區南京東路四段56號六樓</span>
+				<span>|</span>
+				<span><a target="_bank" href="https://www.taaze.tw/static_act/member/index.htm">會員服務使用條款</a></span>
+				<span>|</span>
+				<span><a target="_bank" href="https://www.taaze.tw/static_act/privacynotice/index.htm">隱私權政策</a></span>
+				<!--
+				<span>|</span>
+				<span><a target="_bank" href="http://m.taaze.tw">TAAZE行動版</a></span>
+				-->
+				<!--電腦版與手機板切換start-->
+				<br /><br/>
+				<span><a target="_self" href="/rwd_setcookie.html">電腦版</a></span>
+				<span>|</span>
+				<span><a target="_self" href="/rwd_cleancookie.html">手機版</a></span>
+				<br /><br/>
+				<!--電腦版與手機板切換end-->
+				
+			</div>
+		</div>
+			<div id="footLazyLoad">
+  		<script type="text/lazyload">
+		</script>
+		</div>
+		
+	</div>
+	
+
+</div>
+
+
+
+<%-- pc --%>
+
+<%-- mobile --%>
+  	<div id="mFootLazyLoad">
+  		<script type="text/lazyload">
+<c:choose>  
+   <c:when test="${cookie['mobile'].value eq 'on' && param.current_page_nm !='cart.html'}">    
+<div class="container-fluid hidden-md hidden-sm hidden-xs hidden-lg" style="margin-top:15px;padding:0; background:#f7f7f7;">
+	</c:when>  
+	<c:otherwise> 
+<div class="container-fluid visible-md-block visible-sm-block visible-xs-block" style="margin-top:15px;padding:0; background:#f7f7f7;">
+	</c:otherwise>  
+</c:choose> 
+	<div class="row" style="height:15px;"></div>
+	<div class="row">
+		<div class='footMsg'>
+			<a style='margin-right:10px' target="_parent" href="/rwd_qa.html"><img src='/new_ec/rwd/include/images/A_image/btn/btn_index_9@2x.png' width='110' height='30' /></a>
+			<a style='margin-right:10px' target="_parent" href="/rwd_inquiry.html"><img src='/new_ec/rwd/include/images/A_image/btn/btn_index_10@2x.png' width='110' height='30' /></a>
+			<a target="_parent" href="http://www.facebook.com/TAAZE"><img src='/new_ec/rwd/include/images/A_image/ic/ic_footer_1@2x.png' width='30' height='30' alt=""  /></a>
+			<br /><br/>
+			<span><a target="_parent" href="https://www.taaze.tw">學思行數位行銷股份有限公司</a></span>
+			<!--<span>台北市松山區南京東路四段56號六樓</span><br />-->
+			<span>|</span>
+			<span><a target="_bank" href="https://www.taaze.tw/static_act/member/index.htm">會員服務使用條款</a></span>
+			<span>|</span>
+			<span><a target="_bank" href="https://www.taaze.tw/static_act/privacynotice/index.htm">隱私權政策</a></span>
+			<!--
+			<span>|</span>
+			<span><a target="_bank" href="http://m.taaze.tw">TAAZE行動版</a></span>
+			-->
+			
+			<br /><br/>
+			<!--電腦版與手機板切換start-->
+			<span><a target="_self" href="/rwd_setcookie.html">電腦版</a></span>
+			<span>|</span>
+			<span><a target="_self" href="/rwd_cleancookie.html">手機版</a></span>
+			<!--電腦版與手機板切換end-->
+			<br /><br/>			
+		</div>
+	</div>
+	<div class="row" style="height:20px;"></div>
+</div>
+</script>
+</div>
+
+<%-- mobile --%>
+<%
+boolean homeIpFooter = SystemUtil.isHomeIP(request);
+if(!homeIpFooter){
+%>    
+<!-- 
+<script type="text/javascript">
+var fb_param = {};
+fb_param.pixel_id = '6008264832579';
+fb_param.value = '0.01';
+(function(){
+  var fpw = document.createElement('script');
+  fpw.async = true;
+  fpw.src = '//connect.facebook.net/en_US/fp.js';
+  var ref = document.getElementsByTagName('script')[0];
+  ref.parentNode.insertBefore(fpw, ref);
+})();
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6008264832579&amp;value=0.01" /></noscript>
+-->
+<!-- Facebook Pixel Code -->
+<script defer>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1691589381072988');
+fbq('track', "PageView");</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1691589381072988&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+<%
+}
+%>
+
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function() {
+	  let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+	  let active = false;
+
+	  const lazyLoad = function() {
+	    if (active === false) {
+	      active = true;
+
+	      setTimeout(function() {
+	        lazyImages.forEach(function(lazyImage) {
+	          if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
+	            lazyImage.src = lazyImage.dataset.src;
+	            //lazyImage.srcset = lazyImage.dataset.srcset;
+	            lazyImage.classList.remove("lazy");
+
+	            var vBakClass = lazyImage.getAttribute("data");
+	            if( vBakClass != null ){
+	            	lazyImage.classList.toggle(vBakClass);
+	            }
+
+	            lazyImages = lazyImages.filter(function(image) {
+	              return image !== lazyImage;
+	            });
+
+	            if (lazyImages.length === 0) {
+	              document.removeEventListener("scroll", lazyLoad);
+	              window.removeEventListener("resize", lazyLoad);
+	              window.removeEventListener("orientationchange", lazyLoad);
+	            }
+	          }
+	        });
+
+	        active = false;
+	      }, 200);
+	    }
+	  };
+	  
+
+		$('#mFootLazyLoad').lazyload({
+			  // Sets the pixels to load earlier. Setting threshold to 200 causes image to load 200 pixels
+			  // before it appears on viewport. It should be greater or equal zero.
+			  threshold: 200,
+		
+			  // Sets the callback function when the load event is firing.
+			  // element: The content in lazyload tag will be returned as a jQuery object.
+			  load: function(element) {
+			  },
+		
+			  // Sets events to trigger lazyload. Default is customized event `appear`, it will trigger when
+			  // element appear in screen. You could set other events including each one separated by a space.
+			  trigger: "appear"
+		});
+		
+		$('#footLazyLoad').lazyload({
+			  // Sets the pixels to load earlier. Setting threshold to 200 causes image to load 200 pixels
+			  // before it appears on viewport. It should be greater or equal zero.
+			  threshold: 200,
+		
+			  // Sets the callback function when the load event is firing.
+			  // element: The content in lazyload tag will be returned as a jQuery object.
+			  load: function(element) {
+			  },
+		
+			  // Sets events to trigger lazyload. Default is customized event `appear`, it will trigger when
+			  // element appear in screen. You could set other events including each one separated by a space.
+			  trigger: "appear"
+		});
+
+	  document.addEventListener("scroll", lazyLoad);
+	  window.addEventListener("resize", lazyLoad);
+	  window.addEventListener("orientationchange", lazyLoad);
+	});
+	
+	let activeGG = false;
+	
+	document.addEventListener("scroll",function(){
+		if( activeGG === false ){
+
+			activeGG = true;
+			var visibleBottom = window.scrollY + document.documentElement.clientHeight+100;
+			var visibleTop = window.scrollY;
+			
+			var lazyGoArray = ['lazyLoadId1', 'lazyLoadId2', 'lazyLoadId3', 'lazyLoadId4'];
+			
+			for( i=0; i<lazyGoArray.length; i++){
+				//新品
+				var doLazy = document.getElementById(lazyGoArray[i]);
+				
+				if( doLazy !== null && doLazy !== '' ){
+
+					var doLazys = doLazy.getElementsByClassName('lazy');
+					
+					var objectTop = doLazy.offsetTop;
+					
+					if( objectTop > visibleTop && objectTop < visibleBottom ){
+						
+						for( j = 0 ; j < doLazys.length ; j ++ ){
+							doLazys[j].src = doLazys[j].dataset.src;
+							doLazys[j].classList.remove("lazy");
+							
+						}
+						
+					}
+				}
+				
+			}
+			
+			var mLazyGoArray = ['mLazyTest1','mLazyTest2','mLazyTest3','mLazyTest4'];
+			
+			for( i=0; i<mLazyGoArray.length; i++){
+				//新品
+				var mDoLazy = document.getElementById(mLazyGoArray[i]);
+				
+				if( mDoLazy !== null && mDoLazy !== '' ){
+
+					var mDoLazys = mDoLazy.getElementsByClassName('lazy');
+					
+					var objectTop = mDoLazy.offsetTop;
+					
+					if( objectTop > visibleTop && objectTop < visibleBottom ){
+						
+						for( j = 0 ; j < mDoLazys.length ; j ++ ){
+							mDoLazys[j].src = mDoLazys[j].dataset.src;
+							mDoLazys[j].className = "img-responsive";
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+			var mLazyFooter = ['mLazyFoot'];
+			
+			for( i=0; i<mLazyGoArray.length; i++){
+				//新品
+				var mDoLazy = document.getElementById(mLazyGoArray[i]);
+				
+				if( mDoLazy !== null && mDoLazy !== '' ){
+
+					var mDoLazys = mDoLazy.getElementsByClassName('lazy');
+					
+					var objectTop = mDoLazy.offsetTop;
+					
+					if( objectTop > visibleTop && objectTop < visibleBottom ){
+						
+						for( j = 0 ; j < mDoLazys.length ; j ++ ){
+							mDoLazys[j].src = mDoLazys[j].dataset.src;
+							mDoLazys[j].className = "img-responsive center-block";
+						}
+						
+					}
+					
+				}
+			}
+			
+			
+		}
+		
+		activeGG = false;
+	});
+	
+	
+	//對大版banner進行驗證
+	var bigBanner1 = document.getElementById("banner1");
+	if (window.innerWidth >= 1200) {
+		bigBanner1.src = bigBanner1.dataset.src;
+		
+		var eachFirstBanners = document.getElementsByClassName('firstBanner');
+		
+		for( var i = 0; i< eachFirstBanners.length ; i++ ){
+			eachFirstBanners.src ='/new_ec/rwd/include/images/B_image/rwd_1000x326.jpg';
+		}
+    }
+	
+</script>
+
+
+
+
+<!-- fixed footer -->
+
+
+
+
+
 <div class="modal fade" id="loginFrame" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
