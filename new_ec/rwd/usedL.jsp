@@ -2358,6 +2358,7 @@ jQuery.browser = {};
 			
 			</div> 
 
+			
 		</div>
 		
 		<c:choose>
@@ -4477,6 +4478,8 @@ out.print(m_gift);
 }
 %>
 <%--贈品  --%>
+
+</div>
 
 
 <!-- fixed footer -->
