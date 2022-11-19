@@ -772,16 +772,16 @@ if(imageTakeLook!=null&&imageTakeLook.length>0){
 
 //二手書訊息
 StringBuffer sndInfo =  new StringBuffer();
-if(sing.orgFlg.equals("C")){
+if(sing_o.orgFlg.equals("C")){
 	sndInfo.append("<div class='sndInfo'>");
 	if(custSprodSchoolinfo!=null && custSprodSchoolinfo.size()>0){//校系
 		sndInfo.append("<div>");
-  		sndInfo.append("<span style=''>教科書校系檢索：</span><span style='font-weight: normal;'><a href='" +sing.schoolBookUrlPattern + URLEncoder.encode(String.format(sing.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), "", "", "", ""),"utf8") + "'>"+custSprodSchoolinfo.get(0).getCityNm() +"</a></span>"); 
+  		sndInfo.append("<span style=''>教科書校系檢索：</span><span style='font-weight: normal;'><a href='" +sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), "", "", "", ""),"utf8") + "'>"+custSprodSchoolinfo.get(0).getCityNm() +"</a></span>"); 
   		sndInfo.append("<span style='font-weight: normal;'>&gt;</span>");
-  		sndInfo.append("<span style='font-weight: normal;'><a href='"+sing.schoolBookUrlPattern + URLEncoder.encode(String.format(sing.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), custSprodSchoolinfo.get(0).getSchoolNo(),"", "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(0).getSchoolName() +"</a></span>"); 
+  		sndInfo.append("<span style='font-weight: normal;'><a href='"+sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), custSprodSchoolinfo.get(0).getSchoolNo(),"", "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(0).getSchoolName() +"</a></span>"); 
   		if(custSprodSchoolinfo.get(0).getDepartmentNo()!=null && !custSprodSchoolinfo.get(0).getDepartmentNo().equals("0")) { 
   			sndInfo.append("<span class='span01' style='font-weight: normal;'>&gt;</span>"); 
-  			sndInfo.append("<span style='font-weight: normal;'><a href='" + sing.schoolBookUrlPattern + URLEncoder.encode(String.format(sing.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), custSprodSchoolinfo.get(0).getSchoolNo(), custSprodSchoolinfo.get(0).getDepartmentNo(), "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(0).getDepartmentName() +"</a></span>"); 
+  			sndInfo.append("<span style='font-weight: normal;'><a href='" + sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter,custSprodSchoolinfo.get(0).getCityId(), custSprodSchoolinfo.get(0).getSchoolNo(), custSprodSchoolinfo.get(0).getDepartmentNo(), "", ""),"utf8") +"'>"+custSprodSchoolinfo.get(0).getDepartmentName() +"</a></span>"); 
   		}
  		sndInfo.append("<span style='font-weight: normal; margin-left: 10px;'><a href='javascript:void(0);' id='showSprodSchool'>&nabla;</a> </span>"); 
   		sndInfo.append("</div>");
@@ -801,9 +801,9 @@ if(sing.orgFlg.equals("C")){
   	}
   	if(custSprodSchoolinfoByDiscipline!=null && custSprodSchoolinfoByDiscipline.size()>0){ //學門學類
   		sndInfo.append("<div>");
-  		sndInfo.append("<span style=''>教科書學科檢索：</span><span style='font-weight: normal;''><a href='" + sing.schoolBookUrlPattern + URLEncoder.encode(String.format(sing.schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(0).getDisciplineNo(), ""),"utf8") +"'>" + custSprodSchoolinfoByDiscipline.get(0).getDisciplineName() +"</a></span>"); 
+  		sndInfo.append("<span style=''>教科書學科檢索：</span><span style='font-weight: normal;''><a href='" + sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(0).getDisciplineNo(), ""),"utf8") +"'>" + custSprodSchoolinfoByDiscipline.get(0).getDisciplineName() +"</a></span>"); 
   		sndInfo.append("<span style='font-weight: normal;'>&gt;</span>");
-  		sndInfo.append("<span style='font-weight: normal;'><a href='"+ sing.schoolBookUrlPattern + URLEncoder.encode(String.format(sing.schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(0).getDisciplineNo(), custSprodSchoolinfoByDiscipline.get(0).getClassNo()),"utf8") +"'>"+custSprodSchoolinfoByDiscipline.get(0).getClassName() +"</a></span>"); 
+  		sndInfo.append("<span style='font-weight: normal;'><a href='"+ sing_o.schoolBookUrlPattern + URLEncoder.encode(String.format(sing_o.schoolBookUrlParameter, "", "", "", custSprodSchoolinfoByDiscipline.get(0).getDisciplineNo(), custSprodSchoolinfoByDiscipline.get(0).getClassNo()),"utf8") +"'>"+custSprodSchoolinfoByDiscipline.get(0).getClassName() +"</a></span>"); 
   		sndInfo.append("<span style='font-weight: normal; margin-left: 10px;'><a href='javascript:void(0);'id='showSprodDiscipline' class='linkStyle02' >&nabla;</a></span>");
   		sndInfo.append("</div>");
   		sndInfo.append("<li style='display: none;' id='spordDiscipline' class='linkStyle02'>");
@@ -835,7 +835,7 @@ if(sing.orgFlg.equals("C")){
   				
   	//書況
   	sndInfo.append("<div>");
-  	sndInfo.append("<span>書況(讀冊判定)：</span><span rel='"+sprodAskModel.getProdRank() +"' class='sndProdRank'>"+sing.getProdRankText(sprodAskModel.getProdRank())+"</span>");
+  	sndInfo.append("<span>書況(讀冊判定)：</span><span rel='"+sprodAskModel.getProdRank() +"' class='sndProdRank'>"+sing_o.getProdRankText(sprodAskModel.getProdRank())+"</span>");
   	sndInfo.append("<div id='sndProdRank_info' style='display:none;'>");
   	sndInfo.append("<ul style='list-style:none;padding:0'>");
   	sndInfo.append("<li style='font-weight:bold; padding-bottom:3px;'>書況說明：</li>");
@@ -850,7 +850,7 @@ if(sing.orgFlg.equals("C")){
   				
   	//備註
   	sndInfo.append("<div>");
-  	sndInfo.append("<span>備註(賣家自填)：<span style='font-weight: normal;'>" +sing.getAddMarkText(sprodAskModel.getAddMarkFlg(), sprodAskModel.getNote()) +"</span></span>");
+  	sndInfo.append("<span>備註(賣家自填)：<span style='font-weight: normal;'>" +sing_o.getAddMarkText(sprodAskModel.getAddMarkFlg(), sprodAskModel.getNote()) +"</span></span>");
   	sndInfo.append("</div>");
   	sndInfo.append("<div>");
   	sndInfo.append("<span class='whatAddMarkText'>");
