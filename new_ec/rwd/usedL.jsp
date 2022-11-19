@@ -3076,9 +3076,81 @@ jQuery.browser = {};
 
 </div>
 
+<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+
+
 <%-- tags --%>
-<div>wwwwwwww</div>
+<div>tags tags tags tags tags tags tags </div>
 <%-- tags --%>
+
+<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+
+
+<%-- 二手與徵求 --%>
+<!-- 	我要徵求及我要賣 -->
+<div class="row" style="margin-bottom: 10px;">
+	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
+			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
+				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
+					<%
+/*
+//似乎多餘
+if(sing.total_saler > 0) {
+int lowerest_disc = Math.round((sing.lowest_price/sing.listPrice)*100);
+sale_text2 += "二手價<span class='highlightu'>"+sing.discString(String.valueOf(lowerest_disc))+"</span>折";
+sale_text2 += sing.total_saler>1? "<span class='highlightu' >"+String.valueOf(sing.lowest_price)+"</span>元起，":"<span class='highlightu' >"+String.valueOf(sing.lowest_price)+"</span>元，";
+sale_text2 += "共<span>"+sing.total_saler+"</span>位賣家";
+}*/
+%>
+<label class="sprod_sale_text">
+	<%=sing.total_saler > 0 ? sale_text2 : "目前沒有二手書" %>
+</label>
+</div>
+<div id="wantLink2" class="col-sm-12 col-xs-12" style='padding:0px;'>
+	<% if (IsWanted) { %>
+	<div class="btn_buy" style="display:none;">我要徵求</div>
+	<div class="btn_cancel_wnt"
+	onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
+</div>
+<% } else { %>
+<div class="btn_buy">我要徵求</div>
+<div class="btn_cancel_wnt" style="display:none;"
+onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
+</div>
+<% } %>
+</div>
+</div>
+<%
+sb = new StringBuilder();
+int total_sale = 0;
+if (sprod_range.size() > 0) {
+	int index = 0;
+	sb.append("<table class='sale_range' width='100%' class='table' border='0' cellspacing='0' cellpadding='0'>");
+	sb.append("<tr class='column_title'><td class='column_left' width='50%'>二手價</td><td width='50%'>數量</td></tr>");
+	for (int i : sing.priceArray) {
+		String bg_color = "#ffffff";
+		if (sprod_range.containsKey(String.valueOf(i))) {
+			if (String.valueOf(i).equals(sing.most_sale)) {
+				sb.append("<tr bgcolor='#efefef'><td class='column column_left' rel='" + i + "' style='font-weight:bold'>" + sing.getRangeText(i) + "</td><td class='column' align='right'>" + sprod_range.get(String.valueOf(i)) + "</td></tr>");
+			} else {
+				sb.append("<tr bgcolor='" + bg_color + "'><td class='column column_left' rel='" + i + "'>" + sing.getRangeText(i) + "</td><td class='column' align='right'>" + sprod_range.get(String.valueOf(i)) + "</td></tr>");
+			}
+			total_sale += Integer.valueOf(sprod_range.get(String.valueOf(i)));
+		} else {
+			if (String.valueOf(i).equals(sing.most_sale)) {
+				sb.append("<tr  bgcolor='#efefef'><td class='column column_left' rel='" + i + "' style='font-weight:bold'>" + sing.getRangeText(i) + "</td><td class='column' align='right' >0</td></tr>");
+			}
+		}
+		index++;
+	}
+	sb.append("</table>");
+	out.print(sb.toString());
+}
+%>
+<input type="hidden" id="TOTAL_SALE" value="<%=total_sale %>"/>
+</div>
+
+<%-- 二手與徵求 --%>
 
 	</body>
 </html>
