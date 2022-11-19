@@ -1891,7 +1891,132 @@ jQuery.browser = {};
 
 	</div>
 	<%--評價/收藏/二手徵求/試讀 --%>
-		
+	<%-- 分享 --%>
+	<div id='pcShare' style='margin-left: -80px;'>
+		<iframe id='shareBox' frameborder="0" border="0" cellspacing="0" style="margin-top:-10px;height:33px;border: 0px;" src="/share_index.html" ></iframe>
+	</div>
+	<%-- 分享 --%>	
+
+	<%--定價/特價/優惠價 顯示邏輯 --%>	
+	<div class='price'>
+	<%
+	if(sing_o.listPrice==sing_o.salePrice){//定價=售價 顯示定價
+		%>
+		<p style="margin:0 0;">
+			<span>定價：NT$ <span style="color:#e2007e;"><strong><%=(int)sing_o.listPrice %></strong></span></span>
+		</p>
+		<%
+	}else if(sing_o.specialPrice==sing_o.salePrice){//特價=售價 顯示定價/特價
+		%>
+		<p style="margin:0 0;">
+			<%if(sing_o.listPrice>0){ %>
+			<span>定價：NT$ <span style='text-decoration:line-through;'><%=(int)sing_o.listPrice %></span></span>
+			<%} %>
+			<span>特價：NT$ <span style="color:#e2007e;"><strong><%=(int)sing_o.specialPrice %></strong></span></span>
+		</p>
+		<%
+	}else{//顯示定價/特價/優惠價/折扣
+		if(sing_o.orgFlg.equals("C")){//二手
+			if(sing_o.discString(String.valueOf((int)sing_o.saleDisc)) != null){
+				%>
+				<p style="margin:0 0;">
+					<%if(sing_o.listPrice>0){ %>
+					<span>定價：<small>NT$</small> <span style='text-decoration:line-through;'><%=(int)sing_o.listPrice %></span></span>
+					<%} %>
+					<%if(sing_o.specialPrice>0){ %>
+					<span>特價：<small>NT$</small> <span><%=(int)sing_o.specialPrice %></span></span>
+					<%} %>
+				</p>
+				<p style="margin:0 0;">
+					<span>二手價：<span style="color:#e2007e;"><strong><%=sing_o.discString(String.valueOf((int)sing_o.saleDisc)) %></strong></span> <small>折</small>，<small>NT$</small> <span style="color:#e2007e;"><strong><%=(int)sing_o.salePrice %></strong></span></span>
+				</p>
+				
+				<% 							
+			}else{
+				%>
+				<p style="margin:0 0;">
+					<%if(sing_o.listPrice>0){ %>
+					<span>定價：<small>NT$</small> <span style='text-decoration:line-through;'><%=(int)sing_o.listPrice %></span></span>
+					<%} %>
+					<%if(sing_o.specialPrice>0){ %>
+					<span>特價：<small>NT$</small> <span><%=(int)sing_o.specialPrice %></span></span>
+					<%} %>
+				</p>
+				<p style="margin:0 0;">
+					<span>優惠價：<span style="color:#e2007e;"><strong><%=sing_o.discString(String.valueOf((int)sing_o.saleDisc)) %></strong></span> <small>折</small>，<small>NT$</small> <span style="color:#e2007e;"><strong><%=(int)sing_o.salePrice %></strong></span></span>
+				</p>
+				<%
+			}
+		}else{
+			if((int)sing_o.saleDisc==0){
+				%>
+				<p style="margin:0 0;">
+				<%if(sing_o.listPrice>0){ %>
+					<span>定價：<small>NT$</small> <span style='text-decoration:line-through;'><%=(int)sing_o.listPrice %></span></span>
+					<%} %>
+				<%if(sing_o.specialPrice>0){ %>
+					<span>特價：<small>NT$</small> <span><%=(int)sing_o.specialPrice %></span></span>
+					<%} %>
+				</p>
+				<p style="margin:0 0;">
+					<span>優惠價：<small>NT$</small> <span><%=(int)sing_o.salePrice %></span></span>
+				</p>
+				<% 							
+			}else{
+				%>
+				<p style="margin:0 0;">
+					<%if(sing_o.listPrice>0){ %>
+						<span>定價：<small>NT$</small> <span style='text-decoration:line-through;'><%=(int)sing_o.listPrice %></span></span>
+					<%} %>
+					<%if(sing_o.specialPrice>0){ %>
+						<span>特價：<small>NT$</small> <span><%=(int)sing_o.specialPrice %></span></span>
+					<%} %>
+				</p>
+				<p style="margin:0 0;">
+					<span>優惠價：<span style="color:#e2007e;"><strong><%=sing_o.discString(String.valueOf((int)sing_o.saleDisc)) %></strong></span> <small>折</small>，<small>NT$</small> <span style="color:#e2007e;"><strong><%=(int)sing_o.salePrice %></strong></span></span>
+				</p>
+				<%
+			}
+		}  												
+	}
+	%>
+	<%--現金回饋 --%>
+	<%if(showBonusFlag){ %>
+	<p style="margin:0 0;">
+		<span>現金回饋：<span style="color:#e2007e;"><strong><%=bonusPctValue %></strong><small>%</small></span> </span>
+		<% if(act_url.length() > 0) { %>
+		<span><a href="<%=act_url %>" target="_blank">(活動詳情)</a></span>
+		<% } %>
+		<span><a href="/qa/view/d.html#c3" target="_blank">回饋金可全額折抵商品 <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a></span>
+	</p>
+	<%} %>
+	
+	<%--getfinWhDate???? --%>
+	<% 
+	if(sing_o.prodCatId.equals("24") || sing_o.prodCatId.equals("27") || sing_o.prodCatId.equals("21") || sing_o.prodCatId.equals("22") || sing_o.prodCatId.equals("23")) { 
+		if(sing_o.getfinWhDate().length()>0){
+		%>
+		<p style="margin:0 0;">
+			<span><%=sing_o.getfinWhDate() %></span>
+		</p>
+		<% 
+		}
+	} 
+	%>
+	
+	<%--優惠截止 --%>
+	<% 
+	if(sing_o.mcEDate!=null && sing_o.mcEDate.length()>=8) { 
+		if(sing_o.mcPk>0){
+		%>
+		<p style="margin:0 0;">
+			<span style='color:#e3007f'>優惠截止日：<span style="letter-spacing:1px;">至<%=sing_o.mcEDate.substring(0,4) %>年<%=sing_o.mcEDate.substring(4,6) %>月<%=sing_o.mcEDate.substring(6,8) %>日</span></span>
+		</p>
+		<% 
+		}
+	} 
+	%>
+	</div>
 
 
 	</body>
