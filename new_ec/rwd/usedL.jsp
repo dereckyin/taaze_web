@@ -3510,45 +3510,6 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 </div>
 <%}%>
 
-<!-- 	最近成交價(折扣) -->
-<%if (sale_range.size() > 0) {%>
-<div class="row"
-style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
-<div class="row" style="margin-bottom: 15px;">
-	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 0px;">
-		<%
-		List sortedKeys = new ArrayList(sale_range.keySet());
-		Collections.sort(sortedKeys);
-		sb = new StringBuilder();
-		JSONArray recordList = new JSONArray();
-		for (int i = 0; i < sortedKeys.size(); i++) {
-			String key = sortedKeys.get(i).toString();
-			JSONObject record = sale_range.get(key);
-			record.put("sale_month", key);
-			int price_total = record.getInt("sale_price");
-			int count = record.getInt("prod_count");
-			float disc_total = Float.valueOf(record.getString("disc"));
-			record.put("avg_price", Math.round(price_total / count));
-			if (disc_total / count < 1) {
-				record.put("avg_disc", 1);
-			}
-			if (disc_total / count > 1) {
-				record.put("avg_disc", Math.round(disc_total / count));
-			}
-			recordList.add(record);
-		}
-		out.print("<div class='recordList' style='display:none'>" + recordList.toString() + "</div>");
-		out.print("<p><span class='span03'>最近成交價(折扣)</span></p>");
-	%>
-	<div>
-		<canvas id="myChart" width="800" height="400"></canvas>
-	</div>
-</div>
-</div>
-<%
-}
-%>
-
 <%-- 二手與徵求 --%>
 
 
