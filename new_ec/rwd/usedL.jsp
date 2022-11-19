@@ -1677,8 +1677,8 @@ prodDataSb.append("<span class='prodInfo_boldSpan'").append(prodDataSb.indexOf("
 }
 if (sing_o.fileSize != null && sing_o.fileSize.length() > 0) {
 Double fileSizeMb = (Double.parseDouble(sing_o.fileSize) / 1024);
-DecimalFormat df1 = new DecimalFormat("#.##");
-prodDataSb.append("<span class='prodInfo_boldSpan'>檔案大小：<span style='color: #666666; font-weight: normal;'>" + df1.format(fileSizeMb) + "MB</span></span>");
+DecimalFormat df2 = new DecimalFormat("#.##");
+prodDataSb.append("<span class='prodInfo_boldSpan'>檔案大小：<span style='color: #666666; font-weight: normal;'>" + df2.format(fileSizeMb) + "MB</span></span>");
 }
 }
 prodDataSb.append("</div>");
