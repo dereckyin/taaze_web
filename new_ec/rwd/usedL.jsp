@@ -1695,6 +1695,87 @@ jQuery.browser = {};
 		%>
 		</div>
 		<%--品牌 作者--%>	
+
+		<%--評價/收藏/二手徵求/試讀 --%>	
+		<div style="padding-top:10px;width:420px">
+			<div id='toComment' class='iconBtn'
+				onclick="toComment(0)">				
+				<!--<img src='/new_ec/rwd/include/images/C_image/ic/ic_1@1x.png' />--><span style='color:#e2007f'><%=startLevelSize>0?startLevelSize:"" %></span>評價 
+			</div>
+			<%if(collectArray[0]==0){ %>
+			<div id="myCollect" class='iconBtn collectCount'
+				onclick="add2Collection('<%=sing_o.prodId %>','<%=sing_o.orgProdId%>');">				
+				<!--<img src='/new_ec/rwd/include/images/C_image/ic/ic_2@1x.png' />--><span style='color:#e2007f'><%=collectArray[2]>0?collectArray[2]:"" %></span>收藏
+			</div>
+			<div id="myCollectp" class="iconBtn collectCount" 
+				onclick="add2Collection('<%=sing_o.prodId %>','<%=sing_o.orgProdId%>');" style="display:none;">				
+				&nbsp;<img src='/new_ec/rwd/include/images/C_image/ic/ic_2_p@1x.png' /><span id='myCollectSize' style='color:#e2007f'><%=collectArray[2]>0?collectArray[2]:"" %></span>收藏&nbsp;&nbsp;
+			</div>
+			<%}else{ %>
+			<div id="myCollectp" class="iconBtn collectCount" 
+				onclick="add2Collection('<%=sing_o.prodId %>','<%=sing_o.orgProdId%>');">				
+				&nbsp;<img src='/new_ec/rwd/include/images/C_image/ic/ic_2_p@1x.png' /><span id='myCollectSize' style='color:#e2007f'><%=collectArray[2]>0?collectArray[2]:"" %></span>收藏&nbsp;&nbsp;
+			</div>
+			<div id="myCollect" class="iconBtn collectCount" 
+				onclick="add2Collection('<%=sing_o.prodId %>','<%=sing_o.orgProdId%>');" style="display:none;">				
+				<!--<img src='/new_ec/rwd/include/images/C_image/ic/ic_2@1x.png' />--><span style='color:#e2007f'><%=collectArray[2]>0?collectArray[2]:"" %></span>收藏&nbsp;&nbsp;
+			</div>
+			<%} %> 
+			
+			<% if(wantedSndFlg){
+				//二手書徵求
+				if(IsWanted){
+			%>
+			<div id="mySndWantp" name="mySndWant" class='iconBtn'
+				onclick="wantSnd(event);">				
+				&nbsp;<img src='/new_ec/rwd/include/images/C_image/ic/ic_3_p@1x.png' /><span style='color:#e3007f;'><%=wantedSndSize>0?wantedSndSize:"" %></span>二手徵求&nbsp;&nbsp; 
+				
+			</div>
+			<div id="mySndWant" name="mySndWant" class='iconBtn'
+				onclick="wantSnd(event);" style="display:none;">				
+				<!--<img src='/new_ec/rwd/include/images/C_image/ic/ic_3@1x.png' />--><span style='color:#e2007f;'><%=wantedSndSize>0?wantedSndSize:"" %></span>二手徵求
+			</div>
+			<%}else{ %>
+			<div id="mySndWant" name="mySndWant" class='iconBtn'
+				onclick="wantSnd(event);">				
+				<!--<img src='/new_ec/rwd/include/images/C_image/ic/ic_3@1x.png' />--><span style='color:#e2007f'><%=wantedSndSize>0?wantedSndSize:"" %></span>二手徵求
+			</div>
+			<div id="mySndWantp" name="mySndWant" class='iconBtn'
+				onclick="wantSnd(event);" style="display:none;">				
+				&nbsp;<img src='/new_ec/rwd/include/images/C_image/ic/ic_3_p@1x.png' /><span style='color:#e3007f;'><%=wantedSndSize>0?wantedSndSize:"" %></span>二手徵求&nbsp;&nbsp; 
+			</div>
+			<%}
+				//二手書徵求 	
+			}%>
+	
+			<% if(previewCount!=null && previewCount.length()>0){//線上試讀  %>
+				<% if(sing_o.prodCatId.equals("14") || sing_o.prodCatId.equals("25") || sing_o.prodCatId.equals("17")){ %>
+					<%if(cc!=null && cc.getCuid().toString().length()>0){ %>
+			<div id="myPreview" class='iconBtn'
+				onclick="location.href='http://ebook.taaze.tw/do/mobile/ebook_preview.ashx?oid=<%=sing_o.orgProdId %>&cuid=<%=cc.getCuid() %>'" data-status="Y">				
+				<!--<img src='/new_ec/rwd/include/images/C_image/ic/ic_4@1x.png' />--><span style='color:#e2007f'><%=previewCount %></span>人次試讀
+			</div>
+			
+					<%}else{ %>
+			<div id="myPreview" class='iconBtn'
+				onclick="location.href='http://ebook.taaze.tw/do/mobile/ebook_preview.ashx?oid=<%=sing_o.orgProdId %>'" data-status="Y">				
+				<!--<img src='/new_ec/rwd/include/images/C_image/ic/ic_4@1x.png' />--><span style='color:#e2007f'><%=previewCount %></span>人次試讀 
+			</div>
+			
+					<%} %>
+			<%}else{ %>
+		<div id="myPreview" class='iconBtn'
+			onclick="location.href='http://ebook.taaze.tw/do/preview/viewer2.aspx?oid=<%=sing_o.orgProdId %>'" data-status="N">				
+			<!--<img src='/new_ec/rwd/include/images/C_image/ic/ic_4@1x.png' />--><span style='color:#e2007f'><%=previewCount %></span>人次試讀 
+		</div>
+		
+			<%} %>
+		<%} %>
+	
+		<div style="clear:left;"></div>		
+
+	</div>
+	<%--評價/收藏/二手徵求/試讀 --%>
 		
 
 
