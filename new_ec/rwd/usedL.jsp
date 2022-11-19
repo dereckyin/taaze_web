@@ -527,7 +527,7 @@ if(sing_o.publishDate!= null) {
 JSONArray versionList = sing_o.getVersionList(sing_o.istProdId, sing_o.prodId);
 
 //其他版本
-int version_size = 0;
+//int version_size = 0;
 if(versionList!=null && versionList.size()>0){
 	version_size = versionList.size();
 }
