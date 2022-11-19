@@ -3698,11 +3698,11 @@ window.fbAsyncInit = function() {
 <c:choose>  
    <c:when test="${cookie['mobile'].value eq 'on' && param.current_page_nm !='cart.html'}">    
    <div class="container container_PC" style="margin-top:30px; background:#f7f7f7;width: 1080px;">
-	<div class="container container_PC">	
+	<div class="container container_PC" style="width: inherit;">	
 	</c:when>  
 	<c:otherwise> 
 <div class="hidden-xs hidden-sm hidden-md" style="margin-top:30px; background:#f7f7f7;">
-	<div class="container">
+	<div class="container" style="width: inherit;">
 	</c:otherwise>  
 </c:choose> 
 <%
