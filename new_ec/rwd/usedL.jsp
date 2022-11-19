@@ -25,7 +25,7 @@ Log log = LogFactory.getLog(this.getClass());
 SystemDAO systemDao = (SystemDAO) SpringUtil.getSpringBeanById(this.getServletConfig(), "SystemDAO");
 boolean openNewCollectFriendsFlg = SystemUtil.openWecollectfunFlg || SystemUtil.isHomeIP(request);
 CustQingdanService custQingdanService = (CustQingdanService) SpringUtil.getSpringBeanById(this.getServletConfig(), "CustQingdanService");
-String pid = "11100992919";
+String pid = "11100764589";
 SingleUsedLibs sing = null;
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //log.info(request.getRemoteAddr());
@@ -2280,6 +2280,135 @@ jQuery.browser = {};
 			<span style='clear:both'></span>
 		</div>
 	<%}%>
+
+	<%--其他版本/圖書館借閱 --%>
+	<% 
+	if(version_size > 0){//其他版本 1003 
+					
+		%>
+		<div class="otherVersion">
+			<div>
+				<span style="color: #4A4A4A;">其他版本：</span>
+			</div>
+			<%
+			for(int i=0; i<versionList.size(); i++) { 
+				JSONObject version = (JSONObject)versionList.get(i);
+				String otherSndBook = "其他二手價";
+				if(version.getString("versionProdtext").equals(otherSndBook)){
+					%>
+					<div class="highlight" style="float:left;">
+						<a href="<%=sing_o.getWebUrl(request)%>/usedList.html?oid=<%=version.getString("orgProdId")%>">
+							<%=version.getString("versionProdtext")%><br />
+							<%
+							if(sing_o.discString(String.valueOf(version.getInt("disc")))!=null){
+							%>
+							<span style="color:#e2007e;"><%=sing_o.discString(String.valueOf(version.getInt("disc")))%></span><span>折</span>
+							<%	
+							}
+							%>
+							<span style="color:#e2007e;"><%=version.getInt("listPrice")%></span><span>元起</span>
+						</a>
+					</div>
+					<%
+					
+				}
+				else{
+				if(version.getString("MoreSecondHandFlag").equals("true")) {
+					%>
+					<div class="highlight" style="float:left;">
+						<a href="<%=sing_o.getWebUrl(request)%>/usedList.html?oid=<%=version.getString("orgProdId")%>">
+							<%=version.getString("versionProdtext")%><br />
+							<%
+							if(sing_o.discString(String.valueOf(version.getInt("disc")))!=null){
+							%>
+							<span style="color:#e2007e;"><%=sing_o.discString(String.valueOf(version.getInt("disc")))%></span><span>折</span>
+							<%	
+							}
+							%>
+							<span style="color:#e2007e;"><%=version.getInt("listPrice")%></span><span>元起</span>
+						</a>
+					</div>
+					<%
+				}
+				if(version.getString("MoreSecondHandFlag").equals("false")) {
+					if(version.getInt("listPrice") > 0) {
+						%>
+						<div class="highlight" style="float:left;">
+							<a href="<%=sing_o.getWebUrl(request)%>/goods/<%=version.getString("prodId")%>.html">
+								<%=version.getString("versionProdtext")%><br />
+								<%
+								if(sing_o.discString(String.valueOf(version.getInt("disc")))!=null){
+								%>
+								<span style="color:#e2007e;"><%=sing_o.discString(String.valueOf(version.getInt("disc")))%></span><span>折</span>
+								<%	
+								}
+								%>
+								<span style="color:#e2007e;"><%=version.getInt("listPrice")%></span><span>元</span>
+							</a>
+						</div>
+						<%			
+					}
+					if(version.getInt("listPrice") == 0) {
+						%>
+						<div class="highlight" style="float:left;">
+							<a href="<%=sing_o.getWebUrl(request)%>/goods/<%=version.getString("prodId")%>.html">
+								<%=version.getString("versionProdtext")%><br />
+								<%
+								if(!version.get("prodCatId").equals("14") || !version.get("prodCatId").equals("25")) {
+								%>
+								<span style="color:#e2007e;"><%=version.getInt("listPrice")%></span><span>元</span>
+								<%	
+								}
+								%>
+								
+							</a>
+						</div>
+						<%
+					}
+				}
+			}}
+			%>
+			<%--圖書館借閱 --%>
+			<%
+			if(diffDay > 180 && (sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14"))||sing_o.orgFlg.equals("C")&& (sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14"))){
+				%>
+				<div id="lib-interact" class="highlight dropdown"  style="float:left;cursor:pointer;">
+					<span data-toggle="dropdown">圖書館借閱</span>
+					<ul class='dropdown-menu' style="margin:0; padding:0;">
+						<li><a href="http://ebook.taaze.tw/middle/Library/Library.php?ISBN=<%=sing_o.isbn %>" target="_blank">臺北市立圖書館</a></li>
+						<li><a href="http://ebook.taaze.tw/middle/Library/NTCLibrary.php?ISBN=<%=sing_o.isbn %>" target="_blank"><s:text name="single.lend_books_library_xinli" /></a></li>
+						<li><a href="http://ebook.taaze.tw/middle/Library/TCCultureLibrary.php?ISBN=<%=sing_o.isbn %>" target="_blank">臺中市立圖書館</a></li>
+						<li><a href="http://ebook.taaze.tw/middle/Library/TCLibrary.php?ISBN=<%=sing_o.isbn %>" target="_blank">國立公共資訊圖書館</a></li>
+						<li><a href="http://ebook.taaze.tw/middle/Library/TNMLibrary.php?ISBN=<%=sing_o.isbn %>" target="_blank">臺南市立圖書館</a></li>
+						<li><a href="http://ebook.taaze.tw/middle/Library/KSLibrary.php?ISBN=<%=sing_o.isbn %>" target="_blank"><s:text name="single.lend_books_library_gaoxiong"></s:text></a></li>
+						<li><a href="http://ebook.taaze.tw/middle/Library/NTULibrary.php?ISBN=<%=sing_o.isbn %>" target="_blank">臺灣大學圖書館</a></li>
+						<li class="libTooltip"><a id="tooltip" title="" onmouseover="">什麼是借閱查詢 <img style='width:15px;height:15px;vertical-align: text-top;' src='/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png'/></a></li>
+					</ul>
+					<div id='lend_books_infos' style='display:none;'><s:text name="single.lend_books_infos"/></div>
+				</div>
+				<%
+			}
+			%>
+			<%if(!sing_o.haseUSed&&!sing_o.prodCatId.equals("21")&&!sing_o.prodCatId.equals("22")&&!sing_o.prodCatId.equals("25")&&!sing_o.prodCatId.equals("14")){%>
+			<div style="float:left;" class="highlight">
+				<div>
+					<a class="" href="/usedList.html?oid=<%=sing_o.istProdId %>" style="text-decoration:none; ">二手書<br/>交易資訊</a>
+				</div>
+			</div>	
+			<%}%>
+		</div>
+	<% if(sing_o.orgFlg.equals("A") && (sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14") || sing_o.prodCatId.equals("24") || sing_o.prodCatId.equals("27")) && !sing_o.haseUSed) {
+		String lineStyle = "0";
+		if(versionList.size()==0) {
+			lineStyle = "1";
+		}
+	%>
+	<% } %>
+<%}%>
+	<div style="clear:left;"></div>
+</div>
+<div style="clear:both;"></div>
+</div><!-- <div class="media"> -->
 
 	</body>
 </html>
