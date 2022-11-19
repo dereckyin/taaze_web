@@ -3649,5 +3649,513 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 <%
 }
 %>
-	</body>
+<div class="row" style="height:50px;"></div>
+<!-- footer -->
+<!--
+<div class="row" style="height:1px;background: #bdbdbd;"></div>
+<div class="row" style="height:3px;background: #e8e8e8;"></div>
+<div class="row" style="height:20px;background: #f7f7f7;"></div>
+-->
+</div>
+<jsp:include page="/new_ec/rwd/include/jsp/include_footer.jsp" flush="true"/>
+<div class="modal fade" id="loginFrame" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="ModalHeader">登入提醒
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+				</h4>
+			</div>
+			<div class="col-sm-12 col-xs-12 modal-body">
+				<div style="text-align:center;font-size:12pt">請先登入，或免費加入會員！</div>
+			</div>
+			<div class="modal-footer">
+				<!-- <button type="button" class="button btn-default btn-xs" data-dismiss="modal">取消</button>-->
+				<button type="button"
+				class="button btn-xs btn-primary btn_login">確定
+			</button>
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal fade" id="wndFrame" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="ModalHeader">我的徵求價
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+				</h4>
+			</div>
+			<div class="col-sm-12 col-xs-12 modal-body">
+				<div class="col-sm-12 col-xs-12 form-inline"
+				style=" padding-left: 6px; margin-bottom: 5px;">
+				<div class="form-group">
+					<input type="radio" class='wndType' name="want_type" value="B" checked/>
+					<label class='col-text'>折扣：</label>
+					<select class="form-control want_discount" style="width:120px;">
+						<option value="0">請選擇</option>
+						<option value="10">1</option>
+						<option value="20">2</option>
+						<option value="30">3</option>
+						<option value="40">4</option>
+						<option value="50">5</option>
+						<option value="60">6</option>
+						<option value="70">7</option>
+						<option value="80">8</option>
+						<option value="90">9</option>
+					</select>折
+				</div>
+			</div>
+			<div class="col-sm-12 col-xs-12 form-inline" style=" padding-left: 6px; margin-bottom: 5px;">
+				<div class="form-group">
+					<input type="radio" class='wndType' name="want_type" value="A"/>
+					<label class='col-text'>價格：</label>
+					<input type="text" id="want_price" class='form-control'
+					rel="<%=(int)sing.listPrice %>"
+					rel2="<%=sing.outOfPrint %>"
+					style="width:120px;"/>
+					元
+				</div>
+			</div>
+			<div class="col-sm-12 col-xs-12 form-inline"
+			style=" padding-left: 6px; margin-bottom: 5px;">
+			<div class="want_quest" data-toggle="tooltip"
+			data-placement="right"
+			title="徵求價是您期待的二手價。徵求價不得低於45元，最高為目前的新書售價，而絕版書的徵求價無上限。 ">
+			什麼是徵求價
+		</div>
+		<div style="margin-top: 8px;">可不填徵求價，直接按確定即徵求</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<div style="float:left">
+		<div class="checkbox" style=" margin: 0px 6px;">
+			<label>
+				<input id="wnd_share" type="checkBox"
+				style=" margin-top: 3px; margin-bottom: 0px;"/>
+				<span class='col-text' style="margin-bottom: 0px;">同步分享至facebook</span>
+			</label>
+		</div>
+	</div>
+	<label class="wnd_error highlightu"></label>
+	<!-- <button type="button" class="button btn-default btn-xs cancel_wnd" data-dismiss="modal">取消</button>-->
+	<button type="button"
+	class="button btn-xs btn-primary confirm_wnd">確定
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="saleVerifyFrame" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="ModalHeader">我要賣二手書</h4>
+			</div>
+			<div class="col-sm-12 col-xs-12 modal-body">
+				<div class="col-sm-12 col-xs-12 form-inline"
+				style=" padding-left: 6px; margin-bottom: 10px;">
+				<label>TAAZE不僅可以『買書』，還可以讓您『賣書』，讓您免出門、免聯絡、免查帳，快速把家裡的二手書變現金。<a
+					class="linkStyle02"
+					style='text-decoration:underline'
+					href="<s:property value="#attr.INIT_SERVER_MAP.web_url"/>/member_serviceCenter.html?qa_type=j#b1">
+				了解更多</a></label>
+			</div>
+		</div>
+		<div class="modal-footer">
+<!--
+<button type="button" class="button btn-default btn-xs" data-dismiss="modal">取消</button>
+-->
+<button type="button" class="button btn-xs btn-primary"
+onclick="window.location.href='<s:property
+value="#attr.INIT_SERVER_MAP.web_url"/>/mobileValidate.html?typeFlg=IA'">
+開通權限
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="libraryFrame" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="ModalHeader">圖書館借閱查詢<a href="#"
+					class="close"
+					data-dismiss="modal">
+				&times;</a></h4>
+			</div>
+			<div class="col-sm-12 col-xs-12 modal-body">
+				<div class="col-sm-12 col-xs-12 form-inline"
+				style=" padding-left: 6px; margin-bottom: 10px;">
+				<a class="linkStyle02" style='font-size:11pt'
+				href="http://ebook.taaze.tw/middle/Library/Library.php?ISBN=<%=sing.isbn %>"
+				target="_blank">
+				臺北市立圖書館
+			</a>
+		</div>
+		<div class="col-sm-12 col-xs-12 form-inline"
+		style=" padding-left: 6px; margin-bottom: 10px;">
+		<a class="linkStyle02" style='font-size:11pt'
+		href="http://ebook.taaze.tw/middle/Library/NTCLibrary.php?ISBN=<%=sing.isbn %>"
+		target="_blank">
+		<s:text name="single.lend_books_library_xinli"/>
+	</a>
+</div>
+<div class="col-sm-12 col-xs-12 form-inline"
+style=" padding-left: 6px; margin-bottom: 10px;">
+<a class="linkStyle02" style='font-size:11pt'
+href="http://ebook.taaze.tw/middle/Library/TCCultureLibrary.php?ISBN=<%=sing.isbn %>"
+target="_blank">
+臺中市立圖書館
+</a>
+</div>
+<div class="col-sm-12 col-xs-12 form-inline"
+style=" padding-left: 6px; margin-bottom: 10px;">
+<a class="linkStyle02" style='font-size:11pt'
+href="http://ebook.taaze.tw/middle/Library/TCLibrary.php?ISBN=<%=sing.isbn %>"
+target="_blank">
+國立公共資訊圖書館
+</a>
+</div>
+<div class="col-sm-12 col-xs-12 form-inline"
+style=" padding-left: 6px; margin-bottom: 10px;">
+<a class="linkStyle02" style='font-size:11pt'
+href="http://ebook.taaze.tw/middle/Library/TNMLibrary.php?ISBN=<%=sing.isbn %>"
+target="_blank">
+臺南市立圖書館
+</a>
+</div>
+<div class="col-sm-12 col-xs-12 form-inline"
+style=" padding-left: 6px; margin-bottom: 10px;">
+<a class="linkStyle02" style='font-size:11pt'
+href="http://ebook.taaze.tw/middle/Library/KSLibrary.php?ISBN=<%=sing.isbn %>"
+target="_blank">
+<s:text name="single.lend_books_library_gaoxiong"></s:text>
+</a>
+</div>
+<div class="col-sm-12 col-xs-12 form-inline"
+style=" padding-left: 6px; margin-bottom: 10px;">
+<a class="linkStyle02" style='font-size:11pt'
+href="http://ebook.taaze.tw/middle/Library/NTULibrary.php?ISBN=<%=sing.isbn %>"
+target="_blank">
+臺灣大學圖書館
+</a>
+</div>
+<div class="col-sm-12 col-xs-12 form-inline"
+style=" padding-left: 6px; margin-bottom: 10px;">
+<div class="library_quest" style="width: 120px;"
+data-toggle="tooltip" data-placement="bottom"
+title="借閱查詢功能可以連結到市立圖書館的館藏庫存，您可以藉由這個功能連結到該圖書館的網址，向圖書館員進行預約借閱。若圖書館沒有收藏這本書，您也可以寫信建議圖書館員採買。 你知道，全台圖書館藏書總量超過一億了嗎？多多利用圖書館資源，讓您的閱讀不只精彩，更加環保。">
+什麼是借閱查詢
+</div>
+</div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="saleFrame" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="ModalHeader">二手書上架申請
+					<a href="#" class="close" data-dismiss="modal">&times;</a></h4>
+				</div>
+				<div class="col-sm-12 col-xs-12 modal-body">
+					<input type="hidden" name="orgListPrice" value="<%=sing.listPrice %>"/>
+					<input type="hidden" name="orgProdId" value="<%=sing.orgProdId %>"/>
+					<% if (sing.prodCatId.equals("11") && (sing.titleMain.contains("CD") || sing.titleMain.contains("DVD"))) { %>
+					<div class="col-sm-12 col-xs-12 form-inline" style=" padding:0px 6px; margin-bottom: 10px;">
+						<div class="form-group">
+							<span class='highlightu'>提醒您！您的書名顯示該書包含附件，請您再次確認書籍有包含附件？
+							(書名已標註含附件的書，二手書亦需包括附件，TAAZE才能代售。若無附件，TAAZE將退書給您)</span>
+						</div>
+					</div>
+					<% } %>
+					<div class="col-sm-12 col-xs-12 form-inline"
+					style=" padding-left: 6px; margin-bottom: 10px;">
+					<div class="form-group">
+						<label class='col-text'>備註</label>
+						<select class="form-control saleRemark" name="setProdRemark" style="width:120px;">
+							<option value="A">無畫線註記</option>
+							<option value="B">有畫線</option>
+							<option value="C">有註記</option>
+							<option value="D">有畫線註記</option>
+							<option value="E">作家簽名</option>
+							<option value="F">蓋藏書章</option>
+							<option value="G">有附件</option>
+							<option value="Z">其他</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-12 col-xs-12 form-inline" style=" padding-left: 6px; margin-bottom: 10px;">
+					<div class="form-group">
+						<label class='col-text'
+						style="margin: 3px 0px; vertical-align: top;">賣家自訂售價</label>
+						<div style="display:inline-block">
+							<div class="form-inline"
+							style=" margin-bottom: 10px;">
+							<input type="radio" class='saleMethod' name="setSaleMethod" value="A" checked/>
+							<label class='col-text'>金額</label>
+							<input type="text" id="salePrice" class='form-control' name="setSaleMethodA" style="width:120px;"/>
+						</div>
+						<div class="form-inline">
+							<input type="radio" class='saleMethod' name="setSaleMethod" value="B"/>
+							<label class='col-text'>折扣</label>
+							<input type="text" id="saleDisc" class='form-control' name="setSaleMethodB" style="width:120px;"
+							title="<div style='padding:3px; width:110px; text-align:left;'>折扣填法如下：<br/>如想賣7折，填入70，想賣4.5折請填入45，皆為整數</div>" disabled/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12 col-xs-12 form-inline"
+			style=" padding-left: 6px; margin-bottom: 10px;">
+			<div class="form-group">
+				<label class='col-text'>所得</label>
+				<input type="text" id="saleIncome" class='form-control'
+				name="setInCome" style="width:120px;" readonly/>
+			</div>
+		</div>
+		<div class="col-sm-12 col-xs-12 form-inline"
+		style=" padding-left: 6px; margin-bottom: 10px;">
+		<div class="form-group">
+			<label class='col-text'>教科書</label>
+			<input type="radio" class='saleSchoolBook'
+			name="setIsSchool" value="Y"/>
+			<label class='col-text'>是</label>
+			<input type="radio" class='saleSchoolBook'
+			name="setIsSchool" value="N" checked/>
+			<label class='col-text'>否</label>
+		</div>
+	</div>
+	<div class="col-sm-12 col-xs-12 form-inline sale_info_hide"
+	style=" padding-left: 6px; margin-bottom: 10px;display:none;">
+	<div style=" margin-bottom: 5px;">
+		<label class='col-text highlightu'>請註記這本教科書所屬學校/系所</label>
+	</div>
+	<div style=" margin-bottom: 5px;">
+		<div class="form-group">
+			<label class='col-text'>縣市區域</label>
+			<div class="input" rel='city'
+			style="display: inline-block;width:70%;">
+			<select id="setSchoolCity"
+			class="form-control setSchoolCity"
+			name="setSchoolCity" style="width:70%;">
+			<option value="">請選擇地區</option>
+		</select>
+	</div>
+</div>
+</div>
+<div style=" margin-bottom: 5px;">
+	<div class="form-group">
+		<label class='col-text'>所屬學校</label>
+		<div class="input" rel='school'
+		style="display: inline-block;width:70%;">
+		<select id="setSchoolName"
+		class="form-control setSchoolName"
+		name="setSchoolName" style="width:70%;">
+		<option value="">請選擇學校</option>
+	</select>
+</div>
+</div>
+</div>
+<div style=" margin-bottom: 5px;">
+	<div class="form-group">
+		<label class='col-text'>所屬系別</label>
+		<div class="input" rel='dep'
+		style="display: inline-block;width:70%;">
+		<select id="setSchoolDep"
+		class="form-control setSchoolDep"
+		name="setSchoolDep" style="width:70%;">
+		<option value="">請選擇系別</option>
+	</select>
+</div>
+</div>
+</div>
+<div>
+	<div id="noSchoolFind">找不到你的學校？</div>
+</div>
+<!--feynman_教科書註記版本，版本欄位的js使用sndhand.js-->
+<script type="text/javascript"
+src="/include/js/sndhand.js"></script>
+<div style='margin-bottom: 3px; position:absolute;top:2em;left:20em'>
+	<span style='margin-right: 3px;float:left;font-weight:bold'>教科書版本</span>
+	<br>
+	<input type="radio" name="checkradio" checked="checked"
+	onclick="$('#edition').attr('disabled',false).focus();$('#pubYear').attr('disabled',true).val('');">
+	第
+	<input type="text" size="2" id="edition" name="edition"
+	maxlength="2"
+	onkeyup="getIntValueById('edition')">
+	版本　
+	<br>
+	<input type="radio" name="checkradio"
+	style="margin-top:10px"
+	onclick="$('#pubYear').attr('disabled',false).focus();$('#edition').attr('disabled',true).val('');">
+	西元
+	<input type="text" size="2" id="pubYear" name="pubYear"
+	onkeyup="getIntValueById('pubYear')"
+	maxlength="4" disabled="disabled">
+	年出版
+</div>
+</div>
+</div>
+<div class="modal-footer">
+	<label class="sale_error highlightu"></label>
+<!--
+<button type="button" class="button btn-default btn-xs cancel_sale" data-dismiss="modal">取消</button>
+-->
+<button type="button"
+class="button btn-xs btn-primary confirm_sale">確定
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="alertDialog">
+	<div class="modal-dialog" role="document">
+		<div class="alert alert-info" style="margin:30px 0px;">
+			<a href="#" class="close" data-dismiss="modal">&times;</a>
+			<label class="alert_msg"></label>
+			<button type="button" style="display:none;"
+			class="btn btn-confirm btn-xs btn-primary btn_find_book">確定
+		</button>
+	</div>
+</div>
+</div>
+<div class="modal fade" id="confirmDialog">
+	<div class="modal-dialog" role="document">
+		<div class="alert alert-confirm" style="margin:30px 0px;">
+			<label class="confirm_msg"></label>
+			<div>
+				<button type="button"
+				class="button btn-default btn-xs cancel_act"
+				data-dismiss="modal">取消
+			</button>
+			<button type="button"
+			class="button btn-confirm btn-xs btn-primary confirm_act">
+			確定
+		</button>
+	</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="vodFrame" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="ModalHeader">書況影片<a href="#"
+					class="close"
+					data-dismiss="modal">
+				&times;</a></h4>
+			</div>
+			<div class="col-sm-12 col-xs-12 modal-body"
+			style=" text-align: center;">
+			<iframe id="vod_content" frameBorder='0'
+			style='width:100%;max-width:520px;max-height:390px;min-height:380px; height:100%;border: none;'
+			src=''></iframe>
+			<div>商品之附件或贈品，請以書況影片為準。</div>
+		</div>
+		<div class="modal-footer">
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal fade" id="cltFrame" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="ModalHeader">加入冊格子收藏<a href="#"
+					class="close"
+					data-dismiss="modal">
+				&times;</a></h4>
+			</div>
+			<div class="col-sm-12 col-xs-12 modal-body">
+				<div class="form-group top-util" style=" margin-bottom: 10px;">
+					<span class='note'>勾選欄位將書籍加入到該分類中</span>
+					<button type="button"
+					class="button btn-default btn-xs add-cat">新增類別
+				</button>
+			</div>
+			<div class="form-group"><p class='clt-msg'>
+			收藏成功!您可以新增分類將收藏放進去</p></div>
+			<div class="form-group">
+				<div class="list-group cat-list">
+					<div class="list-group-item cat-input">
+						<div class="checkbox">
+							<label>
+								<input class="add-cat-name"
+								placeholder="新增類別" type="text"
+								value=""/>
+								<span class="add-cat-msg"></span>
+								<button type="button"
+								class="button btn-default btn-xs cancel-add">
+								取消
+							</button>
+							<button type="button"
+							class="button btn-default btn-xs confirm-add">
+							新增
+						</button>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<div style="float:left">
+		<div class="checkbox" style=" margin: 0px 6px;">
+			<label>
+				<input id="clt_share" type="checkBox"
+				style=" margin-top: 3px; margin-bottom: 0px;"/>
+				<span class='col-text' style="margin-bottom: 0px;">同步分享至facebook</span>
+			</label>
+		</div>
+	</div>
+	<button type="button"
+	class="button btn-confirm btn-xs btn-primary confirm-clt"
+	data-dismiss="modal">確定
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="shareFrame" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="ModalHeader">分享<a href="#"
+					class="close"
+					data-dismiss="modal">
+				&times;</a></h4>
+			</div>
+			<div class="col-sm-12 col-xs-12 modal-body">
+				<div style="width:130px;margin:0px auto;">
+					<div id='fb_shared' class='share'></div>
+					<div id='gmail_shared' class='share'></div>
+					<div id='plurk_shared' class='share'></div>
+					<div id='twitter_shared' class='share'></div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"
+src="/new_ec/single/include/js/singleUsed.js?22"></script>
+<script type="text/javascript"
+src="/new_include/js/jquery.ba-hashchange.js"></script>
+<script type="text/javascript"
+src="/new_ec/single/include/js/jquery.qtip.min.js"></script>
+<script type="text/javascript" src="/new_ec/rwd/include/js/include_goods.js?v3"
+async></script>
+</body>
 </html>
+<%
+} catch (Exception e) {
+	log.error(e.getMessage());
+}
+%>
