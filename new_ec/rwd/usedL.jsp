@@ -767,15 +767,15 @@ if(sing_o.orgFlg.equals("A") && ( sing_o.prodCatId.equals("31") || sing_o.prodCa
 String orderDate = null;
 
 //標籤雲,我的分類建議
-List<ProdKwModel> keyList = sing.queryProdKwAmountGroupByOrgProdId(sing.orgProdId, 30, systemDao);
+List<ProdKwModel> keyList = sing_o.queryProdKwAmountGroupByOrgProdId(sing_o.orgProdId, 30, systemDao);
 List<ProdKwModel> myKeyList = null;//我的標籤
 List<Cat4xsxModel> listCat4xsx = null;//我的分類建議
 List<String> listNCat4xsx = null; //延伸類別
-listNCat4xsx = sing.getNCat4xsx(sing.orgProdId, systemDao);
+listNCat4xsx = sing_o.getNCat4xsx(sing_o.orgProdId, systemDao);
 if(cc!=null && cc.getCustId().length()>0){
-	myKeyList = sing.queryProdKwAmountGroupByOrgProdIdAndCustId(sing.orgProdId,  cc.getCustId(), systemDao);
-	listCat4xsx = sing.productService.queryCustCat4xsx(sing.orgProdId, cc.getCustId());
-	orderDate = sing.getOrderDate(cc.getCustId(), sing.orgProdId, systemDao);
+	myKeyList = sing_o.queryProdKwAmountGroupByOrgProdIdAndCustId(sing_o.orgProdId,  cc.getCustId(), systemDao);
+	listCat4xsx = sing_o.productService.queryCustCat4xsx(sing_o.orgProdId, cc.getCustId());
+	orderDate = sing_o.getOrderDate(cc.getCustId(), sing_o.orgProdId, systemDao);
 }
 StringBuffer tagSb = new StringBuffer();
 tagSb.append("<div style='margin:2px 0;'>");
@@ -833,7 +833,7 @@ if(myKeyList!=null && myKeyList.size()>0){
 	for(int i = 0; i < myKeyList.size(); i++){
 		tagSb.append("<a class='tag tip03' href='javascript:return false;' onClick=\"prodKwDelete('");
 		tagSb.append(myKeyList.get(i)!=null?myKeyList.get(i).getKwId():"null"); 
-		tagSb.append("','"+sing.orgProdId+"',this)\" title='點擊刪除'>");
+		tagSb.append("','"+sing_o.orgProdId+"',this)\" title='點擊刪除'>");
 		tagSb.append(myKeyList.get(i)!=null?myKeyList.get(i).getKwId():"null");
 		tagSb.append("</a>");
 	}
@@ -999,7 +999,7 @@ if(sing_o.orgFlg.equals("C")){
 
 
 //app下載
-String app_download = sing_o.getAvailableApp(sing.pubId);
+String app_download = sing_o.getAvailableApp(sing_o.pubId);
 
 
 //@購物車/暫存清單BUTTON 當「商品源別」為回頭書（B）或二手書（C）時，而且庫存為0（即無庫存關車）時隱藏
