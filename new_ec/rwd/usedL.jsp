@@ -2195,35 +2195,35 @@ jQuery.browser = {};
 					
 	<%--庫存 --%>
 				<p style="margin:0 0;">
-					<span><span><%=sing.getVstkShow(sing.vstkDes) %></span></span>
+					<span><span><%=sing_o.getVstkShow(sing_o.vstkDes) %></span></span>
 				</p>
 			</div>
 			<%--圖示 --%>	
 			<p class='DeliverAndKpst'>
-				<%=sing.getDeliverAndKpstTextShow(sing.deliverImgType,sing.qty, sing.kpstk_flg, sing.prodCatId) %>
+				<%=sing_o.getDeliverAndKpstTextShow(sing_o.deliverImgType,sing_o.qty, sing_o.kpstk_flg, sing_o.prodCatId) %>
 			</p>
 	<%
 		}else{
 	%>
 			<div style='padding-left:10px;'>	
 				<p style="margin:0 0;">
-					<span><span><%=sing.getVstkShow(sing.qty, sing.openFlg, sing.whId) %></span></span>
+					<span><span><%=sing_o.getVstkShow(sing_o.qty, sing_o.openFlg, sing_o.whId) %></span></span>
 				</p>
 			<%--圖示 --%>	
 			</div>
 			<p class='DeliverAndKpst'>
-				<%=sing.getDeliverAndKpstTextShow(sing.deliverImgType,sing.qty, sing.kpstk_flg, sing.prodCatId) %>
+				<%=sing_o.getDeliverAndKpstTextShow(sing_o.deliverImgType,sing_o.qty, sing_o.kpstk_flg, sing_o.prodCatId) %>
 			</p>
 	<% 
 		}
-	}else if(sing.orgFlg.equals("A") && (sing.prodCatId.equals("14")||sing.prodCatId.equals("25")||sing.prodCatId.equals("17"))){ //電子書欄位 
+	}else if(sing_o.orgFlg.equals("A") && (sing_o.prodCatId.equals("14")||sing_o.prodCatId.equals("25")||sing_o.prodCatId.equals("17"))){ //電子書欄位 
 	%>
 			<div style='padding-left:10px;'>
 				<div>
 					<span>閱讀裝置：</span>
 					<span>手機</span>
 					<span>、平板</span>
-				<% if(sing.bindingType!=null && !sing.bindingType.equals("K")){ %>
+				<% if(sing_o.bindingType!=null && !sing_o.bindingType.equals("K")){ %>
 					<span>、PC</span>
 				<% } %>
 					<a href="http://www.taaze.tw/static_act/201403/ebookapp/index.htm" target="_blank"><img style='width:15px;height:15px;vertical-align: text-top;' src='/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png'/></a>
