@@ -25,7 +25,7 @@ Log log = LogFactory.getLog(this.getClass());
 SystemDAO systemDao = (SystemDAO) SpringUtil.getSpringBeanById(this.getServletConfig(), "SystemDAO");
 boolean openNewCollectFriendsFlg = SystemUtil.openWecollectfunFlg || SystemUtil.isHomeIP(request);
 CustQingdanService custQingdanService = (CustQingdanService) SpringUtil.getSpringBeanById(this.getServletConfig(), "CustQingdanService");
-String pid = "11100764589";
+String pid = "11100992919";
 SingleUsedLibs sing = null;
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //log.info(request.getRemoteAddr());
