@@ -912,6 +912,14 @@ String app_download = sing_o.getAvailableApp(sing.pubId);
 
 
 
+//@購物車/暫存清單BUTTON 當「商品源別」為回頭書（B）或二手書（C）時，而且庫存為0（即無庫存關車）時隱藏
+boolean orgAndQtyFlg = true;
+if(sing_o.orgFlg.equals("B") || sing_o.orgFlg.equals("C")){
+	if(sing_o.qty <= 0){
+		orgAndQtyFlg = false;
+	}
+}
+
 %>
 
 <!DOCTYPE html>
