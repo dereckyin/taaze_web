@@ -513,31 +513,31 @@ if("".equals(bonus_text)){
 
 //銷售地區與運送方式
 JSONObject saleAreaJson = null;
-if(sing.openFlg != 0) {
-	saleAreaJson = sing.getSaleAreaAndCdtByJson(sing.saleArea,sing.soCnCdt);
+if(sing_o.openFlg != 0) {
+	saleAreaJson = sing_o.getSaleAreaAndCdtByJson(sing_o.saleArea,sing_o.soCnCdt);
 }
 
 //出版日期距今
 int diffDay = 0;
-if(sing.publishDate!= null) {
-	diffDay = (int)sing.getDiffDay(new Date(), formatter.parse(sing.getDateFormat(sing.publishDate)));
+if(sing_o.publishDate!= null) {
+	diffDay = (int)sing_o.getDiffDay(new Date(), formatter.parse(sing_o.getDateFormat(sing_o.publishDate)));
 }
 //相同版本
-//List<SingProdScrollModel> versionList = singeBookService.getSingProdSameVersionList(sing.istProdId, sing.prodId);
-JSONArray versionList = sing.getVersionList(sing.istProdId, sing.prodId);
+//List<SingProdScrollModel> versionList = singeBookService.getSingProdSameVersionList(sing_o.istProdId, sing_o.prodId);
+JSONArray versionList = sing_o.getVersionList(sing_o.istProdId, sing_o.prodId);
 
 //其他版本
 int version_size = 0;
 if(versionList!=null && versionList.size()>0){
 	version_size = versionList.size();
 }
-if(diffDay > 180 && (sing.prodCatId.equals("11") || sing.prodCatId.equals("14"))){
+if(diffDay > 180 && (sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14"))){
 	version_size += 1;
 }
-if(sing.orgFlg.equals("A") && sing.prodCatId.equals("11") && !sing.haseUSed) {
+if(sing_o.orgFlg.equals("A") && sing_o.prodCatId.equals("11") && !sing_o.haseUSed) {
 	version_size += 1;
 }
-if(sing.orgFlg.equals("A") && sing.prodCatId.equals("27") && !sing.haseUSed) {
+if(sing_o.orgFlg.equals("A") && sing_o.prodCatId.equals("27") && !sing_o.haseUSed) {
 	version_size += 1;
 }
 
