@@ -3740,8 +3740,646 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 	</c:otherwise>
 </c:choose>
 
-
+<%
+String mTitle = "";
+String mIcon = "";
+String mImg = "";
+mTitle += "<div class='' style='margin-top:10px;'>";
+mTitle += "<div class=''>";
+mTitle += "<h1 style='font-size:20px;font-weight:bold;line-height: 24px; letter-spacing:1px;'>";
+mTitle += getProdMainTitleHtml(sing_o.orgFlg, sing_o.adoFlg, sing_o.bindingType, sing_o.prodCatId,sing_o.titleMain, sing_o.prodFgInfo);
+mTitle += "</h1>";
+mTitle += "</div>";
+if(sing_o.titleNext!=null&&sing_o.titleNext.length()>0){
+mTitle += "<div class='' style='margin-top:6px;'>";
+mTitle += "<h2 style='font-size:16px; letter-spacing:1px; color:#8c8c8c; margin: 0;'>";
+mTitle += sing_o.titleNext;
+mTitle += "</h2>";
+mTitle += "</div>";
+}
+mTitle += "</div>";
+mImg += "<div class='swiper-container prodImgSwiper'style='margin-top:14px;'>";
+mImg += "<div id='mswiperpic' class='swiper-wrapper'>";
+int mPic = 0;
+String grid = sing_o.prodCatId.equals("31")||sing_o.prodCatId.equals("32")||sing_o.prodCatId.equals("61")||sing_o.prodCatId.equals("62")?"IdealookGrid":"talkelookGrid";
+if(takelookList!=null&&takelookList.size()>0){
+for(int i=0; i<takelookList.size(); i++){
+mPic++;
+if("cover".equals(takelookList.getJSONObject(i).getString("src"))){
+mImg += "<div class='swiper-slide'>"; //item block
+//若takelookList只有兩個(書封、影片)，則無法點選放大視窗
+if(lock18 == "0" && takelookList.size()>2){
+mImg += "<div class='"+grid+"' onclick=\"openTakelook(this, event, 0);\">";
+}else{
+mImg += "<div class='"+grid+"' onclick=\"\">";
+}
+mImg += "<div class='bookImage' style='position:relative;background-image:url("+showThumbnail+");background-position:center center;background-size: contain;background-repeat:no-repeat;'>";
+mImg += getProdRightTopIcon(sing_o.orgFlg, sing_o.adoFlg, sing_o.bindingType, sing_o.prodCatId,"N");
+mImg += "</div>";
+mImg += "</div>";
+mImg += "</div>"; //item block
+}else if("image".equals(takelookList.getJSONObject(i).getString("src"))){
+Integer obj1 = i;
+if((video_exists && !obj1.equals(2)) || (!video_exists && !obj1.equals(1))){
+if(lock18=="1"){
+String ImgUrl = "/new_ec/rwd/include/images/B_image/pic_book_1@2x.png";
+mImg += "<div class='swiper-slide'>"; //item block
+mImg += "<div class='"+grid+"'>";
+//mImg += "<div style='border:none;position: relative;'>";
+mImg += "<div class='bookImage' onclick=\"\" style='background-repeat:no-repeat;background-position: center;background-size: contain;border:none;position: relative;background-image:url("+ImgUrl+");'>";
+mImg += "</div>";
+//mImg += "</div>";
+mImg += "</div>";
+mImg += "<div style='clear:both;'></div>";
+mImg += "</div>"; //item block
+}else{
+String ImgUrl = "https://media.taaze.tw/showThumbnailByPk.html?sc=" + takelookList.getJSONObject(i).getString("pkNo") +"&height=400&width=310";
+mImg += "<div class='swiper-slide'>"; //item block
+mImg += "<div class='"+grid+"'>";
+//mImg += "<div style='border:none;position: relative;'>";
+//若takelookList只有兩個(書封、影片)，則無法點選放大視窗
+if(lock18 == "0" && takelookList.size()>2){
+mImg += "<div class='bookImage' onclick=\"openTakelook(this, event, 0);\" style='background-repeat:no-repeat;background-position: center;background-size: contain;border:none;position: relative;background-image:url("+ImgUrl+");'>";
+}else{
+mImg += "<div class='bookImage' onclick=\"\" style='background-repeat:no-repeat;background-position: center;background-size: contain;border:none;position: relative;background-image:url("+ImgUrl+");'>";
+}
+mImg += "</div>";
+//mImg += "</div>";
+mImg += "</div>";
+mImg += "<div style='clear:both;'></div>";
+mImg += "</div>"; //item block
+}
+}
+}else if("video".equals(takelookList.getJSONObject(i).getString("src"))){
+mImg += "<div class='swiper-slide'>"; //item block
+mImg += "<div class='"+grid+"' style='width:90%'>";
+mImg += "<div style='border:none;position: relative;'>";
+mImg += "<video class='bookImage' controls controlsList='nodownload' poster='/new_ec/rwd/include/images/C_image/pic/pic_single_video1.jpg'>";
+if(lock18 == "1"){
+mImg += "</video>";
+}else{
+mImg += "<source src='https://vod.taaze.tw/vod/";
+mImg +=	("new".equals(takelookList.getJSONObject(i).getString("pkNo")))?sing_o.vdoNm:sprodAskModel.getVideoId();
+mImg += ".mp4' />";
+mImg += "Your browser does not support the video tag.</video>";
+}
+if(lock18 == "1"){
+mImg += "<p style='text-align:center;'>您無法查看更多商品資訊</p></div>";
+}
+else if(lock18=="0"&&sing_o.orgFlg.equals("C")){
+mImg += "<p style='text-align:center;'>商品之附件或贈品，請以書況影片為準。</p></div>";
+}else{
+mImg += "<p style='text-align:center;'>影片僅供參考，實物可能因再版或再刷而有差異</p></div>";
+}
+mImg += "</div>";
+mImg += "<div style='clear:both;'></div>";
+mImg += "</div>";//item block
+}else if("sndPic".equals(takelookList.getJSONObject(i).getString("src"))){
+mImg += "<div class='swiper-slide'>"; //item block
+mImg += "<div>";
+mImg += "<div class='' style='border:none;position: relative;'>";
+mImg += "<a>";
+mImg += "<img data-src='holder.js/100%x195' alt='' src='"+ takelookList.getJSONObject(i).getString("pkNo") +"' data-holder-rendered='true' class='bookImage'>";
+mImg += "</a>";
+mImg += "</div>";
+mImg += "</div>";
+mImg += "<div style='clear:both;'></div>";
+mImg += "</div>"; //item block
+}
+}
+}else{
+mImg += "<div class='swiper-slide'>"; //item block
+mImg += "<div class='"+grid+"'>";
+mImg += "<div class='thumbnail' style='border:none;position: relative;'>";
+mImg += "<a onclick=''>";
+mImg += "<img data-src='holder.js/100%x195' alt='' src='"+showThumbnail+"' data-holder-rendered='true' class='bookImage'>";
+mImg += getProdRightTopIcon(sing_o.orgFlg,sing_o.adoFlg, sing_o.bindingType,sing_o.prodCatId,"N");
+// if(sing_o.orgFlg.equals("C")){
+// 	mImg += "<img class='snd_type' src='/new_ec/rwd/include/images/C_image/pic/pic_7@2x.png' />";
+// }
+// if("Y".equals(sing_o.adoFlg)){
+// 	mImg += "<img class='new_ebook_type_sound' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook_sound@1x.png' />";
+// }else if("P".equals(sing_o.bindingType) || "Q".equals(sing_o.bindingType) || "O".equals(sing_o.bindingType)){
+// 	mImg += "<img class='new_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/ic_ebook@1x.png' />";
+// }else if(sing_o.bindingType!=null && sing_o.bindingType.equals("Q")){
+// 	mImg += "<img class='ePub_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/pic_9@2x.png' />";
+// }
+// if(sing_o.bindingType!=null && sing_o.bindingType.equals("P")){
+// 	mImg += "<img class='pdf_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/pic_8@2x.png' />";
+// }else if(sing_o.bindingType!=null && sing_o.bindingType.equals("Q")){
+// 	mImg += "<img class='ePub_ebook_type' src='/new_ec/rwd/include/images/C_image/pic/pic_9@2x.png' />";
+// }
+mImg += "</a>";
+mImg += "</div>";
+mImg += "</div>";
+mImg += "<div style='clear:both;'></div>";
+mImg += "</div>"; //item block -->
+}
+mImg += "</div>";
+mImg += "<div class='swiper-pagination swiper-scrollbar swiper-pagination-black'>";
+for(int i=0; i<takelookList.size(); i++){
+//mImg += "<span class='swiper-pagination-bullet'></span>";
+}
+mImg += "</div>";
+mImg += "</div>";
+if(sing_o.salePrice==0 && sing_o.orgFlg.equals("A") && (ProductUtil.isEbook(sing_o.prodId))) {
+mImg += "<div class=\"readNotifyButton\" style=\"display: none;\"><h5 style=\"text-align: left;\">貼心叮嚀：您已領取過本商品，請至電子書櫃開啟。</h5></div>";
+}
+%>
+<%-- 評價,收藏,二手徵求,試讀.... 分享功能群組 --%>
+<%-- 商品頁內容 --%>
+<div class="row" style="margin-top:10px;">
+<%-- 左邊區塊 --%>
+<div class="col-xs-12 col-sm-12 col-md-12" style='padding-left:10px;padding-right:10px;'>
+<div class="row">
+<%@ include file="/new_ec/rwd/include/jsp/listSiteMap.jsp"%>
 </div>
+<div class='col-xs-12 col-sm-10 col-md-10' style='padding:0;float:none;margin:0 auto;'>
+<%
+if(sing_o.prodCatId.equals("61") || sing_o.prodCatId.equals("62") ){
+out.print(mImg);out.print(mTitle);
+}else{
+out.print(mTitle);out.print(mImg);
+}
+%>
+<div class="media" style="">
+<div class="media-left-xxs " style="text-align:center;vertical-align:middle;margin:auto;">
+</div>
+<div class="media-body-xxs media-body" style="padding-top:5px;">
+<h4 class="media-heading"></h4>
+<%--已購買提示  --%>
+<%if(orderDate!=null&&orderDate.length()>0){ %>
+<p><s:text name="shop.main"></s:text>：您已於<%=orderDate %><s:text name="shop.aready"></s:text>。</p>
+<%} %>
+<% if(sprodAskModel != null && sprodAskModel.chrtFlg.equals("Y") && sprodAskModel.welfareId!=null) { %>
+<span>
+<div class="bubbleInfo3" style="line-height: 16px; margin: 10px auto 0px; color:#666666; font-size:10pt;position:relative;">
+此本二手書販售所得，賣家將捐贈予：<%=sprodAskModel.welfareName %><a data-toggle="dropdown" href="javascript:void(0);"><img style="vertical-align: bottom;" src="/include/default/imgs/question.gif"/></a>
+<table cellpadding="0" cellspacing="0" border="0" class="dropdown-menu" style="width:230px;">
+<tbody>
+<tr>
+<td id="topleft" class="corner"></td>
+<td class="top"></td>
+<td id="topright" class="corner"></td>
+</tr>
+<tr>
+<td class="left"></td>
+<td>
+<table class="popup-contents">
+<tr>
+<td><div style='font-size:10pt; padding:5px;text-align: left;'>
+賣家可以將二手書的販售所得指定捐贈給任一間與TAAZE合作的公益單位。<a style='text-decoration:underline;color:#666' target='_blank' href='http://www.taaze.tw/member_serviceCenter.html?qa_type=j#h1'>瞭解更多</a></div>
+</td>
+</tr>
+</table>
+</td>
+<td class="right"></td>
+</tr>
+<tr>
+<td class="corner" id="bottomleft"></td><td class="bottom"></td><td id="bottomright" class="corner"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</span>
+<% } %>
+<%--作者 --%>
+<%if(sing_o.author!=null && sing_o.author.length()>0){ %>
+<p style="margin:0 0;">作者：<a href='<%= searchProdAuthorUrlPattern + URLEncoder.encode(sing_o.author,"utf8") %>' style="padding-left:10px;" ><span><%=sing_o.author %></span></a></p>
+<%} %>
+<div id="toComment2" class='iconBtn' onclick="toComment(1)">
+<span style='color:#e2007f'><%=startLevelSize>0?startLevelSize:"" %></span>評價
+</div>
+<%if(collectArray[0]==0){ %>
+<div id="myCollect" class='iconBtn collectCount' onclick="add2Collection('<%=sing_o.prodId %>','<%=sing_o.orgProdId%>');">
+<span style='color:#e2007f'><%=collectArray[2]>0?collectArray[2]:"" %></span>收藏
+</div>
+<div id="myCollectp" class="iconBtn collectCount"
+onclick="add2Collection('<%=sing_o.prodId %>','<%=sing_o.orgProdId%>');" style="display:none;">
+&nbsp;<img src='/new_ec/rwd/include/images/C_image/ic/ic_2_p@1x.png' /><span id='myCollectSizem' style='color:#e2007f'><%=collectArray[2]>0?collectArray[2]:"" %></span>收藏&nbsp;&nbsp;
+</div>
+<%}else{ %>
+<div id="myCollectp" class="iconBtn collectCount"
+onclick="add2Collection('<%=sing_o.prodId %>','<%=sing_o.orgProdId%>');">
+&nbsp;<img src='/new_ec/rwd/include/images/C_image/ic/ic_2_p@1x.png' /><span id='myCollectSizem1' style='color:#e2007f'><%=collectArray[2]>0?collectArray[2]:"" %></span>收藏&nbsp;&nbsp;
+</div>
+<div id="myCollect" class="iconBtn collectCount" onclick="add2Collection('<%=sing_o.prodId %>','<%=sing_o.orgProdId%>');" style="display:none;">
+<span style='color:#e2007f'><%=collectArray[2]>0?collectArray[2]:"" %></span>收藏&nbsp;&nbsp;
+</div>
+<%}
+if(wantedSndFlg){//二手書徵求
+if(IsWanted){
+%>
+<div id="mySndWantp" name="mySndWant" class='iconBtn'
+onclick="wantSnd(event);">
+&nbsp;<img src='/new_ec/rwd/include/images/C_image/ic/ic_3_p@1x.png' /><span style='color:#e2007f'><%=wantedSndSize>0?wantedSndSize:"" %></span>二手徵求&nbsp;&nbsp;
+</div>
+<div id="mySndWant" name="mySndWant" class='iconBtn'
+onclick="wantSnd(event);" style="display:none;">
+<!--<img src='/new_ec/rwd/include/images/C_image/ic/ic_3@1x.png' />--><span style='color:#e2007f;'><%=wantedSndSize>0?wantedSndSize:"" %></span>二手徵求
+</div>
+<%}else{ %>
+<div id="mySndWant" name="mySndWant" class='iconBtn' onclick="wantSnd(event);">
+<span style='color:#e2007f'><%=wantedSndSize>0?wantedSndSize:"" %></span>二手徵求
+</div>
+<div id="mySndWantp" name="mySndWant" class='iconBtn'
+onclick="wantSnd(event);" style="display:none;">
+&nbsp;<img src='/new_ec/rwd/include/images/C_image/ic/ic_3_p@1x.png' /><span style='color:#e3007f;'><%=wantedSndSize>0?wantedSndSize:"" %></span>二手徵求&nbsp;&nbsp;
+</div>
+<%}}
+if(previewCount!=null && previewCount.length()>0){//線上試讀  %>
+<% if(sing_o.prodCatId.equals("14") || sing_o.prodCatId.equals("25") || sing_o.prodCatId.equals("17")){ %>
+<%if(cc!=null && cc.getCuid().toString().length()>0){ %>
+<div id="myPreview2" class='iconBtn' onclick="location.href='http://ebook.taaze.tw/do/mobile/ebook_preview.ashx?oid=<%=sing_o.orgProdId %>&cuid=<%=cc.getCuid() %>'" data-status="Y">
+<span style='color:#e2007f'><%=previewCount %></span>人次試讀
+</div>
+<%}else{ %>
+<div id="myPreview2" class='iconBtn' onclick="location.href='http://ebook.taaze.tw/do/mobile/ebook_preview.ashx?oid=<%=sing_o.orgProdId %>'" data-status="Y">
+<span style='color:#e2007f'><%=previewCount %></span>人次試讀
+</div>
+<%} }else{ %>
+<div id="myPreview2" class='iconBtn' onclick="location.href='http://ebook.taaze.tw/do/preview/viewer2.aspx?oid=<%=sing_o.orgProdId %>'" data-status="N">
+<span style='color:#e2007f'><%=previewCount %></span>人次試讀
+</div>
+<%}} %>
+<%-- 我要賣、行銷分紅 --%>
+<!--<div class='other'>-->
+<%if(sndSale && (sing_o.prodCatId.equals("11")|| sing_o.prodCatId.equals("24") || sing_o.prodCatId.equals("27") || sing_o.prodCatId.equals("12") || sing_o.prodCatId.equals("13"))){ %>
+<%if(cc!=null && cc.getMobileVerifyFlg().equals("Y")){ %>
+<div id="msndSale" class='iconBtn' data-toggle='modal' data-target ='#sendToSellModal'>我要賣</div>
+<%}else if(cc!=null && cc.getCustId().equals("tch1050818@gmail.com")){%>
+<div id="msndSale" class='iconBtn' data-toggle='modal' data-target ='#sendToSellModal'>我要賣</div>
+<%}else{ %>
+<div id="msndSale" class='iconBtn' onclick="loginFirst()">我要賣</div>
+<%}
+} %>
+<div id='msalebonus' class='iconBtn' style='display:inline-block;'>
+<%
+if(cc!=null && cc.getMobileVerifyFlg().equals("Y") &&  cc.getPrFlg()!=null && cc.getPrFlg().equals("Y")){ //通過行銷分紅驗證
+%>
+<span data-toggle='modal' data-target ='#mbonus2'>行銷分紅</span>
+<div class="modal fade" id="mbonus2" tabindex="-1" role="dialog" >
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="ModalHeader" style="color:#444444;">行銷分紅<a href="#" class="close" data-dismiss="modal">&times;</a></h4>
+</div>
+<div class="col-sm-12 col-xs-12 modal-body">
+<form>
+<ul>
+<li><a href='/member_serviceCenter.html?qa_type=l'><s:text name="single.understand_more" /></a></li>
+<li><a href='/mobileValidate.html?typeFlg=IA'><s:text name="single.immediately_open_access" /></a></li>
+<li class='whatAp'><a href='#'><s:text name="single.what's_ap" /><img style="margin-left:3px;width:15px;height:15px;vertical-align: text-top;" src="/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png" /></a></li>
+<li>
+<div>
+<span style="color:#444444;">下列為網址</span>
+<input type="text" id="apUrl" name="apUrl" size="30" value="<%=sing_o.getWebUrl(request) %>/apredir.html?<%=ApUtil.encryptForCuid(new Long(cc.getCuid())) %>/<%=sing_o.getWebUrl(request) %>/products/<%=sing_o.prodId %>.html?a=b"  readonly="readonly" >
+</div>
+</li>
+<li>
+<div>
+<span style="color:#444444;">下列為Html碼</span>
+<textarea id="apCode" name="apCode" rows="5" cols="33"><a href="<%=sing_o.getWebUrl(request) %>/apredir.html?<%=ApUtil.encryptForCuid(new Long(cc.getCuid())) %>/<%=sing_o.getWebUrl(request) %>/products/<%=sing_o.prodId %>.html?a=b" target="_blank"><%=sing_o.titleMain %></a></textarea>
+</div>
+</li>
+</ul>
+</form>
+<div style='display:none;' id='whatAp_info'>
+<s:text name="single.show_ap_info.msg"/>
+</div>
+</div>
+<div class="modal-footer"></div>
+</div>
+</div>
+</div>
+<%}else{%>
+<span data-toggle='modal' data-target ='#mbonus'>行銷分紅</span>
+<%} %>
+</div>
+<%-- 我要賣、行銷分紅 --%>
+<div id="mShare" class='iconBtn' data-toggle='modal' data-target ='#shareFrame'>分享</div></div>
+<div style=clear:both;></div></div>
+<div class='price'>
+<%--定價/特價/優惠價 顯示邏輯 --%>
+<%if(sing_o.listPrice==sing_o.salePrice){//定價=售價 顯示定價
+%>
+<p style="margin:0 0;">
+<span style="font-size:16px; padding-left:10px;">定價：NT$ <span style="color:#e2007e;"><strong><%=(int)sing_o.listPrice %></strong></span></span>
+</p>
+<%
+}else if(sing_o.specialPrice==sing_o.salePrice){//特價=售價 顯示定價/特價
+%>
+<p style="margin:0 0;">
+<span style="font-size:16px; padding-left:10px;">特價：NT$ <span style="color:#e2007e;"><strong><%=(int)sing_o.specialPrice %></strong></span></span>
+<%if(sing_o.listPrice>0){ %>
+<span style="opacity:0.5;font-size:16px; padding-left:10px;text-decoration:line-through;">NT$ <span style=''><%=(int)sing_o.listPrice %></span></span>
+<%} %>
+</p>
+<%
+}else{//顯示定價/特價/優惠價/折扣
+if(sing_o.orgFlg.equals("C")){//二手
+if(sing_o.discString(String.valueOf((int)sing_o.saleDisc)) != null){
+%>
+<p style="margin:0 0;">
+<%if(sing_o.specialPrice>0){ %>
+<span style="padding-left:10px;">特價：<small>NT$</small> <span><%=(int)sing_o.specialPrice %></span></span>
+<%} %>
+</p>
+<p style="margin:0 0;">
+<span style="padding-left:10px;">二手價：<span style="color:#e2007e;"><strong><%=sing_o.discString(String.valueOf((int)sing_o.saleDisc)) %></strong></span> <small>折</small>，<small>NT$</small> <span style="color:#e2007e;"><strong><%=(int)sing_o.salePrice %></strong></span></span>
+<%if(sing_o.listPrice>0){ %>
+<span style="opacity:0.5;font-size:16px; padding-left:10px;text-decoration:line-through;"><small>NT$</small> <span><%=(int)sing_o.listPrice %></span></span>
+<%} %>
+</p>
+<%}else{%>
+<p style="margin:0 0;">
+<%if(sing_o.specialPrice>0){ %>
+<span style="padding-left:10px;">特價：<small>NT$</small> <span><%=(int)sing_o.specialPrice %></span></span>
+<%} %>
+</p>
+<p style="margin:0 0;">
+<span style="padding-left:10px;">優惠價：<span style="color:#e2007e;"><strong><%=sing_o.discString(String.valueOf((int)sing_o.saleDisc)) %></strong></span> <small>折</small>，<small>NT$</small> <span style="color:#e2007e;"><strong><%=(int)sing_o.salePrice %></strong></span></span>
+<%if(sing_o.listPrice>0){ %>
+<span style="opacity:0.5;font-size:16px; padding-left:10px;text-decoration:line-through;"><small>NT$</small> <span><%=(int)sing_o.listPrice %></span></span>
+<%} %>
+</p>
+<%
+}
+}else{
+if((int)sing_o.saleDisc==0){
+%>
+<p style="margin:0 0;">
+<%if(sing_o.specialPrice>0){ %>
+<span style="padding-left:10px;">特價：<small>NT$</small> <span><%=(int)sing_o.specialPrice %></span></span>
+<%} %>
+</p>
+<p style="margin:0 0;">
+<span style="padding-left:10px;">優惠價：<small>NT$</small> <span><%=(int)sing_o.salePrice %></span></span>
+<%if(sing_o.listPrice>0){ %>
+<span style="text-decoration:line-through;opacity:0.5;font-size:16px; padding-left:10px;"><small>NT$</small> <span><%=(int)sing_o.listPrice %></span></span>
+<%} %>
+</p>
+<%
+}else{
+%>
+<p style="margin:0 0;">
+<%if(sing_o.specialPrice>0){ %>
+<span style=" padding-left:10px;">特價：<small>NT$</small> <span><%=(int)sing_o.specialPrice %></span></span>
+<%} %>
+</p>
+<p style="margin:0 0;">
+<span style="padding-left:10px;">優惠價：<% if(sing_o.saleDisc!=100){%><span style="color:#e2007e;">
+										<strong><%=sing_o.discString(String.valueOf((int)sing_o.saleDisc)) %></strong></span> <small>折</small>，
+										<%}%><small>NT$</small> <span style="color:#e2007e;"><strong><%=(int)sing_o.salePrice %></strong></span></span>
+<%if(sing_o.listPrice>0){ %>
+<span style="text-decoration:line-through;opacity:0.5;font-size:16px; padding-left:10px;"><small>NT$</small> <span><%=(int)sing_o.listPrice %></span></span>
+<%} %>
+</p>
+<%
+}
+}
+}
+%>
+<%--現金回饋 --%>
+<%if(showBonusFlag){ %>
+<p style="margin:0 0;">
+<span style="padding-left:10px;">現金回饋：<span style="color:#e2007e;"><strong><%=bonusPctValue %></strong><small>%</small></span> </span>
+<% if(act_url.length() > 0) { %>
+<span style="padding-left:10px;"><a href="<%=act_url %>" target="_blank">(活動詳情)</a></span>
+<% } %>
+<span style="font-size:14px; padding-left:10px;"><a href="/qa/view/d.html#c3" target="_blank">回饋金可全額折抵商品 <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a></span>
+</p>
+<%} %>
+<%--getfinWhDate???? --%>
+<%
+if(sing_o.prodCatId.equals("24") || sing_o.prodCatId.equals("27") || sing_o.prodCatId.equals("21") || sing_o.prodCatId.equals("22") || sing_o.prodCatId.equals("23")) {
+if(sing_o.getfinWhDate().length()>0){
+%>
+<p style="margin:0 0;">
+<span style="padding-left:10px;"><%=sing_o.getfinWhDate() %></span>
+</p>
+<%
+}
+}
+if(sing_o.mcEDate!=null && sing_o.mcEDate.length()>=8) {
+if(sing_o.mcPk>0){
+%>
+<p style="margin:0 0;">
+<span style="padding-left:10px;color:#e3307f;">優惠截止日：<span style="letter-spacing:1px;">至<%=sing_o.mcEDate.substring(0,4) %>年<%=sing_o.mcEDate.substring(4,6) %>月<%=sing_o.mcEDate.substring(6,8) %>日</span></span>
+</p>
+<%}
+}%>
+</div>
+<%---二手書訊息 --%>
+<%if(sing_o.orgFlg.equals("C")&&sndInfo!=null){
+out.print(sndInfo.toString());
+}%>
+<%---二手書訊息 --%>
+<%--運送方式/銷售地/庫存 --%>
+<%if(!sing_o.prodCatId.equals("14")&&!sing_o.prodCatId.equals("25")&&!sing_o.prodCatId.equals("17")){
+if(sing_o.vstkDes.length()>0){
+%>
+<%if(saleAreaJson!=null && saleAreaJson.getString("Cdt").length()>0) {%>
+<p style="margin:0 0;">
+<span style="padding-left:10px;">運送方式：<span><%=saleAreaJson.getString("Cdt") %></span></span>
+</p>
+<%}%>
+<%--銷售地區 --%>
+<%if(saleAreaJson!=null && saleAreaJson.getString("SaleArea").length()>0) {%>
+<p style="margin:0 0;">
+<span style="padding-left:10px;">銷售地區：<span><%=saleAreaJson.getString("SaleArea") %></span></span>
+</p>
+<%}%>
+<%--庫存 --%>
+<p style="margin:0 0;">
+<span style="padding-left:10px;"><span><%=sing_o.getVstkShow(sing_o.vstkDes) %></span></span>
+</p>
+<p style="margin:15px 5px;">
+<%=sing_o.getDeliverAndKpstTextShow(sing_o.deliverImgType,sing_o.qty, sing_o.kpstk_flg, sing_o.prodCatId) %>
+</p>
+<% }else{ %>
+<div style='padding-left:10px;'>
+<p style="margin:0 0;">
+<span><span><%=sing_o.getVstkShow(sing_o.qty, sing_o.openFlg, sing_o.whId) %></span></span>
+</p>
+<%--圖示 --%>
+</div>
+<p class='DeliverAndKpst'>
+<%=sing_o.getDeliverAndKpstTextShow(sing_o.deliverImgType,sing_o.qty, sing_o.kpstk_flg, sing_o.prodCatId) %>
+</p>
+<% } }else if(sing_o.orgFlg.equals("A") && ProductUtil.isEbookByProdCatId(sing_o.prodCatId)){ //電子書欄位
+%>
+<div style='padding-left:10px;'>
+<%=getReadingDevHtml(sing_o.prodCatId,sing_o.bindingType,sing_o.adoFlg)%>
+<div>
+<span>適用軟體：</span><%=appDownloadHtml %>
+</div>
+</div>
+<%}%>
+<%--圖示 --%>
+<%if(sing_o.rank!=null && sing_o.rank.equals("D")){//限制級商品 %>
+<div style='margin-bottom:13px;margin-left:10px;margin-right:10px;padding:5px;border:<%=lock18.equals("1") ?"dotted #e3007f;":"none"%>'>
+<img src="/new_ec/rwd/include/images/C_image/pic/pic_w_10@2x.png" alt="" width="100" height="45" style="" />
+<div style='margin-top:8px;display:<%=lock18.equals("1") ?"inline-block":"none"%>'>
+<%
+StringBuffer sb = new StringBuffer();
+sb.append("<select class='search_select' style='width:70px;' name='unlockYear_mobile'>");
+sb.append("<option value='0'>年份</option>");
+for(int i = nowCal.get(Calendar.YEAR); i>=1950; i-- ){
+sb.append("<option value='"+String.format("%04d",i)+"'>"+String.format("%04d",i)+"</option>");
+}
+sb.append("</select>");
+sb.append("<select class='search_select' style='width:70px;' name='unlockMonth_mobile'>");
+sb.append("<option value='0'>月份</option>");
+for(int i = 1; i<=12; i++ ){
+sb.append("<option value='"+String.format("%02d",i)+"'>"+String.format("%02d",i)+"</option>");
+}
+sb.append("</select>");
+sb.append("<select class='search_select' style='width:70px;' name='unlockDay_mobile'>");
+sb.append("<option value='0'>日期</option>");
+for(int i = 1; i<=31; i++ ){
+sb.append("<option value='"+String.format("%02d",i)+"'>"+String.format("%02d",i)+"</option>");
+}
+sb.append("</select>");
+out.print(sb.toString());
+%>
+<button class='check' style='vertical-align: middle;' name ='unLock18' id='unLock18'></button>
+</div>
+<span style='clear:both'></span>
+</div>
+<%}%>
+<%--其他版本 沒有圖書館借閱 (於20181213補上圖書館借閱) --%>
+<%if(versionList.size() > 0){//其他版本 1003
+%>
+<div class='panel panel-default'>
+<div class='panel-heading' style='background: #EFEFEF;height:50px;line-height:50px;padding:0 0 0 10px;position:relative;'>
+<a data-toggle='collapse' href='#mVersions'>其他版本
+<img class='notice_btn noticeHide_btn' style='float:right;right: 0;margin-top:9px' />
+</a>
+</div>
+<div class='panel-collapse collapse in' id='mVersions'>
+<div class="list-group">
+<%for(int i=0; i<versionList.size(); i++) {
+JSONObject version = (JSONObject)versionList.get(i);
+if("true".equals(version.getString("MoreSecondHandFlag"))) {
+%>
+<a href="<%=sing_o.getWebUrl(request)%>/usedList.html?oid=<%=version.getString("orgProdId")%>" class="list-group-item">
+<%=version.getString("versionProdtext")%><br />
+<%if(sing_o.discString(String.valueOf(version.getInt("disc")))!=null){%>
+<span style="color:#e2007e;"><%=sing_o.discString(String.valueOf(version.getInt("disc")))%></span><span>折</span>
+<%}%>
+<span style="color:#e2007e;"><%=version.getInt("listPrice")%></span><span>元起</span>
+</a>
+<%
+}
+if("false".equals(version.getString("MoreSecondHandFlag"))) {
+if(version.getInt("listPrice") > 0) {
+%>
+<a href="<%=sing_o.getWebUrl(request)%>/products/<%=version.getString("prodId")%>.html" class="list-group-item">
+<%=version.getString("versionProdtext")%><br />
+<%if(sing_o.discString(String.valueOf(version.getInt("disc")))!=null){%>
+<span style="color:#e2007e;"><%=sing_o.discString(String.valueOf(version.getInt("disc")))%></span><span>折</span>
+<%}%>
+<span style="color:#e2007e;"><%=version.getInt("listPrice")%></span><span>元</span>
+</a>
+<%
+}
+if(version.getInt("listPrice") == 0) {
+%>
+<a href="<%=sing_o.getWebUrl(request)%>/products/<%=version.getString("prodId")%>.html" class="list-group-item">
+<%=version.getString("versionProdtext")%><br />
+<%if(!version.get("prodCatId").equals("14") || !version.get("prodCatId").equals("25")) {%>
+<span style="color:#e2007e;"><%=version.getInt("listPrice")%></span><span>元</span>
+<%}%>
+</a>
+<%
+}
+}
+}
+%>
+<%--圖書館借閱 --%>
+<%if(diffDay > 180 && (sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14"))||sing_o.orgFlg.equals("C")&& (sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14"))){%>
+<!--<div class="panel-default" style="margin-top:0px;border:none;">-->
+<div class="panel-heading" style='position:relative; background-color:#ffffff;' onclick="showmBarrow(0)">
+<span>圖書館借閱</span><a style='float:right;'><img class='downArrow' id='arrow0' /></a>
+</div>
+<div class ="mBarrow" style='display:none'>
+<div class='panel-collapse collapse in' id='mBarrow'>
+<span><a href="http://ebook.taaze.tw/middle/Library/Library.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺北市立圖書館</a></span>
+<span><a href="https://webpac.tphcc.gov.tw/webpac/search.cfm?m=ss&k0=<%=sing_o.isbn %>&t0=k&c0=and" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;<s:text name="single.lend_books_library_xinli" /></a></span>
+<span><a href="http://ebook.taaze.tw/middle/Library/TCCultureLibrary.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺中市立圖書館</a></span>
+<span><a href="http://ebook.taaze.tw/middle/Library/TCLibrary.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;國立公共資訊圖書館</a></span>
+<%--<span><a href="https://lib.tnml.tn.edu.tw/webpac/search.cfm?m=ss&k0=<%=sing_o.isbn %>&t0=k&c0=and" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺南市立圖書館</a></span>--%>
+<span><a href="/library/tnml/<%=sing_o.isbn %>.html" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺南市立圖書館</a></span>
+<span><a href="http://ebook.taaze.tw/middle/Library/KSLibrary.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;<s:text name="single.lend_books_library_gaoxiong"></s:text></a></span>
+<span><a href="http://ebook.taaze.tw/middle/Library/NTULibrary.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺灣大學圖書館</a></span>
+<%--<span><a href="https://webpac.hcml.gov.tw/bookSearchList.do?searchtype=simplesearch&execodeHidden=true&execode=&authoriz=1&search_field=ISBN&search_input=<%=sing_o.isbn %>&searchsymbol=hyLibCore.webpac.search.common_symbol&keepsitelimit=" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;新竹市文化局圖書館</a></span>--%>
+<span><a href="/library/hcml/<%=sing_o.isbn %>.html" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;新竹市文化局圖書館</a></span>
+<span class="libTooltip"><a id="tooltip" class="list-group-item" title="" onmouseover="">&nbsp;&nbsp;&nbsp;&nbsp;什麼是借閱查詢 <img style='width:15px;height:15px;vertical-align: text-top;' src='/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png'/></a></span>
+<div id='lend_books_infos' style='display:none;'><s:text name="single.lend_books_infos"/></div>
+</div></div>
+<%
+}%>
+<%if(!sing_o.haseUSed &&!sing_o.prodCatId.equals("21")&&!sing_o.prodCatId.equals("22")&&!sing_o.prodCatId.equals("25")&&!sing_o.prodCatId.equals("14")){%>
+<a class="list-group-item" href="/usedList.html?oid=<%=sing_o.istProdId %>" style="padding-bottom:20px; text-decoration:none; ">二手書交易資訊</a>
+<%}%>
+<div style="clear:both;"></div>
+</div>
+</div>
+</div>
+<%
+}
+else{
+//解決手機版不出現其他版本問題
+if(!sing_o.prodCatId.equals("21")&&!sing_o.prodCatId.equals("22")&&!sing_o.prodCatId.equals("25")&&!sing_o.prodCatId.equals("14")&&!sing_o.prodCatId.equals("61")&&!sing_o.prodCatId.equals("62")&&!sing_o.prodCatId.equals("31")&&!sing_o.prodCatId.equals("32")){//防止出現空白的其他版本
+%>
+<div class='panel panel-default'>
+<div class='panel-heading' style='background: #EFEFEF;height:50px;line-height:50px;padding:0 0 0 10px;position:relative;'>
+<a data-toggle='collapse' href='#mVersions'>其他版本
+<img class='notice_btn noticeHide_btn' style='float:right;right: 0;margin-top:9px' /></a>
+</div>
+<div class='panel-collapse collapse in' id='mVersions'>
+<div class="list-group">
+<%--圖書館借閱 --%>
+<%
+if(diffDay > 180 && (sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14"))||sing_o.orgFlg.equals("C")&& (sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14"))){
+%>
+<div class="panel-heading" style='position:relative; background-color:#ffffff;' onclick="showmBarrow(0)">
+<span>圖書館借閱</span><a style='float:right;'><img class='downArrow' id='arrow0' /></a>
+</div>
+<div class ="mBarrow" style='display:none'>
+<div class='panel-collapse collapse in' data-toggle='collapse' id='mBarrow'>
+<span><a href="http://ebook.taaze.tw/middle/Library/Library.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺北市立圖書館</a></span>
+<span><a href="https://webpac.tphcc.gov.tw/webpac/search.cfm?m=ss&k0=<%=sing_o.isbn %>&t0=k&c0=and" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;<s:text name="single.lend_books_library_xinli" /></a></span>
+<span><a href="http://ebook.taaze.tw/middle/Library/TCCultureLibrary.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺中市立圖書館</a></span>
+<span><a href="http://ebook.taaze.tw/middle/Library/TCLibrary.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;國立公共資訊圖書館</a></span>
+<span><a href="https://lib.tnml.tn.edu.tw/webpac/search.cfm?m=ss&k0=<%=sing_o.isbn %>&t0=k&c0=and" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺南市立圖書館</a></span>
+<span><a href="/library/tnml/<%=sing_o.isbn %>.html" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺南市立圖書館</a></span>
+<span><a href="http://ebook.taaze.tw/middle/Library/KSLibrary.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;<s:text name="single.lend_books_library_gaoxiong"></s:text></a></span>
+<span><a href="http://ebook.taaze.tw/middle/Library/NTULibrary.php?ISBN=<%=sing_o.isbn %>" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;臺灣大學圖書館</a></span>
+<%--<span><a href="https://webpac.hcml.gov.tw/bookSearchList.do?searchtype=simplesearch&execodeHidden=true&execode=&authoriz=1&search_field=ISBN&search_input=<%=sing_o.isbn %>&searchsymbol=hyLibCore.webpac.search.common_symbol&keepsitelimit=" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;新竹市文化局圖書館</a></span>--%>
+<span><a href="/library/hcml/<%=sing_o.isbn %>.html" class="list-group-item" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;新竹市文化局圖書館</a></span>
+<span class="libTooltip"><a id="tooltip" class="list-group-item" title="" onmouseover="">&nbsp;&nbsp;&nbsp;&nbsp;什麼是借閱查詢 <img style='width:15px;height:15px;vertical-align: text-top;' src='/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png'/></a></span>
+<div id='lend_books_infos' style='display:none;'><s:text name="single.lend_books_infos"/></div>
+</div></div>
+<% }
+if(!sing_o.haseUSed &&!sing_o.prodCatId.equals("21")&&!sing_o.prodCatId.equals("22")&&!sing_o.prodCatId.equals("25")&&!sing_o.prodCatId.equals("14")){%>
+<a class="list-group-item" href="/usedList.html?oid=<%=sing_o.istProdId %>" style="padding-bottom:20px; text-decoration:none; ">二手書交易資訊</a>
+<%}%>
+<div style="clear:both;"></div>
+</div>
+</div>
+</div>
+<% }} %>
+<%--贈品  --%>
+<% if(gifts != null && gifts.size()>0){
+String m_gift = giftsCarousel.toString();
+m_gift = m_gift.replaceAll("giftCarousel", "m_giftCarousel");
+out.print(m_gift);
+}
+%>
+<%--贈品  --%>
+
 
 
 
