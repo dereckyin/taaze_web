@@ -399,6 +399,7 @@ if(sing.catId!=null&&sing.catId.length()==12){
 
 String bindingType = "A"; 
 String author_text = "";
+String prodFormatAndSpec = "";
 
 
 //take look resort
