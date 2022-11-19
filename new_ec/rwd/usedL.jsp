@@ -2300,10 +2300,6 @@ jQuery.browser = {};
 		}
 		</script>
 		<%}%>
-		<script>
-			//feynman_絕版書Y
-			outOfPrint="<%=sing.outOfPrint%>"
-		</script>
 		</head>
 		
 		<body>
@@ -2347,7 +2343,7 @@ jQuery.browser = {};
 		</c:choose>
 		<!-- sitemap -->
 		<div class="row" style="margin-top:10px; padding:0 3px;">
-			<!-- <div class="col-sm-12 col-xs-12 site_map" style="margin-bottom: 15px;">
+			<div class="col-sm-12 col-xs-12 site_map" style="margin-bottom: 15px;">
 				<span>
 					<a class="linkStyle01" href="<%=sing.getWebUrl(request) %>">首頁</a>
 				</span>
@@ -2356,9 +2352,7 @@ jQuery.browser = {};
 				<%=(sing.catId != null && sing.catId.length() == 12) ? sing.getHyperLineByCatId() : "" %>
 				<span class='span01'>&gt;</span> <li class="active" style="color:#e3007f;display:inline-block"><%=title %></li>
 			
-			</div> 
-
-			
+			</div>
 		</div>
 		
 		<c:choose>
@@ -4479,7 +4473,7 @@ out.print(m_gift);
 %>
 <%--贈品  --%>
 
-</div>
+
 
 
 <!-- fixed footer -->
