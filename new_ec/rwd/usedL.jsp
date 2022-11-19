@@ -523,13 +523,11 @@ JSONObject buy_together = sing_o.getBougthTogethe(sing_o.prodId);
 //也買了
 JSONObject also_buy = sing_o.getAlsoBuy(sing_o.prodId,sing_o.orgProdId,sing_o.catId);
 
-String prodAuthorText = "作者";
+
 String prodPublishText = "出版社";
 String prodPublishDateText = "出版日期";
 String prodContentText = "內容簡介";
-String fbDes = "";
 String fbDes2 = "";
-String fbTitle = sing_o.titleMain!=null?sing_o.titleMain+"- TAAZE 讀冊生活":"";
 String fbArthor = sing_o.author!=null?sing_o.author:"";
 
 //唱片
