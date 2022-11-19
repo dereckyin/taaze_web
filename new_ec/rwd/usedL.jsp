@@ -4478,9 +4478,6 @@ out.print(m_gift);
 %>
 <%--贈品  --%>
 
-</div>
-</div>
-
 
 <!-- fixed footer -->
 
