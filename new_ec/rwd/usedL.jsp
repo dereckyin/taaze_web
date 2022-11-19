@@ -3518,6 +3518,10 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 <%-- 商品簡介 --%>
 
+<div class="row" style="margin-bottom: 10px;">
+	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
+			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
+				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
 <%
 sb = new StringBuilder();
 int total_sale = 0;
@@ -3546,11 +3550,22 @@ if (sprod_range.size() > 0) {
 }
 %>
 <input type="hidden" id="TOTAL_SALE" value="<%=total_sale %>"/>
+</div>
+</div>
+</div>
+
+<div class="row" style="margin-bottom: 10px;">
+	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
+			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
+				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
 <%
 if (want_range.size() > 0) {
 	out.print(want_content_table);
 }
 %>
 <input type="hidden" id="TOTAL_WANT" value="<%=total_want %>"/>
+</div>
+</div>
+</div>
 	</body>
 </html>
