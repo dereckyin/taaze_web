@@ -4305,7 +4305,7 @@ if(sing_o.vstkDes.length()>0){
 <div style='padding-left:10px;'>
 <%=getReadingDevHtml(sing_o.prodCatId,sing_o.bindingType,sing_o.adoFlg)%>
 <div>
-<span>適用軟體：</span><%=appDownloadHtml %>
+<span>適用軟體：</span><%=app_download %>
 </div>
 </div>
 <%}%>
@@ -4315,26 +4315,26 @@ if(sing_o.vstkDes.length()>0){
 <img src="/new_ec/rwd/include/images/C_image/pic/pic_w_10@2x.png" alt="" width="100" height="45" style="" />
 <div style='margin-top:8px;display:<%=lock18.equals("1") ?"inline-block":"none"%>'>
 <%
-StringBuffer sb = new StringBuffer();
-sb.append("<select class='search_select' style='width:70px;' name='unlockYear_mobile'>");
-sb.append("<option value='0'>年份</option>");
+StringBuffer sb_d = new StringBuffer();
+sb_d.append("<select class='search_select' style='width:70px;' name='unlockYear_mobile'>");
+sb_d.append("<option value='0'>年份</option>");
 for(int i = nowCal.get(Calendar.YEAR); i>=1950; i-- ){
-sb.append("<option value='"+String.format("%04d",i)+"'>"+String.format("%04d",i)+"</option>");
+	sb_d.append("<option value='"+String.format("%04d",i)+"'>"+String.format("%04d",i)+"</option>");
 }
-sb.append("</select>");
-sb.append("<select class='search_select' style='width:70px;' name='unlockMonth_mobile'>");
-sb.append("<option value='0'>月份</option>");
+sb_d.append("</select>");
+sb_d.append("<select class='search_select' style='width:70px;' name='unlockMonth_mobile'>");
+sb_d.append("<option value='0'>月份</option>");
 for(int i = 1; i<=12; i++ ){
-sb.append("<option value='"+String.format("%02d",i)+"'>"+String.format("%02d",i)+"</option>");
+	sb_d.append("<option value='"+String.format("%02d",i)+"'>"+String.format("%02d",i)+"</option>");
 }
-sb.append("</select>");
-sb.append("<select class='search_select' style='width:70px;' name='unlockDay_mobile'>");
-sb.append("<option value='0'>日期</option>");
+sb_d.append("</select>");
+sb_d.append("<select class='search_select' style='width:70px;' name='unlockDay_mobile'>");
+sb_d.append("<option value='0'>日期</option>");
 for(int i = 1; i<=31; i++ ){
-sb.append("<option value='"+String.format("%02d",i)+"'>"+String.format("%02d",i)+"</option>");
+	sb_d.append("<option value='"+String.format("%02d",i)+"'>"+String.format("%02d",i)+"</option>");
 }
-sb.append("</select>");
-out.print(sb.toString());
+sb_d.append("</select>");
+out.print(sb_d.toString());
 %>
 <button class='check' style='vertical-align: middle;' name ='unLock18' id='unLock18'></button>
 </div>
