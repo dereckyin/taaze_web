@@ -2933,54 +2933,54 @@ jQuery.browser = {};
 		<%
 		
 		if(recommendZekea!=null && recommendZekea.getString("error_code").equals("100") && recommendZekea.getInt("total_size") > 0){
-			StringBuffer sb = new StringBuffer();
-			sb.append("<div class='panel-default' style='width:215px;border:none;margin-bottom:0px;'>");
-			sb.append("<div class='panel-body' style='width:100%'>");
-			sb.append("<div class='collectCount'><span style='color:#e3007f;font-weight:bold;'>"+collectArray[2]+"</span><font style='color:#e3007f;font-weight:bold;'>人</font>收藏這本書</div>");
+			StringBuffer sb_zek = new StringBuffer();
+			sb_zek.append("<div class='panel-default' style='width:215px;border:none;margin-bottom:0px;'>");
+			sb_zek.append("<div class='panel-body' style='width:100%'>");
+			sb_zek.append("<div class='collectCount'><span style='color:#e3007f;font-weight:bold;'>"+collectArray[2]+"</span><font style='color:#e3007f;font-weight:bold;'>人</font>收藏這本書</div>");
 			
-			sb.append("<div id='recommendZekeaCarousel' class='carousel slide' data-ride='carousel' data-interval='false' style='padding:0px;'>");
-			sb.append("<div class='carousel-inner' style='padding-left:5px;' role='listbox'>");
+			sb_zek.append("<div id='recommendZekeaCarousel' class='carousel slide' data-ride='carousel' data-interval='false' style='padding:0px;'>");
+			sb_zek.append("<div class='carousel-inner' style='padding-left:5px;' role='listbox'>");
 			int pageSize = 5;
 			JSONArray recommendList = recommendZekea.getJSONArray("custs"); 
 			for(int i = 0; i <recommendList.size(); i++){
 				JSONObject cust = recommendList.getJSONObject(i);
 				if(i == 0 ){	
-					sb.append("<div class='item active'>");
+					sb_zek.append("<div class='item active'>");
 				}else if((i%pageSize) == 0){
-					sb.append("<div class='item'>");
+					sb_zek.append("<div class='item'>");
 				}
 				
-				sb.append("<div style='margin-left:5px;display:inline-block;width:25px;height:25px;'><a title='"+cust.getString("nick_name")+"' href='/container_zekeaclt_view.html?ci=" + cust.getString("cuid") + "' target='_blank' >");
-				sb.append("<img style='border-radius:50%;' src='https://media.taaze.tw/showMemImage.html?no=" + cust.getString("cuid") + "&width=50&height=50' width='25' height='25' border='0' />");
-				sb.append("</a></div>");
+				sb_zek.append("<div style='margin-left:5px;display:inline-block;width:25px;height:25px;'><a title='"+cust.getString("nick_name")+"' href='/container_zekeaclt_view.html?ci=" + cust.getString("cuid") + "' target='_blank' >");
+				sb_zek.append("<img style='border-radius:50%;' src='https://media.taaze.tw/showMemImage.html?no=" + cust.getString("cuid") + "&width=50&height=50' width='25' height='25' border='0' />");
+				sb_zek.append("</a></div>");
 
 				if(i==(recommendList.size()-1) || (i%pageSize) == (pageSize-1)){
-					sb.append("<div style='clear:both;'></div>");
-					sb.append("</div>");
+					sb_zek.append("<div style='clear:both;'></div>");
+					sb_zek.append("</div>");
 				}
 			}
-			sb.append("</div>");
+			sb_zek.append("</div>");
 			if(recommendList.size()>pageSize){	
-			sb.append("<div style='position:absolute;z-index:5;top:25%;left:-10px;'>");
-			sb.append("<a href='#recommendZekeaCarousel' role='button' data-slide='prev'>");
-			sb.append("<img class='arrowForLeftImg_s' />");
-			sb.append("<span class='sr-only'>Previous</span>");
-			sb.append("</a>");
-			sb.append("</div>");
+			sb_zek.append("<div style='position:absolute;z-index:5;top:25%;left:-10px;'>");
+			sb_zek.append("<a href='#recommendZekeaCarousel' role='button' data-slide='prev'>");
+			sb_zek.append("<img class='arrowForLeftImg_s' />");
+			sb_zek.append("<span class='sr-only'>Previous</span>");
+			sb_zek.append("</a>");
+			sb_zek.append("</div>");
 			
-			sb.append("<div style='position:absolute;z-index:5;top:25%;right:-10px;'>");
-			sb.append("<a href='#recommendZekeaCarousel' role='button' data-slide='next'>");
-			sb.append("<img class='arrowForRightImg_s' />");
-			sb.append("<span class='sr-only'>Next</span>");
-			sb.append("</a>");
-			sb.append("</div>");
+			sb_zek.append("<div style='position:absolute;z-index:5;top:25%;right:-10px;'>");
+			sb_zek.append("<a href='#recommendZekeaCarousel' role='button' data-slide='next'>");
+			sb_zek.append("<img class='arrowForRightImg_s' />");
+			sb_zek.append("<span class='sr-only'>Next</span>");
+			sb_zek.append("</a>");
+			sb_zek.append("</div>");
 			}
 			
-			sb.append("</div>");
-			sb.append("</div>");
-			sb.append("</div>");
+			sb_zek.append("</div>");
+			sb_zek.append("</div>");
+			sb_zek.append("</div>");
 			
-			out.print(sb.toString());
+			out.print(sb_zek.toString());
 		}
 		
 		%>
