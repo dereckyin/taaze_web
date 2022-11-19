@@ -3462,9 +3462,53 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	</div>
 </div>
 
+</div>
+</div>
 
+<!-- 	銷售中的二手書 -->
+<% if(sing.total_saler > 0) { %>
+<div class="row" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+<div class="row">
+	<div id="sprodConetnt3" class="col-sm-12 col-xs-12" style="margin:10px 0px;">
+		<a id="#r1"></a>
+		<a id="#r2"></a>
+		<a id="#r3"></a>
+		<div class="col-sm-12 col-xs-12" style="padding-left:0px;padding-right: 0px;">
+			<div class="col-sm-8 col-xs-6" style="padding-left: 0px;">
+				<p><span class="span03">銷售中的二手書</span></p>
+			</div>
+			<div class="col-sm-4 col-xs-6" style="text-align: right;padding-right: 0px;">
+				<select class="usedListRank">
+					<option value="1">依上架日期排序</option>
+					<option value="2" selected>依價格低到高排序</option>
+					<option value="3">依書況新舊排序</option>
+					<option value="4">義賣</option><!--測試-->
+				</select>
+			</div>
+		</div>
+		<div class="col-sm-12 col-xs-12 sprod_list"></div>
+		<div class='act_bottom' style='height:0px; clear:both;'></div>
+		<div class="col-sm-12 col-xs-12 sprod_btn">
+			<div class='more_btn' style="display:none">看全部賣家</div>
+		</div>
+	</div>
+	<% } %>
+	<!-- 	最多人成交 -->
+	<%if (sing.averge_sale_price > 0) {%>
+	<div class="row"
+	style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
+	<div class="row">
+		<div class="col-sm-12 col-xs-12" style=" margin: 10px 0px;">
+			<%
+			sb = new StringBuilder();
+			int averge_disc = Math.round((sing.averge_sale_price / sing.listPrice) * 100);
+			sb.append("<p><span class='span03'>最多人成交</span></p>");
+			sb.append("<p style=' margin-bottom: 0px;'><span class='span03' style=\"background:url('/new_ec/single/include/images/avg_sale.jpg') 0px -2px no-repeat; padding-left: 30px;\">平均成交價<span class='highlightu'>" + sing.discString(String.valueOf(averge_disc)) + "</span>折<span class='highlightu'>" + sing.averge_sale_price + "</span>元</span></p>");
+			out.print(sb.toString());
+		%>
+	</div>
 </div>
-</div>
+<%}%>
 
 <%-- 二手與徵求 --%>
 
