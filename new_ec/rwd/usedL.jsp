@@ -4472,7 +4472,72 @@ out.print(m_gift);
 }
 %>
 <%--贈品  --%>
-
+<%--商品資料--%>
+<div class="panel-default" style="margin-top:0px;border:none;">
+<div class="panel-heading" style='position:relative;' onclick="showContent(0)">
+<span>商品資料</span><a style='float:right;'><img class='downArrow' id='arrow0' /></a>
+</div>
+<div class ="mHideContent" style='display:none'>
+<div class="">
+<%=prodDataSb.toString() %>
+<%=tagSb.toString() %>
+</div>
+</div>
+</div>
+<%--商品資料--%>
+<%--內容簡介/各界推薦/章節試閱/作者序/目錄/購物須知....手機板只顯示內容簡介跟購物須知 --%>
+<%
+if(menuItems.size()>0) {
+int tmp = 1;
+for(int i = 0; i < menuItems.size(); i++) {
+if(menuItemsForM.contains(menuItems.getJSONObject(i).get("id"))){
+//if(menuItems.getJSONObject(i).get("id").equals("prodPf") || menuItems.getJSONObject(i).get("id").equals("howBuy")){
+%>
+<div class="panel-default" style="margin-top:0px;word-wrap: break-word;">
+<div class="panel-heading" style='position:relative;' onclick="showContent(<%=tmp %>)">
+<%=menuItems.getJSONObject(i).get("title") %><a style='float:right;'><img class='downArrow' id='arrow<%=tmp %>'/></a>
+</div>
+<div class ="mHideContent" style='display:none'>
+<%
+for(int j = 0; j < textAreaDOM.size(); j++) {
+String DOM = "";
+if(textAreaDOM.getJSONObject(j).getString("id").equals(menuItems.getJSONObject(i).get("id"))) {
+DOM += "<div id='m_"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
+if(textAreaDOM.getJSONObject(i).getString("id").equals("prodPf")){
+if(sing.singProdXsxRcmModel!=null && sing.singProdXsxRcmModel.getContent()!=null){
+DOM += "<div style='width:100%;'>";
+DOM += sing.singProdXsxRcmModel.getContent().replace("\r\n","<br />");
+DOM += "</div>";
+}
+}
+StringBuffer content = new StringBuffer(textAreaDOM.getJSONObject(i).getString("content"));
+DOM += content.toString();
+DOM += "</div>";
+DOM = DOM.replaceAll("<iframe", "<div class='video-container'><iframe");
+DOM = DOM.replaceAll("</iframe>","</iframe></div>");
+DOM = DOM.replaceAll("class='topBtn'", "style='display:none'");
+}else{
+continue;
+}
+out.print(DOM);
+}
+%>
+</div>
+</div>
+<%
+tmp++;
+}
+}
+}
+%>
+<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
+</div>
+</div>
+<%-- 左邊區塊 --%>
+</div>
+<%-- 商品頁內容 --%>
+</div>
+<%-- mobile model end ------------------------------------------------------- --%>
 
 
 
