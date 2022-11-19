@@ -531,8 +531,8 @@ String fbDes2 = "";
 String fbArthor = sing_o.author!=null?sing_o.author:"";
 
 //唱片
-String sing_oer_main = "";
-String sing_oer_next = "";
+String singer_main = "";
+String singer_next = "";
 String author_text = "";
 String producers = "";
 String musical_instruments = "";
