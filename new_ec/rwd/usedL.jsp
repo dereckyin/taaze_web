@@ -1573,7 +1573,7 @@ recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 </c:otherwise>
 </c:choose>
 <title><%=fbTitle %></title>
-<%@ include file="/new_ec/rwd/include/jsp/include_goods.jsp" %>
+
 <%@ include file="/new_ec/gift/include/css_include.jsp" %>
 <%@ include file="/new_ec/rwd/include/js.jsp" %>
 <%@ include file="/new_ec/rwd/include/css.jsp" %>
