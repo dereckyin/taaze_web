@@ -2337,29 +2337,19 @@ jQuery.browser = {};
 				<li><h2>銷售中的二手書</h2></li>
 			</ul>
 		</div>
-		<%-- pc model start +++++++++++++++++++++++++++++++++++++++++++++++++++++ --%>
 		<c:choose>
-		<c:when test="${cookie['mobile'].value eq 'on'}">
-		<div id="cartBar" class="container" style="background-color:#FFFFFF;z-index:1039;text-align:center;width:100%;">
-		<div class="container_PC" style="margin:0 auto;width:100%; ">
-		</c:when>
-		<c:otherwise>
-		<div id="cartBar" class="container hidden-xs hidden-sm hidden-md" style="background-color:#FFFFFF;z-index:1039;text-align:center;display:none;">
-		<div class="container_PC" style="margin:0 auto;height:60px;width:100%; ">
-		</c:otherwise>
+			<c:when test="${cookie['mobile'].value eq 'on'}">
+				<div class="container container_PC_new wrap">
+			</c:when>
+			<c:otherwise>
+				<div class="container wrap">
+			</c:otherwise>
 		</c:choose>
 		<!-- sitemap -->
 		<div class="row" style="margin-top:10px; padding:0 3px;">
-			<div class="col-sm-12 col-xs-12 site_map" style="margin-bottom: 15px;">
-				<span>
-					<a class="linkStyle01" href="<%=sing.getWebUrl(request) %>">首頁</a>
-				</span>
-				<%=sing.getHyperLineBySnd() %>
-				<%=(sing.prodCatId != null && sing.prodCatId.length() == 2) ? sing.getHyperLineByProdCatId() : "" %>
-				<%=(sing.catId != null && sing.catId.length() == 12) ? sing.getHyperLineByCatId() : "" %>
-				<span class='span01'>&gt;</span> <li class="active" style="color:#e3007f;display:inline-block"><%=title %></li>
-			
-			</div>
+		
+
+			<%@ include file="/new_ec/rwd/include/jsp/listSiteMap.jsp"%>
 		</div>
 		
 		<c:choose>
