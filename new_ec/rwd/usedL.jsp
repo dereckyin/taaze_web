@@ -471,7 +471,7 @@ int wantedSndSize = 0;
 if ((sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("27") || sing_o.prodCatId.equals("24") || sing_o.prodCatId.equals("12") || sing_o.prodCatId.equals("13"))) {
 	/** 取得二手徵求量 * */
 	wantedSndFlg = true;//業種 11：繁體書,12：簡體書,13：外文書顯示標記
-	CustQingdanService custQingdanService = (CustQingdanService)SpringUtil.getSpringBeanById(this, "CustQingdanService");
+	//CustQingdanService custQingdanService = (CustQingdanService)SpringUtil.getSpringBeanById(this, "CustQingdanService");
 	List<Object> paraList = new ArrayList<Object>();
 	paraList.add(sing_o.orgProdId);
 	String whCond = " where model.orgProdId = ?";
