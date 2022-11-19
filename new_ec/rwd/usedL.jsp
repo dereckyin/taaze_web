@@ -2300,6 +2300,10 @@ jQuery.browser = {};
 		}
 		</script>
 		<%}%>
+		<script>
+			//feynman_絕版書Y
+			outOfPrint="<%=sing.outOfPrint%>"
+		</script>
 		</head>
 		
 		<body>
@@ -2333,13 +2337,16 @@ jQuery.browser = {};
 				<li><h2>銷售中的二手書</h2></li>
 			</ul>
 		</div>
+		<%-- pc model start +++++++++++++++++++++++++++++++++++++++++++++++++++++ --%>
 		<c:choose>
-			<c:when test="${cookie['mobile'].value eq 'on'}">
-				<div class="container container_PC_new wrap">
-			</c:when>
-			<c:otherwise>
-				<div class="container wrap">
-			</c:otherwise>
+		<c:when test="${cookie['mobile'].value eq 'on'}">
+		<div id="cartBar" class="container" style="background-color:#FFFFFF;z-index:1039;text-align:center;width:100%;">
+		<div class="container_PC" style="margin:0 auto;width:100%; ">
+		</c:when>
+		<c:otherwise>
+		<div id="cartBar" class="container hidden-xs hidden-sm hidden-md" style="background-color:#FFFFFF;z-index:1039;text-align:center;display:none;">
+		<div class="container_PC" style="margin:0 auto;height:60px;width:100%; ">
+		</c:otherwise>
 		</c:choose>
 		<!-- sitemap -->
 		<div class="row" style="margin-top:10px; padding:0 3px;">
