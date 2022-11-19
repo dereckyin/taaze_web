@@ -3463,7 +3463,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 </div>
 
 </div>
-</div>
+
 
 <!-- 	銷售中的二手書 -->
 <% if(sing.total_saler > 0) { %>
@@ -3509,6 +3509,9 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	</div>
 </div>
 <%}%>
+
+</div>
+
 
 <%-- 二手與徵求 --%>
 
