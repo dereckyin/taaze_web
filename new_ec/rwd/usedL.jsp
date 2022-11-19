@@ -1526,59 +1526,59 @@ jQuery.browser = {};
 		<div class="authorBrand">
 		<%if(sing_o.prodCatId.equals("61") || sing_o.prodCatId.equals("62")){
 			if(sing_o.brandId!=null && sing_o.brandId.length() > 0) {
-				sb = new StringBuffer();
-				sb.append("<div style='margin-top:10px;'><span>品牌:");
-				sb.append("<a href='"+ searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"'>");
-				sb.append(sing_o.brandNm);
-				sb.append("</a>");
-				sb.append("</span></div>");
-				sb.append("<div style='margin-top:10px;'><span>");
-				sb.append("<a href=" + searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"><img style='max-width:120px' src='https://media.taaze.tw/showBrandImage.html?width=480&pk=" + sing_o.brandId +"' border='0' alt='' /></a>");
-				sb.append("</span></div>");
-				out.print(sb.toString());
+				StringBuffer sf = new StringBuffer();
+				sf.append("<div style='margin-top:10px;'><span>品牌:");
+				sf.append("<a href='"+ searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"'>");
+				sf.append(sing_o.brandNm);
+				sf.append("</a>");
+				sf.append("</span></div>");
+				sf.append("<div style='margin-top:10px;'><span>");
+				sf.append("<a href=" + searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"><img style='max-width:120px' src='https://media.taaze.tw/showBrandImage.html?width=480&pk=" + sing_o.brandId +"' border='0' alt='' /></a>");
+				sf.append("</span></div>");
+				out.print(sf.toString());
 			}
 		}
 		if(sing_o.orgFlg.equals("A") && sing_o.prodCatId.equals("31")){
-			StringBuffer sb = new StringBuffer();
+			StringBuffer sf = new StringBuffer();
 			if(sing_o.brandId!=null && sing_o.brandId.length() > 0 && sing_o.pubNmMain!=null && sing_o.pubNmMain.length()>0) {
-				sb.append("<div style='margin-top:10px;'><span>廠牌:");
-				sb.append("<a href='"+ searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"'>");
-				sb.append(sing_o.brandNm);
-				sb.append("</a>");
-				sb.append("</span></div>");
-				sb.append("<div style='margin-top:10px;'><span>");
-				sb.append("<a href=" + searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"><img style='max-width:120px' src='https://media.taaze.tw/showBrandImage.html?width=480&pk=" + sing_o.brandId +"' border='0' alt='' /></a>");
-				sb.append("</span></div>");
+				sf.append("<div style='margin-top:10px;'><span>廠牌:");
+				sf.append("<a href='"+ searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"'>");
+				sf.append(sing_o.brandNm);
+				sf.append("</a>");
+				sf.append("</span></div>");
+				sf.append("<div style='margin-top:10px;'><span>");
+				sf.append("<a href=" + searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"><img style='max-width:120px' src='https://media.taaze.tw/showBrandImage.html?width=480&pk=" + sing_o.brandId +"' border='0' alt='' /></a>");
+				sf.append("</span></div>");
 			}
 			if(author_text.length() > 0) {
-				sb.append("<div><span>"+prodAuthorText+"："+author_text+"</span></div>");
+				sf.append("<div><span>"+prodAuthorText+"："+author_text+"</span></div>");
 			}
-			sb.append("<div><span>音樂類型：<span><a href='/rwd_list.html?t="+sing_o.prodCatId +"&k=01&d=00&a=00&c=" +sing_o.catId.substring(0,2) +"0000000000&l=1' >" +sing_o.catName1 +"</a></span></span></div>");
+			sf.append("<div><span>音樂類型：<span><a href='/rwd_list.html?t="+sing_o.prodCatId +"&k=01&d=00&a=00&c=" +sing_o.catId.substring(0,2) +"0000000000&l=1' >" +sing_o.catName1 +"</a></span></span></div>");
 			if(prodFormatAndSpec.length() > 0) {
-				sb.append("<div><span>商品規格：" +prodFormatAndSpec +"</span></div>");
+				sf.append("<div><span>商品規格：" +prodFormatAndSpec +"</span></div>");
 			}
-			out.print(sb.toString());
+			out.print(sf.toString());
 		}else if(sing_o.orgFlg.equals("A") && sing_o.prodCatId.equals("32")) {
-			StringBuffer sb = new StringBuffer();
+			StringBuffer sf = new StringBuffer();
 			if(author_text.length() > 0) {
-				sb.append("<div><span>演員：" +author_text +"</span></div>");
+				sf.append("<div><span>演員：" +author_text +"</span></div>");
 			}
 			if(avInfo!=null&&avInfo.get("directorMain")!=null&&avInfo.getString("directorMain").length()>0) {
-				sb.append("<div><span>導演：<span>" + avInfo.getString("directorMain") +"</span></span></div>");
+				sf.append("<div><span>導演：<span>" + avInfo.getString("directorMain") +"</span></span></div>");
 			}
 			if(sing_o.publishDate!=null && sing_o.publishDate.length()>0){
-				sb.append("<div><span>發行日期：<span>" +sing_o.getDateFormat(sing_o.publishDate) +"</span></span></div>");
+				sf.append("<div><span>發行日期：<span>" +sing_o.getDateFormat(sing_o.publishDate) +"</span></span></div>");
 			}
 			if(sing_o.rank!=null && sing_o.rank.length() > 0){
-				sb.append("<div><span>分級：<span>" +sing_o.getRankText(sing_o.rank) +"</span></span></div>");
+				sf.append("<div><span>分級：<span>" +sing_o.getRankText(sing_o.rank) +"</span></span></div>");
 			}
-			out.print(sb.toString());
+			out.print(sf.toString());
 		}else if(sing_o.cover_people!=null && sing_o.cover_people.length()>0){
-			StringBuffer sb = new StringBuffer();
-			sb.append("<p style='margin:10px 0 0 0;'>");
-			sb.append("<span>封面人物:"+sing_o.cover_people);
-			sb.append("</span></p>");
-			out.print(sb.toString());
+			StringBuffer sf = new StringBuffer();
+			sf.append("<p style='margin:10px 0 0 0;'>");
+			sf.append("<span>封面人物:"+sing_o.cover_people);
+			sf.append("</span></p>");
+			out.print(sf.toString());
 		}else{
 			if(sing_o.author!=null && sing_o.author.length()>0){
 		%>
