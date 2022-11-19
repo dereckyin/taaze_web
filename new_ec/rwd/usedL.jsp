@@ -3685,62 +3685,63 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 
 <%-- mobile model start --%>
 <c:choose>
-<c:when test="${cookie['mobile'].value eq 'on'}">
-<div id="mCartArea" class='hidden-xs hidden-sm hidden-md hidden-lg'>
-</c:when>
-<c:otherwise>
-<div id="mCartArea" class='visible-xs-block visible-sm-block visible-md-block'>
-</c:otherwise>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+		<div id="mCartArea" class='hidden-xs hidden-sm hidden-md hidden-lg'>
+	</c:when>
+	<c:otherwise>
+		<div id="mCartArea" class='visible-xs-block visible-sm-block visible-md-block'>
+	</c:otherwise>
 </c:choose>
 <%if (sing_o.salePrice<=0 && ProductUtil.isEbook(sing_o.prodId)) { //0元電子書欄位%>
-<%if(sing_o.openFlg==-1 || sing_o.openFlg==1){ %>
-<%if(sing_o.salePrice==0 && sing_o.orgFlg.equals("A") && (ProductUtil.isEbook(sing_o.prodId))){%>
-<%-- 免费领取（已领取）手机 --%>
-<div class="readButton" onClick="readEbook('<%=sing_o.prodId%>','<%=sing_o.orgProdId%>','M')" style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);'>免費領取</div>
-<%}%>
-<%}else{%>
-<div name='shoppingNotic' style='height:100%;width:100%;color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);float:left'>可領取時通知我</div>
-<%}%>
+	<%if(sing_o.openFlg==-1 || sing_o.openFlg==1){ %>
+		<%if(sing_o.salePrice==0 && sing_o.orgFlg.equals("A") && (ProductUtil.isEbook(sing_o.prodId))){%>
+			<%-- 免费领取（已领取）手机 --%>
+			<div class="readButton" onClick="readEbook('<%=sing_o.prodId%>','<%=sing_o.orgProdId%>','M')" style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);'>免費領取</div>
+		<%}%>
+	<%}else{%>
+		<div name='shoppingNotic' style='height:100%;width:100%;color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);float:left'>可領取時通知我</div>
+	<%}%>
 <%} else {%>
-<div id='mCart_watchList' name='wishButton' rel='false' style='float:left;'>暫存清單</div>
-<%if(orgAndQtyFlg){ %>
-<%if(sing_o.openFlg==-1 || sing_o.openFlg==1){ %>		<%-- mShoppingNotic --%>
-<div id='mCart_cart' name='saveToCart' style='float:left;border-left:1px solid #e3007e;width: 34%;height: 100%;color: #e3007f;background-color: #ffffff;'>放入購物車</div>
-<div id='mCart_buy' style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);'>立即結帳</div>
-<%--直接購買  --%>
-<%}if(sing_o.openFlg==0){ %>
-<%if("Y".equals(sing_o.outOfPrint)){
-if((sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14")|| sing_o.prodCatId.equals("17")) && !sing_o.orgFlg.equals("C")) {%>
-<div name='wantSnd' class="mShoppingNotic" style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);float:left' onclick="wantSnd(event);">二手徵求</div>
-<%}else{%>
+	<div id='mCart_watchList' name='wishButton' rel='false' style='float:left;'>暫存清單</div>
+	<%if(orgAndQtyFlg){ %>
+	<%if(sing_o.openFlg==-1 || sing_o.openFlg==1){ %>		<%-- mShoppingNotic --%>
+		<div id='mCart_cart' name='saveToCart' style='float:left;border-left:1px solid #e3007e;width: 34%;height: 100%;color: #e3007f;background-color: #ffffff;'>放入購物車</div>
+		<div id='mCart_buy' style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);'>立即結帳</div>
+		<%--直接購買  --%>
+		<%}if(sing_o.openFlg==0){ %>
+			<%if("Y".equals(sing_o.outOfPrint)){
+				if((sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("14")|| sing_o.prodCatId.equals("17")) && !sing_o.orgFlg.equals("C")) {%>
+					<div name='wantSnd' class="mShoppingNotic" style='color:#FFFFFF;background-image: linear-gradient(45deg, #E3007f 0%, #EB8B87 100%);float:left' onclick="wantSnd(event);">二手徵求</div>
+				<%}else{%>
 <script type="text/javascript">
-setWidth();
-function setWidth(){
-document.getElementById( "mCart_watchList" ).style.width = "100%";
-}
+	setWidth();
+	function setWidth(){
+		document.getElementById( "mCart_watchList" ).style.width = "100%";
+	}
 </script>
-<%}} else{ %>
-<div name='shoppingNotic' class="mShoppingNotic" style='float:left'>
-<%if (ProductUtil.isEbook(sing_o.prodId)&& sing_o.salePrice<=0) {out.print("可領取時通知我");}else{out.print("可購買時通知我");};%></div>
-<%} %>
-<%} %>
-<%}else{%>
-<div name='saleout' class="mShoppingNotic" style='color:#000000;background-image: linear-gradient(45deg, #AAAAAA 0%, #FEFEFE 100%);float:left'>限量商品已售完</div>
-<%} %>
+		<%}} else{ %>
+			<div name='shoppingNotic' class="mShoppingNotic" style='float:left'>
+			<%if (ProductUtil.isEbook(sing_o.prodId)&& sing_o.salePrice<=0) {out.print("可領取時通知我");}else{out.print("可購買時通知我");};%></div>
+		<%} %>
+	<%} %>
+	<%}else{%>
+		<div name='saleout' class="mShoppingNotic" style='color:#000000;background-image: linear-gradient(45deg, #AAAAAA 0%, #FEFEFE 100%);float:left'>限量商品已售完</div>
+	<%} %>
 <%}%>
-<span style='clear:both'></span>
+
+	<span style='clear:both'></span>
 </div>
 <c:choose>
-<c:when test="${cookie['mobile'].value eq 'on'}">
-<div class=" mBody container-fluid hidden-md hidden-sm hidden-xs hidden-lg" style="margin-top:50px;margin-left: auto;
-margin-right: auto;padding-left: 0;padding-right: 0;">
-</c:when>
-<c:otherwise>
-<div class=" mBody container-fluid visible-md-block visible-sm-block visible-xs-block" style="margin-top:50px;margin-left: auto;
-margin-right: auto;padding-left: 0;padding-right: 0;">
-</c:otherwise>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+		<div class="mBody container-fluid hidden-md hidden-sm hidden-xs hidden-lg" style="margin-top:50px;margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
+	</c:when>
+	<c:otherwise>
+		<div class="mBody container-fluid visible-md-block visible-sm-block visible-xs-block" style="margin-top:50px;margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
+	</c:otherwise>
 </c:choose>
 
+
+</div>
 
 
 
