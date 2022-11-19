@@ -467,7 +467,7 @@ if(collectArray==null){
 //2016-10-05加入24,27
 boolean wantedSndFlg = false;
 int wantedSndSize = 0;
-boolean IsWanted = false;
+// boolean IsWanted = false;
 if ((sing_o.prodCatId.equals("11") || sing_o.prodCatId.equals("27") || sing_o.prodCatId.equals("24") || sing_o.prodCatId.equals("12") || sing_o.prodCatId.equals("13"))) {
 	/** 取得二手徵求量 * */
 	wantedSndFlg = true;//業種 11：繁體書,12：簡體書,13：外文書顯示標記
