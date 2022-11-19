@@ -1112,6 +1112,33 @@ try {
 }
 
 
+//贈品
+//List<SingleGiftSettingModel> giftList = sing_o.querySingleGiftSettingByProdId(sing_o.prodId, sing_o.prodCatId, sing_o.pubId, sing_o.supId, systemDao);
+//List<SingleGiftSettingModel> giftList = null;
+//隨書贈品
+JSONObject gift_add_info = sing_o.queryProdGiftAdd(sing_o.prodId, systemDao);
+JSONArray gifts_add = null;
+if(gift_add_info != null) {
+	//log.info("error_code:"+gift_info.getInt("error_code"));
+	if(gift_add_info.getInt("error_code") == 100) {
+		gifts_add = JSONArray.fromObject(gift_add_info.get("data"));
+		if(gifts_add != null) {
+			//log.info("gift add size:"+gifts_add.size());
+		}
+	}
+}
+//贈品
+JSONObject gift_info = sing_o.queryProdGift(sing_o.orgProdId,sing_o.prodId, sing_o.prodCatId, sing_o.pubId, sing_o.supId, sing_o.catId, systemDao);
+//JSONObject gift_info = null;
+JSONArray gifts = null;
+//JSONArray gift_item = new JSONArray();
+if(gift_info != null) {
+	//log.info("error_code:"+gift_info.getInt("error_code"));
+	if(gift_info.getInt("error_code") == 100) {
+		gifts = JSONArray.fromObject(gift_info.get("data"));
+	}
+}
+
 %>
 
 <!DOCTYPE html>
