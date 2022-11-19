@@ -511,6 +511,38 @@ if("".equals(bonus_text)){
 }
 
 
+//銷售地區與運送方式
+JSONObject saleAreaJson = null;
+if(sing.openFlg != 0) {
+	saleAreaJson = sing.getSaleAreaAndCdtByJson(sing.saleArea,sing.soCnCdt);
+}
+
+//出版日期距今
+int diffDay = 0;
+if(sing.publishDate!= null) {
+	diffDay = (int)sing.getDiffDay(new Date(), formatter.parse(sing.getDateFormat(sing.publishDate)));
+}
+//相同版本
+//List<SingProdScrollModel> versionList = singeBookService.getSingProdSameVersionList(sing.istProdId, sing.prodId);
+JSONArray versionList = sing.getVersionList(sing.istProdId, sing.prodId);
+
+//其他版本
+int version_size = 0;
+if(versionList!=null && versionList.size()>0){
+	version_size = versionList.size();
+}
+if(diffDay > 180 && (sing.prodCatId.equals("11") || sing.prodCatId.equals("14"))){
+	version_size += 1;
+}
+if(sing.orgFlg.equals("A") && sing.prodCatId.equals("11") && !sing.haseUSed) {
+	version_size += 1;
+}
+if(sing.orgFlg.equals("A") && sing.prodCatId.equals("27") && !sing.haseUSed) {
+	version_size += 1;
+}
+
+
+
 String bindingType = "A"; 
 
 //take look resort
@@ -2133,6 +2165,79 @@ jQuery.browser = {};
 	%>
 	<%---二手書訊息 --%>
 
+	<%--運送方式/銷售地/庫存 --%>
+	<%
+	if(!sing_o.prodCatId.equals("14")&&!sing_o.prodCatId.equals("25")&&!sing_o.prodCatId.equals("17")){
+		if(sing_o.vstkDes.length()>0){
+	%>
+			<div style='padding-left:10px;'>
+	<%--運送方式 --%>
+	<% 
+			if(saleAreaJson!=null && saleAreaJson.getString("Cdt").length()>0) { 
+	%>
+				<p style="margin:0 0;">
+					<span>運送方式：<span><%=saleAreaJson.getString("Cdt") %></span></span>
+				</p>
+		<%
+			} 
+		%>
+					
+	<%--銷售地區 --%>
+	<% 
+	if(saleAreaJson!=null && saleAreaJson.getString("SaleArea").length()>0) { 
+	%>
+				<p style="margin:0 0;">
+				<span>銷售地區：<span><%=saleAreaJson.getString("SaleArea") %></span></span>
+				</p>
+	<%
+		} 
+	%>
+					
+	<%--庫存 --%>
+				<p style="margin:0 0;">
+					<span><span><%=sing.getVstkShow(sing.vstkDes) %></span></span>
+				</p>
+			</div>
+			<%--圖示 --%>	
+			<p class='DeliverAndKpst'>
+				<%=sing.getDeliverAndKpstTextShow(sing.deliverImgType,sing.qty, sing.kpstk_flg, sing.prodCatId) %>
+			</p>
+	<%
+		}else{
+	%>
+			<div style='padding-left:10px;'>	
+				<p style="margin:0 0;">
+					<span><span><%=sing.getVstkShow(sing.qty, sing.openFlg, sing.whId) %></span></span>
+				</p>
+			<%--圖示 --%>	
+			</div>
+			<p class='DeliverAndKpst'>
+				<%=sing.getDeliverAndKpstTextShow(sing.deliverImgType,sing.qty, sing.kpstk_flg, sing.prodCatId) %>
+			</p>
+	<% 
+		}
+	}else if(sing.orgFlg.equals("A") && (sing.prodCatId.equals("14")||sing.prodCatId.equals("25")||sing.prodCatId.equals("17"))){ //電子書欄位 
+	%>
+			<div style='padding-left:10px;'>
+				<div>
+					<span>閱讀裝置：</span>
+					<span>手機</span>
+					<span>、平板</span>
+				<% if(sing.bindingType!=null && !sing.bindingType.equals("K")){ %>
+					<span>、PC</span>
+				<% } %>
+					<a href="http://www.taaze.tw/static_act/201403/ebookapp/index.htm" target="_blank"><img style='width:15px;height:15px;vertical-align: text-top;' src='/new_ec/rwd/include/images/C_image/ic/ic_14@2x.png'/></a>
+				</div>
+				<div>
+					<span>瀏覽軟體：</span>
+					
+					<%=app_download %>
+					
+				</div>
+			</div>
+	<%
+	}
+	%>
 
 	</body>
 </html>
