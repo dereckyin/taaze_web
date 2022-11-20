@@ -3502,7 +3502,7 @@ jQuery.browser = {};
 
 <%-- 二手與徵求 --%>
 <!-- 	我要徵求及我要賣 -->
-<div class="row" style="margin-bottom: 10px;">
+<div class="row hidden-sm hidden-md hidden-xs" style="margin-bottom: 10px;">
 	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
 			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
 				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
