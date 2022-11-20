@@ -2339,7 +2339,7 @@ jQuery.browser = {};
 				<div class="container container_PC_new wrap">
 			</c:when>
 			<c:otherwise>
-				<div class="container wrap hidden-sm hidden-md hidden-xs">
+				<div class="container wrap">
 			</c:otherwise>
 		</c:choose>
 		<!-- sitemap -->
