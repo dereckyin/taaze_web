@@ -3683,9 +3683,9 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 			String DOM = "";
 			DOM += "<a name='pr"+i+"' ></a>";
 			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
-				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div' class='prodContent read-more'>";
+				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
 			} else {
-				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div read-more'>";
+				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
 			}
 			if(i > 0) {
 				DOM += String.format(htmlBuild1, textAreaDOM.getJSONObject(i).getString("title"));
