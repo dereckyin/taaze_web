@@ -3610,6 +3610,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 			sb.append("<p style=' margin-bottom: 0px;'><span class='span03' style=\"background:url('/new_ec/single/include/images/avg_sale.jpg') 0px -2px no-repeat; padding-left: 30px;\">平均成交價<span class='highlightu'>" + sing.discString(String.valueOf(averge_disc)) + "</span>折<span class='highlightu'>" + sing.averge_sale_price + "</span>元</span></p>");
 			out.print(sb.toString());
 		%>
+		</div>
 	</div>
 </div>
 <%}%>
