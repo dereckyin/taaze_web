@@ -3685,7 +3685,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
 				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div' class='prodContent read-more'>";
 			} else {
-				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
+				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div read-more'>";
 			}
 			if(i > 0) {
 				DOM += String.format(htmlBuild1, textAreaDOM.getJSONObject(i).getString("title"));
