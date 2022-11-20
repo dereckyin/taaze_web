@@ -3703,7 +3703,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 
 <%-- 商品簡介 --%>
 
-<div class="row hidden-sm hidden-md hidden-xs" style="margin-bottom: 10px;">
+<div class="row" style="margin-bottom: 10px;">
 	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
 			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
 				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
