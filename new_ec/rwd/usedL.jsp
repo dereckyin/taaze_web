@@ -3619,7 +3619,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 <%if (sale_range.size() > 0) {%>
 <div class="row"
 style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
-<div class="row hidden-md hidden-lg" style="margin-bottom: 15px;">
+<div class="row " style="margin-bottom: 15px;">
 	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 0px;">
 		<%
 		List sortedKeys = new ArrayList(sale_range.keySet());
@@ -3704,7 +3704,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 
 <%-- 商品簡介 --%>
 
-<div class="row hidden-md hidden-lg" style="margin-bottom: 10px;">
+<div class="row" style="margin-bottom: 10px;">
 	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
 			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
 				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
@@ -3740,7 +3740,7 @@ if (sprod_range.size() > 0) {
 </div>
 </div>
 
-<div class="row hidden-md hidden-lg" style="margin-bottom: 10px;">
+<div class="row" style="margin-bottom: 10px;">
 	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
 			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
 				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
