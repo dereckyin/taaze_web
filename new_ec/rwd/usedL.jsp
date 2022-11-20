@@ -3658,7 +3658,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 
 		
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄/購物須知....--%>
-	<ul class="nav nav-tabs textArea hidden-sm hidden-md hidden-xs" style='margin-bottom:20px;'>
+	<ul class="nav nav-tabs textArea" style='margin-bottom:20px;'>
 	<%
 	if(menuItems.size()>0) {
 		for(int i = 0; i < menuItems.size(); i++) {
