@@ -79,7 +79,7 @@ activityJsonArray = SystemUtil.parseActJson2Array("0224","00","P","0");
 activityJsonArray = SystemUtil.parseActJson2Array("0211","00","P","0");
 }
 }else{
-activityJsonArray = SystemUtil.parseActJson2Array("0211" + (urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00"),"P","0");
+activityJsonArray = SystemUtil.parseActJson2Array("02" + urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00","P","0");
 }
 } catch(Exception e) {
 log.error(e.getMessage());
