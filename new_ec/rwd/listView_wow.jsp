@@ -209,6 +209,9 @@ if(isSndBook.equals("03")){
 }		
 %>
 
+</div>
+</div>
+
 
 <c:choose>
 <c:when test="${cookie['mobile'].value eq 'on'}">
