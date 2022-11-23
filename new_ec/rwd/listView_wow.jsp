@@ -55,7 +55,7 @@ if(urlParamters.getT().equals("11") && urlParamters.getK().equals("03")){//中�
 	}
 	//參數L等於空值或參數L不是數值或參數L是數值小於類別層級2
 	if(urlParamters.getL()==null || !EcPathSettingImp.isNumeric_Pattern(urlParamters.getL()) || Integer.parseInt(urlParamters.getL())<2){
-		bigBannerList = SystemUtil.parseActJson2Array(urlParamters.getT(), c, "A", urlParamters.getR()!=null?urlParamters.getR():"0");
+		bigBannerList = SystemUtil.parseActJson2Array("02" + urlParamters.getT(), c, "A", urlParamters.getR()!=null?urlParamters.getR():"0");
 	}
 
 	jsonDataSet.bigBannerData = new JSONObject();
@@ -76,10 +76,10 @@ activityJsonArray = SystemUtil.parseActJson2Array("0213","00","P","0");
 }else if(urlParamters.getD().equals("24")){
 activityJsonArray = SystemUtil.parseActJson2Array("0224","00","P","0");
 }else{
-activityJsonArray = SystemUtil.parseActJson2Array("02","00","P","0");
+activityJsonArray = SystemUtil.parseActJson2Array("0211","00","P","0");
 }
 }else{
-activityJsonArray = SystemUtil.parseActJson2Array(urlParamters.getT(),urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00","P","0");
+activityJsonArray = SystemUtil.parseActJson2Array("0211" + (urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00"),"P","0");
 }
 } catch(Exception e) {
 log.error(e.getMessage());
