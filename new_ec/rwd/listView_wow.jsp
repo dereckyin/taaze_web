@@ -65,6 +65,27 @@ if(urlParamters.getT().equals("11") && urlParamters.getK().equals("03")){//中�
 }
 /* 大版Banner@@	*/
 
+/*	@@注目專區 	*/
+JSONArray activityJsonArray = null;
+try {
+if(urlParamters.getK().equals("03")){
+if(urlParamters.getD().equals("12")){
+activityJsonArray = SystemUtil.parseActJson2Array("0212","00","P","0");
+}else if(urlParamters.getD().equals("13")){
+activityJsonArray = SystemUtil.parseActJson2Array("0213","00","P","0");
+}else if(urlParamters.getD().equals("24")){
+activityJsonArray = SystemUtil.parseActJson2Array("0224","00","P","0");
+}else{
+activityJsonArray = SystemUtil.parseActJson2Array("02","00","P","0");
+}
+}else{
+activityJsonArray = SystemUtil.parseActJson2Array(urlParamters.getT(),urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00","P","0");
+}
+} catch(Exception e) {
+log.error(e.getMessage());
+}
+/* 注目專區 @@	*/
+
 %>
 <!DOCTYPE html>
 <html lang="zh-hant">
@@ -222,6 +243,61 @@ if(isSndBook.equals("03")){
 </c:otherwise>
 </c:choose>
 
+<%-- 注目專區 --%>
+<%
+if(activityJsonArray!= null && activityJsonArray.size() > 0) {
+StringBuilder activityContent = new StringBuilder();;
+activityContent.append("<div class='panel panel-default' style='margin-bottom: 30px;'>");
+activityContent.append("<div class='panel-heading' style='background-color:#D9D9D9;'>");
+//activityContent.append("<ol class='breadcrumb' style='margin:0; padding:0;'>");
+activityContent.append("<span style='font-size:16px;font-weight:bold;'>");
+activityContent.append("注目專區");
+activityContent.append("</span>");
+//activityContent.append("</ol>");
+activityContent.append("</div>");
+activityContent.append("<div class='list-group'>");
+/*修改
+if(urlParamters.getK().equals("03")){
+//二手書全新/近全新
+if(urlParamters.getD().equals("00")){
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='/rwd_listViewB.html?t=11&k=03&d=00&a=21' >全新/近全新</a>");
+}else if(urlParamters.getD().equals("12")){
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='/rwd_listViewB.html?t=12&k=03&d=12&a=21' >全新/近全新</a>");
+}else if(urlParamters.getD().equals("13")){
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='/rwd_listViewB.html?t=13&k=03&d=13&a=21' >全新/近全新</a>");
+}else if(urlParamters.getD().equals("24")){
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='/rwd_listViewB.html?t=24&k=03&d=24&a=21' >全新/近全新</a>");
+}
+}*/
+for(int i = 0; i < activityJsonArray.size(); i++) {
+JSONObject act = (JSONObject)activityJsonArray.get(i);
+//取代字串，變更網址
+if(act.getString("url").contains("container_snd_actview")){
+String newUrl = act.getString("url").replace("container_snd_actview","rwd_listViewB");
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='" + newUrl + "'>"+act.getString("areaNm")+"</a>");
+}else{
+String newUrl = act.getString("url").replace("container_snd","rwd_list");
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='" + newUrl + "'>"+act.getString("areaNm")+"</a>");
+}
+}
+if(urlParamters.getT().equals("14") || urlParamters.getT().equals("25") || urlParamters.getT().equals("17")){
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='https://www.taaze.tw/static_act/taazecloudreader/index.htm' >Windows / Mac電腦</a>");
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='https://www.taaze.tw/taazereader/index.jsp' >手機 / 平板</a>");
+if(urlParamters.getT().equals("14")){
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='/rwd_ebookActListView.html?t=14&k=01&d=00&a=01' >0元電子書</a>");
+}else if(urlParamters.getT().equals("25")){
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='/rwd_ebookActListView.html?t=25&k=01&d=00&a=01' >0元電子雜誌</a>");
+}
+if(!urlParamters.getT().equals("14")){
+activityContent.append("<a class='list-group-item' style='font-weight:bold;letter-spacing: 0.5px;line-height: 20px;' href='http://activity.taaze.tw/home.html?m=1000642460' >訂閱電子雜誌</a>");
+}
+}
+activityContent.append("</div>");
+activityContent.append("</div>");
+out.print(activityContent.toString());
+}
+%>
+<%-- 注目專區 --%>
 
 <%-- 顯示類別選單 --%>
 <div class="panel panel-default">
