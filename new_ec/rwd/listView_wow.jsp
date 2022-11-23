@@ -38,7 +38,11 @@ if(urlParamters.getT().equals("11") && urlParamters.getK().equals("03")){//中�
 
 		}else{
 			//二手中文書
-			bigBannerList = SystemUtil.parseActJson2Array("02","00","A", urlParamters.getR()!=null?urlParamters.getR():"0");
+			String c = "00";
+			if(urlParamters.getC()!=null&&urlParamters.getC().length()>=4){
+				c =urlParamters.getC().substring(0,Integer.parseInt(urlParamters.getL()) * 2);
+			}
+			bigBannerList = SystemUtil.parseActJson2Array("0211", c,"A", urlParamters.getR()!=null?urlParamters.getR():"0");
 
 		}
 	// }
