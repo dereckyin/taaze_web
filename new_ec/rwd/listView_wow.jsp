@@ -43,6 +43,7 @@ if(urlParamters.getT().equals("11") && urlParamters.getK().equals("03")){//ä¸­æ–
 				c =urlParamters.getC().substring(0, 2);
 			}
 			bigBannerList = SystemUtil.parseActJson2Array("0211", "01", "A", "0");
+			out.println(bigBannerList.toString());
 
 		}
 	// }
