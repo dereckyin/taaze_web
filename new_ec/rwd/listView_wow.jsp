@@ -83,7 +83,7 @@ activityJsonArray = SystemUtil.parseActJson2Array("0224","00","P","0");
 }else{
  //activityJsonArray = SystemUtil.parseActJson2Array("02","00","P","0");
 	activityJsonArray = SystemUtil.parseActJson2Array("0211",urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00","P","0");
-	out.print(activityJsonArray);
+	out.print(urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00");
 }
 }else{
 	activityJsonArray = SystemUtil.parseActJson2Array("02",urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00","P","0");
@@ -93,8 +93,8 @@ activityJsonArray = SystemUtil.parseActJson2Array("0224","00","P","0");
 log.error(e.getMessage());
 }
 /* 注目專區 @@	*/
-activityJsonArray = SystemUtil.parseActJson2Array("0211","03","P","0");
-	out.print(activityJsonArray);
+//activityJsonArray = SystemUtil.parseActJson2Array("0211","03","P","0");
+//	out.print(activityJsonArray);
 
 
 %>
