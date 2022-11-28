@@ -93,6 +93,8 @@ log.error(e.getMessage());
 }
 /* 注目專區 @@	*/
 
+activityJsonArray = SystemUtil.parseActJson2Array("0211","03","P","0");
+out.print(activityJsonArray);
 
 %>
 <!DOCTYPE html>
