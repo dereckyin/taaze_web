@@ -84,7 +84,9 @@ activityJsonArray = SystemUtil.parseActJson2Array("0224","00","P","0");
 activityJsonArray = SystemUtil.parseActJson2Array("02","00","P","0");
 }
 }else{
-	activityJsonArray = SystemUtil.parseActJson2Array("0211",urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00","P","0");
+	//activityJsonArray = SystemUtil.parseActJson2Array("0211",urlParamters.getC()!=null?urlParamters.getC().substring(0,2):"00","P","0");
+	activityJsonArray = SystemUtil.parseActJson2Array("0211","01","P","0");
+	out.print(activityJsonArray);
 }
 } catch(Exception e) {
 log.error(e.getMessage());
