@@ -80,8 +80,7 @@ int _level = urlParamters.getL()!=null ? Integer.parseInt(urlParamters.getL()):0
 if(_level>0){
 _catalog = urlParamters.getC().substring(0, (2*_level));
 }
-recommandJsonArray = SystemUtil.parseActJson2Array("0211","12","E","0");
-out.print(recommandJsonArray);
+recommandJsonArray = SystemUtil.parseActJson2Array("0211",_catalog,"E","0");
 rmd_title = "話題推薦";
 String prod_cat = urlParamters.getT()+urlParamters.getK()+urlParamters.getD();
 if("140100".equals(prod_cat) || "250100".equals(prod_cat)) {
@@ -94,8 +93,6 @@ rmd_title = "發燒音樂";
 }catch(Exception e){
 log.info(e.getMessage());
 }
-
-recommandJsonArray = SystemUtil.parseActJson2Array("0211","12","E","0");
 /*@@話題推薦、限時好康、發燒音樂 */
 
 /*	@@注目專區 	*/
@@ -653,6 +650,216 @@ out.print("<li class='active'><a><strong style='color:#e3007f'>" + pathList.getJ
 </div>
 <%}%>
 <%-- 顯示類別選單 --%>
+
+<%--話題推薦 --%>
+  	<%
+  	if(recommandJsonArray!= null && recommandJsonArray.size() > 0) {
+  	%>
+  	<div class="recommand panel panel-default visible-sm-block visible-md-block" style="width:100%;border-left:1px solid #F0F0F0">
+			<div class="" style="">
+				<div id="t_recommand" class="carousel slide" style="" data-ride="carousel" data-interval="false">
+  					<div class="carouselTitle2" style='margin:0;width:100%'>
+  						<div class="panelHeader" style="float:left;"><span><%=urlParamters.getT().equals("31")?"發燒音樂":"話題推薦" %></span></div>
+  						<div style="clear:both"></div>
+  					</div>
+  					<%
+
+						StringBuffer sbBtnT = new StringBuffer();
+	  					StringBuffer sbInnerT = new StringBuffer();
+	  					int pageShow = 5;
+	  					sbBtnT.append("<ol class='carousel-indicators' style='margin-left: -30%';>"); 							
+	  					sbInnerT.append("<div class='carousel-inner' role='listbox'>");
+	  					for(int i = 0;i < recommandJsonArray.size(); i++) {
+	  						if(i==0 || (i%pageShow)==0){
+	  							sbBtnT.append("<li data-target='#t_recommand' data-slide-to=" + (i/pageShow));
+	  							sbInnerT.append("<div class='item ");
+	  							if(i==0){
+	  								sbBtnT.append(" class=\"active\"");
+	  								sbInnerT.append("active");
+	  							}
+	  							sbBtnT.append("></li>");
+	  							sbInnerT.append("' >");
+	  						}
+	  						sbInnerT.append("<div class='recommand'>");
+	  						//書封
+	  						sbInnerT.append("<div class='prodImg' onclick=\"location.href='/products/" + recommandJsonArray.getJSONObject(i).getString("prodId") + ".html'\" style=\"background-image:url('https://media.taaze.tw/showLargeImage.html?sc="+recommandJsonArray.getJSONObject(i).getString("orgProdId")+"&height=170&width=250');\" data-pid='" + recommandJsonArray.getJSONObject(i).getString("prodId") +"' >");
+	  						sbInnerT.append("</div>");
+	  								
+	  						sbInnerT.append("<div class='description'>");
+	  								
+	  						sbInnerT.append("<div style='position:relative;margin:0 auto;height:100px;'>");
+	  						//書名
+	  						sbInnerT.append("<div>");
+	  						sbInnerT.append("<strong><a href='/products/" +recommandJsonArray.getJSONObject(i).getString("prodId")+ ".html'>");
+	  						sbInnerT.append(recommandJsonArray.getJSONObject(i).getString("titleMain"));
+	  						sbInnerT.append("</a></strong>");
+	  						sbInnerT.append("</div>");
+							sbInnerT.append("<li style='display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;'>"+EcPathSettingImp.LimitString(recommandJsonArray.getJSONObject(i).getString("titleNext"),728,"...")+"</li>");
+	  						//作者
+	  						sbInnerT.append("<div>");
+	  						
+	  						//if((!urlParamters.getT().equals("31") && !urlParamters.getT().equals("32") && !urlParamters.getT().equals("61") && !urlParamters.getT().equals("62")) && recommandJsonArray.getJSONObject(i).getString("author")!=null && !"".equals(recommandJsonArray.getJSONObject(i).getString("author"))){
+	  						//	sbInner.append("<span>作者：");
+	  						//	sbInner.append(recommandJsonArray.getJSONObject(i).getString("author").length() > 35 ? recommandJsonArray.getJSONObject(i).getString("author").substring(0,35)+"..." : recommandJsonArray.getJSONObject(i).getString("author"));
+	  						//	sbInner.append("</span>");
+	  						//}
+	  						
+	  						sbInnerT.append("</div>");
+	  						//優惠價
+	  						sbInnerT.append("<div style='margin-top:5px'>");
+	  						if(urlParamters.getK().equals("03")){
+	  							sbInnerT.append("二手價："); 
+	  	  					}else{
+	  	  						sbInnerT.append("優惠價：");  						
+	  	  					}
+	  						if(!recommandJsonArray.getJSONObject(i).getString("saleDisc").equals("100")){
+	  							String disc = (recommandJsonArray.getJSONObject(i).getString("saleDisc").endsWith("0"))?recommandJsonArray.getJSONObject(i).getString("saleDisc").substring(0,1): recommandJsonArray.getJSONObject(i).getString("saleDisc");
+	  							if(!(recommandJsonArray.getJSONObject(i).getString("saleDisc").endsWith("0"))&&Integer.parseInt(disc)<10){
+									disc="0."+disc;
+								}
+								sbInnerT.append("<span style='color:#e3007f'>"+disc+"</span>折");
+	  						}
+	  						sbInnerT.append("<span style='color:#e3007f'>"+Math.round(recommandJsonArray.getJSONObject(i).getInt("salePrice"))+"</span>元");
+	  						sbInnerT.append("</div>");
+	  						
+	  						sbInnerT.append("</div>");//recommand	
+	  						
+	  						sbInnerT.append("</div>");
+
+	  						sbInnerT.append("</div>");
+	  						
+	  						
+	  						
+	  						if(pageShow == 1 || ((i+1)%pageShow==0 || i == recommandJsonArray.size()-1)){	
+	  							sbInnerT.append("</div>");
+	  						}
+	  					}
+	  					sbBtnT.append("</ol>");
+	  					sbInnerT.append("</div>");
+
+	  					out.print(sbBtnT.toString() + sbInnerT.toString());
+					
+  					%>
+  					<% 
+  					if(recommandJsonArray!= null && recommandJsonArray.size() > pageShow) {
+  					%>	
+  					
+  					<!-- Controls -->
+					<a class='arrowForLeft2' href="#t_recommand" role="button" data-slide="prev">
+ 						<span></span>
+ 						<span class="sr-only">Previous</span>
+					</a>
+					<a class='arrowForRight2' href="#t_recommand" role="button" data-slide="next">
+ 						<span></span>
+ 						<span class="sr-only">Next</span>
+					</a>
+					<%} %>
+  				</div>
+			</div>
+		</div>	
+  	<div class="recommand panel panel-default visible-xs-block" style="border-left:1px solid #F0F0F0">
+			<div class="panel-body" style="">
+				<div id="m_recommand" class="carousel slide" style="" data-ride="carousel" data-interval="false">
+  					<div class="carouselTitle2">
+  						<div class="panelHeader" style="float:left;"><span><%out.print(rmd_title);%></span></div>
+  						<div style="clear:both"></div>
+  					</div>
+  					<%
+
+						StringBuffer sbBtn = new StringBuffer();
+	  					StringBuffer sbInner = new StringBuffer();
+	  					pageShow = 1;
+	  					sbBtn.append("<ol class='carousel-indicators' style='margin-left: -30%';>"); 							
+	  					sbInner.append("<div class='carousel-inner' role='listbox'>");
+	  					for(int i = 0;i < recommandJsonArray.size(); i++) {
+	  						if(i==0 || (i%pageShow)==0){
+	  							sbBtn.append("<li data-target='#m_recommand' data-slide-to=" + (i/pageShow));
+	  							sbInner.append("<div class='item ");
+	  							if(i==0){
+	  								sbBtn.append(" class=\"active\"");
+	  								sbInner.append("active");
+	  							}
+	  							sbBtn.append("></li>");
+	  							sbInner.append("' >");
+	  						}
+	  						
+	  						//書封
+	  						sbInner.append("<div class='prodImg' onclick=\"location.href='/products/" + recommandJsonArray.getJSONObject(i).getString("prodId") + ".html'\" style=\"background-image:url('https://media.taaze.tw/showLargeImage.html?sc="+recommandJsonArray.getJSONObject(i).getString("orgProdId")+"&height=170&width=250');\" data-pid='" + recommandJsonArray.getJSONObject(i).getString("prodId") +"' >");
+	  						sbInner.append("</div>");
+	  								
+	  						sbInner.append("<div class='description'>");
+	  								
+	  						sbInner.append("<div style='position:relative;margin:0 auto;height:100px;'>");
+	  						//書名
+	  						sbInner.append("<div>");
+	  						sbInner.append("<strong><a href='/products/" +recommandJsonArray.getJSONObject(i).getString("prodId")+ ".html'>");
+	  						sbInner.append(recommandJsonArray.getJSONObject(i).getString("titleMain"));
+	  						sbInner.append("</a></strong>");
+	  						sbInner.append("</div>");
+							sbInner.append("<li style='display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;'>"+EcPathSettingImp.LimitString(recommandJsonArray.getJSONObject(i).getString("titleNext"),728,"...")+"</li>");
+	  						//作者
+	  						sbInner.append("<div>");
+	  						
+	  						//if((!urlParamters.getT().equals("31") && !urlParamters.getT().equals("32") && !urlParamters.getT().equals("61") && !urlParamters.getT().equals("62")) && recommandJsonArray.getJSONObject(i).getString("author")!=null && !"".equals(recommandJsonArray.getJSONObject(i).getString("author"))){
+	  						//	sbInner.append("<span>作者：");
+	  						//	sbInner.append(recommandJsonArray.getJSONObject(i).getString("author").length() > 35 ? recommandJsonArray.getJSONObject(i).getString("author").substring(0,35)+"..." : recommandJsonArray.getJSONObject(i).getString("author"));
+	  						//	sbInner.append("</span>");
+	  						//}
+	  						
+	  						sbInner.append("</div>");
+	  						//優惠價
+	  						sbInner.append("<div style='margin-top:5px'>");
+	  						if(urlParamters.getK().equals("03")){
+	  							sbInner.append("二手價："); 
+	  	  					}else{
+	  	  						sbInner.append("優惠價：");  						
+	  	  					}
+	  						if(!recommandJsonArray.getJSONObject(i).getString("saleDisc").equals("100")){
+	  							String disc = (recommandJsonArray.getJSONObject(i).getString("saleDisc").endsWith("0"))?recommandJsonArray.getJSONObject(i).getString("saleDisc").substring(0,1): recommandJsonArray.getJSONObject(i).getString("saleDisc");
+	  							if(!(recommandJsonArray.getJSONObject(i).getString("saleDisc").endsWith("0"))&&Integer.parseInt(disc)<10){
+									disc="0."+disc;
+								}
+								sbInner.append("<span style='color:#e3007f'>"+disc+"</span>折");
+	  						}
+	  						sbInner.append("<span style='color:#e3007f'>"+Math.round(recommandJsonArray.getJSONObject(i).getInt("salePrice"))+"</span>元");
+	  						sbInner.append("</div>");
+	  								
+	  						sbInner.append("</div>");
+
+	  						sbInner.append("</div>");
+	  						
+	  						
+	  						
+	  						if(pageShow == 1 || (i%pageShow)==1 || i == recommandJsonArray.size()-1){	
+	  							sbInner.append("</div>");
+	  						}
+	  					}
+	  					sbBtn.append("</ol>");
+	  					sbInner.append("</div>");
+	  					
+	  					String html = sbBtn.toString() + sbInner.toString();
+	  					out.print(html);
+					
+  					%>
+  					<% 
+  					if(recommandJsonArray!= null && recommandJsonArray.size() > pageShow) {
+  					%>	
+  					
+  					<!-- Controls -->
+					<a class='arrowForLeft2' href="#m_recommand" role="button" data-slide="prev">
+ 						<span></span>
+ 						<span class="sr-only">Previous</span>
+					</a>
+					<a class='arrowForRight2' href="#m_recommand" role="button" data-slide="next">
+ 						<span></span>
+ 						<span class="sr-only">Next</span>
+					</a>
+					<%} %>
+  				</div>
+			</div>
+		</div>
+	<%} %>
+	<%--話題推薦 --%>
 
 <%-- 注目專區 --%>
 <%
