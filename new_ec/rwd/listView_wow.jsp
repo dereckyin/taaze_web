@@ -70,6 +70,31 @@ if(urlParamters.getT().equals("11") && urlParamters.getK().equals("03")){//中�
 }
 /* 大版Banner@@	*/
 
+/*@@話題推薦、限時好康、發燒音樂 */
+JSONArray recommandJsonArray = null;
+String rmd_title = "";
+try{
+if(urlParamters.getK()!=null && !urlParamters.getK().equals("03")){
+String _catalog = urlParamters.getC();
+int _level = urlParamters.getL()!=null ? Integer.parseInt(urlParamters.getL()):0;
+if(_level>0){
+_catalog = urlParamters.getC().substring(0, (2*_level));
+}
+recommandJsonArray = SystemUtil.parseActJson2Array(urlParamters.getT(),_catalog,"E","0");
+rmd_title = "話題推薦";
+String prod_cat = urlParamters.getT()+urlParamters.getK()+urlParamters.getD();
+if("140100".equals(prod_cat) || "250100".equals(prod_cat)) {
+rmd_title = "限時好康";
+}
+if("310100".equals(prod_cat)) {
+rmd_title = "發燒音樂";
+}
+}
+}catch(Exception e){
+log.info(e.getMessage());
+}
+/*@@話題推薦、限時好康、發燒音樂 */
+
 /*	@@注目專區 	*/
 JSONArray activityJsonArray = null;
 try {
@@ -253,6 +278,89 @@ if(isSndBook.equals("03")){
 <div class="col-sm-4 col-md-3" style='padding-top: 8px;padding-left: 0;'><%-- left block --%>
 </c:otherwise>
 </c:choose>
+
+<%-- 話題推薦、限時好康、發燒音樂 --%>
+<%
+
+if(recommandJsonArray!= null && recommandJsonArray.size() > 0) { 
+StringBuilder sb = new StringBuilder();
+sb.append("<div class='panel panel-default'>");
+sb.append("<div class='panel-heading' style='background-color:#D9D9D9;'>");
+sb.append("<ol class='breadcrumb' style='margin:0; padding:0;background-color:#D9D9D9;'>");
+sb.append("<li class='active'><span style='font-size:16px;font-weight: bold;'>");
+sb.append(rmd_title);
+sb.append("</span></li>");
+sb.append("</ol>");
+sb.append("</div>");
+sb.append("<div class=''>");
+sb.append("<div id='specialCarousel' class='carousel slide' data-ride='carousel' data-interval='false'>");
+sb.append("<div class='carousel-inner' role='listbox'>");
+for(int i = 0;i < recommandJsonArray.size(); i++) {
+	JSONObject prod = (JSONObject)recommandJsonArray.get(i);
+	String discString = prod.getString("saleDisc");
+	if(prod.getString("saleDisc").length()==1){
+		discString = "0." + prod.getString("saleDisc");
+	}else if(prod.getString("saleDisc").length()>1 && !prod.getString("saleDisc").equals("100")){
+		if(prod.getString("saleDisc").endsWith("0")){ 
+			discString = prod.getString("saleDisc").substring(0,1);
+		}else{
+			discString = prod.getString("saleDisc").substring(0,2);
+		}
+	}
+	sb.append(i==0?"<div class='item active'>":"<div class='item'>");
+	sb.append("<div style='height:188px; background-color:#ffffff; background-image:url(https://media.taaze.tw/showLargeImage.html?sc="+prod.getString("prodId")+"&height=170&width=120); background-repeat: no-repeat; background-position: center center; cursor:pointer;' data-pid="+prod.getString("prodId")+" onclick='view_todaySpecial(this)''></div>");
+	sb.append("<div class='description' style='padding:0px; height:125px;'>");
+	sb.append("<ul style='list-style:none; margin:0; padding:0;'>");
+	sb.append("<li style='word-wrap:break-word; word-break:break-all;'><a href='/products/"+prod.getString("prodId")+".html' onclick='href_todaySpecial(this, event)'><strong>"+EcPathSettingImp.LimitString(prod.getString("titleMain"),42,"...")+"</strong></a></li>");
+	String priceStr = "優惠價：";
+	if(urlParamters.getK().equals("03")){
+		priceStr = "二手價：";
+	}
+	if(prod.getString("saleDisc").equals("0") || prod.getString("saleDisc").equals("100") ){ 
+		sb.append("<li class='discPrice'>"+priceStr+"<span>"+prod.getString("salePrice")+"</span>元</li>");
+	} else { 
+		sb.append("<li class='discPrice'>"+priceStr+"<span>"+discString+"</span>折<span>"+Math.round(prod.getInt("salePrice"))+"</span>元</li>");
+	}
+	sb.append("<li style='margin-top :10px; display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;'>"+EcPathSettingImp.LimitString(prod.getString("titleNext"),728,"...")+"</li>");
+	sb.append("</ul>");
+	sb.append("</div>");
+	sb.append("</div>");
+}
+sb.append("</div>");
+sb.append("</div>");
+sb.append("</div>");
+if(recommandJsonArray.size() > 1){
+	
+	sb.append("<div class='panel-footer' style='font-size:16px;'>");
+	sb.append("<div style='float:right;'>");
+	sb.append("<div style='float:left;'>");
+	sb.append("<a href='#specialCarousel' role='button' data-slide='prev'>");
+	sb.append("<span class='glyphicon glyphicon-chevron-left' style='color:#8D8D8D;' aria-hidden='true'></span>");
+	sb.append("<span class='sr-only'>Previous</span>");
+	sb.append("</a>");
+	sb.append("</div>");
+	sb.append("<div style='float:left; padding:0 5px; font-weight:bold;'>");
+	sb.append("<span id='specialCarouselCount' style='padding-right:5px;'>1</span>/<span style='padding-left:5px;'>"+ recommandJsonArray.size() +"</span>");
+	sb.append("</div>");
+	sb.append("<div style='float:left;'>");
+	sb.append("<a href='#specialCarousel' role='button' data-slide='next'>");
+	sb.append("<span class='glyphicon glyphicon-chevron-right' style='color:#8D8D8D;' aria-hidden='true'></span>");
+	sb.append("<span class='sr-only'>Next</span>");
+	sb.append("</a>");
+	sb.append("</div>");
+	sb.append("<div style='clear:both;'></div>");
+	sb.append("</div>");
+	sb.append("<div style='clear:both;'></div>");
+	sb.append("</div>");
+}
+
+sb.append("</div>");
+out.print(sb.toString());
+}
+
+%>
+
+<%-- 話題推薦、限時好康、發燒音樂 --%>
 
 <%-- 注目專區 --%>
 <%
