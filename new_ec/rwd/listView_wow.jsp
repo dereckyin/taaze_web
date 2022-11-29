@@ -94,6 +94,8 @@ rmd_title = "發燒音樂";
 }catch(Exception e){
 log.info(e.getMessage());
 }
+
+recommandJsonArray = SystemUtil.parseActJson2Array("0211","12","E","0");
 /*@@話題推薦、限時好康、發燒音樂 */
 
 /*	@@注目專區 	*/
