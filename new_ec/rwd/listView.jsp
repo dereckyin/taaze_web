@@ -189,7 +189,7 @@ if(jsonDataSet.bigBannerData!=null && jsonDataSet.bigBannerData.get("dataList")!
 %>
 <c:choose>  
    <c:when test="${cookie['mobile'].value eq 'on'}">    
-
+   <div id='betaSlider' class='' style='display:none'>
    </c:when>  
    <c:otherwise> 
 <div id='betaSlider' class='hidden-xs hidden-sm hidden-md' style='display:none'>
