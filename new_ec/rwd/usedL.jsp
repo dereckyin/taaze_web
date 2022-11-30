@@ -5465,12 +5465,13 @@ class="button btn-xs btn-primary confirm_sale">確定
 		</div>
 	</div>
 </div>
+<script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
 var app = new Vue({
 	el: "#app",
 	data: {
-		orgFlg: <%=sing_o.orgFlg%>,
-		prodCatId: <%=sing_o.prodCatId%>,
+		orgFlg: '<%=sing_o.orgFlg%>',
+		prodCatId: '<%=sing_o.prodCatId%>',
 	},
   
 	created() {
@@ -5496,7 +5497,7 @@ src="/new_include/js/jquery.ba-hashchange.js"></script>
 src="/new_ec/single/include/js/jquery.qtip.min.js"></script>
 <script type="text/javascript" src="/new_ec/rwd/include/js/include_goods.js?v3"
 async></script>
-<script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </body>
 </html>
 
