@@ -5465,6 +5465,1934 @@ class="button btn-xs btn-primary confirm_sale">確定
 		</div>
 	</div>
 </div>
+
+<script>
+    function CanClose(uid, creator_id, level, creator_level, department){
+        let can_close = false;
+
+        if(department === 'Lighting')
+        {
+            if(level === "MANAGING DIRECTOR" || level === "CHIEF ADVISOR")
+            {
+                if(creator_level === "MANAGING DIRECTOR" || creator_level === "CHIEF ADVISOR")
+                {
+                    can_close = false;
+                }
+                else
+                    can_close = true;
+            }
+                
+
+            if(level === "LIGHTING MANAGER" || level === "OPERATIONS MANAGER" )
+            {
+                if(creator_level === "ASSISTANT LIGHTING MANAGER" || creator_level === "SR. LIGHTING DESIGNER"  || creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "ASSISTANT LIGHTING MANAGER" )
+            {
+                if(creator_level === "SR. LIGHTING DESIGNER"  || creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "SR. LIGHTING DESIGNER" )
+            {
+                if(creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+        }
+
+        if(department === 'Office Systems')
+        {
+            if(level === "MANAGING DIRECTOR" || level === "CHIEF ADVISOR")
+            {
+                if(creator_level === "MANAGING DIRECTOR" || creator_level === "CHIEF ADVISOR")
+                {
+                    can_close = false;
+                }
+                else
+                    can_close = true;
+            }
+
+            if(level === "OFFICE SYSTEMS MANAGER" || level === "OPERATIONS MANAGER" )
+            {
+                if(creator_level === "ASSISTANT OFFICE SYSTEMS MANAGER" || creator_level === "SR. OFFICE SYSTEMS DESIGNER"  || creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "ASSISTANT OFFICE SYSTEMS MANAGER" )
+            {
+                if(creator_level === "SR. OFFICE SYSTEMS DESIGNER"  || creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "SR. OFFICE SYSTEMS DESIGNER" )
+            {
+                if(creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+        }
+
+        if(department === 'AD')
+        {
+            if(level === "MANAGING DIRECTOR" || level === "CHIEF ADVISOR")
+            {
+                if(creator_level === "MANAGING DIRECTOR" || creator_level === "CHIEF ADVISOR")
+                {
+                    can_close = false;
+                }
+                else
+                    can_close = true;
+            }
+
+            if(level === "OPERATIONS MANAGER")
+            {
+                if(creator_level === "ASSISTANT OPERATIONS MANAGER")
+                {
+                    can_close = true;
+                }
+            }
+        }
+
+        if(department === 'DS')
+        {
+            if(level === "MANAGING DIRECTOR" || level === "CHIEF ADVISOR")
+            {
+                if(creator_level === "MANAGING DIRECTOR" || creator_level === "CHIEF ADVISOR")
+                {
+                    can_close = false;
+                }
+                else
+                    can_close = true;
+            }
+
+            if(level === "BRAND MANAGER")
+            {
+                if(creator_level === "ASSISTANT BRAND MANAGER")
+                {
+                    can_close = true;
+                }
+            }
+        }
+
+        if(department === 'LT_T')
+        {
+            if(level === "MANAGING DIRECTOR" || level === "CHIEF ADVISOR")
+            {
+                if(creator_level === "MANAGING DIRECTOR" || creator_level === "CHIEF ADVISOR")
+                {
+                    can_close = false;
+                }
+                else
+                    can_close = true;
+            }
+                
+
+            if(level === "LIGHTING MANAGER" || level === "OPERATIONS MANAGER" )
+            {
+                if(creator_level === "ASSISTANT LIGHTING MANAGER" || creator_level === "SR. LIGHTING DESIGNER"  || creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "ASSISTANT LIGHTING MANAGER" )
+            {
+                if(creator_level === "SR. LIGHTING DESIGNER"  || creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "SR. LIGHTING DESIGNER" )
+            {
+                if(creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+        }
+
+        if(department === 'OS_T')
+        {
+            if(level === "MANAGING DIRECTOR" || level === "CHIEF ADVISOR")
+            {
+                if(creator_level === "MANAGING DIRECTOR" || creator_level === "CHIEF ADVISOR")
+                {
+                    can_close = false;
+                }
+                else
+                    can_close = true;
+            }
+
+            if(level === "OFFICE SYSTEMS MANAGER" || level === "OPERATIONS MANAGER" )
+            {
+                if(creator_level === "ASSISTANT OFFICE SYSTEMS MANAGER" || creator_level === "SR. OFFICE SYSTEMS DESIGNER"  || creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "ASSISTANT OFFICE SYSTEMS MANAGER" )
+            {
+                if(creator_level === "SR. OFFICE SYSTEMS DESIGNER"  || creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "SR. OFFICE SYSTEMS DESIGNER" )
+            {
+                if(creator_level === "JR. ACCOUNT EXECUTIVE" || creator_level === "ACCOUNT EXECUTIVE" || creator_level === "SR. ACCOUNT EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+        }
+
+        if(department === 'SLS')
+        {
+            if(level === "MANAGING DIRECTOR" || level === "CHIEF ADVISOR")
+            {
+                if(creator_level === "MANAGING DIRECTOR" || creator_level === "CHIEF ADVISOR")
+                {
+                    can_close = false;
+                }
+                else
+                    can_close = true;
+            }
+
+            if(level === "SALES MANAGER" || level === "STORE MANAGER")
+            {
+                if(creator_level !== "MANAGING DIRECTOR" && creator_level != "CHIEF ADVISOR")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "ASSISTANT SALES MANAGER" || level === "ASSISTANT STORE MANAGER")
+            {
+                if(creator_level !== "MANAGING DIRECTOR" && 
+                   creator_level != "CHIEF ADVISOR" && 
+                   creator_level != "SALES MANAGER" && 
+                   creator_level != "STORE MANAGER")
+                {
+                    can_close = true;
+                }
+            }
+
+            if(level === "SR. ACCOUNT EXECUTIVE" || level === "ACCOUNT EXECUTIVE" || level === "JR. ACCOUNT EXECUTIVE" || level === "SR. STORE SALES EXECUTIVE" || level === "STORE SALES EXECUTIVE")
+            {
+                if(creator_level !== "MANAGING DIRECTOR" && 
+                   creator_level != "CHIEF ADVISOR" && 
+                   creator_level != "SALES MANAGER" && 
+                   creator_level != "STORE MANAGER" && 
+                   creator_level != "ASSISTANT SALES MANAGER" && 
+                   creator_level != "ASSISTANT STORE MANAGER" && 
+                   creator_level != "SR. ACCOUNT EXECUTIVE" && 
+                   creator_level != "ACCOUNT EXECUTIVE" && 
+                   creator_level != "JR. ACCOUNT EXECUTIVE" && 
+                   creator_level != "SR. STORE SALES EXECUTIVE" && 
+                   creator_level != "STORE SALES EXECUTIVE")
+                {
+                    can_close = true;
+                }
+            }
+        }
+
+        if(department === 'SVC' || level === 'LIGHTING MANAGER' || level === 'OFFICE SYSTEMS MANAGER')  // 20220321 for service leave
+        {
+            if(level === "MANAGING DIRECTOR" || level === "CHIEF ADVISOR")
+            {
+                if(creator_level === "MANAGING DIRECTOR" || creator_level === "CHIEF ADVISOR")
+                {
+                    can_close = false;
+                }
+                else
+                    can_close = true;
+            }
+
+            if(level === "SERVICE MANAGER"  || level === 'LIGHTING MANAGER' || level === 'OFFICE SYSTEMS MANAGER')  // 20220321 for service leave
+            {
+                if(creator_level === "ASSISTANT SERVICE MANAGER")
+                {
+                    can_close = true;
+                }
+            }
+        }
+
+        if(creator_id === uid)
+            can_close = true;
+
+        return can_close;
+    }
+
+    var calendarT1 = document.getElementById('task_calendar');
+    var calendar_task;
+
+    $(document).on("click", "#btn_arrange", function() {
+
+        $('#meeting').show();
+        $('#tasks').hide();
+    });
+
+    $(document).on("click", "#btn_view", function() {
+
+        //刪除當前在日曆上的所有任務資訊
+        calendar_task.removeAllEvents();
+
+        //從資料庫中取出符合當前條件的任務
+
+        let temp = [];
+        //將符合條件的任務加入到日曆中
+        // task status = Pending，則該任務顏色為 gray
+        // task status = Close，則該任務顏色為 green
+        // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+        // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+        var token = localStorage.getItem('token');
+
+        localStorage.getItem('token');
+        var form_Data = new FormData();
+
+        form_Data.append('uid', 1);
+
+        $.ajax({
+            url: "api/project03_other_task_calendar_dep",
+            type: "POST",
+            contentType: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data: form_Data,
+
+            success: function(result) {
+                //console.log(result);
+                var obj = JSON.parse(result);
+                if (obj !== undefined) {
+                    var arrayLength = obj.length;
+                    for (var i = 0; i < arrayLength; i++) {
+                        //console.log(obj[i]);
+
+                        var obj_meeting = {
+                            id: obj[i].id,
+                            title: obj[i].title,
+                            //url: 'https://feliix.myvnc.com/project03_other?sid=' + obj[i].stage_id,
+                            start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                            backgroundColor: obj[i].color,
+                            borderColor: obj[i].color,
+                            extendedProps: {
+                                create_id:obj[i].create_id,
+                                category:obj[i].category,
+                                level:obj[i].level,
+                                task_status:obj[i].task_status,
+                                stage_id:obj[i].stage_id,
+                            },
+                        };
+
+                        temp.push(obj_meeting);
+                    }
+
+                    if(arrayLength > 0)
+                    {
+                        my_level = obj[0].my_l;
+                        my_id = obj[0].my_i;
+                        my_department = obj[0].my_d;
+                    }
+                }
+
+
+                calendar_task.addEventSource(temp);
+
+            }
+        });
+
+        $('#meeting').hide();
+        $('#tasks').show();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        let clickCnt = 0;
+        let my_id = 0;
+        let my_level = 0;
+        let my_department = "";
+        
+        let event_array_task = [];
+        //將Task從資料庫中加入array
+        //需要讀出task的 (1)專案名稱 (2)task名稱 (3) task 的due date (4) task 所在的 project03_other頁面網址 (5) task 在日曆中的顏色 (6) task 的 creator
+        //event的對應格式請參考下方的events範例
+
+        /* 會議加入array的格式如下： */
+        var token = localStorage.getItem('token');
+
+        localStorage.getItem('token');
+        var form_Data = new FormData();
+        form_Data.append('jwt', token);
+        form_Data.append('uid', 1);
+
+        $.ajax({
+            url: "api/project03_other_task_calendar_dep",
+            type: "POST",
+            contentType: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data: form_Data,
+
+            success: function(result) {
+                //console.log(result);
+                var obj = JSON.parse(result);
+                if (obj !== undefined) {
+                    var arrayLength = obj.length;
+                    for (var i = 0; i < arrayLength; i++) {
+                        //console.log(obj[i]);
+
+                        var obj_meeting = {
+                            id: obj[i].id,
+                            title: obj[i].title,
+                            //url: 'https://feliix.myvnc.com/project03_other?sid=' + obj[i].stage_id,
+                            start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                            backgroundColor: obj[i].color,
+                            borderColor: obj[i].color,
+                            extendedProps: {
+                                create_id:obj[i].create_id,
+                                category:obj[i].category,
+                                level:obj[i].level,
+                                task_status:obj[i].task_status,
+                                stage_id:obj[i].stage_id,
+                            },
+                        };
+
+                        event_array_task.push(obj_meeting);
+                    }
+
+                    if(arrayLength > 0)
+                    {
+                        my_level = obj[0].my_l;
+                        my_id = obj[0].my_i;
+                        my_department = obj[0].my_d;
+                    }
+                }
+
+                calendar_task = new FullCalendar.Calendar(calendarT1, {
+
+                    plugins: [ 'dayGrid' ],
+                    timeZone: 'UTC',
+                    defaultView: 'dayGridMonth',
+
+                    contentHeight: 'auto',
+
+                    titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+                        month: '2-digit',
+                        year: 'numeric',
+                        day: '2-digit'
+                    },
+
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'individual,admin,design,lighting,furniture,sls,svc,tw,overall',
+                    },
+
+                    //Individual按鈕：只顯示出Creator、Assignee或Collaborator是當前使用者的task在日曆上
+                    //Lighting按鈕：只顯示出專案的category為Lighting的task在日曆上
+                    //Office Systems按鈕：只顯示出專案的category為Office Systems的task在日曆上
+                    //all按鈕：顯示出所有的task在日曆上
+                    customButtons: {
+                        individual: {
+                            text: 'Individual',
+                            click: function() {
+
+                                //刪除當前在日曆上的所有任務資訊
+                                calendar_task.removeAllEvents();
+
+                                //從資料庫中取出符合當前條件的任務
+
+                                let temp = [];
+                                //將符合條件的任務加入到日曆中
+                                // task status = Pending，則該任務顏色為 gray
+                                // task status = Close，則該任務顏色為 green
+                                // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+                                // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+                                var token = localStorage.getItem('token');
+
+                                localStorage.getItem('token');
+                                var form_Data = new FormData();
+
+                                form_Data.append('uid', 1);
+
+                                $.ajax({
+                                    url: "api/project03_other_task_calendar_dep",
+                                    type: "POST",
+                                    contentType: 'multipart/form-data',
+                                    processData: false,
+                                    contentType: false,
+                                    data: form_Data,
+
+                                    success: function(result) {
+                                        //console.log(result);
+                                        var obj = JSON.parse(result);
+                                        if (obj !== undefined) {
+                                            var arrayLength = obj.length;
+                                            for (var i = 0; i < arrayLength; i++) {
+                                                //console.log(obj[i]);
+
+                                                var obj_meeting = {
+                                                    id: obj[i].id,
+                                                    title: obj[i].title,
+                                                    //url: 'https://feliix.myvnc.com/project03_other?sid=' + obj[i].stage_id,
+                                                    start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                                                    backgroundColor: obj[i].color,
+                                                    borderColor: obj[i].color,
+                                                    extendedProps: {
+                                                        create_id:obj[i].create_id,
+                                                        category:obj[i].category,
+                                                        level:obj[i].level,
+                                                        task_status:obj[i].task_status,
+                                                        stage_id:obj[i].stage_id,
+                                                    },
+                                                };
+
+                                                temp.push(obj_meeting);
+                                            }
+
+                                            if(arrayLength > 0)
+                                            {
+                                                my_level = obj[0].my_l;
+                                                my_id = obj[0].my_i;
+                                                my_department = obj[0].my_d;
+                                            }
+                                        }
+                                        event_array_task = temp;
+
+                                        calendar_task.addEventSource(temp);
+
+                                    }
+                                });
+                            }
+                        },
+
+                        admin: {
+                            text: 'AD',
+                            click: function() {
+
+                                //刪除當前在日曆上的所有任務資訊
+                                calendar_task.removeAllEvents();
+
+                                //從資料庫中取出符合當前條件的任務
+
+                                let temp = [];
+                                //將符合條件的任務加入到日曆中
+                                // task status = Pending，則該任務顏色為 gray
+                                // task status = Close，則該任務顏色為 green
+                                // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+                                // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+                                var token = localStorage.getItem('token');
+
+                                localStorage.getItem('token');
+                                var form_Data = new FormData();
+
+                                form_Data.append('category', 'ad');
+
+                                $.ajax({
+                                    url: "api/project03_other_task_calendar_dep",
+                                    type: "POST",
+                                    contentType: 'multipart/form-data',
+                                    processData: false,
+                                    contentType: false,
+                                    data: form_Data,
+
+                                    success: function(result) {
+                                        //console.log(result);
+                                        var obj = JSON.parse(result);
+                                        if (obj !== undefined) {
+                                            var arrayLength = obj.length;
+                                            for (var i = 0; i < arrayLength; i++) {
+                                                //console.log(obj[i]);
+
+                                                var obj_meeting = {
+                                                    id: obj[i].id,
+                                                    title: obj[i].title,
+                                                    //url: 'https://feliix.myvnc.com/task_management_AD?sid=' + obj[i].stage_id,
+                                                    start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                                                    backgroundColor: obj[i].color,
+                                                    borderColor: obj[i].color,
+                                                    extendedProps: {
+                                                        create_id:obj[i].create_id,
+                                                        category:obj[i].category,
+                                                        level:obj[i].level,
+                                                        task_status:obj[i].task_status,
+                                                        stage_id:obj[i].stage_id,
+                                                    },
+                                                };
+
+                                                temp.push(obj_meeting);
+                                            }
+
+                                            if(arrayLength > 0)
+                                            {
+                                                my_level = obj[0].my_l;
+                                                my_id = obj[0].my_i;
+                                                my_department = obj[0].my_d;
+                                            }
+                                        }
+
+                                        event_array_task = temp;
+                                        calendar_task.addEventSource(temp);
+
+                                    }
+                                });
+                            }
+                        },
+
+                        design: {
+                            text: 'DS',
+                            click: function() {
+
+                                //刪除當前在日曆上的所有任務資訊
+                                calendar_task.removeAllEvents();
+
+                                //從資料庫中取出符合當前條件的任務
+
+                                let temp = [];
+                                //將符合條件的任務加入到日曆中
+                                // task status = Pending，則該任務顏色為 gray
+                                // task status = Close，則該任務顏色為 green
+                                // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+                                // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+                                var token = localStorage.getItem('token');
+
+                                localStorage.getItem('token');
+                                var form_Data = new FormData();
+
+                                form_Data.append('category', 'ds');
+
+                                $.ajax({
+                                    url: "api/project03_other_task_calendar_dep",
+                                    type: "POST",
+                                    contentType: 'multipart/form-data',
+                                    processData: false,
+                                    contentType: false,
+                                    data: form_Data,
+
+                                    success: function(result) {
+                                        //console.log(result);
+                                        var obj = JSON.parse(result);
+                                        if (obj !== undefined) {
+                                            var arrayLength = obj.length;
+                                            for (var i = 0; i < arrayLength; i++) {
+                                                //console.log(obj[i]);
+
+                                                var obj_meeting = {
+                                                    id: obj[i].id,
+                                                    title: obj[i].title,
+                                                    //url: 'https://feliix.myvnc.com/task_management_DS?sid=' + obj[i].stage_id,
+                                                    start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                                                    backgroundColor: obj[i].color,
+                                                    borderColor: obj[i].color,
+                                                    extendedProps: {
+                                                        create_id:obj[i].create_id,
+                                                        category:obj[i].category,
+                                                        level:obj[i].level,
+                                                        task_status:obj[i].task_status,
+                                                        stage_id:obj[i].stage_id,
+                                                    },
+                                                };
+
+                                                temp.push(obj_meeting);
+                                            }
+
+                                            if(arrayLength > 0)
+                                            {
+                                                my_level = obj[0].my_l;
+                                                my_id = obj[0].my_i;
+                                                my_department = obj[0].my_d;
+                                            }
+                                        }
+
+                                        event_array_task = temp;
+                                        calendar_task.addEventSource(temp);
+
+                                    }
+                                });
+                            }
+                        },
+
+                        lighting: {
+                            text: 'LT',
+                            click: function() {
+
+                                //刪除當前在日曆上的所有任務資訊
+                                calendar_task.removeAllEvents();
+
+                                //從資料庫中取出符合當前條件的任務
+
+                                let temp = [];
+                                //將符合條件的任務加入到日曆中
+                                // task status = Pending，則該任務顏色為 gray
+                                // task status = Close，則該任務顏色為 green
+                                // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+                                // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+                                var token = localStorage.getItem('token');
+
+                                localStorage.getItem('token');
+                                var form_Data = new FormData();
+
+                                form_Data.append('category', 'lt');
+
+                                $.ajax({
+                                    url: "api/project03_other_task_calendar_dep",
+                                    type: "POST",
+                                    contentType: 'multipart/form-data',
+                                    processData: false,
+                                    contentType: false,
+                                    data: form_Data,
+
+                                    success: function(result) {
+                                        //console.log(result);
+                                        var obj = JSON.parse(result);
+                                        if (obj !== undefined) {
+                                            var arrayLength = obj.length;
+                                            for (var i = 0; i < arrayLength; i++) {
+                                                //console.log(obj[i]);
+
+                                                var obj_meeting = {
+                                                    id: obj[i].id,
+                                                    title: obj[i].title,
+                                                    //url: 'https://feliix.myvnc.com/project03_other?sid=' + obj[i].stage_id,
+                                                    start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                                                    backgroundColor: obj[i].color,
+                                                    borderColor: obj[i].color,
+                                                    extendedProps: {
+                                                        create_id:obj[i].create_id,
+                                                        category:obj[i].category,
+                                                        level:obj[i].level,
+                                                        task_status:obj[i].task_status,
+                                                        stage_id:obj[i].stage_id,
+                                                    },
+                                                };
+
+                                                temp.push(obj_meeting);
+                                            }
+
+                                            if(arrayLength > 0)
+                                            {
+                                                my_level = obj[0].my_l;
+                                                my_id = obj[0].my_i;
+                                                my_department = obj[0].my_d;
+                                            }
+                                        }
+
+                                        event_array_task = temp;
+                                        calendar_task.addEventSource(temp);
+
+                                    }
+                                });
+                            }
+                        },
+
+                        furniture: {
+                            text: 'OS',
+                            click: function() {
+
+                                //刪除當前在日曆上的所有任務資訊
+                                calendar_task.removeAllEvents();
+
+                                //從資料庫中取出符合當前條件的任務
+
+                                let temp = [];
+                                //將符合條件的任務加入到日曆中
+                                // task status = Pending，則該任務顏色為 gray
+                                // task status = Close，則該任務顏色為 green
+                                // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+                                // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+                                var token = localStorage.getItem('token');
+
+                                localStorage.getItem('token');
+                                var form_Data = new FormData();
+
+                                form_Data.append('category', 'os');
+
+                                $.ajax({
+                                    url: "api/project03_other_task_calendar_dep",
+                                    type: "POST",
+                                    contentType: 'multipart/form-data',
+                                    processData: false,
+                                    contentType: false,
+                                    data: form_Data,
+
+                                    success: function(result) {
+                                        //console.log(result);
+                                        var obj = JSON.parse(result);
+                                        if (obj !== undefined) {
+                                            var arrayLength = obj.length;
+                                            for (var i = 0; i < arrayLength; i++) {
+                                                //console.log(obj[i]);
+
+                                                var obj_meeting = {
+                                                    id: obj[i].id,
+                                                    title: obj[i].title,
+                                                    //url: 'https://feliix.myvnc.com/project03_other?sid=' + obj[i].stage_id,
+                                                    start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                                                    backgroundColor: obj[i].color,
+                                                    borderColor: obj[i].color,
+                                                    extendedProps: {
+                                                        create_id:obj[i].create_id,
+                                                        category:obj[i].category,
+                                                        level:obj[i].level,
+                                                        task_status:obj[i].task_status,
+                                                        stage_id:obj[i].stage_id,
+                                                    },
+                                                };
+
+                                                temp.push(obj_meeting);
+                                            }
+
+                                            if(arrayLength > 0)
+                                            {
+                                                my_level = obj[0].my_l;
+                                                my_id = obj[0].my_i;
+                                                my_department = obj[0].my_d;
+                                            }
+                                        }
+
+                                        event_array_task = temp;
+                                        calendar_task.addEventSource(temp);
+
+                                    }
+                                });
+                            }
+                        },
+
+                        sls: {
+                            text: 'SLS',
+                            click: function() {
+
+                                //刪除當前在日曆上的所有任務資訊
+                                calendar_task.removeAllEvents();
+
+                                //從資料庫中取出符合當前條件的任務
+
+                                let temp = [];
+                                //將符合條件的任務加入到日曆中
+                                // task status = Pending，則該任務顏色為 gray
+                                // task status = Close，則該任務顏色為 green
+                                // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+                                // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+                                var token = localStorage.getItem('token');
+
+                                localStorage.getItem('token');
+                                var form_Data = new FormData();
+
+                                form_Data.append('category', 'sls');
+
+                                $.ajax({
+                                    url: "api/project03_other_task_calendar_dep",
+                                    type: "POST",
+                                    contentType: 'multipart/form-data',
+                                    processData: false,
+                                    contentType: false,
+                                    data: form_Data,
+
+                                    success: function(result) {
+                                        //console.log(result);
+                                        var obj = JSON.parse(result);
+                                        if (obj !== undefined) {
+                                            var arrayLength = obj.length;
+                                            for (var i = 0; i < arrayLength; i++) {
+                                                //console.log(obj[i]);
+
+                                                var obj_meeting = {
+                                                    id: obj[i].id,
+                                                    title: obj[i].title,
+                                                    //url: 'https://feliix.myvnc.com/project03_other?sid=' + obj[i].stage_id,
+                                                    start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                                                    backgroundColor: obj[i].color,
+                                                    borderColor: obj[i].color,
+                                                    extendedProps: {
+                                                        create_id:obj[i].create_id,
+                                                        category:obj[i].category,
+                                                        level:obj[i].level,
+                                                        task_status:obj[i].task_status,
+                                                        stage_id:obj[i].stage_id,
+                                                    },
+                                                };
+
+                                                temp.push(obj_meeting);
+                                            }
+
+                                            if(arrayLength > 0)
+                                            {
+                                                my_level = obj[0].my_l;
+                                                my_id = obj[0].my_i;
+                                                my_department = obj[0].my_d;
+                                            }
+                                        }
+
+                                        event_array_task = temp;
+                                        calendar_task.addEventSource(temp);
+
+                                    }
+                                });
+                            }
+                        },
+
+                        svc: {
+                            text: 'SVC',
+                            click: function() {
+
+                                //刪除當前在日曆上的所有任務資訊
+                                calendar_task.removeAllEvents();
+
+                                //從資料庫中取出符合當前條件的任務
+
+                                let temp = [];
+                                //將符合條件的任務加入到日曆中
+                                // task status = Pending，則該任務顏色為 gray
+                                // task status = Close，則該任務顏色為 green
+                                // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+                                // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+                                var token = localStorage.getItem('token');
+
+                                localStorage.getItem('token');
+                                var form_Data = new FormData();
+
+                                form_Data.append('category', 'svc');
+
+                                $.ajax({
+                                    url: "api/project03_other_task_calendar_dep",
+                                    type: "POST",
+                                    contentType: 'multipart/form-data',
+                                    processData: false,
+                                    contentType: false,
+                                    data: form_Data,
+
+                                    success: function(result) {
+                                        //console.log(result);
+                                        var obj = JSON.parse(result);
+                                        if (obj !== undefined) {
+                                            var arrayLength = obj.length;
+                                            for (var i = 0; i < arrayLength; i++) {
+                                                //console.log(obj[i]);
+
+                                                var obj_meeting = {
+                                                    id: obj[i].id,
+                                                    title: obj[i].title,
+                                                    //url: 'https://feliix.myvnc.com/project03_other?sid=' + obj[i].stage_id,
+                                                    start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                                                    backgroundColor: obj[i].color,
+                                                    borderColor: obj[i].color,
+                                                    extendedProps: {
+                                                        create_id:obj[i].create_id,
+                                                        category:obj[i].category,
+                                                        level:obj[i].level,
+                                                        task_status:obj[i].task_status,
+                                                        stage_id:obj[i].stage_id,
+                                                    },
+                                                };
+
+                                                temp.push(obj_meeting);
+                                            }
+
+                                            if(arrayLength > 0)
+                                            {
+                                                my_level = obj[0].my_l;
+                                                my_id = obj[0].my_i;
+                                                my_department = obj[0].my_d;
+                                            }
+                                        }
+
+                                        event_array_task = temp;
+                                        calendar_task.addEventSource(temp);
+
+                                    }
+                                });
+                            }
+                        },
+
+                        tw: {
+                            text: 'TW',
+                            click: function() {
+
+                                //刪除當前在日曆上的所有任務資訊
+                                calendar_task.removeAllEvents();
+
+                                //從資料庫中取出符合當前條件的任務
+
+                                let temp = [];
+                                //將符合條件的任務加入到日曆中
+                                // task status = Pending，則該任務顏色為 gray
+                                // task status = Close，則該任務顏色為 green
+                                // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+                                // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+                                var token = localStorage.getItem('token');
+
+                                localStorage.getItem('token');
+                                var form_Data = new FormData();
+
+                                form_Data.append('category', 'tw');
+
+                                $.ajax({
+                                    url: "api/project03_other_task_calendar_dep",
+                                    type: "POST",
+                                    contentType: 'multipart/form-data',
+                                    processData: false,
+                                    contentType: false,
+                                    data: form_Data,
+
+                                    success: function(result) {
+                                        //console.log(result);
+                                        var obj = JSON.parse(result);
+                                        if (obj !== undefined) {
+                                            var arrayLength = obj.length;
+                                            for (var i = 0; i < arrayLength; i++) {
+                                                //console.log(obj[i]);
+
+                                                var obj_meeting = {
+                                                    id: obj[i].id,
+                                                    title: obj[i].title,
+                                                    //url: 'https://feliix.myvnc.com/project03_other?sid=' + obj[i].stage_id,
+                                                    start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                                                    backgroundColor: obj[i].color,
+                                                    borderColor: obj[i].color,
+                                                    extendedProps: {
+                                                        create_id:obj[i].create_id,
+                                                        category:obj[i].category,
+                                                        level:obj[i].level,
+                                                        task_status:obj[i].task_status,
+                                                        stage_id:obj[i].stage_id,
+                                                    },
+                                                };
+
+                                                temp.push(obj_meeting);
+                                            }
+
+                                            if(arrayLength > 0)
+                                            {
+                                                my_level = obj[0].my_l;
+                                                my_id = obj[0].my_i;
+                                                my_department = obj[0].my_d;
+                                            }
+                                        }
+
+                                        event_array_task = temp;
+                                        calendar_task.addEventSource(temp);
+
+                                    }
+                                });
+                            }
+                        },
+
+                        overall: {
+                            text: 'All',
+                            click: function() {
+
+                                //刪除當前在日曆上的所有任務資訊
+                                calendar_task.removeAllEvents();
+
+                                //從資料庫中取出符合當前條件的任務
+
+                                let temp = [];
+                                //將符合條件的任務加入到日曆中
+                                // task status = Pending，則該任務顏色為 gray
+                                // task status = Close，則該任務顏色為 green
+                                // task status = Ongoing 且 開啟頁面的時間 <= 該任務的due date ，則該任務顏色為 blue
+                                // task status = Ongoing 且 開啟頁面的時間 > 該任務的due date ，則該任務顏色為 red
+                                var token = localStorage.getItem('token');
+
+                                localStorage.getItem('token');
+                                var form_Data = new FormData();
+
+
+                                $.ajax({
+                                    url: "api/project03_other_task_calendar_dep",
+                                    type: "POST",
+                                    contentType: 'multipart/form-data',
+                                    processData: false,
+                                    contentType: false,
+                                    data: form_Data,
+
+                                    success: function(result) {
+                                        //console.log(result);
+                                        var obj = JSON.parse(result);
+                                        if (obj !== undefined) {
+                                            var arrayLength = obj.length;
+                                            for (var i = 0; i < arrayLength; i++) {
+                                                //console.log(obj[i]);
+
+                                                var obj_meeting = {
+                                                            id: obj[i].id,
+                                                            title: obj[i].title,
+                                                            //url: 'https://feliix.myvnc.com/project03_other?sid=' + obj[i].stage_id,
+                                                            start: moment(obj[i].due_date).format('YYYY-MM-DD'),
+                                                            backgroundColor: obj[i].color,
+                                                            borderColor: obj[i].color,
+                                                            extendedProps: {
+                                                                create_id:obj[i].create_id,
+                                                                category:obj[i].category,
+                                                                level:obj[i].level,
+                                                                task_status:obj[i].task_status,
+                                                                stage_id:obj[i].stage_id,
+                                                            },
+                                                        };
+
+                                                temp.push(obj_meeting);
+                                            }
+
+                                            if(arrayLength > 0)
+                                            {
+                                                my_level = obj[0].my_l;
+                                                my_id = obj[0].my_i;
+                                                my_department = obj[0].my_d;
+                                            }
+                                        }
+
+                                        event_array_task = temp;
+                                        calendar_task.addEventSource(temp);
+
+                                    }
+                                });
+                            }
+                        }
+                    },
+
+
+                    events: event_array_task,
+
+                            eventRender: function (info) {
+
+                                //wired listener to handle click counts instead of event type
+                                info.el.addEventListener('click', function() {
+                                        clickCnt++;         
+                                    if (clickCnt === 1) {
+                                        oneClickTimer = setTimeout(function() {
+                                            clickCnt = 0;
+                                            if(info.event.extendedProps.category == 'AD')
+                                                window.open('https://feliix.myvnc.com/task_management_AD?sid=' + info.event.id, "_blank");
+                                            else if(info.event.extendedProps.category == 'DS')
+                                                window.open('https://feliix.myvnc.com/task_management_DS?sid=' + info.event.id, "_blank");
+                                            else if(info.event.extendedProps.category == 'LT_T')
+                                                window.open('https://feliix.myvnc.com/task_management_LT?sid=' + info.event.id, "_blank");
+                                            else if(info.event.extendedProps.category == 'OS_T')
+                                                window.open('https://feliix.myvnc.com/task_management_OS?sid=' + info.event.id, "_blank");
+                                            else if(info.event.extendedProps.category == 'SLS')
+                                                window.open('https://feliix.myvnc.com/task_management_SLS?sid=' + info.event.id, "_blank");
+                                            else if(info.event.extendedProps.category == 'SVC')
+                                                window.open('https://feliix.myvnc.com/task_management_SVC?sid=' + info.event.id, "_blank");
+                                            else
+                                                window.open('https://feliix.myvnc.com/project03_other?sid=' + info.event.extendedProps.stage_id, "_blank");
+                                        }, 400);
+                                        
+                                    } else if (clickCnt === 2) {
+                                        clearTimeout(oneClickTimer);
+                                        clickCnt = 0;
+                                        
+                                        if(info.event.extendedProps.task_status != 2)
+                                        {
+                                            if(CanClose(my_id, info.event.extendedProps.create_id, my_level, info.event.extendedProps.level, info.event.extendedProps.category))
+                                            {
+                                                var token = localStorage.getItem('token');
+
+                                                localStorage.getItem('token');
+                                                var form_Data = new FormData();
+                                                form_Data.append('id', info.event.id);
+                                                form_Data.append('category', info.event.extendedProps.category);
+
+                                                let _info = info;
+
+                                                $.ajax({
+                                                    url: "api/project03_other_task_calendar_close_task",
+                                                    type: "POST",
+                                                    contentType: 'multipart/form-data',
+                                                    processData: false,
+                                                    contentType: false,
+                                                    data: form_Data,
+
+                                                    success: function(result) {
+                                                        //console.log(result);
+                                                    
+                                                        for (let i=0; i<event_array_task.length; i++) {
+                                                            if(event_array_task[i].id === _info.event.id && event_array_task[i].extendedProps.category === _info.event.extendedProps.category)
+                                                            {
+                                                                event_array_task[i].backgroundColor = 'green';
+                                                                event_array_task[i].borderColor = 'green';
+                                                                event_array_task[i].extendedProps.task_status = 2;
+
+                                                                calendar_task.removeAllEvents();
+                                                                calendar_task.addEventSource(event_array_task);
+                                                            }
+                                                        }
+                                                        
+                                                    }
+                                                });
+                                            }
+                                            else
+                                                console.log(info.event.extendedProps);
+                                        }
+                                    
+                                    }          
+                                });
+                            },
+
+                            
+
+                            editable: false,
+                });
+
+                calendar_task.render();
+                $("#tasks").hide();
+                $("#tasks").css({"visibility": "visible"});
+            },
+        });
+
+
+
+        let calendarEl = document.getElementById('calendar');
+
+        //##從資料庫中撈出已存在的會議，以便後續初始化到日曆中
+        //SELECT ID, meeting_data FROM table_name;
+
+        /* 會議加入array的格式如下：
+        var event = {
+          id: 資料庫中的會議 id,
+          title: 資料庫中的 meeting_data.title,
+          start: 資料庫中的 meeting_data.start,
+          end: 資料庫中的 meeting_data.end,
+          description: 資料庫中的 meeting_data
+        };
+        event_array.push(event);
+       */
+
+        /*
+        var event = 
+            {
+      title: '昨天的活動',
+      start: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+      end: moment().add(14, 'days').format('YYYY-MM-DD'),
+      color: 'lightBlue'
+    }; */
+
+        let _app1 = app1;
+
+        let event_array = [];
+        /* 會議加入array的格式如下： */
+        var token = localStorage.getItem('token');
+
+        localStorage.getItem('token');
+        var form_Data = new FormData();
+        form_Data.append('jwt', token);
+        form_Data.append('action', 1);
+
+        $.ajax({
+            url: "api/work_calender_meetings",
+            type: "POST",
+            contentType: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data: form_Data,
+
+            success: function(result) {
+                //console.log(result);
+                var obj = JSON.parse(result);
+                if (obj !== undefined) {
+                    var arrayLength = obj.length;
+                    for (var i = 0; i < arrayLength; i++) {
+                        //console.log(obj[i]);
+
+                        var title = "";
+                        if (obj[i].project_name.trim() === '')
+                            title = obj[i].subject.trim();
+                        else
+                            title = '[ ' + obj[i].project_name.trim() + ' ] ' + obj[i].subject.trim();
+
+                        var attach = "";
+                        for (var j = 0; j < obj[i].attach.length; j++) {
+                            attach += obj[i].attach[j].filename + ",";
+                        }
+
+                        if (attach !== "")
+                            attach = attach.slice(0, -1);
+
+                        var obj_description = {
+                            title: obj[i].subject.trim(),
+                            project_name: obj[i].project_name.trim(),
+                            attendee: obj[i].attendee.trim(),
+                            items: obj[i].items,
+                            attach: attach,
+                            start: moment(obj[i].start_time).format('YYYY-MM-DD') + 'T' + moment(obj[i].start_time).format('HH:mm'),
+                            end: moment(obj[i].end_time).format('YYYY-MM-DD') + 'T' + moment(obj[i].end_time).format('HH:mm'),
+                            content: obj[i].message.trim(),
+                            creator: obj[i].created_by.trim(),
+                        };
+
+                        var obj_meeting = {
+                            id: obj[i].id,
+                            title: title,
+                            start: moment(obj[i].start_time).format('YYYY-MM-DD') + 'T' + moment(obj[i].start_time).format('HH:mm'),
+                            end: moment(obj[i].end_time).format('YYYY-MM-DD') + 'T' + moment(obj[i].end_time).format('HH:mm'),
+                            description: obj_description,
+                        };
+
+                        event_array.push(obj_meeting);
+                    }
+                }
+
+                //初始化 fullcalendar 物件
+                calendar = new FullCalendar.Calendar(calendarEl, {
+
+                    plugins: [ 'dayGrid' ],
+                    timeZone: 'UTC',
+                    defaultView: 'dayGridMonth',
+                    
+                    contentHeight: 'auto',
+
+                    titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+                        month: '2-digit',
+                        year: 'numeric',
+                        day: '2-digit'
+                    },
+
+                    header: {
+                        left: 'prev,next addEventButton',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek'
+                    },
+
+                    //Add Meeting被點擊的方法
+                    customButtons: {
+                        addEventButton: {
+                            text: 'Add Meeting',
+                            click: function() {
+                                $('#addmeeting-form').trigger("reset");
+                                $('#editmeeting-form').hide();
+                                $('#addmeeting-form').show();
+
+                                _app1.old_attendee = [];
+                                _app1.attendee = [];
+                                _app1.attachments = [];
+
+                                $('#newProject').val(app.project_name);
+                                $('#fileload').val('');
+                                $('#sc_product_files').empty();
+                                $('#newProject').attr("placeholder", app.project_name);
+
+                            }
+                        }
+                    },
+
+
+                    //日曆上meeting被點擊的方法
+                    eventClick: function(info) {
+                        $('#editmeeting-form').trigger("reset");
+                        $('#addmeeting-form').hide();
+                        $('#editmeeting-form > fieldset').prop('disabled', true);
+                        $("#oldAttendee").addClass("select_disabled");
+                        $('#sc_product_files').empty();
+                        _app1.attachments = [];
+
+                        //取得點擊的meeting資訊並載入表單
+                        eventObj = info.event;
+                        var obj_meeting = eventObj.extendedProps.description;
+
+                        if (obj_meeting === undefined)
+                            return;
+
+                        $("#oldSubject").val(obj_meeting.title);
+                        $("#oldProject").val(obj_meeting.project_name);
+                        $('#oldProject').attr("placeholder", obj_meeting.project_name);
+                        $("#oldCreator").val(info.event.extendedProps.description.creator);
+                        $("#oldAttendee").val(info.event.extendedProps.description.items);
+                        _app1.old_attendee = info.event.extendedProps.description.items;
+                        $("#oldDate").val(obj_meeting.start.split("T")[0]);
+                        $("#oldStartTime").val(obj_meeting.start.split("T")[1]);
+                        $("#oldEndTime").val(obj_meeting.end.split("T")[1]);
+                        $("#oldContent").val(obj_meeting.content);
+
+                        var container = $("#sc_product_files_old");
+                        container.empty();
+
+                        if (obj_meeting.attach !== "") {
+                            var files = obj_meeting.attach.split(",");
+                            files.forEach((element) => {
+                                var elm = '<div class="file-element">' +
+                                    '<input type="checkbox" id="' + element + '" name="file_elements_old" value="' + element + '" checked disabled>' +
+                                    '<label for="' + element + '">' +
+                                    '<a href="https://storage.cloud.google.com/feliiximg/' + element + '" target="_blank">' + element + '</a>' +
+                                    '</label>' +
+                                    '</div>';
+
+                                $(elm).appendTo(container);
+                            });
+                        }
+
+                        //設定出現和隱藏按鈕，和出現視窗
+                        $("#btn_close").show();
+                        $("#btn_delete").show();
+                        $("#btn_edit").show();
+                        $("#btn_cancel").hide();
+                        $("#btn_save").hide();
+                        $("#editmeeting-form").show();
+
+                    },
+
+                    editable: false,
+                    events: event_array
+
+                });
+
+                calendar.render();
+                $("#meeting").hide();
+                $("#meeting").css({"visibility": "visible"});
+                
+
+            },
+
+            // show error message to user
+            error: function(xhr, resp, text) {
+
+            }
+        });
+
+    });
+
+
+    $(document).on("click", "#btn_edit", function() {
+
+        if ($("#oldCreator")[0].value !== "<?php echo $GLOBALS['username'] ?>") {
+            app1.warning('Only meeting creator can execute this action!');
+            return;
+        }
+
+        //表單變成可以修改
+        $('#editmeeting-form > fieldset').prop('disabled', false);
+        $("#oldCreator").prop('disabled', true);
+
+        $("#oldAttendee").removeClass("select_disabled");
+
+        //$("oldAttendee").prop('disabled', false);
+        var file_elements = document.getElementsByName("file_elements_old");
+
+        var item = 0;
+        for (let i = 0; i < file_elements.length; i++) {
+            file_elements[i].disabled = false;
+
+        }
+
+
+        //按鈕也會改變
+        $("#btn_close").hide();
+        $("#btn_delete").hide();
+        $("#btn_edit").hide();
+        $("#btn_cancel").show();
+        $("#btn_save").show();
+
+    });
+
+
+    $(document).on("click", "#btn_cancel", function() {
+
+        //表單變成不可修改
+        $('#editmeeting-form > fieldset').prop('disabled', true);
+        // $("oldAttendee").prop('disabled', true);
+        $("#oldAttendee").addClass("select_disabled");
+
+        //修改到一半的內容也會放棄並載入原先未修改的內容
+        var obj_meeting = eventObj.extendedProps.description;
+        $("#oldSubject").val(obj_meeting.title);
+        $("#oldCreator").val(obj_meeting.creator);
+        $("#oldProject").val(_app.project_name);
+        $("#oldAttendee").val(obj_meeting.attendee);
+        $("#oldDate").val(obj_meeting.start.split("T")[0]);
+        $("#oldStartTime").val(obj_meeting.start.split("T")[1]);
+        $("#oldEndTime").val(obj_meeting.end.split("T")[1]);
+        $("#oldContent").val(obj_meeting.content);
+        //按鈕也會改變
+        $("#btn_cancel").hide();
+        $("#btn_save").hide();
+        $("#btn_close").show();
+        $("#btn_delete").show();
+        $("#btn_edit").show();
+
+    });
+
+    $(document).on("click", "#btn_save", function() {
+
+        //##任一欄位如果為空則提示欄位不得為空
+        //結束時間須晚於開始時間
+        let start = moment($("#oldDate").val() + " " + $("#oldStartTime").val(), "YYYY/MM/DD HH:mm");
+        let end = moment($("#oldDate").val() + " " + $("#oldEndTime").val(), "YYYY/MM/DD HH:mm");
+
+        var isafter = moment(end).isAfter(start);
+
+        if (isafter !== true) {
+            app1.warning('Start time must less than End time!');
+            return;
+        }
+
+        // if 所有欄位都不果為空  且 結束時間須晚於開始時間，則做以下動作
+        if ($("#oldDate").val() === '') {
+            app1.warning('Please select Date!');
+            return;
+        }
+
+        if ($("#oldEndTime").val() === '') {
+            app1.warning('Please select End time!');
+            return;
+        }
+
+        if ($("#oldStartTime").val() === '') {
+            app1.warning('Please select Start time!');
+            return;
+        }
+
+        if ($("#oldSubject").val() === '') {
+            app1.warning('Please enter subject!');
+            return;
+        }
+
+        var names = app1.old_attendee.map(function(item) {
+            return item['username'];
+        });
+
+        if (names.toString().trim() === '') {
+            app1.warning('Please select attendee!');
+            return;
+        }
+
+        if ($("#oldContent").val().trim() === '') {
+            app1.warning('Please enter content!');
+            return;
+        }
+
+
+        //表單變成不可修改
+        $('#editmeeting-form > fieldset').prop('disabled', true);
+        //$("oldAttendee").prop('disabled', true);
+        $("#oldAttendee").addClass("select_disabled");
+
+
+        //##利用 id變數到資料庫中update裡面舊的obj_meeting
+        // UPDATE table_name  SET meeting_data = obj_meeting WHERE ID = id;
+        var id = eventObj.id;
+
+        var file_elements = document.getElementsByName("file_elements_old");
+
+        var attach = "";
+        var remove = "";
+
+        token = localStorage.getItem('token');
+        var form_Data = new FormData();
+
+        form_Data.append('action', 3);
+
+        form_Data.append('id', id);
+        form_Data.append('jwt', token);
+        form_Data.append('subject', $("#oldSubject").val().trim());
+        form_Data.append('project_name', app.project_name);
+        form_Data.append('message', $("#oldContent").val());
+        form_Data.append('attendee', names.toString());
+        form_Data.append('start_time', $("#oldDate").val() + "T" + $("#oldStartTime").val());
+        form_Data.append('end_time', $("#oldDate").val() + "T" + $("#oldEndTime").val());
+        form_Data.append('is_enabled', true);
+
+        var item = 0;
+        for (let i = 0; i < file_elements.length; i++) {
+            if (file_elements[i].checked) {
+                attach += file_elements[i].value + ",";
+                for (var j = 0; j < app1.attachments.length; j++) {
+                    let file = app1.attachments[j];
+                    if (file.name === file_elements[i].value) {
+                        form_Data.append('files[' + item++ + ']', file);
+                        break;
+                    }
+                }
+            } else {
+                remove += "'" + file_elements[i].value + "',";
+            }
+        }
+
+        if (attach !== "")
+            attach = attach.slice(0, -1);
+
+        if (remove !== "")
+            remove = remove.slice(0, -1);
+
+        form_Data.append('remove', remove);
+
+        var _app1 = app1;
+        var _app = app;
+
+        //DELETE table_name WHERE ID=id;
+        $.ajax({
+            url: "api/work_calender_meetings",
+            type: "POST",
+            contentType: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data: form_Data,
+
+            success: function(result) {
+                //console.log(result);
+
+                //##寄送通知信件給會議參與者,告知修改後訊息
+                _func.notify_mail(id, 2);
+
+                //##修改後的內容 update到資料庫
+                var obj_meeting = {
+                    title: $("#oldSubject").val().trim(),
+                    project_name: _app.project_name,
+                    attendee: names.toString().trim(),
+                    items: _app1.old_attendee,
+                    start: $("#oldDate").val() + "T" + $("#oldStartTime").val(),
+                    end: $("#oldDate").val() + "T" + $("#oldEndTime").val(),
+                    content: $("#oldContent").val(),
+                    attach: attach,
+                    //creator: "創建人的系統名字" + " " + "按下save鈕的日期時間(小時:分即可)"
+                    creator: "<?php echo $GLOBALS['username'] ?>"
+                };
+                $("#oldCreator").val(obj_meeting.creator);
+
+                var title = $("#oldSubject").val().trim();
+                if (_app.project_name !== "")
+                    title = '[ ' + _app.project_name + ' ] ' + $("#oldSubject").val().trim();
+
+                //把修改後的會議資訊 update 到日曆上
+                eventObj.setStart(obj_meeting.start);
+                eventObj.setEnd(obj_meeting.end);
+                eventObj.setProp("title", title);
+                eventObj.setExtendedProp("description", obj_meeting);
+
+                refreshFileList(attach);
+            },
+
+            // show error message to user
+            error: function(xhr, resp, text) {
+
+            }
+        });
+
+        //按鈕也會改變
+        $("#btn_cancel").hide();
+        $("#btn_save").hide();
+        $("#btn_close").show();
+        $("#btn_delete").show();
+        $("#btn_edit").show();
+
+    });
+
+    $(document).on("click", "#btn_delete", function() {
+        var _app1 = app1;
+        if ($("#oldCreator")[0].value !== "<?php echo $GLOBALS['username'] ?>") {
+            app1.warning('Only meeting creator can execute this action!');
+            return;
+        }
+
+        Swal.fire({
+            title: "Delete",
+            text: "Are you sure to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+
+                $("#editmeeting-form").hide();
+
+                //##從資料庫中刪除該會議
+                var id = eventObj.id;
+
+                token = localStorage.getItem('token');
+                var form_Data = new FormData();
+                form_Data.append('jwt', token);
+                form_Data.append('action', 7);
+
+                form_Data.append('id', id);
+
+                //DELETE table_name WHERE ID=id;
+                $.ajax({
+                    url: "api/work_calender_meetings",
+                    type: "POST",
+                    contentType: 'multipart/form-data',
+                    processData: false,
+                    contentType: false,
+                    data: form_Data,
+
+                    success: function(result) {
+                        //console.log(result);
+
+
+                        //從日曆中刪除該會議
+                        eventObj.remove();
+
+                        _app1.notify_mail(id, 3);
+                    },
+
+                    // show error message to user
+                    error: function(xhr, resp, text) {
+
+                    }
+                });
+
+
+
+            } else {
+
+            }
+        });
+
+
+
+    });
+
+
+    $(document).on("click", "#btn_add", function() {
+        //結束時間須晚於開始時間
+        let start = moment($("#newDate").val() + " " + $("#newStartTime").val(), "YYYY/MM/DD HH:mm");
+        let end = moment($("#newDate").val() + " " + $("#newEndTime").val(), "YYYY/MM/DD HH:mm");
+
+        var isafter = moment(end).isAfter(start);
+
+        if (isafter !== true) {
+            app1.warning('Start time must less than End time!');
+            return;
+        }
+
+        //##任一欄位如果為空則提示欄位不得為空
+        if ($("#newDate").val() === '') {
+            app1.warning('Please select Date!');
+            return;
+        }
+
+        if ($("#newEndTime").val() === '') {
+            app1.warning('Please select End time!');
+            return;
+        }
+
+        if ($("#newStartTime").val() === '') {
+            app1.warning('Please select Start time!');
+            return;
+        }
+
+        if ($("#newSubject").val() === '') {
+            app1.warning('Please enter subject!');
+            return;
+        }
+
+        var names = app1.attendee.map(function(item) {
+            return item['username'];
+        });
+
+        if (names.toString().trim() === '') {
+            app1.warning('Please select attendee!');
+            return;
+        }
+
+        if ($("#newContent").val().trim() === '') {
+            app1.warning('Please enter content!');
+            return;
+        }
+
+        var file_elements = document.getElementsByName("file_elements");
+
+        var attach = "";
+        for (let i = 0; i < file_elements.length; i++) {
+            if (file_elements[i].checked) {
+                attach += file_elements[i].value + ",";
+            }
+        }
+
+        if (attach !== "")
+            attach = attach.slice(0, -1);
+
+        //##obj_meeting 內容寫入資料庫
+        //資料庫欄位 (ID, meeting_data)  其中ID為自動計數
+        //INSERT table_name (meeting_data) VALUES (obj_meeting)
+        //##將該obj_meeting在資料庫給的id返回回來，並設定到前端的id變數
+        //##寄送通知信件給會議參與者
+        token = localStorage.getItem('token');
+        var form_Data = new FormData();
+
+        form_Data.append('action', 2);
+        form_Data.append('jwt', token);
+        form_Data.append('subject', $("#newSubject").val().trim());
+        form_Data.append('project_name', app.project_name);
+        form_Data.append('message', $("#newContent").val());
+        form_Data.append('attendee', names.toString());
+        form_Data.append('start_time', $("#newDate").val() + "T" + $("#newStartTime").val());
+        form_Data.append('end_time', $("#newDate").val() + "T" + $("#newEndTime").val());
+        form_Data.append('is_enabled', true);
+        form_Data.append('created_by', "<?php echo $GLOBALS['username'] ?>");
+
+        var file_elements = document.getElementsByName("file_elements");
+        var item = 0;
+        for (let i = 0; i < file_elements.length; i++) {
+            if (file_elements[i].checked) {
+                for (var j = 0; j < app1.attachments.length; j++) {
+                    let file = app1.attachments[j];
+                    if (file.name === file_elements[i].value) {
+                        form_Data.append('files[' + item++ + ']', file);
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        var _app1 = app1;
+        var _app = app;
+
+        //DELETE table_name WHERE ID=id;
+        $.ajax({
+            url: "api/work_calender_meetings",
+            type: "POST",
+            contentType: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data: form_Data,
+
+            success: function(response) {
+                var obj = JSON.parse(response);
+
+                //##寄送通知信件給會議參與者,告知修改後訊息
+                _app1.notify_mail(obj.id, 1);
+
+                var title = '[ ' + _app.project_name + ' ] ' + $("#newSubject").val().trim();
+
+                //把新增會議 呈現於日曆上
+                if (obj.id != 0) {
+                    var obj_meeting = {
+                        id: obj.id,
+                        title: $("#newSubject").val().trim(),
+                        project_name: _app.project_name,
+                        attendee: names.toString().trim(),
+                        items: _app1.attendee,
+                        start: $("#newDate").val() + "T" + $("#newStartTime").val(),
+                        end: $("#newDate").val() + "T" + $("#newEndTime").val(),
+                        content: $("#newContent").val(),
+                        attach: attach,
+                        //creator: "創建人的系統名字" + " " + "按下Add按鈕的日期時間(小時:分即可)"
+                        creator: "<?php echo $GLOBALS['username'] ?>"
+                    };
+
+                    calendar.addEvent({
+                        id: obj.id,
+                        title: title,
+                        start: obj_meeting.start,
+                        end: obj_meeting.end,
+                        description: obj_meeting
+                    });
+                }
+
+            },
+
+            // show error message to user
+            error: function(xhr, resp, text) {
+
+            }
+        });
+
+        $("#addmeeting-form").hide();
+
+    });
+
+
+    function hideWindow(target) {
+
+        $(target).hide();
+
+        if (target == "#meeting") {
+            $("#addmeeting-form").hide();
+            $("#editmeeting-form").hide();
+        }
+
+    }
+
+    function onChangeFileUpload(target) {
+
+        var fileTarget = $("#fileload");
+        var container = $("#sc_product_files");
+
+        for (i = 0; i < fileTarget[0].files.length; i++) {
+            // remove duplicate
+            if (app1.attachments.indexOf(fileTarget[0].files[i]) == -1 ||
+                app1.attachments.length == 0) {
+                var fileItem = Object.assign(fileTarget[0].files[i]);
+
+                var elm = '<div class="file-element">' +
+                    '<input type="checkbox" id="' + fileTarget[0].files[i].name + '" name="file_elements" value="' + fileTarget[0].files[i].name + '" checked>' +
+                    '<label for="' + fileTarget[0].files[i].name + '">' +
+                    '<a>' + fileTarget[0].files[i].name + '</a>' +
+                    '</label>' +
+                    '</div>';
+
+                $(elm).appendTo(container);
+
+                app1.attachments.push(fileItem);
+            } else {
+                fileTarget[0].value = "";
+            }
+        }
+    }
+
+    function refreshFileList(attach) {
+        $('#sc_product_files_old').empty();
+
+        var container = $("#sc_product_files_old");
+
+        if (attach !== "") {
+            var files = attach.split(",");
+            files.forEach((element) => {
+                var elm = '<div class="file-element">' +
+                    '<input type="checkbox" id="' + element + '" name="file_elements_old" value="' + element + '" checked disabled>' +
+                    '<label for="' + element + '">' +
+                    '<a href="https://storage.cloud.google.com/feliiximg/' + element + '" target="_blank">' + element + '</a>' +
+                    '</label>' +
+                    '</div>';
+
+                $(elm).appendTo(container);
+            });
+        }
+    }
+
+    function onChangeFileUploadOld(target) {
+
+        var fileTarget = $("#fileload_old");
+        var container = $("#sc_product_files_old");
+
+        for (i = 0; i < fileTarget[0].files.length; i++) {
+            // remove duplicate
+            if (app1.attachments.indexOf(fileTarget[0].files[i]) == -1 ||
+                app1.attachments.length == 0) {
+                var fileItem = Object.assign(fileTarget[0].files[i]);
+
+                var elm = '<div class="file-element">' +
+                    '<input type="checkbox" id="' + fileTarget[0].files[i].name + '" name="file_elements_old" value="' + fileTarget[0].files[i].name + '" checked>' +
+                    '<label for="' + fileTarget[0].files[i].name + '">' +
+                    '<a>' + fileTarget[0].files[i].name + '</a>' +
+                    '</label>' +
+                    '</div>';
+
+                $(elm).appendTo(container);
+
+                app1.attachments.push(fileItem);
+            } else {
+                fileTarget[0].value = "";
+            }
+        }
+    }
+</script>
 <script type="text/javascript"
 src="/new_ec/single/include/js/singleUsed.js?22"></script>
 <script type="text/javascript"
@@ -5473,6 +7401,7 @@ src="/new_include/js/jquery.ba-hashchange.js"></script>
 src="/new_ec/single/include/js/jquery.qtip.min.js"></script>
 <script type="text/javascript" src="/new_ec/rwd/include/js/include_goods.js?v3"
 async></script>
+<script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </body>
 </html>
 
