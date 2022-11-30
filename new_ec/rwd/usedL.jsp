@@ -3491,7 +3491,7 @@ jQuery.browser = {};
 
 
 <%-- tags --%>
-<div> </div>
+<div id="app"> {{ prodCatId }} </div>
 <%-- tags --%>
 
 <div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
@@ -5466,19 +5466,26 @@ class="button btn-xs btn-primary confirm_sale">確定
 	</div>
 </div>
 <script>
-    $(".btn").click(function () {
+var app = new Vue({
+	el: "#app",
+	data: {
+		orgFlg: <%=sing_o.orgFlg%>,
+		prodCatId: <%=sing_o.prodCatId%>,
+	},
+  
+	created() {
+	},
+  
+	computed: {
+	},
+  
+	mounted() {
+	},
 
-        if ($("#collapseme").hasClass("show")) {
-            $("#collapseme").removeClass("show");
-        } else {
-            $("#collapseme").addClass("show");
-        }
-    });
-
-    window.onafterprint = (event) => {
-        app.show_title = true;
-    };
-
+	methods: {
+	},
+  });
+  
 
 </script>
 <script type="text/javascript"
