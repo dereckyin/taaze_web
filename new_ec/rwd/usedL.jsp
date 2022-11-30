@@ -1717,78 +1717,7 @@ prodColorBuild = "<span class='prodInfo_boldSpan' style='padding:0;'>商品顏�
 prodColorBuild = "<span class='prodInfo_boldSpan'>商品顏色：</span>" + prodColorBuild;
 }
 }
-if(sizeBuild.length()>0){
-prodDataSb.append("<div style='margin:2px 0;'>");
-prodDataSb.append(sizeBuild);
-prodDataSb.append("</div>");
-if(prodSizeBuild.length()>0 || prodColorBuild.length()>0){
-prodDataSb.append("<div style='margin:2px 0;'>");
-prodDataSb.append(prodSizeBuild);
-prodDataSb.append(prodColorBuild);
-prodDataSb.append("</div>");
-}
-}
-prodDataSb.append("<div style='margin:2px 0;'>");
-prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>類別：<span style='color: #666666; font-weight: normal;'>"+ sing_o.getCatNamePath() +"</span></span>");
-if(!sing_o.prodCatId.equals("61")&&!sing_o.prodCatId.equals("62")){
-prodDataSb.append("<span class='editXsxcatLink' >");
-prodDataSb.append("<img class='single_tags' />");
-if(cc!=null && cc.getCuid().toString().length()>0){
-prodDataSb.append("<a style='cursor:pointer;' class='editXsxcat'>類別有誤？</a>");
-}else{
-prodDataSb.append("<a style='cursor:pointer;' onClick='loginFirst()'>類別有誤？</a>");
-}
-prodDataSb.append("</span>");
-}
-prodDataSb.append("</div>");
-//会员分类
-if (listCat4xsx != null && listCat4xsx.size() > 0) {
-prodDataSb.append("<div style='margin:2px 0;' id='editCat'>");
-prodDataSb.append("	<div style='float: left;'><span class='prodInfo_boldSpan' style='padding:0px;'>我的分類建議：</span></div>");
-prodDataSb.append("	<div style='float: left;'>");
-for (int i = 0; i < listCat4xsx.size(); i++) {
-prodDataSb.append("	<div class='editCatList' style='font-weight: normal; padding: 0 0 5px 0;'>");
-prodDataSb.append("		<span style='color: #666666; font-weight: normal;'> ");
-prodDataSb.append("			<a class='linkStyle02' href='/rwd_list.html?t=" + listCat4xsx.get(i).getProdCatId() + "&k=01&d=00'>" + sing_o.getProdCatNm(listCat4xsx.get(i).getProdCatId()) + "</a>");
-if (listCat4xsx.get(i).getCatId() != null && listCat4xsx.get(i).getCatId().length() > 0) {
-prodDataSb.append("			<span class='span01'>&gt;</span>");
-prodDataSb.append("			<span class='span02'>");
-if (listCat4xsx.get(i).getProdCatId().equals("11")) {
-prodDataSb.append("			<a class='linkStyle02' href='/rwd_list.html?t=" + listCat4xsx.get(i).getProdCatId() + "&k=01&d=00&a=00&c=" + listCat4xsx.get(i).getCatId() + "&l=1'>" + listCat4xsx.get(i).getCatNm() + "</a>");
-} else {
-prodDataSb.append("			<a class='linkStyle02' href='/rwd_listView.html?t=" + listCat4xsx.get(i).getProdCatId() + "&k=01&d=00&a=00&c=" + listCat4xsx.get(i).getCatId() + "&l=1'>" + listCat4xsx.get(i).getCatNm() + "</a>");
-}
-prodDataSb.append("			</span> ");
-}
-if (listCat4xsx.get(i).getCatId1() != null && listCat4xsx.get(i).getCatId1().length() > 0) {
-prodDataSb.append("			<span class='span01'>&gt;</span>");
-prodDataSb.append("			<span class='span02'>");
-prodDataSb.append("				<a class='linkStyle02' href='/rwd_listView.html?t=" + listCat4xsx.get(i).getProdCatId() + "&k=01&d=00&a=00&c=" + listCat4xsx.get(i).getCatId1() + "&l=2'>" + listCat4xsx.get(i).getCatNm1() + "</a>");
-prodDataSb.append("			</span> ");
-}
-prodDataSb.append("			</span> ");
-prodDataSb.append("			<span> ");
-prodDataSb.append("				<a href='javascript:return false;' onClick='delMyCat(this,'" + sing_o.orgProdId + "', '" + listCat4xsx.get(i).getProdCatId() + "','" + (listCat4xsx.get(i).getCatId1() != null ? listCat4xsx.get(i).getCatId1() : listCat4xsx.get(i).getCatId()) + "')'>");
-prodDataSb.append("					<img src='new_ec/single/include/images/1380280085_trash.png' width='10' height='10' alt='' border='0' />");
-prodDataSb.append("				</a> ");
-prodDataSb.append("			</span>");
-prodDataSb.append("		</div>");
-}
-prodDataSb.append("		<div id='insertCat' style='font-weight: normal;'>");
-prodDataSb.append("			<span style='color: #666666; font-weight: normal;'>您的建議正在處理中...</span>");
-prodDataSb.append("		</div>");
-prodDataSb.append("	</div> ");
-prodDataSb.append("	<br style='clear: both;' />");
-prodDataSb.append("</div>");
-} else {
-prodDataSb.append("<div style='display:none; margin:2px 0;' id='editCat'>");
-prodDataSb.append("	<div style='float: left;'><span class='prodInfo_boldSpan' style='padding:0px'>我的分類建議：</span></div>");
-prodDataSb.append("	<div style='float: left;'>");
-prodDataSb.append("		<div id='insertCat' style='font-weight: normal;'><span style='color: #666666; font-weight: normal;'>您的建議正在處理中...</span></div>");
-prodDataSb.append("	</div> ");
-prodDataSb.append("	<br style='clear: both;' />");
-prodDataSb.append("</div>");
-}
+
 %>
 
 <!DOCTYPE html>
