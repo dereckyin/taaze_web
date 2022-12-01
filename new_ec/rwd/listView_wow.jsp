@@ -97,6 +97,34 @@ log.error(e.getMessage());
 //activityJsonArray = SystemUtil.parseActJson2Array("0211","03","P","0");
 //	out.print(activityJsonArray);
 
+/*@@話題推薦、限時好康、發燒音樂 */
+JSONArray recommandJsonArray = null;
+String rmd_title = "";
+try{
+	if(urlParamters.getK()!=null){
+		String _catalog = urlParamters.getC();
+		int _level = urlParamters.getL()!=null ? Integer.parseInt(urlParamters.getL()):0;
+		if(_level>0){
+			_catalog = urlParamters.getC().substring(0, (2*_level));
+		}
+		recommandJsonArray = SystemUtil.parseActJson2Array("0211",_catalog,"E","0");
+		rmd_title = "話題推薦";
+		String prod_cat = urlParamters.getT()+urlParamters.getK()+urlParamters.getD();
+		if("140100".equals(prod_cat) || "250100".equals(prod_cat)) {
+			rmd_title = "限時好康";
+		}
+		if("310100".equals(prod_cat)) {
+			rmd_title = "發燒音樂";
+		}
+
+
+	}
+}catch(Exception e){
+	log.info(e.getMessage());
+}
+
+out.print(recommandJsonArray);
+
 
 %>
 <!DOCTYPE html>
