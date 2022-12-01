@@ -217,7 +217,7 @@ if(jsonDataSet.bigBannerData!=null && jsonDataSet.bigBannerData.get("dataList")!
 %>
 <c:choose>  
    <c:when test="${cookie['mobile'].value eq 'on'}">    
-
+   	<div id='betaSlider' class='' style='display:none'>
    </c:when>  
    <c:otherwise> 
 <div id='betaSlider' class='hidden-xs hidden-sm hidden-md' style='display:none'>
@@ -541,7 +541,7 @@ out.println("<a href='" + item.getString("url")+"' class='list-group-item'><span
 <%-- pc model end ------------------------------------------------------- --%>
 <%-- mobile model start +++++++++++++++++++++++++++++++++++++++++++++++++++++ --%><c:choose>
 <c:when test="${cookie['mobile'].value eq 'on'}">
-<div class="container-fluid hidden-xs  hidden-sm hidden-md hidden-lg" style="margin-top:50px;">
+<div class="container-fluid hidden-xs  hidden-sm hidden-md hidden-lg" style="margin-top:50px;">betaSlider
 </c:when>
 <c:otherwise>
 <div class="container-fluid visible-xs-block visible-sm-block visible-md-block" style="margin-top:50px;">
