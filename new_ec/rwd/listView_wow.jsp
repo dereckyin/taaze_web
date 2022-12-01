@@ -653,6 +653,138 @@ out.print("<li class='active'><a><strong style='color:#e3007f'>" + pathList.getJ
 <%}%>
 <%-- 顯示類別選單 --%>
 
+
+<%-- 注目專區 --%>
+<%
+if(activityJsonArray!= null && activityJsonArray.size() > 0) {
+StringBuilder activityContent = new StringBuilder();;
+activityContent.append("<div class='panel-default'>");
+activityContent.append("<div class='panel-heading' style='background-color:#D9D9D9;'>");
+activityContent.append("<ol class='breadcrumb' style='background-color:#D9D9D9;margin:0; padding:0;'>");
+activityContent.append("<li class='active'>");
+activityContent.append("<a data-toggle='collapse' href='#mlistActive'>");
+activityContent.append("<strong>注目專區</strong>");
+activityContent.append("<img class='notice_btn noticeShow_btn'/>");
+activityContent.append("</a>");
+activityContent.append("</li>");
+activityContent.append("</ol>");
+activityContent.append("</div>");
+activityContent.append("<div class='panel-collapse collapse' id='mlistActive'>");
+activityContent.append("<div class='panel-body list-group'>");
+for(int i = 0; i < activityJsonArray.size(); i++) {
+JSONObject act = (JSONObject)activityJsonArray.get(i);
+activityContent.append("<a class='list-group-item' href='" + act.getString("url") + "'>"+act.getString("areaNm")+"</a>");
+}
+if(urlParamters.getT().equals("14") || urlParamters.getT().equals("25") || urlParamters.getT().equals("17")){
+activityContent.append("<a class='list-group-item' href='https://www.taaze.tw/static_act/taazecloudreader/index.htm' >Windows / Mac電腦</a>");
+activityContent.append("<a class='list-group-item' href='https://www.taaze.tw/taazereader/index.jsp' >手機 / 平板</a>");
+if(urlParamters.getT().equals("14")){
+activityContent.append("<a class='list-group-item' href='/rwd_ebookActListView.html?t=14&k=01&d=00&a=01' >0元電子書</a>");
+}else if(urlParamters.getT().equals("25")){
+activityContent.append("<a class='list-group-item' href='/rwd_ebookActListView.html?t=25&k=01&d=00&a=01' >0元電子雜誌</a>");
+}
+if(!urlParamters.getT().equals("14")){
+activityContent.append("<a class='list-group-item' href='http://activity.taaze.tw/home.html?m=1000642460' >訂閱電子雜誌</a>");
+}
+}
+activityContent.append("</div>");
+activityContent.append("</div>");
+activityContent.append("</div>");
+out.print(activityContent.toString());
+}
+if(urlParamters.getT().equals("22")){
+StringBuilder activityContent1 = new StringBuilder();;
+activityContent1.append("<div class='panel-default'>");
+activityContent1.append("<div class='panel-heading' style='background-color:#D9D9D9;'>");
+activityContent1.append("<ol class='breadcrumb' style='background-color:#D9D9D9;margin:0; padding:0;'>");
+activityContent1.append("<li class='active'>");
+activityContent1.append("<a data-toggle='collapse' href='#mlistActive1'>");
+activityContent1.append("<strong>韓文雜誌索引</strong>");
+activityContent1.append("<img class='notice_btn noticeShow_btn'/>");
+activityContent1.append("</a>");
+activityContent1.append("</li>");
+activityContent1.append("</ol>");
+activityContent1.append("</div>");
+activityContent1.append("<div class='panel-collapse collapse' id='mlistActive1'>");
+activityContent1.append("<div class='panel-body list-group'>");
+activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=01&a=22'>A-C</a>");
+activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=02&a=22'>D-F</a>");
+activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=03&a=22'>G-I</a>");
+activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=04&a=22'>J-N</a>");
+activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=05&a=22'>O-T</a>");
+activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=06&a=22'>U-Z</a>");
+activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=07&a=22'>其他</a>");
+activityContent1.append("</div>");
+activityContent1.append("</div>");
+activityContent1.append("</div>");
+out.print(activityContent1.toString());
+}
+%>
+<%-- 注目專區 --%>
+<%--大版Banner --%>
+<%
+if(jsonDataSet.bigBannerData!=null && jsonDataSet.bigBannerData.get("dataList")!=null&&jsonDataSet.bigBannerData.getJSONArray("dataList").size()>0){
+%>
+<div id="mBibBanner" style='display:none'>
+<%
+String isSndBook=urlParamters.getK();
+if(isSndBook.equals("03")){
+String prodcatid=urlParamters.getD();
+if(prodcatid.equals("00")){
+String bigBannerhomepagecode = SystemUtil.homepageTypeMap.get("02".concat("00").concat("A"));
+for(int i=0; i<jsonDataSet.bigBannerData.getJSONArray("dataList").size(); i++){
+%>
+<a homepagecode="<%=bigBannerhomepagecode%>" bannerPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>" actPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityPkNo") %>" onMouseDown="miningTrigger(this);return false;" href="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityUrl") %>">
+<%
+String mbBanner = jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo");
+if ("0".equals(mbBanner) || "".equals(mbBanner)){%>
+<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>&width=300&height=250&fill=f" alt="" >
+<%}else{%>
+<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo")%>&width=300&height=250&fill=f" alt="">
+<%}	%>
+</a>
+<%
+}
+}else{
+String bigBannerhomepagecode = SystemUtil.homepageTypeMap.get("02"+urlParamters.getD().concat("00").concat("A"));
+for(int i=0; i<jsonDataSet.bigBannerData.getJSONArray("dataList").size(); i++){
+%>
+<a homepagecode="<%=bigBannerhomepagecode%>" bannerPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>" actPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityPkNo") %>" onMouseDown="miningTrigger(this);return false;" href="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityUrl") %>">
+<%
+String mbBanner = jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo");
+if ("0".equals(mbBanner) || "".equals(mbBanner)){%>
+<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>&width=300&height=250&fill=f" alt="" >
+<%}else{%>
+<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo")%>&width=300&height=250&fill=f" alt="">
+<%}	%>
+</a>
+<%
+}
+}
+}else{
+String bigBannerhomepagecode = SystemUtil.homepageTypeMap.get(urlParamters.getT().concat(urlParamters.getC().substring(0,2)).concat("A"));
+for(int i=0; i<jsonDataSet.bigBannerData.getJSONArray("dataList").size(); i++){
+%>
+<a homepagecode="<%=bigBannerhomepagecode%>" bannerPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>" actPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityPkNo") %>" onMouseDown="miningTrigger(this);return false;" href="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityUrl") %>">
+<%
+String mbBanner = jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo");
+if ("0".equals(mbBanner) || "".equals(mbBanner)){%>
+<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>&width=300&height=250&fill=f" alt="" >
+<%}else{%>
+<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo")%>&width=300&height=250&fill=f" alt="">
+<%}	%>
+</a>
+<%
+}
+}
+%>
+</div>
+<%
+}
+%>
+<%--大版Banner --%>
+
+
 <%--話題推薦 --%>
 <%
 if(recommandJsonArray!= null && recommandJsonArray.size() > 0) {
@@ -840,137 +972,6 @@ if(recommandJsonArray!= null && recommandJsonArray.size() > pageShow) {
 </div>
 <%} %>
 <%--話題推薦 --%>
-
-<%-- 注目專區 --%>
-<%
-if(activityJsonArray!= null && activityJsonArray.size() > 0) {
-StringBuilder activityContent = new StringBuilder();;
-activityContent.append("<div class='panel-default'>");
-activityContent.append("<div class='panel-heading' style='background-color:#D9D9D9;'>");
-activityContent.append("<ol class='breadcrumb' style='background-color:#D9D9D9;margin:0; padding:0;'>");
-activityContent.append("<li class='active'>");
-activityContent.append("<a data-toggle='collapse' href='#mlistActive'>");
-activityContent.append("<strong>注目專區</strong>");
-activityContent.append("<img class='notice_btn noticeShow_btn'/>");
-activityContent.append("</a>");
-activityContent.append("</li>");
-activityContent.append("</ol>");
-activityContent.append("</div>");
-activityContent.append("<div class='panel-collapse collapse' id='mlistActive'>");
-activityContent.append("<div class='panel-body list-group'>");
-for(int i = 0; i < activityJsonArray.size(); i++) {
-JSONObject act = (JSONObject)activityJsonArray.get(i);
-activityContent.append("<a class='list-group-item' href='" + act.getString("url") + "'>"+act.getString("areaNm")+"</a>");
-}
-if(urlParamters.getT().equals("14") || urlParamters.getT().equals("25") || urlParamters.getT().equals("17")){
-activityContent.append("<a class='list-group-item' href='https://www.taaze.tw/static_act/taazecloudreader/index.htm' >Windows / Mac電腦</a>");
-activityContent.append("<a class='list-group-item' href='https://www.taaze.tw/taazereader/index.jsp' >手機 / 平板</a>");
-if(urlParamters.getT().equals("14")){
-activityContent.append("<a class='list-group-item' href='/rwd_ebookActListView.html?t=14&k=01&d=00&a=01' >0元電子書</a>");
-}else if(urlParamters.getT().equals("25")){
-activityContent.append("<a class='list-group-item' href='/rwd_ebookActListView.html?t=25&k=01&d=00&a=01' >0元電子雜誌</a>");
-}
-if(!urlParamters.getT().equals("14")){
-activityContent.append("<a class='list-group-item' href='http://activity.taaze.tw/home.html?m=1000642460' >訂閱電子雜誌</a>");
-}
-}
-activityContent.append("</div>");
-activityContent.append("</div>");
-activityContent.append("</div>");
-out.print(activityContent.toString());
-}
-if(urlParamters.getT().equals("22")){
-StringBuilder activityContent1 = new StringBuilder();;
-activityContent1.append("<div class='panel-default'>");
-activityContent1.append("<div class='panel-heading' style='background-color:#D9D9D9;'>");
-activityContent1.append("<ol class='breadcrumb' style='background-color:#D9D9D9;margin:0; padding:0;'>");
-activityContent1.append("<li class='active'>");
-activityContent1.append("<a data-toggle='collapse' href='#mlistActive1'>");
-activityContent1.append("<strong>韓文雜誌索引</strong>");
-activityContent1.append("<img class='notice_btn noticeShow_btn'/>");
-activityContent1.append("</a>");
-activityContent1.append("</li>");
-activityContent1.append("</ol>");
-activityContent1.append("</div>");
-activityContent1.append("<div class='panel-collapse collapse' id='mlistActive1'>");
-activityContent1.append("<div class='panel-body list-group'>");
-activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=01&a=22'>A-C</a>");
-activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=02&a=22'>D-F</a>");
-activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=03&a=22'>G-I</a>");
-activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=04&a=22'>J-N</a>");
-activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=05&a=22'>O-T</a>");
-activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=06&a=22'>U-Z</a>");
-activityContent1.append("<a class='list-group-item' href='/rwd_listView.html?t=22&k=01&d=07&a=22'>其他</a>");
-activityContent1.append("</div>");
-activityContent1.append("</div>");
-activityContent1.append("</div>");
-out.print(activityContent1.toString());
-}
-%>
-<%-- 注目專區 --%>
-<%--大版Banner --%>
-<%
-if(jsonDataSet.bigBannerData!=null && jsonDataSet.bigBannerData.get("dataList")!=null&&jsonDataSet.bigBannerData.getJSONArray("dataList").size()>0){
-%>
-<div id="mBibBanner" style='display:none'>
-<%
-String isSndBook=urlParamters.getK();
-if(isSndBook.equals("03")){
-String prodcatid=urlParamters.getD();
-if(prodcatid.equals("00")){
-String bigBannerhomepagecode = SystemUtil.homepageTypeMap.get("02".concat("00").concat("A"));
-for(int i=0; i<jsonDataSet.bigBannerData.getJSONArray("dataList").size(); i++){
-%>
-<a homepagecode="<%=bigBannerhomepagecode%>" bannerPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>" actPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityPkNo") %>" onMouseDown="miningTrigger(this);return false;" href="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityUrl") %>">
-<%
-String mbBanner = jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo");
-if ("0".equals(mbBanner) || "".equals(mbBanner)){%>
-<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>&width=300&height=250&fill=f" alt="" >
-<%}else{%>
-<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo")%>&width=300&height=250&fill=f" alt="">
-<%}	%>
-</a>
-<%
-}
-}else{
-String bigBannerhomepagecode = SystemUtil.homepageTypeMap.get("02"+urlParamters.getD().concat("00").concat("A"));
-for(int i=0; i<jsonDataSet.bigBannerData.getJSONArray("dataList").size(); i++){
-%>
-<a homepagecode="<%=bigBannerhomepagecode%>" bannerPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>" actPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityPkNo") %>" onMouseDown="miningTrigger(this);return false;" href="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityUrl") %>">
-<%
-String mbBanner = jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo");
-if ("0".equals(mbBanner) || "".equals(mbBanner)){%>
-<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>&width=300&height=250&fill=f" alt="" >
-<%}else{%>
-<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo")%>&width=300&height=250&fill=f" alt="">
-<%}	%>
-</a>
-<%
-}
-}
-}else{
-String bigBannerhomepagecode = SystemUtil.homepageTypeMap.get(urlParamters.getT().concat(urlParamters.getC().substring(0,2)).concat("A"));
-for(int i=0; i<jsonDataSet.bigBannerData.getJSONArray("dataList").size(); i++){
-%>
-<a homepagecode="<%=bigBannerhomepagecode%>" bannerPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>" actPk="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityPkNo") %>" onMouseDown="miningTrigger(this);return false;" href="<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("activityUrl") %>">
-<%
-String mbBanner = jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo");
-if ("0".equals(mbBanner) || "".equals(mbBanner)){%>
-<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("bannerPkNo")%>&width=300&height=250&fill=f" alt="" >
-<%}else{%>
-<img src="https://media.taaze.tw/showBanaerImage.html?pk=<%=jsonDataSet.bigBannerData.getJSONArray("dataList").getJSONObject(i).getString("mbBannerPkNo")%>&width=300&height=250&fill=f" alt="">
-<%}	%>
-</a>
-<%
-}
-}
-%>
-</div>
-<%
-}
-%>
-<%--大版Banner --%>
-
 
 <%--site map --%>
 <div style="padding-top:10px;">
