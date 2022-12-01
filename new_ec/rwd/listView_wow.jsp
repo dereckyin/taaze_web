@@ -123,7 +123,7 @@ try{
 	log.info(e.getMessage());
 }
 
-out.print(recommandJsonArray);
+// out.print(recommandJsonArray);
 
 
 %>
@@ -283,6 +283,86 @@ if(isSndBook.equals("03")){
 </c:otherwise>
 </c:choose>
 
+<%-- 話題推薦、限時好康、發燒音樂 --%>
+<%
+if(recommandJsonArray!= null && recommandJsonArray.size() > 0) {
+StringBuilder sb = new StringBuilder();
+sb.append("<div class='panel panel-default'>");
+sb.append("<div class='panel-heading' style='background-color:#D9D9D9;'>");
+sb.append("<ol class='breadcrumb' style='margin:0; padding:0;background-color:#D9D9D9;'>");
+sb.append("<li class='active'><span style='font-size:16px;font-weight: bold;'>");
+sb.append(rmd_title);
+sb.append("</span></li>");
+sb.append("</ol>");
+sb.append("</div>");
+sb.append("<div class=''>");
+sb.append("<div id='specialCarousel' class='carousel slide' data-ride='carousel' data-interval='false'>");
+sb.append("<div class='carousel-inner' role='listbox'>");
+for(int i = 0;i < recommandJsonArray.size(); i++) {
+JSONObject prod = (JSONObject)recommandJsonArray.get(i);
+if(prod==null || !prod.containsKey("saleDisc")){
+continue;
+}
+String discString = prod.getString("saleDisc");
+if(prod.getString("saleDisc").length()==1){
+discString = "0." + prod.getString("saleDisc");
+}else if(prod.getString("saleDisc").length()>1 && !prod.getString("saleDisc").equals("100")){
+if(prod.getString("saleDisc").endsWith("0")){
+discString = prod.getString("saleDisc").substring(0,1);
+}else{
+discString = prod.getString("saleDisc").substring(0,2);
+}
+}
+sb.append(i==0?"<div class='item active'>":"<div class='item'>");
+sb.append("<div style='height:188px; background-color:#ffffff; background-image:url(https://media.taaze.tw/showLargeImage.html?sc="+prod.getString("prodId")+"&height=170&width=120); background-repeat: no-repeat; background-position: center center; cursor:pointer;' data-pid="+prod.getString("prodId")+" onclick='view_todaySpecial(this)''></div>");
+sb.append("<div class='description' style='padding:0px; height:125px;'>");
+sb.append("<ul style='list-style:none; margin:0; padding:0;'>");
+sb.append("<li style='word-wrap:break-word; word-break:break-all;'><a href='/products/"+prod.getString("prodId")+".html' onclick='href_todaySpecial(this, event)'><strong>"+EcPathSettingImp.LimitString(prod.getString("titleMain"),42,"...")+"</strong></a></li>");
+String priceStr = "優惠價：";
+if(urlParamters.getK().equals("03")){
+priceStr = "二手價：";
+}
+if(prod.getString("saleDisc").equals("0") || prod.getString("saleDisc").equals("100") ){
+sb.append("<li class='discPrice'>"+priceStr+"<span>"+prod.getString("salePrice")+"</span>元</li>");
+} else {
+sb.append("<li class='discPrice'>"+priceStr+"<span>"+discString+"</span>折<span>"+Math.round(prod.getInt("salePrice"))+"</span>元</li>");
+}
+sb.append("<li style='margin-top :10px; display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;'>"+EcPathSettingImp.LimitString(prod.getString("titleNext"),728,"...")+"</li>");
+sb.append("</ul>");
+sb.append("</div>");
+sb.append("</div>");
+}
+sb.append("</div>");
+sb.append("</div>");
+sb.append("</div>");
+if(recommandJsonArray.size() > 1){
+sb.append("<div class='panel-footer' style='font-size:16px;'>");
+sb.append("<div style='float:right;'>");
+sb.append("<div style='float:left;'>");
+sb.append("<a href='#specialCarousel' role='button' data-slide='prev'>");
+sb.append("<span class='glyphicon glyphicon-chevron-left' style='color:#8D8D8D;' aria-hidden='true'></span>");
+sb.append("<span class='sr-only'>Previous</span>");
+sb.append("</a>");
+sb.append("</div>");
+sb.append("<div style='float:left; padding:0 5px; font-weight:bold;'>");
+sb.append("<span id='specialCarouselCount' style='padding-right:5px;'>1</span>/<span style='padding-left:5px;'>"+ recommandJsonArray.size() +"</span>");
+sb.append("</div>");
+sb.append("<div style='float:left;'>");
+sb.append("<a href='#specialCarousel' role='button' data-slide='next'>");
+sb.append("<span class='glyphicon glyphicon-chevron-right' style='color:#8D8D8D;' aria-hidden='true'></span>");
+sb.append("<span class='sr-only'>Next</span>");
+sb.append("</a>");
+sb.append("</div>");
+sb.append("<div style='clear:both;'></div>");
+sb.append("</div>");
+sb.append("<div style='clear:both;'></div>");
+sb.append("</div>");
+}
+sb.append("</div>");
+out.print(sb.toString());
+}
+%>
+<%-- 話題推薦、限時好康、發燒音樂 --%>
 
 <%-- 注目專區 --%>
 <%
@@ -573,6 +653,193 @@ out.print("<li class='active'><a><strong style='color:#e3007f'>" + pathList.getJ
 <%}%>
 <%-- 顯示類別選單 --%>
 
+<%--話題推薦 --%>
+<%
+if(recommandJsonArray!= null && recommandJsonArray.size() > 0) {
+%>
+<div class="recommand panel panel-default visible-sm-block visible-md-block" style="width:100%;border-left:1px solid #F0F0F0">
+<div class="" style="">
+<div id="t_recommand" class="carousel slide" style="" data-ride="carousel" data-interval="false">
+<div class="carouselTitle2" style='margin:0;width:100%'>
+<div class="panelHeader" style="float:left;"><span><%=urlParamters.getT().equals("31")?"發燒音樂":"話題推薦" %></span></div>
+<div style="clear:both"></div>
+</div>
+<%
+StringBuffer sbBtnT = new StringBuffer();
+StringBuffer sbInnerT = new StringBuffer();
+int pageShow = 5;
+sbBtnT.append("<ol class='carousel-indicators' style='margin-left: -30%';>");
+sbInnerT.append("<div class='carousel-inner' role='listbox'>");
+for(int i = 0;i < recommandJsonArray.size(); i++) {
+if(recommandJsonArray.getJSONObject(i)==null || !recommandJsonArray.getJSONObject(i).containsKey("prodId")){
+continue;
+}
+if(i==0 || (i%pageShow)==0){
+sbBtnT.append("<li data-target='#t_recommand' data-slide-to=" + (i/pageShow));
+sbInnerT.append("<div class='item ");
+if(i==0){
+sbBtnT.append(" class=\"active\"");
+sbInnerT.append("active");
+}
+sbBtnT.append("></li>");
+sbInnerT.append("' >");
+}
+sbInnerT.append("<div class='recommand'>");
+//書封
+sbInnerT.append("<div class='prodImg' onclick=\"location.href='/products/" + recommandJsonArray.getJSONObject(i).getString("prodId") + ".html'\" style=\"background-image:url('https://media.taaze.tw/showLargeImage.html?sc="+recommandJsonArray.getJSONObject(i).getString("orgProdId")+"&height=170&width=250');\" data-pid='" + recommandJsonArray.getJSONObject(i).getString("prodId") +"' >");
+sbInnerT.append("</div>");
+sbInnerT.append("<div class='description'>");
+sbInnerT.append("<div style='position:relative;margin:0 auto;height:100px;'>");
+//書名
+sbInnerT.append("<div>");
+sbInnerT.append("<strong><a href='/products/" +recommandJsonArray.getJSONObject(i).getString("prodId")+ ".html'>");
+sbInnerT.append(recommandJsonArray.getJSONObject(i).getString("titleMain"));
+sbInnerT.append("</a></strong>");
+sbInnerT.append("</div>");
+sbInnerT.append("<li style='display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;'>"+EcPathSettingImp.LimitString(recommandJsonArray.getJSONObject(i).getString("titleNext"),728,"...")+"</li>");
+//作者
+sbInnerT.append("<div>");
+//if((!urlParamters.getT().equals("31") && !urlParamters.getT().equals("32") && !urlParamters.getT().equals("61") && !urlParamters.getT().equals("62")) && recommandJsonArray.getJSONObject(i).getString("author")!=null && !"".equals(recommandJsonArray.getJSONObject(i).getString("author"))){
+//	sbInner.append("<span>作者：");
+//	sbInner.append(recommandJsonArray.getJSONObject(i).getString("author").length() > 35 ? recommandJsonArray.getJSONObject(i).getString("author").substring(0,35)+"..." : recommandJsonArray.getJSONObject(i).getString("author"));
+//	sbInner.append("</span>");
+//}
+sbInnerT.append("</div>");
+//優惠價
+sbInnerT.append("<div style='margin-top:5px'>");
+if(urlParamters.getK().equals("03")){
+sbInnerT.append("二手價：");
+}else{
+sbInnerT.append("優惠價：");
+}
+if(!recommandJsonArray.getJSONObject(i).getString("saleDisc").equals("100")){
+String disc = (recommandJsonArray.getJSONObject(i).getString("saleDisc").endsWith("0"))?recommandJsonArray.getJSONObject(i).getString("saleDisc").substring(0,1): recommandJsonArray.getJSONObject(i).getString("saleDisc");
+if(!(recommandJsonArray.getJSONObject(i).getString("saleDisc").endsWith("0"))&&Integer.parseInt(disc)<10){
+disc="0."+disc;
+}
+sbInnerT.append("<span style='color:#e3007f'>"+disc+"</span>折");
+}
+sbInnerT.append("<span style='color:#e3007f'>"+Math.round(recommandJsonArray.getJSONObject(i).getInt("salePrice"))+"</span>元");
+sbInnerT.append("</div>");
+sbInnerT.append("</div>");//recommand
+sbInnerT.append("</div>");
+sbInnerT.append("</div>");
+if(pageShow == 1 || ((i+1)%pageShow==0 || i == recommandJsonArray.size()-1)){
+sbInnerT.append("</div>");
+}
+}
+sbBtnT.append("</ol>");
+sbInnerT.append("</div>");
+out.print(sbBtnT.toString() + sbInnerT.toString());
+%>
+<%
+if(recommandJsonArray!= null && recommandJsonArray.size() > pageShow) {
+%>
+<!-- Controls -->
+<a class='arrowForLeft2' href="#t_recommand" role="button" data-slide="prev">
+<span></span>
+<span class="sr-only">Previous</span>
+</a>
+<a class='arrowForRight2' href="#t_recommand" role="button" data-slide="next">
+<span></span>
+<span class="sr-only">Next</span>
+</a>
+<%} %>
+</div>
+</div>
+</div>
+<div class="recommand panel panel-default visible-xs-block" style="border-left:1px solid #F0F0F0">
+<div class="panel-body" style="">
+<div id="m_recommand" class="carousel slide" style="" data-ride="carousel" data-interval="false">
+<div class="carouselTitle2">
+<div class="panelHeader" style="float:left;"><span><%out.print(rmd_title);%></span></div>
+<div style="clear:both"></div>
+</div>
+<%
+StringBuffer sbBtn = new StringBuffer();
+StringBuffer sbInner = new StringBuffer();
+pageShow = 1;
+sbBtn.append("<ol class='carousel-indicators' style='margin-left: -30%';>");
+sbInner.append("<div class='carousel-inner' role='listbox'>");
+for(int i = 0;i < recommandJsonArray.size(); i++) {
+if(recommandJsonArray.getJSONObject(i)==null || !recommandJsonArray.getJSONObject(i).containsKey("prodId")){
+continue;
+}
+if(i==0 || (i%pageShow)==0){
+sbBtn.append("<li data-target='#m_recommand' data-slide-to=" + (i/pageShow));
+sbInner.append("<div class='item ");
+if(i==0){
+sbBtn.append(" class=\"active\"");
+sbInner.append("active");
+}
+sbBtn.append("></li>");
+sbInner.append("' >");
+}
+//書封
+sbInner.append("<div class='prodImg' onclick=\"location.href='/products/" + recommandJsonArray.getJSONObject(i).getString("prodId") + ".html'\" style=\"background-image:url('https://media.taaze.tw/showLargeImage.html?sc="+recommandJsonArray.getJSONObject(i).getString("orgProdId")+"&height=170&width=250');\" data-pid='" + recommandJsonArray.getJSONObject(i).getString("prodId") +"' >");
+sbInner.append("</div>");
+sbInner.append("<div class='description'>");
+sbInner.append("<div style='position:relative;margin:0 auto;height:100px;'>");
+//書名
+sbInner.append("<div>");
+sbInner.append("<strong><a href='/products/" +recommandJsonArray.getJSONObject(i).getString("prodId")+ ".html'>");
+sbInner.append(recommandJsonArray.getJSONObject(i).getString("titleMain"));
+sbInner.append("</a></strong>");
+sbInner.append("</div>");
+sbInner.append("<li style='display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;'>"+EcPathSettingImp.LimitString(recommandJsonArray.getJSONObject(i).getString("titleNext"),728,"...")+"</li>");
+//作者
+sbInner.append("<div>");
+//if((!urlParamters.getT().equals("31") && !urlParamters.getT().equals("32") && !urlParamters.getT().equals("61") && !urlParamters.getT().equals("62")) && recommandJsonArray.getJSONObject(i).getString("author")!=null && !"".equals(recommandJsonArray.getJSONObject(i).getString("author"))){
+//	sbInner.append("<span>作者：");
+//	sbInner.append(recommandJsonArray.getJSONObject(i).getString("author").length() > 35 ? recommandJsonArray.getJSONObject(i).getString("author").substring(0,35)+"..." : recommandJsonArray.getJSONObject(i).getString("author"));
+//	sbInner.append("</span>");
+//}
+sbInner.append("</div>");
+//優惠價
+sbInner.append("<div style='margin-top:5px'>");
+if(urlParamters.getK().equals("03")){
+sbInner.append("二手價：");
+}else{
+sbInner.append("優惠價：");
+}
+if(!recommandJsonArray.getJSONObject(i).getString("saleDisc").equals("100")){
+String disc = (recommandJsonArray.getJSONObject(i).getString("saleDisc").endsWith("0"))?recommandJsonArray.getJSONObject(i).getString("saleDisc").substring(0,1): recommandJsonArray.getJSONObject(i).getString("saleDisc");
+if(!(recommandJsonArray.getJSONObject(i).getString("saleDisc").endsWith("0"))&&Integer.parseInt(disc)<10){
+disc="0."+disc;
+}
+sbInner.append("<span style='color:#e3007f'>"+disc+"</span>折");
+}
+sbInner.append("<span style='color:#e3007f'>"+Math.round(recommandJsonArray.getJSONObject(i).getInt("salePrice"))+"</span>元");
+sbInner.append("</div>");
+sbInner.append("</div>");
+sbInner.append("</div>");
+if(pageShow == 1 || (i%pageShow)==1 || i == recommandJsonArray.size()-1){
+sbInner.append("</div>");
+}
+}
+sbBtn.append("</ol>");
+sbInner.append("</div>");
+String html = sbBtn.toString() + sbInner.toString();
+out.print(html);
+%>
+<%
+if(recommandJsonArray!= null && recommandJsonArray.size() > pageShow) {
+%>
+<!-- Controls -->
+<a class='arrowForLeft2' href="#m_recommand" role="button" data-slide="prev">
+<span></span>
+<span class="sr-only">Previous</span>
+</a>
+<a class='arrowForRight2' href="#m_recommand" role="button" data-slide="next">
+<span></span>
+<span class="sr-only">Next</span>
+</a>
+<%} %>
+</div>
+</div>
+</div>
+<%} %>
+<%--話題推薦 --%>
 
 <%-- 注目專區 --%>
 <%
