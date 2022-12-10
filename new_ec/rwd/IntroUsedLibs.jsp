@@ -1,9 +1,6 @@
 <%
-public final String GetSingleString(String orgFlg) {
-    if(orgFlg.equals("A") )
-        return "hi";
-    else
-        return "low";
+public  String GetSingleString(final String orgFlg) {
+    return orgFlg;
 }
 
 // //商品資料
