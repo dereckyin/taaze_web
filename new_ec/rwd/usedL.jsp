@@ -1691,7 +1691,7 @@ public String getQuarter
     prodDataSb.append("</div>");
 
 
-    if(sing_o.prodCatId.equals("32")) {
+    if(prodCatId.equals("32")) {
         prodDataSb.append("<div style='margin:2px 0;'>");
 if(rank!=null && rank.length() > 0) { //商品內容分級.預設：‘A’A：普遍級,B：保護級C：輔導級,D：限制級
     prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>分級：<span style='color: #666666; font-weight: normal;'>"+ getRankText(rank) +"</span></span>");
