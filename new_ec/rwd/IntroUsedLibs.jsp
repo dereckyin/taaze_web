@@ -31,7 +31,7 @@ public String getQuarter
         if(producers.length() > 0) {
             String producersUrl = "";
             try {
-                producersUrl = URLEncoder.encode(producers, "UTF-8");
+                producersUrl = URLEncoder.encode(producers, "utf8");
           
               } catch (UnsupportedEncodingException e) {
 
@@ -45,7 +45,7 @@ public String getQuarter
         if(avInfo!=null&&avInfo.get("directorMain")!=null&&avInfo.getString("directorMain").length()>0) {
             String avInfoUrl = "";
             try {
-                avInfoUrl = URLEncoder.encode(avInfo.getString("directorMain"), "UTF-8");
+                avInfoUrl = URLEncoder.encode(avInfo.getString("directorMain"), "utf8");
           
               } catch (UnsupportedEncodingException e) {
 
@@ -57,7 +57,7 @@ public String getQuarter
 
             String authorUrl = "";
             try {
-                authorUrl = URLEncoder.encode(author, "UTF-8");
+                authorUrl = URLEncoder.encode(author, "utf8");
           
               } catch (UnsupportedEncodingException e) {
 
