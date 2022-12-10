@@ -5479,7 +5479,7 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
-		prodPublishDate : '<%=GetSingleString(sing_o)%>',
+		prodPublishDate : '<%=GetSingleString(sing_o.orgFlg)%>',
 	},
   
 	created() {

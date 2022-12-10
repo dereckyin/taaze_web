@@ -1,5 +1,5 @@
 <%
-public GetSingleString(SingleLibs sing_o) {
+public GetSingleString(String orgFlg) {
     if(sing_o.orgFlg.equals("A") 
         return "hi";
     else
