@@ -1548,7 +1548,7 @@ recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 
 %>
 
-<jsp:include page="IntroUsedLibs.jsp" />
+<%@ include file="IntroUsedLibs.jsp" %>
 
 <!DOCTYPE html>
 <html>
