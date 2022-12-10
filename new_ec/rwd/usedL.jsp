@@ -1704,15 +1704,15 @@ if(avInfo!=null&&avInfo.get("cdFormat")!=null&&avInfo.getString("cdFormat").leng
 }
 prodDataSb.append("</div>");
 
-/*
+
 prodDataSb.append("<div style='margin:2px 0;'>");
 if(avInfo!=null&&avInfo.get("avRegion")!=null&&avInfo.getString("avRegion").length()>0){
-    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>播放區域：<span style='color: #666666; font-weight: normal;'>"+ sing_o.getAvRegionText(avInfo.getString("avRegion")) +"</span></span>");
+    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>播放區域：<span style='color: #666666; font-weight: normal;'>"+ getAvRegionText(avInfo.getString("avRegion")) +"</span></span>");
 }
 prodDataSb.append("</div>");
 prodDataSb.append("<div style='margin:2px 0;'>");
 if(avInfo!=null&&avInfo.get("screenRatio")!=null&&avInfo.getString("screenRatio").length()>0){
-    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>螢幕比例：<span style='color: #666666; font-weight: normal;'>"+ sing_o.getScreenRatioText(avInfo.getString("screenRatio")) +"</span></span>");
+    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>螢幕比例：<span style='color: #666666; font-weight: normal;'>"+ getScreenRatioText(avInfo.getString("screenRatio")) +"</span></span>");
 }
 if(avInfo!=null&&avInfo.get("sound")!=null&&avInfo.getString("sound").length()>0){
     prodDataSb.append("<span class='prodInfo_boldSpan'>音效格式：<span style='color: #666666; font-weight: normal;'>" +avInfo.getString("sound") +"</span></span>");
@@ -1727,6 +1727,9 @@ if(avInfo!=null&&avInfo.get("subtitles")!=null&&avInfo.getString("subtitles").le
 }
 prodDataSb.append("</div>");
 }
+
+
+/*
 if(sing_o.countryNm != null) {
     prodDataSb.append("<div style='margin:2px 0;'>");
     prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>製造/出產地：<span style='color: #666666; font-weight: normal;'>"+ sing_o.countryNm +"</span></span>");
@@ -1814,24 +1817,72 @@ if(prodColorBuild.length()>0){
 return prodDataSb.toString();
 }
 
-
-public String getRankText(String rank)
-{
-	String rankText = "";
-	if (rank != null && rank.length() > 0) {
-		if (rank.equals("A")) {
-			rankText = "普遍級";
-		} else if (rank.equals("B")) {
-			rankText = "保護級";
-		} else if (rank.equals("C")) {
-			rankText = "輔導級";
-		} else if (rank.equals("D")) {
-			rankText = "限制級";
-		} else {
-			rankText = "";
+//二手書書況備註
+public String getAddMarkText(String addMarkFlg, String note){
+	if(addMarkFlg!=null&&addMarkFlg.length()>0){
+		char t = addMarkFlg.charAt(0);
+		switch(t){
+			case 'A': return "無畫線註記";
+			case 'B': return "有畫線";
+			case 'C': return "有註記";
+			case 'D': return "有畫線及註記";
+			case 'E': return "作家簽名";
+			case 'F': return "蓋藏書章";
+			case 'G': return "有附件";
+			case 'Z': return note!=null?note:"";
+			default: return "";
 		}
+	}else{
+		return "";
 	}
-	return rankText;
+}
+ 
+//分級
+public String getRankText(String rank){
+	if(rank!=null&&rank.length()>0){
+		char t = rank.charAt(0);
+		switch(t){
+			case 'A': return "普遍級";
+			case 'B': return "保護級";
+			case 'C': return "輔導級";
+			case 'D': return "限制級";
+			default: return "未註明";
+		}
+	}else{
+		return "未註明";
+	}
+}
+//dvd區域
+public String getAvRegionText(String rank){
+	if(rank!=null&&rank.length()>0){
+		char t = rank.charAt(0);
+		switch(t){
+			case 'A': return "A區：北美洲、中美洲、南美洲、韓國、日本、台灣、香港、東南亞";
+			case 'B': return "B區：歐洲、格陵蘭、法國屬地、中東、非洲、澳洲、紐西蘭";
+			case 'C': return "C區：印度、尼泊爾、中國大陸、俄羅斯、中亞、南亞";
+			default: return "未註明";
+		}
+	}else{
+		return "未註明";
+	}
+}
+//dvd螢幕比例
+public String getScreenRatioText(String rank){
+	if(rank!=null&&rank.length()>0){
+		char t = rank.charAt(0);
+		switch(t){
+			case 'A': return "16:9";
+			case 'B': return "4:3";
+			case 'C': return "2.39:1";
+			case 'D': return "2.40:1";
+			case 'E': return "1.78:1";
+			case 'F': return "1.85:1";
+			case 'G': return "標示於商品簡介內";
+			default: return "未註明";
+		}
+	}else{
+		return "未註明";
+	}
 }
 
 %>
@@ -5768,7 +5819,7 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
-		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "dereck", "dereck", "dereck")%>',
+		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "dereck", "dereck", "dereck", "1212", "1212", "1212", "1212", "1212", "A")%>',
 	},
   
 	created() {
