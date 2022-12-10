@@ -1566,7 +1566,25 @@ public String getQuarter
 	String pubNmMain,
 	String isbn,
 	String eanCode,
-	String rank
+	String rank,
+	String countryNm,
+	String catName,
+	String prodFormatAndSpec,
+	String musical_instruments,
+	String language,
+	String phonetics,
+	String bindingType,
+	String ageBegin,
+	String ageEnd,
+	String page,
+	String bookSize,
+	String fileSize,
+	String sizeL,
+	String sizeW,
+	String sizeH,
+	String weight,
+	String prodSize,
+	String prodColor
 )
 {
     String prodAuthorText = "作者";
@@ -1728,49 +1746,50 @@ if(avInfo!=null&&avInfo.get("subtitles")!=null&&avInfo.getString("subtitles").le
 prodDataSb.append("</div>");
 }
 
-
-/*
-if(sing_o.countryNm != null) {
+if(countryNm != null) {
     prodDataSb.append("<div style='margin:2px 0;'>");
-    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>製造/出產地：<span style='color: #666666; font-weight: normal;'>"+ sing_o.countryNm +"</span></span>");
+    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>製造/出產地：<span style='color: #666666; font-weight: normal;'>"+ countryNm +"</span></span>");
     if(eancode.length() > 0) {
         prodDataSb.append("<span class='prodInfo_boldSpan'>商品條碼：<span style='color: #666666; font-weight: normal;'>"+ eancode +"</span></span>");
     }
     prodDataSb.append("</div>");
 }
-if(sing_o.orgFlg.equals("A") && sing_o.prodCatId.equals("31")) {
+if(orgFlg.equals("A") && prodCatId.equals("31")) {
     prodDataSb.append("<div style='margin:2px 0;'>");
-    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>音樂類型：<span style='color: #666666; font-weight: normal;'>"+ sing_o.catName +"</span></span><span style=\"padding: 0 0 0 20px; background: url('/new_ec/single/include/images/line01.jpg') no-repeat 0px 3px;\">商品規格：<span style='color: #666666; font-weight: normal;'>"+ prodFormatAndSpec +"</span></span>");
+    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>音樂類型：<span style='color: #666666; font-weight: normal;'>"+ catName +"</span></span><span style=\"padding: 0 0 0 20px; background: url('/new_ec/single/include/images/line01.jpg') no-repeat 0px 3px;\">商品規格：<span style='color: #666666; font-weight: normal;'>"+ prodFormatAndSpec +"</span></span>");
     if(musical_instruments.length() > 0) {
         prodDataSb.append("<span class='prodInfo_boldSpan'>演奏樂器：<span style='color: #666666; font-weight: normal;'>"+ musical_instruments +"</span></span>");
     }
     prodDataSb.append("</div>");
 }
+
 prodDataSb.append("<div style='margin:2px 0;'>");
-if(sing_o.getLanguageTex().length()>0){
-    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>語言：<span style='color: #666666; font-weight: normal;'>"+ sing_o.getLanguageTex() +"</span></span>");
+if(getLanguageTex(language).length()>0){
+    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>語言：<span style='color: #666666; font-weight: normal;'>"+ getLanguageTex(language) +"</span></span>");
 }
-if(sing_o.phonetics!=null && sing_o.phonetics.equals("Y")) {
+if(phonetics!=null && phonetics.equals("Y")) {
     prodDataSb.append("<span class='prodInfo_boldSpan'>注音：<span style='color: #666666; font-weight: normal;'>內文含注音</span></span>");
 }
-prodDataSb.append(sing_o.getAgeText());
-if(sing_o.getBindingType().length()>0){
-    prodDataSb.append("<span class='prodInfo_boldSpan'>裝訂方式：<span style='color: #666666; font-weight: normal;'>"+ sing_o.getBindingType() +"</span></span>");
+
+prodDataSb.append(getAgeText());
+
+if(getBindingType(bindingType).length()>0){
+    prodDataSb.append("<span class='prodInfo_boldSpan'>裝訂方式：<span style='color: #666666; font-weight: normal;'>"+ getBindingType(bindingType) +"</span></span>");
 }
-if(sing_o.pages!=null && sing_o.pages.length()>0 && !sing_o.pages.equals("0")){
-    prodDataSb.append("<span class='prodInfo_boldSpan'>頁數：<span style='color: #666666; font-weight: normal;'>"+sing_o.pages +"頁</span></span>");
+if(pages!=null && pages.length()>0 && !pages.equals("0")){
+    prodDataSb.append("<span class='prodInfo_boldSpan'>頁數：<span style='color: #666666; font-weight: normal;'>"+pages +"頁</span></span>");
 }
-if(sing_o.bookSize!=null && sing_o.bookSize.length()>0){
-    prodDataSb.append("<span class='prodInfo_boldSpan'>開數：<span style='color: #666666; font-weight: normal;'>"+sing_o.bookSize +"</span></span>");
+if(bookSize!=null && bookSize.length()>0){
+    prodDataSb.append("<span class='prodInfo_boldSpan'>開數：<span style='color: #666666; font-weight: normal;'>"+bookSize +"</span></span>");
 }
-if (sing_o.orgFlg.equals("A") && (sing_o.prodCatId.equals("14") || sing_o.prodCatId.equals("25") || sing_o.prodCatId.equals("26") || sing_o.prodCatId.equals("17"))) { //電子書欄位
-    if ("Q".equals(sing_o.bindingType)) {
+if (orgFlg.equals("A") && (prodCatId.equals("14") || prodCatId.equals("25") || prodCatId.equals("26") || prodCatId.equals("17"))) { //電子書欄位
+    if ("Q".equals(bindingType)) {
         prodDataSb.append("<span class='prodInfo_boldSpan'").append(prodDataSb.indexOf("語言") < 0 ? " style='padding:0;'" : "").append(">檔案格式：<span style='color: #666666; font-weight: normal;'>流動版型</span></span>");
     } else {
         prodDataSb.append("<span class='prodInfo_boldSpan'").append(prodDataSb.indexOf("語言") < 0 ? " style='padding:0;'" : "").append(">檔案格式：<span style='color: #666666; font-weight: normal;'>固定版型</span></span>");
     }
-    if (sing_o.fileSize != null && sing_o.fileSize.length() > 0) {
-        Double fileSizeMb = (Double.parseDouble(sing_o.fileSize) / 1024);
+    if (fileSize != null && fileSize.length() > 0) {
+        Double fileSizeMb = (Double.parseDouble(fileSize) / 1024);
         DecimalFormat df2 = new DecimalFormat("#.##");
         prodDataSb.append("<span class='prodInfo_boldSpan'>檔案大小：<span style='color: #666666; font-weight: normal;'>" + df2.format(fileSizeMb) + "MB</span></span>");
     }
@@ -1778,22 +1797,22 @@ if (sing_o.orgFlg.equals("A") && (sing_o.prodCatId.equals("14") || sing_o.prodCa
 prodDataSb.append("</div>");
 String sizeBuild = "";
 String sizeTemp = "";
-sizeTemp = (sing_o.sizeL!=null&&!sing_o.sizeL.equals("0"))?"<span style=\"color:#666666; font-weight:normal;\">長：" + sing_o.sizeL + "mm</span>":"";
+sizeTemp = (sizeL!=null&&!sizeL.equals("0"))?"<span style=\"color:#666666; font-weight:normal;\">長：" + sizeL + "mm</span>":"";
 if(sizeTemp.length()>0){
     sizeBuild += sizeBuild.length()>0 ? " \\ " + sizeTemp:sizeTemp;
 }
-sizeTemp = (sing_o.sizeW!=null&&!sing_o.sizeW.equals("0"))?"<span style=\"color:#666666; font-weight:normal;\">寬：" + sing_o.sizeW + "mm</span>":"";
+sizeTemp = (sizeW!=null&&!sizeW.equals("0"))?"<span style=\"color:#666666; font-weight:normal;\">寬：" + sizeW + "mm</span>":"";
 if(sizeTemp.length()>0){
     sizeBuild += sizeBuild.length()>0 ? " \\ " + sizeTemp:sizeTemp;
 }
-sizeTemp = (sing_o.sizeH!=null&&!sing_o.sizeH.equals("0"))?"<span style=\"color:#666666; font-weight:normal;\">高：" + sing_o.sizeH + "mm</span>":"";
+sizeTemp = (sizeH!=null&&!sizeH.equals("0"))?"<span style=\"color:#666666; font-weight:normal;\">高：" + sizeH + "mm</span>":"";
 if(sizeTemp.length()>0){
     sizeBuild += sizeBuild.length()>0 ? " \\ " + sizeTemp:sizeTemp;
 }
 if(sizeBuild.length()>0){
     sizeBuild = "<span class='prodInfo_boldSpan' style='padding:0;'>商品尺寸：</span>" + sizeBuild;
 }
-String weigthBuild = (sing_o.weight!=null&&!sing_o.weight.equals("0"))?"<span style=\"color:#666666; font-weight:normal;\">" + sing_o.sizeL + "公克</span>":"";
+String weigthBuild = (weight!=null&&!weight.equals("0"))?"<span style=\"color:#666666; font-weight:normal;\">" + sizeL + "公克</span>":"";
 if(weigthBuild.length()>0){
     if(sizeBuild.length()>0){
         weigthBuild = "<span class='prodInfo_boldSpan'>商品重量：</span>" + weigthBuild;
@@ -1801,11 +1820,11 @@ if(weigthBuild.length()>0){
         weigthBuild = "<span class='prodInfo_boldSpan' style='padding:0;'>商品重量：</span>" + weigthBuild;
     }
 }
-String prodSizeBuild = (sing_o.prodSize!=null&&sing_o.prodSize.length()>0)?"<span style=\"color:#666666; font-weight:normal;\">" + sing_o.prodSize + "</span>":"";
+String prodSizeBuild = (prodSize!=null&&prodSize.length()>0)?"<span style=\"color:#666666; font-weight:normal;\">" + prodSize + "</span>":"";
 if(prodSizeBuild.length()>0){
     prodSizeBuild = "<span class='prodInfo_boldSpan'>衣服尺寸：</span>" + prodSizeBuild;
 }
-String prodColorBuild = (sing_o.prodColor!=null&&sing_o.prodColor.length()>0)?"<span style=\"color:#666666; font-weight:normal;\">" + sing_o.prodColor + "</span>":"";
+String prodColorBuild = (prodColor!=null&&prodColor.length()>0)?"<span style=\"color:#666666; font-weight:normal;\">" + prodColor + "</span>":"";
 if(prodColorBuild.length()>0){
     if(prodSizeBuild.length()>0){
         prodColorBuild = "<span class='prodInfo_boldSpan' style='padding:0;'>商品顏色：</span>" + prodColorBuild;
@@ -1884,7 +1903,125 @@ public String getScreenRatioText(String rank){
 		return "未註明";
 	}
 }
+//語言
+public String getLanguageTex(String language){
+	if(tryParseInt(language)){
+		switch(Integer.parseInt(language)){
+			case 1: return "繁體中文";
+			case 2: return "簡體中文";
+			case 3: return "日文";
+			case 4: return "韓文";
+			case 5: return "泰文";
+			case 6: return "英文";
+			case 7: return "法文";
+			case 8: return "德文";
+			case 9: return "西班牙文";
+			case 10: return "拉丁語";
+			case 11: return "阿拉伯文";
+				case 12: return "俄文";
+			//feynman_比照intra新增語文代碼對應
+			case 13: return "意大利文";
+			case 14: return "荷蘭文";
+			case 15: return "瑞典文";
+			case 16: return "葡萄牙文";
+			case 17: return "印尼語";
+			case 18: return "比利時文";
+			case 19: return "波蘭文";
+			case 20: return "緬甸文";	
+			//
+			default: return this.language;
+		}
+	}else{
+		return "";
+	}
+}
 
+public boolean tryParseInt(String value)  
+	{  
+		try {  
+		    Integer.parseInt(value);  
+		    return true;  
+		} catch(NumberFormatException nfe) {  
+		     return false;  
+		}  
+	}
+
+	public String getEbookBindingType(String bindingType) {
+		if(bindingType!=null) {
+			char t = bindingType.charAt(0);
+        	switch (t) {
+            	case 'K': return "有聲書";
+            	case 'P': return "PDF";
+            	case 'Q': return "ePub";
+            	case 'S': return "電子雜誌訂閱";
+            	default: return "";
+        	}
+		} else {
+			return "";
+		}
+    }
+
+	//適讀年齡
+	public String getAgeText() {
+		StringBuilder sb = new StringBuilder();
+		try {
+			if(this.ageEnd != null && this.ageBegin != null) {
+				if (Integer.valueOf(this.ageEnd.trim()) > 0 && Integer.valueOf(this.ageEnd.trim()) <= 20) {
+						sb.append("<span style='padding: 0 0 0 20px; background: url(/new_ec/single/include/images/line01.jpg) no-repeat 0px 3px;'>適讀年齡：");
+						sb.append("<span style='color: #666666; font-weight: normal;'>");
+						sb.append(Integer.valueOf(this.ageBegin.trim())+"~"+Integer.valueOf(this.ageEnd.trim()));
+						sb.append("歲</span>");
+						sb.append("</span>");
+					} else {
+						if(Integer.valueOf(this.ageEnd.trim()) > 0 && Integer.valueOf(this.ageEnd.trim()) > 20) {
+							sb.append("<span style='padding: 0 0 0 20px; background: url(/new_ec/single/include/images/line01.jpg) no-repeat 0px 3px;'>適讀年齡：");
+							sb.append("<span style='color: #666666; font-weight: normal;'>");
+							sb.append(Integer.valueOf(this.ageBegin.trim())+"歲以上");
+							sb.append("</span>");
+							sb.append("</span>");
+						}
+					}
+			} else {
+				if(this.ageBegin != null) {
+					if(Integer.valueOf(this.ageBegin.trim()) > 0 ) {
+						sb.append("<span style='padding: 0 0 0 20px; background: url(/new_ec/single/include/images/line01.jpg) no-repeat 0px 3px;'>適讀年齡：");
+						sb.append("<span style='color: #666666; font-weight: normal;'>");
+						sb.append(Integer.valueOf(this.ageBegin.trim())+"歲以上");
+						sb.append("</span>");
+						sb.append("</span>");
+					}
+				}
+			}
+		} catch(Exception e) {
+			sb.append("<div style='display:none'>"+e.getMessage()+"</div>");
+		}
+		return sb.toString();
+	}
+
+	public String getBindingType(String bindingType)
+    {
+		if(bindingType!=null){
+			char t = bindingType.charAt(0);
+        	//裝訂型式.預設：‘A’  A：平裝,           B：盒裝  C：特殊裝訂,       D：軟皮裝訂  E：軟精裝,         F：精裝  G：線裝,           H：螺旋裝  I：有聲CD,         J：有聲卡帶  K：有聲MP3,       L：其他  O：WMA P：PDF Q：ePub R：keb
+        	switch (t){
+            	case 'A':return "平裝";
+            	case 'B': return "盒裝";
+            	case 'C': return "特殊裝訂";
+            	case 'D': return "軟皮裝訂";
+            	case 'E': return "軟精裝";
+            	case 'F': return "精裝";
+            	case 'G': return "線裝";
+            	case 'H': return "螺旋裝";
+            	case 'I': return "有聲CD";
+            	case 'J': return "有聲卡帶";
+            	case 'K': return "有聲MP3";
+            	case 'L': return "其他";  
+            	default: return "";
+        	}
+		}else{
+			return "";
+		}
+    }
 %>
 
 
@@ -5819,7 +5956,7 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
-		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "dereck", "dereck", "dereck", "1212", "1212", "1212", "1212", "1212", "A")%>',
+		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "dereck", "dereck", "dereck", "1212", "1212", "1212", "1212", "1212", "A", "TW", "CatName", "Spec", "music", "CH", "phone", "BT", "15", "55", "50", "60", "70", "80", "90", "100", "110", "120", "Black")%>',
 	},
   
 	created() {
