@@ -5481,7 +5481,7 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
-	
+		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "dereck")%>',
 	},
   
 	created() {

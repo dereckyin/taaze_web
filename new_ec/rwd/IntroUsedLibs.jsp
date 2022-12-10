@@ -28,18 +28,18 @@ public String getQuarter
             prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>"+ prodAuthorText +"：<span style='color: #666666; font-weight: normal;'>"+ author_text +"</span></span>");
         }
         if(producers.length() > 0) {
-            prodDataSb.append("<span class='prodInfo_boldSpan' >製作人：<span style='color: #666666; font-weight: normal;'><a href='" + searchProdAllUrlPattern + URLEncoder.encode(producers,"utf8") +"'>"+ producers +"</a></span></span>");
+            prodDataSb.append("<span class='prodInfo_boldSpan' >製作人：<span style='color: #666666; font-weight: normal;'><a href='" + searchProdAllUrlPattern + URLEncoder.encode(producers,"UTF-8") +"'>"+ producers +"</a></span></span>");
         }
     } else if(orgFlg.equals("A") && prodCatId.equals("32")) {
         if(author_text.length() > 0) {
             prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>演員：<span style='color: #666666; font-weight: normal;'>"+ author_text +"</span></span>");
         }
         if(avInfo!=null&&avInfo.get("directorMain")!=null&&avInfo.getString("directorMain").length()>0) {
-            prodDataSb.append("<span class='prodInfo_boldSpan' >導演：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + URLEncoder.encode(avInfo.getString("directorMain"),"utf8")+"'>"+ avInfo.getString("directorMain") +"</a></span></span>");
+            prodDataSb.append("<span class='prodInfo_boldSpan' >導演：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + URLEncoder.encode(avInfo.getString("directorMain"),"UTF-8")+"'>"+ avInfo.getString("directorMain") +"</a></span></span>");
         }
     } else {
         if(author!=null && author.length()>0){
-            prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>" + prodAuthorText +"：<span style='color: #666666; font-weight: normal;'><a href='" + searchProdAuthorUrlPattern + URLEncoder.encode(author,"utf8") +"'>" +author +"</a></span></span>");
+            prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>" + prodAuthorText +"：<span style='color: #666666; font-weight: normal;'><a href='" + searchProdAuthorUrlPattern + URLEncoder.encode(author,"UTF-8") +"'>" +author +"</a></span></span>");
         }
     }
 
