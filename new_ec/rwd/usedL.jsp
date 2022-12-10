@@ -1573,6 +1573,9 @@ public String getQuarter
     String searchProdAllUrlPattern = "/rwd_searchResult.html?keyType%5B%5D=0&keyword%5B%5D=";
     String searchProdAuthorUrlPattern = "/rwd_searchResult.html?keyType%5B%5D=2&keyword%5B%5D=";
     String searchProdPubUrlPattern = "/rwd_searchResult.html?keyType%5B%5D=3&keyword%5B%5D=";
+	String prodPublishText = "出版社";
+	String prodPublishDateText = "上架日期";
+
 
     //商品資料
     StringBuffer prodDataSb = new StringBuffer();
