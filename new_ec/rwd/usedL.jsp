@@ -1771,7 +1771,7 @@ if(phonetics!=null && phonetics.equals("Y")) {
     prodDataSb.append("<span class='prodInfo_boldSpan'>注音：<span style='color: #666666; font-weight: normal;'>內文含注音</span></span>");
 }
 
-prodDataSb.append(getAgeText());
+prodDataSb.append(getAgeText(ageBegin, ageEnd));
 
 if(getBindingType(bindingType).length()>0){
     prodDataSb.append("<span class='prodInfo_boldSpan'>裝訂方式：<span style='color: #666666; font-weight: normal;'>"+ getBindingType(bindingType) +"</span></span>");
