@@ -23,6 +23,7 @@
 pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ include file="../single/include/jsp/SingleUsedLibs.jsp" %>
+<%@ include file="IntroUsedLibs.jsp" %>
 
 <%!
 //商品图右上角icon
@@ -5478,6 +5479,7 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
+		prodPublishDate : '<%=GetSingleString(sing_o)%>',
 	},
   
 	created() {
