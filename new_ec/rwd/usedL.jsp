@@ -23,7 +23,7 @@
 pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ include file="../single/include/jsp/SingleUsedLibs.jsp" %>
-<%@ include file="IntroUsedLibs.jsp" %>
+
 
 <%!
 //商品图右上角icon
@@ -1545,6 +1545,8 @@ if(gift_info != null) {
 //new 格主推薦
 JSONObject recommendZekea = null;
 recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
+
+<%@ include file="IntroUsedLibs.jsp" %>
 
 %>
 
@@ -5479,7 +5481,6 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
-		prodPublishDate : '<%=GetSingleString(sing_o.orgFlg)%>',
 	},
   
 	created() {
