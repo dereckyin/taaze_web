@@ -1560,7 +1560,13 @@ public String getQuarter
     JSONObject avInfo,
     String producers,
 	String painter,
-	String translator
+	String translator,
+	String brandId,
+	String brandNm,
+	String pubNmMain,
+	String isbn,
+	String eanCode,
+	String rank
 )
 {
     String prodAuthorText = "作者";
@@ -1641,38 +1647,51 @@ public String getQuarter
     }
     prodDataSb.append("</div>");
 
-	/*
+	
+
+	String pubNmMainUrl = "";
+	try {
+		pubNmMainUrl = URLEncoder.encode(pubNmMain, "utf8");
+	
+		} catch (UnsupportedEncodingException e) {
+
+		}
+		
 
     prodDataSb.append("<div style='margin:2px 0;'>");
-    if(sing_o.prodCatId.equals("31")) {
-        if(sing_o.brandId!=null && sing_o.brandId.length() > 0 && sing_o.pubNmMain!=null && sing_o.pubNmMain.length()>0) {
-            prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>"+ prodPublishText +"：<span style='color: #666666; font-weight: normal;'><a href='" + searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"'>"+ sing_o.brandNm +"</a></span></span>");
+    if(prodCatId.equals("31")) {
+        if(brandId!=null && brandId.length() > 0 && pubNmMain!=null && pubNmMain.length()>0) {
+			
+            prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>"+ prodPublishText +"：<span style='color: #666666; font-weight: normal;'><a href='" + searchProdPubUrlPattern + pubNmMainUrl +"'>"+ brandNm +"</a></span></span>");
         }
-    } else if(sing_o.prodCatId.equals("32")) {
-        if(sing_o.pubNmMain!=null && sing_o.pubNmMain.length()>0){
-            prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>發行：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8")+"'>" + sing_o.brandNm +"</a></span></span>");
+    } else if(prodCatId.equals("32")) {
+        if(pubNmMain!=null && pubNmMain.length()>0){
+            prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>發行：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdPubUrlPattern + pubNmMainUrl +"'>" + brandNm +"</a></span></span>");
         }
     } else {
-        if(sing_o.pubNmMain!=null && sing_o.pubNmMain.length()>0){
-            prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>" + prodPublishText +"：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdPubUrlPattern + URLEncoder.encode(sing_o.pubNmMain,"utf8") +"'>"+ sing_o.pubNmMain +"</a></span></span>");
+        if(pubNmMain!=null && pubNmMain.length()>0){
+            prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>" + prodPublishText +"：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdPubUrlPattern + pubNmMainUrl +"'>"+ pubNmMain +"</a></span></span>");
         }
     }
-    if(sing_o.publishDate!=null && sing_o.publishDate.length()>0){
-        prodDataSb.append("<span class='prodInfo_boldSpan'>"+ prodPublishDateText +"：<span style='color: #666666; font-weight: normal;'>"+ sing_o.getDateFormat(sing_o.publishDate) +"</span></span>");
+
+    if(publishDate!=null && publishDate.length()>0){
+        prodDataSb.append("<span class='prodInfo_boldSpan'>"+ prodPublishDateText +"：<span style='color: #666666; font-weight: normal;'>"+ publishDate +"</span></span>");
     }
-    if(sing_o.isbn!=null && sing_o.isbn.length()>0){
-        prodDataSb.append("<span class='prodInfo_boldSpan'>ISBN/ISSN：<span style='color: #666666; font-weight: normal;'>"+ sing_o.isbn +"</span></span>");
+    if(isbn!=null && isbn.length()>0){
+        prodDataSb.append("<span class='prodInfo_boldSpan'>ISBN/ISSN：<span style='color: #666666; font-weight: normal;'>"+ isbn +"</span></span>");
     }
-    if(sing_o.prodCatId.equals("21") || sing_o.prodCatId.equals("22")|| sing_o.prodCatId.equals("23")|| sing_o.prodCatId.equals("24")|| sing_o.prodCatId.equals("25")|| sing_o.prodCatId.equals("26")|| sing_o.prodCatId.equals("27")) {
-        if(sing_o.eanCode!=null && sing_o.eanCode.length()>0){
-            prodDataSb.append("<span class='prodInfo_boldSpan'>條碼：<span style='color: #666666; font-weight: normal;'>"+ sing_o.eanCode +"</span></span>");
+    if(prodCatId.equals("21") || prodCatId.equals("22")|| prodCatId.equals("23")|| prodCatId.equals("24")|| prodCatId.equals("25")|| prodCatId.equals("26")|| prodCatId.equals("27")) {
+        if(eanCode!=null && eanCode.length()>0){
+            prodDataSb.append("<span class='prodInfo_boldSpan'>條碼：<span style='color: #666666; font-weight: normal;'>"+ eanCode +"</span></span>");
         }
     }
     prodDataSb.append("</div>");
+
+
     if(sing_o.prodCatId.equals("32")) {
         prodDataSb.append("<div style='margin:2px 0;'>");
-if(sing_o.rank!=null && sing_o.rank.length() > 0) { //商品內容分級.預設：‘A’A：普遍級,B：保護級C：輔導級,D：限制級
-    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>分級：<span style='color: #666666; font-weight: normal;'>"+ sing_o.getRankText(sing_o.rank) +"</span></span>");
+if(rank!=null && rank.length() > 0) { //商品內容分級.預設：‘A’A：普遍級,B：保護級C：輔導級,D：限制級
+    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>分級：<span style='color: #666666; font-weight: normal;'>"+ getRankText(rank) +"</span></span>");
 }
 if(avInfo!=null&&avInfo.get("avLen")!=null&&avInfo.getString("avLen").length()>0){
     prodDataSb.append("<span class='prodInfo_boldSpan'>片長：<span style='color: #666666; font-weight: normal;'>"+ avInfo.getString("avLen") +"分鐘</span></span>");
@@ -1681,6 +1700,8 @@ if(avInfo!=null&&avInfo.get("cdFormat")!=null&&avInfo.getString("cdFormat").leng
     prodDataSb.append("<span class='prodInfo_boldSpan'>商品規格（光碟格式）/（張數）：<span style='color: #666666; font-weight: normal;'>" +avInfo.getString("cdFormat") +"/"+ avInfo.getString("discs") +"</span></span>");
 }
 prodDataSb.append("</div>");
+
+/*
 prodDataSb.append("<div style='margin:2px 0;'>");
 if(avInfo!=null&&avInfo.get("avRegion")!=null&&avInfo.getString("avRegion").length()>0){
     prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>播放區域：<span style='color: #666666; font-weight: normal;'>"+ sing_o.getAvRegionText(avInfo.getString("avRegion")) +"</span></span>");
@@ -1788,6 +1809,26 @@ if(prodColorBuild.length()>0){
 }
  */
 return prodDataSb.toString();
+}
+
+
+public String getRankText(String rank)
+{
+	String rankText = "";
+	if (rank != null && rank.length() > 0) {
+		if (rank.equals("A")) {
+			rankText = "普遍級";
+		} else if (rank.equals("B")) {
+			rankText = "保護級";
+		} else if (rank.equals("C")) {
+			rankText = "輔導級";
+		} else if (rank.equals("D")) {
+			rankText = "限制級";
+		} else {
+			rankText = "";
+		}
+	}
+	return rankText;
 }
 
 %>
