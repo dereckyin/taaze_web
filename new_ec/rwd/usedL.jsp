@@ -1576,7 +1576,7 @@ public String getQuarter
 	String bindingType,
 	String ageBegin,
 	String ageEnd,
-	String page,
+	String pages,
 	String bookSize,
 	String fileSize,
 	String sizeL,
@@ -1749,8 +1749,8 @@ prodDataSb.append("</div>");
 if(countryNm != null) {
     prodDataSb.append("<div style='margin:2px 0;'>");
     prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>製造/出產地：<span style='color: #666666; font-weight: normal;'>"+ countryNm +"</span></span>");
-    if(eancode.length() > 0) {
-        prodDataSb.append("<span class='prodInfo_boldSpan'>商品條碼：<span style='color: #666666; font-weight: normal;'>"+ eancode +"</span></span>");
+    if(eanCode.length() > 0) {
+        prodDataSb.append("<span class='prodInfo_boldSpan'>商品條碼：<span style='color: #666666; font-weight: normal;'>"+ eanCode +"</span></span>");
     }
     prodDataSb.append("</div>");
 }
@@ -1832,7 +1832,7 @@ if(prodColorBuild.length()>0){
         prodColorBuild = "<span class='prodInfo_boldSpan'>商品顏色：</span>" + prodColorBuild;
     }
 }
- */
+ 
 return prodDataSb.toString();
 }
 
@@ -1929,7 +1929,7 @@ public String getLanguageTex(String language){
 			case 19: return "波蘭文";
 			case 20: return "緬甸文";	
 			//
-			default: return this.language;
+			default: return language;
 		}
 	}else{
 		return "";
@@ -1965,28 +1965,28 @@ public boolean tryParseInt(String value)
 	public String getAgeText() {
 		StringBuilder sb = new StringBuilder();
 		try {
-			if(this.ageEnd != null && this.ageBegin != null) {
-				if (Integer.valueOf(this.ageEnd.trim()) > 0 && Integer.valueOf(this.ageEnd.trim()) <= 20) {
+			if(ageEnd != null && ageBegin != null) {
+				if (Integer.valueOf(ageEnd.trim()) > 0 && Integer.valueOf(ageEnd.trim()) <= 20) {
 						sb.append("<span style='padding: 0 0 0 20px; background: url(/new_ec/single/include/images/line01.jpg) no-repeat 0px 3px;'>適讀年齡：");
 						sb.append("<span style='color: #666666; font-weight: normal;'>");
-						sb.append(Integer.valueOf(this.ageBegin.trim())+"~"+Integer.valueOf(this.ageEnd.trim()));
+						sb.append(Integer.valueOf(ageBegin.trim())+"~"+Integer.valueOf(ageEnd.trim()));
 						sb.append("歲</span>");
 						sb.append("</span>");
 					} else {
-						if(Integer.valueOf(this.ageEnd.trim()) > 0 && Integer.valueOf(this.ageEnd.trim()) > 20) {
+						if(Integer.valueOf(ageEnd.trim()) > 0 && Integer.valueOf(ageEnd.trim()) > 20) {
 							sb.append("<span style='padding: 0 0 0 20px; background: url(/new_ec/single/include/images/line01.jpg) no-repeat 0px 3px;'>適讀年齡：");
 							sb.append("<span style='color: #666666; font-weight: normal;'>");
-							sb.append(Integer.valueOf(this.ageBegin.trim())+"歲以上");
+							sb.append(Integer.valueOf(ageBegin.trim())+"歲以上");
 							sb.append("</span>");
 							sb.append("</span>");
 						}
 					}
 			} else {
-				if(this.ageBegin != null) {
-					if(Integer.valueOf(this.ageBegin.trim()) > 0 ) {
+				if(ageBegin != null) {
+					if(Integer.valueOf(ageBegin.trim()) > 0 ) {
 						sb.append("<span style='padding: 0 0 0 20px; background: url(/new_ec/single/include/images/line01.jpg) no-repeat 0px 3px;'>適讀年齡：");
 						sb.append("<span style='color: #666666; font-weight: normal;'>");
-						sb.append(Integer.valueOf(this.ageBegin.trim())+"歲以上");
+						sb.append(Integer.valueOf(ageBegin.trim())+"歲以上");
 						sb.append("</span>");
 						sb.append("</span>");
 					}
@@ -5956,7 +5956,7 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
-		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "dereck", "dereck", "dereck", "1212", "1212", "1212", "1212", "1212", "A", "TW", "CatName", "Spec", "music", "CH", "phone", "BT", "15", "55", "50", "60", "70", "80", "90", "100", "110", "120", "Black")%>',
+		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "producers", "painter", "translator", "1212", "brandNm", "pubNmMain", "isbn", "eanCode", "A", "TW", "CatName", "Spec", "music", "CH", "phone", "BT", "15", "55", "50", "60", "70", "80", "90", "100", "110", "120", "Black")%>',
 	},
   
 	created() {
