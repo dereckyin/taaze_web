@@ -1,5 +1,3 @@
-<%@ include file="../single/include/jsp/SingleUsedLibs.jsp" %>
-
 <%
 public GetSingleString(SingleLibs sing_o) {
     if(sing_o.orgFlg.equals("A") 
