@@ -1962,7 +1962,7 @@ public boolean tryParseInt(String value)
     }
 
 	//適讀年齡
-	public String getAgeText() {
+	public String getAgeText(String ageBegin, String ageEnd) {
 		StringBuilder sb = new StringBuilder();
 		try {
 			if(ageEnd != null && ageBegin != null) {
