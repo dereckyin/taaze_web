@@ -1616,10 +1616,28 @@ public String getQuarter
 
     
     if(painter!=null && painter.length() > 0) {
-        prodDataSb.append("<span class='prodInfo_boldSpan' >繪者：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + URLEncoder.encode(painter,"utf8")+"'>"+ painter +"</a></span></span>");
+
+		String painterUrl = "";
+            try {
+                painterUrl = URLEncoder.encode(painter, "utf8");
+          
+              } catch (UnsupportedEncodingException e) {
+
+              }
+
+        prodDataSb.append("<span class='prodInfo_boldSpan' >繪者：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + painterUrl +"'>"+ painter +"</a></span></span>");
     }
     if(translator!=null && translator.length()>0){
-        prodDataSb.append("<span class='prodInfo_boldSpan'>譯者：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + URLEncoder.encode(translator,"utf8")+"'>"+ translator +"</a></span></span>");
+
+		String translatorUrl = "";
+            try {
+                translatorUrl = URLEncoder.encode(translator, "utf8");
+          
+              } catch (UnsupportedEncodingException e) {
+
+              }
+
+        prodDataSb.append("<span class='prodInfo_boldSpan'>譯者：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + translatorUrl +"'>"+ translator +"</a></span></span>");
     }
     prodDataSb.append("</div>");
 
