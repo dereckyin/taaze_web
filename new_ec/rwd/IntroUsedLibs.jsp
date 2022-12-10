@@ -1,5 +1,5 @@
 <%
-public GetSingleString(String orgFlg) {
+public String GetSingleString(String orgFlg) {
     if(orgFlg.equals("A") 
         return "hi";
     else
