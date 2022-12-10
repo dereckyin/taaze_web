@@ -1,5 +1,5 @@
 <%
-String GetSingleString(String orgFlg) {
+GetSingleString(String orgFlg) {
     return orgFlg;
 }
 
