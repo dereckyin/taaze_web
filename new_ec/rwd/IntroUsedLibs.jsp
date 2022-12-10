@@ -1,6 +1,6 @@
 <%
 public GetSingleString(String orgFlg) {
-    if(sing_o.orgFlg.equals("A") 
+    if(orgFlg.equals("A") 
         return "hi";
     else
         return "low";
