@@ -1558,7 +1558,9 @@ public String getQuarter
     String author,
     String author_text,
     JSONObject avInfo,
-    String producers
+    String producers,
+	String painter,
+	String translator
 )
 {
     String prodAuthorText = "作者";
@@ -1612,14 +1614,17 @@ public String getQuarter
         }
     }
 
-    /*
-    if(sing_o.painter!=null && sing_o.painter.length() > 0) {
-        prodDataSb.append("<span class='prodInfo_boldSpan' >繪者：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + URLEncoder.encode(sing_o.painter,"utf8")+"'>"+ sing_o.painter +"</a></span></span>");
+    
+    if(painter!=null && painter.length() > 0) {
+        prodDataSb.append("<span class='prodInfo_boldSpan' >繪者：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + URLEncoder.encode(painter,"utf8")+"'>"+ painter +"</a></span></span>");
     }
-    if(sing_o.translator!=null && sing_o.translator.length()>0){
-        prodDataSb.append("<span class='prodInfo_boldSpan'>譯者：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + URLEncoder.encode(sing_o.translator,"utf8")+"'>"+ sing_o.translator +"</a></span></span>");
+    if(translator!=null && translator.length()>0){
+        prodDataSb.append("<span class='prodInfo_boldSpan'>譯者：<span style='color: #666666; font-weight: normal;'><a href='"+ searchProdAllUrlPattern + URLEncoder.encode(translator,"utf8")+"'>"+ translator +"</a></span></span>");
     }
     prodDataSb.append("</div>");
+
+	/*
+
     prodDataSb.append("<div style='margin:2px 0;'>");
     if(sing_o.prodCatId.equals("31")) {
         if(sing_o.brandId!=null && sing_o.brandId.length() > 0 && sing_o.pubNmMain!=null && sing_o.pubNmMain.length()>0) {
@@ -5701,7 +5706,7 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
-		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "dereck")%>',
+		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "dereck", "dereck", "dereck")%>',
 	},
   
 	created() {
