@@ -1546,9 +1546,9 @@ if(gift_info != null) {
 JSONObject recommendZekea = null;
 recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 
-<%@ include file="IntroUsedLibs.jsp" %>
-
 %>
+
+<%@ include file="IntroUsedLibs.jsp" %>
 
 <!DOCTYPE html>
 <html>
