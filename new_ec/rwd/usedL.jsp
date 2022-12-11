@@ -4182,7 +4182,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 	</div>
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
 <%-- 商品資料 --%>
-<% out.print(prodDataSb); %>
+<% out.print("@@@@@" + prodDataSb + "@@@@@@"); %>
 
 <%-- 商品簡介 --%>
 
