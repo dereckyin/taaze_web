@@ -5956,7 +5956,7 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
-		prodPublishDate : '<%=getQuarter("A", "31", "20201010", "dereck", "dereck", null, "producers", "painter", "translator", "1212", "brandNm", "pubNmMain", "isbn", "eanCode", "A", "TW", "CatName", "Spec", "music", "CH", "phone", "BT", "15", "55", "50", "60", "70", "80", "90", "100", "110", "120", "Black")%>',
+		prodPublishDate : '<%=getQuarter(sing_o.orgFlg, sing_o.prodCatId, sing_o.publishDate, sing_o.author, author_text, avInfo, producers, sing_o.painter, sing_o.translatorPf, sing_o.brandId, sing_o.brandNm, sing.pubNmMain, sing.isbn, eancode, sing_o.rank, "", sing_o.catName, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")%>',
 	},
   
 	created() {
