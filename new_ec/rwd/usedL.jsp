@@ -4181,8 +4181,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 		</div>
 	</div>
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
-<%-- 商品資料 --%>
-<% out.print("@@@@@" + prodDataSb + "@@@@@@"); %>
+
 
 <%-- 商品簡介 --%>
 
@@ -4190,6 +4189,9 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
 			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
 				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
+				<%-- 商品資料 --%>
+				<% out.print(prodDataSb); %>
+
 <%
 sb = new StringBuilder();
 int total_sale = 0;
