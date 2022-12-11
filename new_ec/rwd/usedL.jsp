@@ -2022,6 +2022,8 @@ public boolean tryParseInt(String value)
 			return "";
 		}
     }
+
+	String prodPublishDate = getQuarter(sing_o.orgFlg, sing_o.prodCatId, sing_o.publishDate, sing_o.author, author_text, avInfo, producers, sing_o.painter, sing_o.translatorPf, sing_o.brandId, sing_o.brandNm, sing.pubNmMain, sing.isbn, eancode, sing_o.rank, "", sing_o.catName, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 %>
 
 
@@ -5956,7 +5958,7 @@ var app = new Vue({
 		translator: '<%=sing_o.translator%>',
 		prodPublishText : '<%=prodPublishText%>',
 		prodPublishDateText : '<%=prodPublishDateText%>',
-		prodPublishDate : '<%=getQuarter(sing_o.orgFlg, sing_o.prodCatId, sing_o.publishDate, sing_o.author, author_text, avInfo, producers, sing_o.painter, sing_o.translatorPf, sing_o.brandId, sing_o.brandNm, sing.pubNmMain, sing.isbn, eancode, sing_o.rank, "", sing_o.catName, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")%>',
+		
 	},
   
 	created() {
