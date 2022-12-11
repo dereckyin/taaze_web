@@ -4159,11 +4159,13 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 			</div>
 			<div id="textArea" style="font-size: 14px;line-height:22px">
 			<!-- <div id="app">{{ author_text }} {{ translator }} {{ prodPublishText }} {{ prodPublishDateText }}</div> -->
-
+<div class='content' style='display: none;'>
 		<%-- 商品資料 --%>
 		<% out.print(prodDataSb); %>
+
+</div>
 		<%
-		for(int i = 0; i < textAreaDOM.size(); i++) {
+		for(int i = 1; i < textAreaDOM.size(); i++) {
 			String DOM = "";
 			DOM += "<a name='pr"+i+"' ></a>";
 			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
