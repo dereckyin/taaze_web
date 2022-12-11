@@ -4162,6 +4162,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 			<!-- <div id="app">{{ author_text }} {{ translator }} {{ prodPublishText }} {{ prodPublishDateText }}</div> -->
 <div class='content' style='display: none;'>
 		<%-- 商品資料 --%>
+		<div style="padding:25px 0 10px 0; font-size:12pt; font-weight:bold; color:#333333;">內容簡介</div>
 		<% out.print(prodDataSb); %>
 
 		<%
@@ -4186,6 +4187,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 </div>
 <div class='content'>
 		<%-- 商品資料 --%>
+		<div style="padding:25px 0 10px 0; font-size:12pt; font-weight:bold; color:#333333;">內容簡介</div>
 		<% out.print(prodDataSb); %>
 </div>
 <div class='moreBtn' style='margin-top: 10px;'><div viewall='0' style='width: 88px; padding: 2px 0;font-weight:bold; font-size: 10pt; text-align: center; cursor: pointer;'>顯示全部內容</div></div>
