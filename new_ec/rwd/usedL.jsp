@@ -1748,14 +1748,15 @@ if(avInfo!=null&&avInfo.get("subtitles")!=null&&avInfo.getString("subtitles").le
 prodDataSb.append("</div>");
 }
 
-if(countryNm != null) {
-    prodDataSb.append("<div style='margin:2px 0;'>");
-    prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>製造/出產地：<span style='color: #666666; font-weight: normal;'>"+ countryNm +"</span></span>");
-    if(eanCode.length() > 0) {
-        prodDataSb.append("<span class='prodInfo_boldSpan'>商品條碼：<span style='color: #666666; font-weight: normal;'>"+ eanCode +"</span></span>");
-    }
-    prodDataSb.append("</div>");
-}
+// if(countryNm != null) {
+//     prodDataSb.append("<div style='margin:2px 0;'>");
+//     prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>製造/出產地：<span style='color: #666666; font-weight: normal;'>"+ countryNm +"</span></span>");
+//     if(eanCode.length() > 0) {
+//         prodDataSb.append("<span class='prodInfo_boldSpan'>商品條碼：<span style='color: #666666; font-weight: normal;'>"+ eanCode +"</span></span>");
+//     }
+//     prodDataSb.append("</div>");
+// }
+
 if(orgFlg.equals("A") && prodCatId.equals("31")) {
     prodDataSb.append("<div style='margin:2px 0;'>");
     prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>音樂類型：<span style='color: #666666; font-weight: normal;'>"+ catName +"</span></span><span style=\"padding: 0 0 0 20px; background: url('/new_ec/single/include/images/line01.jpg') no-repeat 0px 3px;\">商品規格：<span style='color: #666666; font-weight: normal;'>"+ prodFormatAndSpec +"</span></span>");
@@ -1775,9 +1776,9 @@ if(phonetics!=null && phonetics.equals("Y")) {
 
 prodDataSb.append(getAgeText(ageBegin, ageEnd));
 
-if(getBindingType(bindingType).length()>0){
-    prodDataSb.append("<span class='prodInfo_boldSpan'>裝訂方式：<span style='color: #666666; font-weight: normal;'>"+ getBindingType(bindingType) +"</span></span>");
-}
+// if(getBindingType(bindingType).length()>0){
+//     prodDataSb.append("<span class='prodInfo_boldSpan'>裝訂方式：<span style='color: #666666; font-weight: normal;'>"+ getBindingType(bindingType) +"</span></span>");
+// }
 if(pages!=null && pages.length()>0 && !pages.equals("0")){
     prodDataSb.append("<span class='prodInfo_boldSpan'>頁數：<span style='color: #666666; font-weight: normal;'>"+pages +"頁</span></span>");
 }
