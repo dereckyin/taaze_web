@@ -4163,7 +4163,6 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 		<%-- 商品資料 --%>
 		<% out.print(prodDataSb); %>
 
-</div>
 		<%
 		for(int i = 1; i < textAreaDOM.size(); i++) {
 			String DOM = "";
@@ -4185,7 +4184,18 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 			</div>
 		</div>
 	</div>
+
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
+
+</div>
+<div class='content'>
+		<%-- 商品資料 --%>
+		<% out.print(prodDataSb); %>
+</div>
+<div class='moreBtn' style='margin-top: 10px;'><div viewall='0' style='width: 88px; padding: 2px 0;font-weight:bold; font-size: 10pt; text-align: center; cursor: pointer;'>顯示全部內容</div></div>
+
+		
+	
 
 
 <%-- 商品簡介 --%>
