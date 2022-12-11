@@ -4158,7 +4158,7 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 				<img id="word3" style="cursor:pointer;width:30px;height:30px;" src='/new_ec/rwd/include/images/C_image/ic/ic_12@2x.png'></img>
 			</div>
 			<div id="textArea" style="font-size: 14px;line-height:22px">
-			<div id="app">{{ author_text }} {{ translator }} {{ prodPublishText }} {{ prodPublishDateText }}</div>
+			<!-- <div id="app">{{ author_text }} {{ translator }} {{ prodPublishText }} {{ prodPublishDateText }}</div> -->
 		<%
 		for(int i = 0; i < textAreaDOM.size(); i++) {
 			String DOM = "";
@@ -4181,6 +4181,8 @@ style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div
 		</div>
 	</div>
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
+<%-- 商品資料 --%>
+<% out.print(prodDataSb); %>
 
 <%-- 商品簡介 --%>
 
