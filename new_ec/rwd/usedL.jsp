@@ -2816,7 +2816,7 @@ jQuery.browser = {};
 		</div>
 		<c:choose>
 			<c:when test="${cookie['mobile'].value eq 'on'}">
-				<div class="container container_PC_new wrap  hidden-xs  hidden-sm hidden-md hidden-lg">
+				<div class="container container_PC_new wrap">
 			</c:when>
 			<c:otherwise>
 				<div class="container wrap">
@@ -4092,7 +4092,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		%>
 		</div>
 	</div>
-</div>
+
 <%}%>
 
 <!-- 	最近成交價(折扣) -->
