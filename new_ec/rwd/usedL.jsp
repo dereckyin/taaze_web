@@ -2816,10 +2816,10 @@ jQuery.browser = {};
 		</div>
 		<c:choose>
 			<c:when test="${cookie['mobile'].value eq 'on'}">
-				<div class="container container_PC_new wrap visible-lg-block visible-sm-block visible-md-block visible-xs-block">
+				<div class="container container_PC_new wrap">
 			</c:when>
 			<c:otherwise>
-				<div class="container wrap visible-lg-block">
+				<div class="container wrap">
 			</c:otherwise>
 		</c:choose>
 		<!-- sitemap -->
