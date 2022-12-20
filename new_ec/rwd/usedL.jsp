@@ -2838,7 +2838,7 @@ jQuery.browser = {};
 		
 		<c:choose>
 			<c:when test="${cookie['mobile'].value eq 'on'}">
-		<div class="row visible-sm-block visible-md-block visible-xs-block">
+		<div class="row hidden-xs hidden-sm hidden-md hidden-lg">
 			</c:when>
 			<c:otherwise>
 		<div class="row visible-xs-block">
