@@ -2828,19 +2828,11 @@ jQuery.browser = {};
 				<div class="row" style="margin-top:10px; padding:0 3px;">
 			</c:when>
 			<c:otherwise>
-				<div class="row hidden-md hidden-lg" style="margin-top:10px; padding:0 3px;">
+				<div class="row hidden-xs hidden-sm" style="margin-top:10px; padding:0 3px;">
 			</c:otherwise>
 		</c:choose>
 		
-		<c:choose>
-			<c:when test="${cookie['mobile'].value eq 'on'}">
-				<div class="col-sm-12 col-xs-12 site_map" style="margin-bottom: 15px;">
-			</c:when>
-			<c:otherwise>
-				<div class="col-sm-12 col-xs-12 hidden-md hidden-lg site_map" style="margin-bottom: 15px;">
-			</c:otherwise>
-		</c:choose>
-			
+			<div class="col-sm-12 col-xs-12 site_map" style="margin-bottom: 15px;">
 				<span>
 					<a class="linkStyle01" href="<%=sing.getWebUrl(request) %>">首頁</a>
 				</span>
