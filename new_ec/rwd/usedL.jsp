@@ -2832,7 +2832,15 @@ jQuery.browser = {};
 			</c:otherwise>
 		</c:choose>
 		
-			<div class="col-sm-12 col-xs-12 site_map" style="margin-bottom: 15px;">
+		<c:choose>
+			<c:when test="${cookie['mobile'].value eq 'on'}">
+				<div class="col-sm-12 col-xs-12 site_map" style="margin-bottom: 15px;">
+			</c:when>
+			<c:otherwise>
+				<div class="col-sm-12 col-xs-12 hidden-md hidden-lg site_map" style="margin-bottom: 15px;">
+			</c:otherwise>
+		</c:choose>
+			
 				<span>
 					<a class="linkStyle01" href="<%=sing.getWebUrl(request) %>">首頁</a>
 				</span>
