@@ -4100,7 +4100,14 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 <!-- 	銷售中的二手書 -->
 <% if(sing.total_saler > 0) { %>
-<div class="row" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<div class="row" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:otherwise>
+</c:choose>
 <div class="row">
 	<div id="sprodConetnt3" class="col-sm-12 col-xs-12" style="margin:10px 0px;">
 		<a id="#r1"></a>
@@ -4146,8 +4153,14 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 <!-- 	最近成交價(折扣) -->
 <%if (sale_range.size() > 0) {%>
-<div class="row"
-style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<div class="row" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:otherwise>
+</c:choose>
 <div class="row " style="margin-bottom: 15px;">
 	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 0px;">
 		<%
@@ -4320,8 +4333,14 @@ if (want_range.size() > 0) {
 </div>
 <!-- 	最近成交價(折扣) -->
 <%if (sale_range.size() > 0) {%>
-<div class="row"
-style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<div class="row" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:otherwise>
+</c:choose>
 <div class="row" style="margin-bottom: 15px;">
 	
 	<div>
