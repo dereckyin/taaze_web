@@ -4242,7 +4242,15 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 		
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄/購物須知....--%>
+<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
 	<ul class="nav nav-tabs textArea" style='margin-bottom:20px;'>
+	</c:when>
+	<c:otherwise>
+	<ul class="nav nav-tabs textArea hidden-xs hidden-sm" style='margin-bottom:20px;'>
+	</c:otherwise>
+</c:choose>
+	
 	<%
 	if(menuItems.size()>0) {
 		for(int i = 0; i < menuItems.size(); i++) {
@@ -4253,7 +4261,16 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	}
 	%>
 	</ul>
-	<div class="panel panel-default" style="margin-top:0px;border:none">				
+
+	<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<div class="panel panel-default" style="margin-top:0px;border:none">	
+	</c:when>
+	<c:otherwise>
+	<div class="panel panel-default hidden-xs hidden-sm" style="margin-top:0px;border:none">	
+	</c:otherwise>
+</c:choose>
+				
 		<div class="">
 			<div style="text-align: right;">
 				<span>文字字級</span>
@@ -4320,8 +4337,14 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 
 <%-- 商品簡介 --%>
+<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<div class="row" style="margin-bottom: 10px;">
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm" style="margin-bottom: 10px;">
+	</c:otherwise>
 
-<div class="row" style="margin-bottom: 10px;">
 	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
 			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
 				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
