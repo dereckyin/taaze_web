@@ -4426,17 +4426,15 @@ if (want_range.size() > 0) {
 <%-- pc model end --%>
 
 
-<%-- mobile model start
+<%-- mobile model start --%>
 <c:choose>
 	<c:when test="${cookie['mobile'].value eq 'on'}">
-		<div id="mCartArea" class='hidden-xs hidden-sm hidden-md hidden-lg'>
+		<div id="mCartArea"  style="display:none;">
 	</c:when>
 	<c:otherwise>
-		<div id="mCartArea" class='visible-xs-block visible-sm-block visible-md-block' style="display:none;">
+		<div id="mCartArea"  style="display:none;">
 	</c:otherwise>
 </c:choose>
---%>
-
 <%if (sing_o.salePrice<=0 && ProductUtil.isEbook(sing_o.prodId)) { //0元電子書欄位%>
 	<%if(sing_o.openFlg==-1 || sing_o.openFlg==1){ %>
 		<%if(sing_o.salePrice==0 && sing_o.orgFlg.equals("A") && (ProductUtil.isEbook(sing_o.prodId))){%>
