@@ -2849,7 +2849,7 @@ jQuery.browser = {};
 		<div class="row hidden-xs hidden-sm hidden-md hidden-lg">
 			</c:when>
 			<c:otherwise>
-		<div class="row visible-xs-block">
+		<div class="row hidden-xs hidden-sm">
 			</c:otherwise>
 		</c:choose>
 			<div class="col-sm-10 col-xs-12">
