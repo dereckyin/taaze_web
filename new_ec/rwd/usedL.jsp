@@ -4344,7 +4344,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	<c:otherwise>
 	<div class="row hidden-xs hidden-sm" style="margin-bottom: 10px;">
 	</c:otherwise>
-
+</c:choose>
 	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
 			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
 				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
