@@ -4004,14 +4004,29 @@ jQuery.browser = {};
 
 </div>
 
-<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
-
+<!-- 分隔線 -->
+<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:otherwise>
+</c:choose>
 
 <%-- tags --%>
 <div>  </div>
 <%-- tags --%>
 
-<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+<!-- 分隔線 -->
+<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+	</c:otherwise>
+</c:choose>
 
 
 <%-- 二手與徵求 --%>
