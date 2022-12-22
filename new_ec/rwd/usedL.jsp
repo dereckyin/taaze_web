@@ -4116,7 +4116,16 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	<div class="row hidden-xs hidden-sm"></div>
 	</c:otherwise>
 </c:choose>
+<!-- 	銷售中的二手書 ajax -->
+<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
 	<div id="sprodConetnt3" class="col-sm-12 col-xs-12" style="margin:10px 0px;">
+	</c:when>
+	<c:otherwise>
+	<div id="sprodConetnt3" class="col-sm-12 col-xs-12 hidden-xs hidden-sm" style="margin:10px 0px;">
+	</c:otherwise>
+</c:choose>
+	
 		<a id="#r1"></a>
 		<a id="#r2"></a>
 		<a id="#r3"></a>
@@ -4142,8 +4151,17 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	<% } %>
 	<!-- 	最多人成交 -->
 	<%if (sing.averge_sale_price > 0) {%>
+	
+	<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
 	<div class="row"
 	style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm"
+	style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
+	</c:otherwise>
+</c:choose>
 	<div class="row">
 		<div class="col-sm-12 col-xs-12" style=" margin: 10px 0px;">
 			<%
