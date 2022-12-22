@@ -2844,6 +2844,7 @@ jQuery.browser = {};
 			</div>
 		</div>
 		
+		<!-- title and 交易資訊 -->
 		<c:choose>
 			<c:when test="${cookie['mobile'].value eq 'on'}">
 		<div class="row hidden-xs hidden-sm hidden-md hidden-lg">
@@ -2882,8 +2883,25 @@ jQuery.browser = {};
 			</div>
 		</div>
 
-		<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
-		<div class="row visible-xs-block">
+		<!-- 分隔線 -->
+		<c:choose>
+			<c:when test="${cookie['mobile'].value eq 'on'}">
+			<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+			</c:when>
+			<c:otherwise>
+			<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+			</c:otherwise>
+		</c:choose>
+
+		<!-- 評價 -->
+		<c:choose>
+			<c:when test="${cookie['mobile'].value eq 'on'}">
+			<div class="row visible-xs-block">
+			</c:when>
+			<c:otherwise>
+			<div class="row hidden-xs hidden-sm">
+			</c:otherwise>
+		</c:choose>
 			<div class="col-sm-12 col-xs-12">
 			<%if (!sing.starLevel.equals("0")) { %>
 				<div style='float:left; padding: 2px 5px 0px 0px;' class="rateit" data-rateit-value="<%=sing.starLevel %>" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
