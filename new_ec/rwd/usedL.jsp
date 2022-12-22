@@ -4162,7 +4162,15 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
 	</c:otherwise>
 </c:choose>
+
+<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
 	<div class="row">
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm">
+	</c:otherwise>
+</c:choose>
 		<div class="col-sm-12 col-xs-12" style=" margin: 10px 0px;">
 			<%
 			sb = new StringBuilder();
@@ -4186,7 +4194,15 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
 	</c:otherwise>
 </c:choose>
-<div class="row " style="margin-bottom: 15px;">
+
+<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<div class="row" style="margin-bottom: 15px;">
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm" style="margin-bottom: 15px;">
+	</c:otherwise>
+</c:choose>
 	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 0px;">
 		<%
 		List sortedKeys = new ArrayList(sale_range.keySet());
