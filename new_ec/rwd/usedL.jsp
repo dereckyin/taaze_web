@@ -2954,7 +2954,15 @@ jQuery.browser = {};
 	</div>
 
 	<%-- 商品頁內容 --%>
-	<div class="row" style="margin-top:10px;">
+	
+	<c:choose>
+		<c:when test="${cookie['mobile'].value eq 'on'}">
+		<div class="row" style="margin-top:10px;">
+		</c:when>
+		<c:otherwise>
+		<div class="row hidden-xs hidden-sm" style="margin-top:10px;">
+		</c:otherwise>
+	</c:choose>
 		<%-- 左邊區塊 --%>
 		<c:choose>  
 		<c:when test="${cookie['mobile'].value eq 'on'}">    		
