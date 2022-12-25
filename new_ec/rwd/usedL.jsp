@@ -2847,10 +2847,10 @@ jQuery.browser = {};
 		<!-- title and 交易資訊 -->
 		<c:choose>
 			<c:when test="${cookie['mobile'].value eq 'on'}">
-		<div class="row hidden-xs hidden-sm hidden-md hidden-lg">
+		<div class="row d-none">
 			</c:when>
 			<c:otherwise>
-		<div class="row hidden-xs hidden-sm">
+		<div class="row d-none">
 			</c:otherwise>
 		</c:choose>
 			<div class="col-sm-10 col-xs-12">
@@ -2886,20 +2886,20 @@ jQuery.browser = {};
 		<!-- 分隔線 -->
 		<c:choose>
 			<c:when test="${cookie['mobile'].value eq 'on'}">
-			<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+			<div class="row d-none" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
 			</c:when>
 			<c:otherwise>
-			<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
+			<div class="row d-none" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;"></div>
 			</c:otherwise>
 		</c:choose>
 
 		<!-- 評價 -->
 		<c:choose>
 			<c:when test="${cookie['mobile'].value eq 'on'}">
-			<div class="row visible-xs-block">
+			<div class="row d-none">
 			</c:when>
 			<c:otherwise>
-			<div class="row hidden-xs hidden-sm">
+			<div class="row d-none">
 			</c:otherwise>
 		</c:choose>
 			<div class="col-sm-12 col-xs-12">
