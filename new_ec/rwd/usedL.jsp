@@ -2886,10 +2886,10 @@ jQuery.browser = {};
 		<!-- 分隔線 -->
 		<c:choose>
 			<c:when test="${cookie['mobile'].value eq 'on'}">
-			<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;" style="display:none;"></div>
+			<div class="row visible-xs-block" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px; display:none;"></div>
 			</c:when>
 			<c:otherwise>
-			<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px;" style="display:none;"></div>
+			<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px; display:none;"></div>
 			</c:otherwise>
 		</c:choose>
 
