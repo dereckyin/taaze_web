@@ -4289,7 +4289,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 </div>
 <div class='content'>
 		<%-- 商品資料 --%>
-		<% out.print(prodDataSb); %>
+		
 
 		<div style="padding:25px 0 10px 0; font-size:12pt; font-weight:bold; color:#333333;">內容簡介</div>
 	
@@ -4297,7 +4297,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 
 		<%
-		for(int i = 0; i < textAreaDOM.size(); i++) {
+		for(int i = 0; i < 1; i++) {
 			String DOM = "";
 			DOM += "<a name='pr"+i+"' ></a>";
 			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
@@ -4319,6 +4319,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	</div>
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
 
+	<% out.print(prodDataSb); %>
 
 <%-- 商品簡介 --%>
 <c:choose>
