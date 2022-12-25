@@ -4314,12 +4314,32 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		}
 		
 		%>
+
+		<% out.print(prodDataSb); %>
+
+		<%
+		for(int i = 1; i < textAreaDOM.size(); i++) {
+			String DOM = "";
+			DOM += "<a name='pr"+i+"' ></a>";
+			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
+				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div' class='prodContent'>";
+			} else {
+				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
+			}
+			if(i > 0) {
+				DOM += String.format(htmlBuild1, textAreaDOM.getJSONObject(i).getString("title"));
+			} 
+			DOM += textAreaDOM.getJSONObject(i).getString("content");
+			DOM += "</div>";
+			out.print(DOM);
+		}
+		
+		%>
 			</div>
 		</div>
 	</div>
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
 
-	<% out.print(prodDataSb); %>
 
 <%-- 商品簡介 --%>
 <c:choose>
