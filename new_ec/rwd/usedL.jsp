@@ -4490,7 +4490,7 @@ String mImg = "";
 mTitle += "<div class='' style='margin-top:10px;'>";
 mTitle += "<div class=''>";
 mTitle += "<h1 style='font-size:20px;font-weight:bold;line-height: 24px; letter-spacing:1px;'>";
-mTitle += "讀冊【二手徵求好處多】|" + getProdMainTitleHtml(sing_o.orgFlg, sing_o.adoFlg, sing_o.bindingType, sing_o.prodCatId,sing_o.titleMain, sing_o.prodFgInfo) + "<span style='color:#755e5f; font-weight: normal;font-size:20px;'>（二手書交易資訊）</span>"";
+mTitle += "讀冊【二手徵求好處多】|" + getProdMainTitleHtml(sing_o.orgFlg, sing_o.adoFlg, sing_o.bindingType, sing_o.prodCatId,sing_o.titleMain, sing_o.prodFgInfo) + "<span style='color:#755e5f; font-weight: normal;font-size:20px;'>（二手書交易資訊）</span>";
 mTitle += "</h1>";
 mTitle += "</div>";
 if(sing_o.titleNext!=null&&sing_o.titleNext.length()>0){
