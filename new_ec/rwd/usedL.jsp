@@ -4476,10 +4476,10 @@ if (want_range.size() > 0) {
 </div>
 <c:choose>
 	<c:when test="${cookie['mobile'].value eq 'on'}">
-		<div class="mBody container-fluid hidden-md hidden-sm hidden-xs hidden-lg" style="margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
+		<div class="mBody container-fluid hidden-md hidden-sm hidden-xs hidden-lg" style="margin-top:0px !important;margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
 	</c:when>
 	<c:otherwise>
-		<div class="mBody container-fluid visible-md-block visible-sm-block visible-xs-block" style="margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
+		<div class="mBody container-fluid visible-md-block visible-sm-block visible-xs-block" style="margin-top:0px !important;margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
 	</c:otherwise>
 </c:choose>
 
