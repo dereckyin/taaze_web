@@ -3010,7 +3010,7 @@ jQuery.browser = {};
 			<div class="row">
 				<div class="col-xs-12">
 					<h1 style="line-height: 24px;letter-spacing: 0.5px;font-size:20px;font-weight:bold; letter-spacing:1px;margin: 0;">
-						<%=sing_o.titleMain %>
+					讀冊【二手徵求好處多】|<%=sing_o.titleMain %><span style="color:#755e5f; font-weight: normal;font-size:20px;">（二手書交易資訊）</span>
 					<% if(sing_o.orgFlg.equals("A")&&sing_o.prodFgInfo!=null&&sing_o.prodFgInfo.length()>0){%>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;"><%=sing_o.prodFgInfo %></span>
 					<%} %>
@@ -4490,7 +4490,7 @@ String mImg = "";
 mTitle += "<div class='' style='margin-top:10px;'>";
 mTitle += "<div class=''>";
 mTitle += "<h1 style='font-size:20px;font-weight:bold;line-height: 24px; letter-spacing:1px;'>";
-mTitle += getProdMainTitleHtml(sing_o.orgFlg, sing_o.adoFlg, sing_o.bindingType, sing_o.prodCatId,sing_o.titleMain, sing_o.prodFgInfo);
+mTitle += "讀冊【二手徵求好處多】|" + getProdMainTitleHtml(sing_o.orgFlg, sing_o.adoFlg, sing_o.bindingType, sing_o.prodCatId,sing_o.titleMain, sing_o.prodFgInfo) + "<span style='color:#755e5f; font-weight: normal;font-size:20px;'>（二手書交易資訊）</span>"";
 mTitle += "</h1>";
 mTitle += "</div>";
 if(sing_o.titleNext!=null&&sing_o.titleNext.length()>0){
