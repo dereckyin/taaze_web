@@ -2836,7 +2836,6 @@ jQuery.browser = {};
 				<span>
 					<a class="linkStyle01" href="<%=sing.getWebUrl(request) %>">首頁</a>
 				</span>
-				<%=sing.getHyperLineBySnd() %>
 				<%=(sing.prodCatId != null && sing.prodCatId.length() == 2) ? sing.getHyperLineByProdCatId() : "" %>
 				<%=(sing.catId != null && sing.catId.length() == 12) ? sing.getHyperLineByCatId() : "" %>
 				<span class='span01'>&gt;</span> <li class="active" style="color:#e3007f;display:inline-block"><%=title %></li>
@@ -4476,10 +4475,10 @@ if (want_range.size() > 0) {
 </div>
 <c:choose>
 	<c:when test="${cookie['mobile'].value eq 'on'}">
-		<div class="mBody container-fluid hidden-md hidden-sm hidden-xs hidden-lg" style="margin-top:0px !important;margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
+		<div class="mBody container-fluid hidden-md hidden-sm hidden-xs hidden-lg" style="margin-top:50px;margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
 	</c:when>
 	<c:otherwise>
-		<div class="mBody container-fluid visible-md-block visible-sm-block visible-xs-block" style="margin-top:0px !important;margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
+		<div class="mBody container-fluid visible-md-block visible-sm-block visible-xs-block" style="margin-top:50px;margin-left: auto; margin-right: auto;padding-left: 0;padding-right: 0;">
 	</c:otherwise>
 </c:choose>
 
@@ -4635,7 +4634,19 @@ mImg += "<div class=\"readNotifyButton\" style=\"display: none;\"><h5 style=\"te
 <%-- 左邊區塊 --%>
 <div class="col-xs-12 col-sm-12 col-md-12" style='padding-left:10px;padding-right:10px;'>
 <div class="row">
-<%@ include file="/new_ec/rwd/include/jsp/listSiteMap.jsp"%>
+<div class="row" style='width:100%;margin-left:0;margin-right:0;'>
+	<div class="col-xs-12" style='padding:0;'>
+		<ul style='list-style:none;padding:0;'>
+		<li>
+			<a class="linkStyle01" href="<%=sing.getWebUrl(request) %>">首頁</a>
+		</li>
+		<%=(sing.prodCatId != null && sing.prodCatId.length() == 2) ? sing.getHyperLineByProdCatId() : "" %>
+		<%=(sing.catId != null && sing.catId.length() == 12) ? sing.getHyperLineByCatId() : "" %>
+		<li class='span01'>&gt;</li> <li class="active" style="color:#e3007f;display:inline-block"><%=title %></li>
+
+		</ul>
+	</div>
+</div>
 </div>
 <div class='col-xs-12 col-sm-10 col-md-10' style='padding:0;float:none;margin:0 auto;'>
 <%
