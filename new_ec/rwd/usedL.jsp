@@ -4315,8 +4315,11 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		
 		%>
 
+		<div style="padding:25px 0 10px 0; font-size:12pt; font-weight:bold; color:#333333;">商品資料</div>
 		<% out.print(prodDataSb); %>
 
+		<div class='moreBtn' style='margin-top: 10px;'><div viewall='0' style='width: 88px; padding: 2px 0;font-weight:bold; font-size: 10pt; text-align: center; cursor: pointer;'>顯示全部內容</div></div>
+		
 		<%
 		for(int i = 1; i < textAreaDOM.size(); i++) {
 			String DOM = "";
