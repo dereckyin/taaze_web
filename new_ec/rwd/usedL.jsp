@@ -4281,38 +4281,23 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 			<!-- <div id="app">{{ author_text }} {{ translator }} {{ prodPublishText }} {{ prodPublishDateText }}</div> -->
 <div class='content' style='display: none;'>
 		<%-- 商品資料 --%>
-		<div style="padding:25px 0 10px 0; font-size:12pt; font-weight:bold; color:#333333;">內容簡介</div>
+	
 		<% out.print(prodDataSb); %>
 
-		<%
-		for(int i = 0; i < 1; i++) {
-			String DOM = "";
-			DOM += "<a name='pr"+i+"' ></a>";
-			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
-				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div' class='prodContent'>";
-			} else {
-				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
-			}
-			if(i > 0) {
-				DOM += String.format(htmlBuild1, textAreaDOM.getJSONObject(i).getString("title"));
-			} 
-			DOM += textAreaDOM.getJSONObject(i).getString("content");
-			DOM += "</div>";
-			out.print(DOM);
-		}
-		
-		%>
+	
 
 </div>
 <div class='content'>
 		<%-- 商品資料 --%>
+		<% out.print(prodDataSb); %>
+
 		<div style="padding:25px 0 10px 0; font-size:12pt; font-weight:bold; color:#333333;">內容簡介</div>
-		
+	
 </div>
-<div class='moreBtn' style='margin-top: 10px;'><div viewall='0' style='width: 88px; padding: 2px 0;font-weight:bold; font-size: 10pt; text-align: center; cursor: pointer;'>顯示全部內容</div></div>
+
 
 		<%
-		for(int i = 1; i < textAreaDOM.size(); i++) {
+		for(int i = 0; i < textAreaDOM.size(); i++) {
 			String DOM = "";
 			DOM += "<a name='pr"+i+"' ></a>";
 			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
