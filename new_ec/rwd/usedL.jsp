@@ -4196,13 +4196,13 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 <c:choose>
 	<c:when test="${cookie['mobile'].value eq 'on'}">
-	<div class="row" style="margin-bottom: 15px;">
+	<div class="row" style="margin-bottom: 15px; display:none;">
 	</c:when>
 	<c:otherwise>
-	<div class="row hidden-xs hidden-sm" style="margin-bottom: 15px;">
+	<div class="row hidden-xs hidden-sm" style="margin-bottom: 15px; display:none;">
 	</c:otherwise>
 </c:choose>
-	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 0px;">
+	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 0px; display:none;">
 		<%
 		List sortedKeys = new ArrayList(sale_range.keySet());
 		Collections.sort(sortedKeys);
