@@ -4338,7 +4338,8 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		
 		%>
 			</div>
-	
+		</div>
+	</div>
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
 <%-- 商品簡介 --%>
 
