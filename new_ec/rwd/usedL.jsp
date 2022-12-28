@@ -2591,6 +2591,75 @@ button.check {
 	}
 }
 </style>
+<style type="text/css">
+        .read-more {
+                font-size: 15px;
+                font-weight: 500;
+                color: rgb(0, 0, 0);
+                font-style: italic;
+                line-height: 1.5;
+                position: relative;
+                width: 100%;
+                text-align: center;
+                margin: 0 auto;
+                padding: 15px 10px;
+                overflow: hidden;
+                height: 80px;
+                /* "transparent" only works here because == rgba(0,0,0,0) */
+             
+                text-overflow: ellipsis;
+                
+                position: relative;
+        }
+        .read-more::after{ content: ''; width: 100%; height: 60px; background: linear-gradient(0deg, rgba(255,255,255,1) 10%,rgba(255,255,255,0) 100%); display: inline-block;position: absolute; bottom: 0; left: 0;  z-index: 9;}
+        .read-more.open{height: auto;}
+        .read-more.open::after{ display: none;}
+
+        .btn2 {
+                border: none;
+                display: block;
+                text-align: center;
+                cursor: pointer;
+                text-transform: uppercase;
+                outline: none;
+                overflow: hidden;
+                position: absolute;
+                color: rgb(0, 0, 0);
+                font-weight: 700;
+                font-size: 10px;
+
+                padding: 30px;
+                margin: 0 auto;
+             
+        }
+
+        .btn2 span {
+                position: relative;
+                z-index: 1;
+        }
+
+        .button_container {
+                position: relative;
+                left: 0;
+                right: 0;
+                top: 30%;
+        }
+
+
+        .btn2:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -16px;
+            height: 490%;
+            width: 140%;
+     
+            -webkit-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+    
+        }
+
+    </style>
 <!-- js include  -->
 <script type="text/javascript" src="/new_ec/single/include/js/modernizr.js"></script>
 <script type="text/javascript" src="<%=EcPathSetting.WEB_JS_PATH%>/jquery.tipsy.js"></script>
@@ -4239,13 +4308,15 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 <%-- 商品簡介 --%>
 
+<div class="read-more">
+
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄/購物須知....--%>
 <c:choose>
 	<c:when test="${cookie['mobile'].value eq 'on'}">
-	<ul class="nav nav-tabs textArea" style='margin-bottom:20px; display:none;'>
+	<ul class="nav nav-tabs textArea" style='margin-bottom:20px;'>
 	</c:when>
 	<c:otherwise>
-	<ul class="nav nav-tabs textArea hidden-xs hidden-sm" style='margin-bottom:20px; display:none;'>
+	<ul class="nav nav-tabs textArea hidden-xs hidden-sm" style='margin-bottom:20px;'>
 	</c:otherwise>
 </c:choose>
 	
@@ -4262,10 +4333,10 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 	<c:choose>
 	<c:when test="${cookie['mobile'].value eq 'on'}">
-	<div class="panel panel-default" style="margin-top:0px;border:none; display:none;">	
+	<div class="panel panel-default" style="margin-top:0px;border:none">	
 	</c:when>
 	<c:otherwise>
-	<div class="panel panel-default hidden-xs hidden-sm" style="margin-top:0px;border:none; display:none;">	
+	<div class="panel panel-default hidden-xs hidden-sm" style="margin-top:0px;border:none">	
 	</c:otherwise>
 </c:choose>
 				
@@ -4338,6 +4409,13 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		
 		%>
 			</div>
+
+			</div>
+    <div class="button_container">
+        <span class="btn2">Read more...</span>  
+    </div>
+
+
 		</div>
 	</div>
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
@@ -6174,6 +6252,15 @@ src="/new_include/js/jquery.ba-hashchange.js"></script>
 src="/new_ec/single/include/js/jquery.qtip.min.js"></script>
 <script type="text/javascript" src="/new_ec/rwd/include/js/include_goods.js?v3"
 async></script>
+
+<script>
+    $(function() {
+        $(".btn2").click(function() {
+            event.preventDefault();
+            $(".read-more").toggleClass('open');
+        });
+    });
+</script>
 
 </body>
 </html>
