@@ -2590,8 +2590,7 @@ button.check {
 		font-size: 9pt;
 	}
 }
-</style>
-<style type="text/css">
+
 .read-more {
 font-size: 15px;
 font-weight: 500;
