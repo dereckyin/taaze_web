@@ -1,18 +1,13 @@
 @charset "UTF-8";
 
 .read-more {
-font-size: 15px;
-font-weight: 500;
-color: rgb(0, 0, 0);
-font-style: italic;
-line-height: 1.5;
 position: relative;
 width: 100%;
 text-align: center;
 margin: 0 auto;
 padding: 15px 10px;
 overflow: hidden;
-height: 80px;
+height: 120px;
 /* "transparent" only works here because == rgba(0,0,0,0) */
 text-overflow: ellipsis;
 position: relative;
