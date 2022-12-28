@@ -4245,7 +4245,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	<ul class="nav nav-tabs textArea" style='margin-bottom:20px; display:none;'>
 	</c:when>
 	<c:otherwise>
-	<ul class="nav nav-tabs textArea hidden-xs hidden-sm" style='margin-bottom:20px;'>
+	<ul class="nav nav-tabs textArea hidden-xs hidden-sm" style='margin-bottom:20px; display:none;'>
 	</c:otherwise>
 </c:choose>
 	
@@ -4262,10 +4262,10 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 	<c:choose>
 	<c:when test="${cookie['mobile'].value eq 'on'}">
-	<div class="panel panel-default" style="margin-top:0px;border:none">	
+	<div class="panel panel-default" style="margin-top:0px;border:none; display:none;">	
 	</c:when>
 	<c:otherwise>
-	<div class="panel panel-default hidden-xs hidden-sm" style="margin-top:0px;border:none">	
+	<div class="panel panel-default hidden-xs hidden-sm" style="margin-top:0px;border:none; display:none;">	
 	</c:otherwise>
 </c:choose>
 				
