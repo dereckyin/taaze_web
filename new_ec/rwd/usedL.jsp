@@ -4349,7 +4349,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	</div>
 
 	<div class="button_container">
-        <span class="btn2">閱讀更多...</span>  
+        <span class="btn2"><b class="v1">閱讀更多...</b><b class="v2">閱讀更少...</b></span>  
     </div>
 
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
@@ -6192,6 +6192,8 @@ async></script>
         $(".btn2").click(function() {
             event.preventDefault();
             $(".read-more").toggleClass('open');
+			$(".v1").toggleClass('open');
+			$(".v2").toggleClass('open');
         });
     });
 </script>

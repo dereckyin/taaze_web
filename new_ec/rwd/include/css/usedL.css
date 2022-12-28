@@ -26,13 +26,33 @@ text-transform: uppercase;
 outline: none;
 overflow: hidden;
 position: absolute;
-color: #e2007f;
+
 font-weight: 700;
 font-size: 12px;
 
 padding: 30px;
 margin: 0 auto;
 
+}
+
+.v1 {
+    color: #e2007f;
+    visibility: block;
+}
+
+.v1.open {
+    color: #e2007f;
+    visibility: none;
+}
+
+.v2 {
+    color: #e2007f;
+    visibility: none;
+}
+
+.v2.open {
+    color: #e2007f;
+    visibility: block;
 }
 
 .btn2 span {
@@ -46,7 +66,7 @@ left: 0;
 right: 0;
 top: 30%;
 z-index: 1;
-margin-bottom: 30px;
+margin-bottom: 35px;
 }
 
 .btn2:after {
