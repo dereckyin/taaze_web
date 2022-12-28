@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 .read-more {
+
 position: relative;
 width: 100%;
 text-align: center;
@@ -41,8 +42,10 @@ z-index: 1;
 
 .button_container {
 position: relative;
-left: 720px;
+left: 0;
+right: 0;
 top: 30%;
+z-index: 1;
 }
 
 .btn2:after {
