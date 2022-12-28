@@ -40,10 +40,7 @@ z-index: 1;
 }
 
 .button_container {
-position: relative;
-left: 0;
-right: 0;
-top: 30%;
+
 }
 
 .btn2:after {
