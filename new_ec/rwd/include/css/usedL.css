@@ -7,7 +7,7 @@ text-align: center;
 margin: 0 auto;
 padding: 15px 10px;
 overflow: hidden;
-height: 120px;
+height: 80px;
 /* "transparent" only works here because == rgba(0,0,0,0) */
 text-overflow: ellipsis;
 position: relative;
@@ -40,7 +40,9 @@ z-index: 1;
 }
 
 .button_container {
-
+position: relative;
+left: 20px;
+top: 30%;
 }
 
 .btn2:after {
