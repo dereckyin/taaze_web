@@ -2070,7 +2070,7 @@ href="/include2/tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-s
 <link rel="stylesheet" type="text/css" href="/include2/css/swiper.min.css"/>
 <link rel="stylesheet" type="text/css" href="/include2/colorbox/colorbox.css"/>
 <link rel="canonical" href="https://www.taaze.tw/usedList.html?oid=11100977212"/>
-<link rel="stylesheet" type="text/css" href="usedL.css"/>
+<link rel="stylesheet" type="text/css" href="/new_ec/rwd/include/css/usedL.css"/>
 <!-- critical css -->
 <style>
 body {
