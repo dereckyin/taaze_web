@@ -4239,7 +4239,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 <%-- 商品簡介 --%>
 
-		
+<div style="display:none;">
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄/購物須知....--%>
 <c:choose>
 	<c:when test="${cookie['mobile'].value eq 'on'}">
@@ -4342,9 +4342,10 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		</div>
 	</div>
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
-
-
 <%-- 商品簡介 --%>
+</div>
+
+
 <c:choose>
 	<c:when test="${cookie['mobile'].value eq 'on'}">
 	<div class="row" style="margin-bottom: 10px;">
