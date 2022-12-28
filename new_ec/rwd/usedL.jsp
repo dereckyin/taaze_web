@@ -4240,6 +4240,11 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 <%-- 商品簡介 --%>
 
+<div class="button_container">
+        <span class="btn2">Read more...</span>  
+    </div>
+
+
 <div class="read-more">
 
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄/購物須知....--%>
@@ -4343,10 +4348,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 			</div>
 
 			</div>
-    <div class="button_container">
-        <span class="btn2">Read more...</span>  
-    </div>
-
+    
 
 		</div>
 	</div>
