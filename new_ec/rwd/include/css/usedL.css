@@ -26,9 +26,9 @@ text-transform: uppercase;
 outline: none;
 overflow: hidden;
 position: absolute;
-color: rgb(0, 0, 0);
+color: #e2007f;
 font-weight: 700;
-font-size: 10px;
+font-size: 12px;
 
 padding: 30px;
 margin: 0 auto;
@@ -46,6 +46,7 @@ left: 0;
 right: 0;
 top: 30%;
 z-index: 1;
+margin-bottom: 30px;
 }
 
 .btn2:after {
