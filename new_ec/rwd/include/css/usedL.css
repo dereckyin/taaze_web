@@ -47,12 +47,12 @@ margin: 0 auto;
 
 .v2 {
     color: #e2007f;
-    visibility: none;
+    visibility: block;
 }
 
 .v2.open {
     color: #e2007f;
-    visibility: block;
+    visibility: none;
 }
 
 .btn2 span {
