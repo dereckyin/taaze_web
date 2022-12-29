@@ -4266,7 +4266,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		%>
 		<li data-toggle="tab"><a style="cursor:pointer;" rel="pra">商品資料</a></li>
 		<li data-toggle="tab"><a style="cursor:pointer;" rel="pr<%=jt%>"><%=menuItems.getJSONObject(jt).get("title") %></a></li>
-
+<%
 	}
 	%>
 	</ul>
