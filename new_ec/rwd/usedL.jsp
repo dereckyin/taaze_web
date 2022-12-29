@@ -4254,16 +4254,18 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 </c:choose>
 	
 	<%
+	int j=0;
 	if(menuItems.size()>0) {
 		for(int i = 0; i < menuItems.size() -1; i++) {
 	%>
 		<li data-toggle="tab" class="<%=i==0?"active":"" %>"><a style="cursor:pointer;" rel="pr<%=i%>"><%=menuItems.getJSONObject(i).get("title") %></a></li>
 	<%	
+			j=i;
 		}
-		i++;
+		j++;
 		%>
 		<li data-toggle="tab"><a style="cursor:pointer;" rel="pra">商品資料</a></li>
-		<li data-toggle="tab"><a style="cursor:pointer;" rel="pr<%=i%>"><%=menuItems.getJSONObject(i).get("title") %></a></li>
+		<li data-toggle="tab"><a style="cursor:pointer;" rel="pr<%=j%>"><%=menuItems.getJSONObject(j).get("title") %></a></li>
 
 	}
 	%>
