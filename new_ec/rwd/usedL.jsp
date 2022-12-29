@@ -4304,7 +4304,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 
 		<%
-		for(int i = 0; i < 1; i++) {
+		for(int i = 0; i < textAreaDOM.size() - 1; i++) {
 			String DOM = "";
 			DOM += "<a name='pr"+i+"' ></a>";
 			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
@@ -4322,13 +4322,14 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		
 		%>
 
-		
 		<div style="padding:25px 0 10px 0; font-size:12pt; font-weight:bold; color:#333333;">商品資料</div>
 		<a name="pr0"></a>
+		<div id='productDiv'>
 		<% out.print(prodDataSb); %>
+		</div>
 
 		<%
-		for(int i = 1; i < textAreaDOM.size(); i++) {
+		for(int i = textAreaDOM.size() - 1; i < textAreaDOM.size(); i++) {
 			String DOM = "";
 			DOM += "<a name='pr"+i+"' ></a>";
 			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
@@ -4343,8 +4344,13 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 			DOM += "</div>";
 			out.print(DOM);
 		}
+
 		
 		%>
+
+		
+
+
 			</div>
 
 			</div>
