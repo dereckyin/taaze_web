@@ -4323,7 +4323,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		%>
 
 		<div style="padding:25px 0 10px 0; font-size:12pt; font-weight:bold; color:#333333;">商品資料</div>
-		<a name="pr0"></a>
+		<a name="pra"></a>
 		<div id='productDiv'>
 		<% out.print(prodDataSb); %>
 		</div>
