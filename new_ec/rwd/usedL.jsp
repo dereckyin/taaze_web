@@ -4149,91 +4149,8 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 		</div>
 	</div>
 	<% } %>
-	<!-- 	最多人成交 -->
-	<%if (sing.averge_sale_price > 0) {%>
-	
-	<c:choose>
-	<c:when test="${cookie['mobile'].value eq 'on'}">
-	<div class="row"
-	style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
-	</c:when>
-	<c:otherwise>
-	<div class="row hidden-xs hidden-sm"
-	style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
-	</c:otherwise>
-</c:choose>
 
-<c:choose>
-	<c:when test="${cookie['mobile'].value eq 'on'}">
-	<div class="row">
-	</c:when>
-	<c:otherwise>
-	<div class="row hidden-xs hidden-sm">
-	</c:otherwise>
-</c:choose>
-		<div class="col-sm-12 col-xs-12" style=" margin: 10px 0px;">
-			<%
-			sb = new StringBuilder();
-			int averge_disc = Math.round((sing.averge_sale_price / sing.listPrice) * 100);
-			sb.append("<p><span class='span03'>最多人成交</span></p>");
-			sb.append("<p style=' margin-bottom: 0px;'><span class='span03' style=\"background:url('/new_ec/single/include/images/avg_sale.jpg') 0px -2px no-repeat; padding-left: 30px;\">平均成交價<span class='highlightu'>" + sing.discString(String.valueOf(averge_disc)) + "</span>折<span class='highlightu'>" + sing.averge_sale_price + "</span>元</span></p>");
-			out.print(sb.toString());
-		%>
-		</div>
-	</div>
 
-<%}%>
-
-<!-- 	最近成交價(折扣) -->
-<%if (sale_range.size() > 0) {%>
-	<c:choose>
-	<c:when test="${cookie['mobile'].value eq 'on'}">
-	<div class="row" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px; display:none;"></div>
-	</c:when>
-	<c:otherwise>
-	<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px; display:none;"></div>
-	</c:otherwise>
-</c:choose>
-
-<c:choose>
-	<c:when test="${cookie['mobile'].value eq 'on'}">
-	<div class="row" style="margin-bottom: 15px; display:none;">
-	</c:when>
-	<c:otherwise>
-	<div class="row hidden-xs hidden-sm" style="margin-bottom: 15px; display:none;">
-	</c:otherwise>
-</c:choose>
-	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 15px; display:none;">
-		<%
-		List sortedKeys = new ArrayList(sale_range.keySet());
-		Collections.sort(sortedKeys);
-		sb = new StringBuilder();
-		JSONArray recordList = new JSONArray();
-		for (int i = 0; i < sortedKeys.size(); i++) {
-			String key = sortedKeys.get(i).toString();
-			JSONObject record = sale_range.get(key);
-			record.put("sale_month", key);
-			int price_total = record.getInt("sale_price");
-			int count = record.getInt("prod_count");
-			float disc_total = Float.valueOf(record.getString("disc"));
-			record.put("avg_price", Math.round(price_total / count));
-			if (disc_total / count < 1) {
-				record.put("avg_disc", 1);
-			}
-			if (disc_total / count > 1) {
-				record.put("avg_disc", Math.round(disc_total / count));
-			}
-			recordList.add(record);
-		}
-		out.print("<div class='recordList' style='display:none'>" + recordList.toString() + "</div>");
-		out.print("<p><span class='span03'>最近成交價(折扣)</span></p>");
-	%>
-
-</div>
-</div>
-<%
-}
-%>
 
 <%-- 二手與徵求 --%>
 
@@ -4414,6 +4331,97 @@ if (sprod_range.size() > 0) {
 </div>
 </div>
 </div>
+
+
+
+
+<!-- 	最多人成交 -->
+<%if (sing.averge_sale_price > 0) {%>
+
+<c:choose>
+<c:when test="${cookie['mobile'].value eq 'on'}">
+<div class="row"
+style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
+</c:when>
+<c:otherwise>
+<div class="row hidden-xs hidden-sm"
+style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
+</c:otherwise>
+</c:choose>
+
+<c:choose>
+<c:when test="${cookie['mobile'].value eq 'on'}">
+<div class="row">
+</c:when>
+<c:otherwise>
+<div class="row hidden-xs hidden-sm">
+</c:otherwise>
+</c:choose>
+	<div class="col-sm-12 col-xs-12" style=" margin: 10px 15px;">
+		<%
+		sb = new StringBuilder();
+		int averge_disc = Math.round((sing.averge_sale_price / sing.listPrice) * 100);
+		sb.append("<p><span class='span03'>最多人成交</span></p>");
+		sb.append("<p style=' margin-bottom: 0px;'><span class='span03' style=\"background:url('/new_ec/single/include/images/avg_sale.jpg') 0px -2px no-repeat; padding-left: 30px;\">平均成交價<span class='highlightu'>" + sing.discString(String.valueOf(averge_disc)) + "</span>折<span class='highlightu'>" + sing.averge_sale_price + "</span>元</span></p>");
+		out.print(sb.toString());
+	%>
+	</div>
+</div>
+
+<%}%>
+
+<!-- 	最近成交價(折扣) -->
+<%if (sale_range.size() > 0) {%>
+<c:choose>
+<c:when test="${cookie['mobile'].value eq 'on'}">
+<div class="row" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px; display:none;"></div>
+</c:when>
+<c:otherwise>
+<div class="row hidden-xs hidden-sm" style="border-bottom: 1px dotted #C2C2C2;height:15px;margin-bottom: 10px; display:none;"></div>
+</c:otherwise>
+</c:choose>
+
+<c:choose>
+<c:when test="${cookie['mobile'].value eq 'on'}">
+<div class="row" style="margin-bottom: 15px; display:none;">
+</c:when>
+<c:otherwise>
+<div class="row hidden-xs hidden-sm" style="margin-bottom: 15px; display:none;">
+</c:otherwise>
+</c:choose>
+<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 15px; display:none;">
+	<%
+	List sortedKeys = new ArrayList(sale_range.keySet());
+	Collections.sort(sortedKeys);
+	sb = new StringBuilder();
+	JSONArray recordList = new JSONArray();
+	for (int i = 0; i < sortedKeys.size(); i++) {
+		String key = sortedKeys.get(i).toString();
+		JSONObject record = sale_range.get(key);
+		record.put("sale_month", key);
+		int price_total = record.getInt("sale_price");
+		int count = record.getInt("prod_count");
+		float disc_total = Float.valueOf(record.getString("disc"));
+		record.put("avg_price", Math.round(price_total / count));
+		if (disc_total / count < 1) {
+			record.put("avg_disc", 1);
+		}
+		if (disc_total / count > 1) {
+			record.put("avg_disc", Math.round(disc_total / count));
+		}
+		recordList.add(record);
+	}
+	out.print("<div class='recordList' style='display:none'>" + recordList.toString() + "</div>");
+	out.print("<p><span class='span03'>最近成交價(折扣)</span></p>");
+%>
+
+</div>
+</div>
+<%
+}
+%>
+
+
 
 <div class="row" style="margin-bottom: 10px;">
 	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
