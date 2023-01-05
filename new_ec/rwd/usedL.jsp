@@ -4287,54 +4287,6 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 
 
-<c:choose>
-	<c:when test="${cookie['mobile'].value eq 'on'}">
-	<div class="row" style="margin-bottom: 10px;">
-	</c:when>
-	<c:otherwise>
-	<div class="row hidden-xs hidden-sm" style="margin-bottom: 10px;">
-	</c:otherwise>
-</c:choose>
-	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
-			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
-				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
-				
-
-<%
-sb = new StringBuilder();
-int total_sale = 0;
-if (sprod_range.size() > 0) {
-	int index = 0;
-	sb.append("<table class='sale_range' width='100%' class='table' border='0' cellspacing='0' cellpadding='0'>");
-	sb.append("<tr class='column_title'><td class='column_left' width='50%'>二手價</td><td width='50%'>數量</td></tr>");
-	for (int i : sing.priceArray) {
-		String bg_color = "#ffffff";
-		if (sprod_range.containsKey(String.valueOf(i))) {
-			if (String.valueOf(i).equals(sing.most_sale)) {
-				sb.append("<tr bgcolor='#efefef'><td class='column column_left' rel='" + i + "' style='font-weight:bold'>" + sing.getRangeText(i) + "</td><td class='column' align='right'>" + sprod_range.get(String.valueOf(i)) + "</td></tr>");
-			} else {
-				sb.append("<tr bgcolor='" + bg_color + "'><td class='column column_left' rel='" + i + "'>" + sing.getRangeText(i) + "</td><td class='column' align='right'>" + sprod_range.get(String.valueOf(i)) + "</td></tr>");
-			}
-			total_sale += Integer.valueOf(sprod_range.get(String.valueOf(i)));
-		} else {
-			if (String.valueOf(i).equals(sing.most_sale)) {
-				sb.append("<tr  bgcolor='#efefef'><td class='column column_left' rel='" + i + "' style='font-weight:bold'>" + sing.getRangeText(i) + "</td><td class='column' align='right' >0</td></tr>");
-			}
-		}
-		index++;
-	}
-	sb.append("</table>");
-	out.print(sb.toString());
-}
-%>
-<input type="hidden" id="TOTAL_SALE" value="<%=total_sale %>"/>
-</div>
-</div>
-</div>
-
-
-
-
 <!-- 	最多人成交 -->
 <%if (sing.averge_sale_price > 0) {%>
 
@@ -4421,6 +4373,54 @@ style="border-bottom: 1px solid #C2C2C2;height:0px;margin-bottom: 10px;"></div>
 }
 %>
 
+
+
+
+
+<c:choose>
+	<c:when test="${cookie['mobile'].value eq 'on'}">
+	<div class="row" style="margin-bottom: 10px;">
+	</c:when>
+	<c:otherwise>
+	<div class="row hidden-xs hidden-sm" style="margin-bottom: 10px;">
+	</c:otherwise>
+</c:choose>
+	<div class="col-sm-6 col-xs-12" style=" margin: 10px 0px;">
+			<div class="col-sm-12 col-xs-12" style='padding:0px; margin-bottom: 10px;'>
+				<div class="col-sm-12 col-xs-12" style='padding:0px;text-align:center;'>
+				
+
+<%
+sb = new StringBuilder();
+int total_sale = 0;
+if (sprod_range.size() > 0) {
+	int index = 0;
+	sb.append("<table class='sale_range' width='100%' class='table' border='0' cellspacing='0' cellpadding='0'>");
+	sb.append("<tr class='column_title'><td class='column_left' width='50%'>二手價</td><td width='50%'>數量</td></tr>");
+	for (int i : sing.priceArray) {
+		String bg_color = "#ffffff";
+		if (sprod_range.containsKey(String.valueOf(i))) {
+			if (String.valueOf(i).equals(sing.most_sale)) {
+				sb.append("<tr bgcolor='#efefef'><td class='column column_left' rel='" + i + "' style='font-weight:bold'>" + sing.getRangeText(i) + "</td><td class='column' align='right'>" + sprod_range.get(String.valueOf(i)) + "</td></tr>");
+			} else {
+				sb.append("<tr bgcolor='" + bg_color + "'><td class='column column_left' rel='" + i + "'>" + sing.getRangeText(i) + "</td><td class='column' align='right'>" + sprod_range.get(String.valueOf(i)) + "</td></tr>");
+			}
+			total_sale += Integer.valueOf(sprod_range.get(String.valueOf(i)));
+		} else {
+			if (String.valueOf(i).equals(sing.most_sale)) {
+				sb.append("<tr  bgcolor='#efefef'><td class='column column_left' rel='" + i + "' style='font-weight:bold'>" + sing.getRangeText(i) + "</td><td class='column' align='right' >0</td></tr>");
+			}
+		}
+		index++;
+	}
+	sb.append("</table>");
+	out.print(sb.toString());
+}
+%>
+<input type="hidden" id="TOTAL_SALE" value="<%=total_sale %>"/>
+</div>
+</div>
+</div>
 
 
 <div class="row" style="margin-bottom: 10px;">
