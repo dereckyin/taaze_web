@@ -4203,7 +4203,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	<div class="row hidden-xs hidden-sm" style="margin-bottom: 15px; display:none;">
 	</c:otherwise>
 </c:choose>
-	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 0px; display:none;">
+	<div class="col-sm-12 col-xs-12" id="sprodConetnt2" style="margin:10px 15px; display:none;">
 		<%
 		List sortedKeys = new ArrayList(sale_range.keySet());
 		Collections.sort(sortedKeys);
@@ -4310,7 +4310,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
 				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div' class='prodContent'>";
 			} else {
-				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div' style='poition: relative; margin-top: -40px;'>";
+				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
 			}
 			if(i > 0) {
 				DOM += String.format(htmlBuild1, textAreaDOM.getJSONObject(i).getString("title"));
@@ -4362,7 +4362,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 	</div>
 
 	<div class="button_container">
-        <span class="btn2"><b class="v1">閱讀更多...</b><b class="v2 open">閱讀更少...</b></span>  
+        <span class="btn2"><b class="v1">顯示全部內容</b><b class="v2 open">顯示部分內容</b></span>  
     </div>
 
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
