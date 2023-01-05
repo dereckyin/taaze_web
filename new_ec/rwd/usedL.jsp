@@ -1546,7 +1546,7 @@ if(gift_info != null) {
 JSONObject recommendZekea = null;
 recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 // 商品資料
-String prodDataSb = getQuarter(sing_o.orgFlg, sing_o.prodCatId, sing_o.publishDate, sing_o.author, author_text, avInfo, producers, sing_o.painter, sing_o.translator, sing_o.brandId, sing_o.brandNm, sing.pubNmMain, sing.isbn, eancode, sing_o.rank, sing_o.countryNm, sing_o.catName, sing_o.prodSpec, "", sing_o.language, sing_o.phonetics, "A", "", "", sing_o.pages, sing_o.bookSize, "", "", "", "", "", "", "");
+String prodDataSb = getQuarter(sing_o.orgFlg, sing_o.prodCatId, sing_o.getDateFormat(sing_o.publishDate), sing_o.author, author_text, avInfo, producers, sing_o.painter, sing_o.translator, sing_o.brandId, sing_o.brandNm, sing.pubNmMain, sing.isbn, eancode, sing_o.rank, sing_o.countryNm, sing_o.catName, sing_o.prodSpec, "", sing_o.language, sing_o.phonetics, "A", "", "", sing_o.pages, sing_o.bookSize, "", "", "", "", "", "", "");
 
 %>
 
@@ -1594,7 +1594,7 @@ public String getQuarter
     String searchProdAuthorUrlPattern = "/rwd_searchResult.html?keyType%5B%5D=2&keyword%5B%5D=";
     String searchProdPubUrlPattern = "/rwd_searchResult.html?keyType%5B%5D=3&keyword%5B%5D=";
 	String prodPublishText = "出版社";
-	String prodPublishDateText = "上架日期";
+	String prodPublishDateText = "出版日期";
 
 
     //商品資料
@@ -3061,6 +3061,10 @@ jQuery.browser = {};
 				out.print(sf.toString());
 			}
 		}
+
+		if(sing_o.publishDate!=null && sing_o.publishDate.length()>0){
+			sf.append("<div><span>出版日期<span>" +sing_o.getDateFormat(sing_o.publishDate) +"</span></span></div>");
+		
 		if(sing_o.orgFlg.equals("A") && sing_o.prodCatId.equals("31")){
 			StringBuffer sf = new StringBuffer();
 			if(sing_o.brandId!=null && sing_o.brandId.length() > 0 && sing_o.pubNmMain!=null && sing_o.pubNmMain.length()>0) {
