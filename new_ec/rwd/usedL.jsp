@@ -3064,6 +3064,7 @@ jQuery.browser = {};
 
 		if(sing_o.publishDate!=null && sing_o.publishDate.length()>0){
 			sf.append("<div><span>出版日期<span>" +sing_o.getDateFormat(sing_o.publishDate) +"</span></span></div>");
+			}
 		
 		if(sing_o.orgFlg.equals("A") && sing_o.prodCatId.equals("31")){
 			StringBuffer sf = new StringBuffer();
