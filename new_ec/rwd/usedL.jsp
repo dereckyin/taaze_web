@@ -4310,7 +4310,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 			if(!textAreaDOM.getJSONObject(i).getString("id").equals("prodPf") && !textAreaDOM.getJSONObject(i).getString("id").equals("howBuy")) {
 				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div' class='prodContent'>";
 			} else {
-				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div'>";
+				DOM += "<div id='"+textAreaDOM.getJSONObject(i).getString("id") +"Div' style='poition: relative; margin-top: -40px;'>";
 			}
 			if(i > 0) {
 				DOM += String.format(htmlBuild1, textAreaDOM.getJSONObject(i).getString("title"));
