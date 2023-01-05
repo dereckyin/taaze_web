@@ -1546,7 +1546,7 @@ if(gift_info != null) {
 JSONObject recommendZekea = null;
 recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 // 商品資料
-String prodDataSb = getQuarter(sing_o.orgFlg, sing_o.prodCatId, sing_o.publishDate, sing_o.author, author_text, avInfo, producers, sing_o.painter, sing_o.translatorPf, sing_o.brandId, sing_o.brandNm, sing.pubNmMain, sing.isbn, eancode, sing_o.rank, "", sing_o.catName, "", "", "", "", "A", "", "", "", "", "", "", "", "", "", "", "");
+String prodDataSb = getQuarter(sing_o.orgFlg, sing_o.prodCatId, sing_o.publishDate, sing_o.author, author_text, avInfo, producers, sing_o.painter, sing_o.translator, sing_o.brandId, sing_o.brandNm, sing.pubNmMain, sing.isbn, eancode, sing_o.rank, sing_o.countryNm, sing_o.catName, sing_o.prodSpec, "", sing_o.language, sing_o.phonetics, "A", "", "", sing_o.pages, sing_o.bookSize, "", "", "", "", "", "", "");
 
 %>
 
