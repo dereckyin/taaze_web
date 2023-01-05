@@ -1778,7 +1778,7 @@ if(phonetics!=null && phonetics.equals("Y")) {
 
 prodDataSb.append(getAgeText(ageBegin, ageEnd));
 
-if(bindingType){
+if(bindingType.length()>0){
     prodDataSb.append("<span class='prodInfo_boldSpan'>裝訂方式：<span style='color: #666666; font-weight: normal;'>"+ bindingType +"</span></span>");
 }
 
