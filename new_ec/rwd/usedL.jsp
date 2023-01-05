@@ -1546,7 +1546,7 @@ if(gift_info != null) {
 JSONObject recommendZekea = null;
 recommendZekea = sing_o.getRecommend(sing_o.orgProdId, systemDao);
 // 商品資料
-String prodDataSb = getQuarter(sing_o.orgFlg, sing_o.prodCatId, sing_o.getDateFormat(sing_o.publishDate), sing_o.author, author_text, avInfo, producers, sing_o.painter, sing_o.translator, sing_o.brandId, sing_o.brandNm, sing.pubNmMain, sing.isbn, eancode, sing_o.rank, sing_o.countryNm, sing_o.catName, sing_o.prodSpec, "", sing_o.language, sing_o.phonetics, "A", "", "", sing_o.pages, sing_o.bookSize, "", "", "", "", "", "", "");
+String prodDataSb = getQuarter(sing_o.orgFlg, sing_o.prodCatId, sing_o.getDateFormat(sing_o.publishDate), sing_o.author, author_text, avInfo, producers, sing_o.painter, sing_o.translator, sing_o.brandId, sing_o.brandNm, sing.pubNmMain, sing.isbn, eancode, sing_o.rank, sing_o.countryNm, sing_o.catName, sing_o.prodSpec, "", sing_o.language, sing_o.phonetics, sing_o.getBindingType(), "", "", sing_o.pages, sing_o.bookSize, "", "", "", "", "", "", "", sing_o.getCatNamePath(), cc);
 
 %>
 
@@ -1586,7 +1586,9 @@ public String getQuarter
 	String sizeH,
 	String weight,
 	String prodSize,
-	String prodColor
+	String prodColor,
+	String getCatNamePath,
+	Customer cc
 )
 {
     String prodAuthorText = "作者";
@@ -1776,9 +1778,10 @@ if(phonetics!=null && phonetics.equals("Y")) {
 
 prodDataSb.append(getAgeText(ageBegin, ageEnd));
 
-// if(getBindingType(bindingType).length()>0){
-//     prodDataSb.append("<span class='prodInfo_boldSpan'>裝訂方式：<span style='color: #666666; font-weight: normal;'>"+ getBindingType(bindingType) +"</span></span>");
-// }
+if(getBindingType(bindingType).length()>0){
+    prodDataSb.append("<span class='prodInfo_boldSpan'>裝訂方式：<span style='color: #666666; font-weight: normal;'>"+ getBindingType(bindingType) +"</span></span>");
+}
+
 if(pages!=null && pages.length()>0 && !pages.equals("0")){
     prodDataSb.append("<span class='prodInfo_boldSpan'>頁數：<span style='color: #666666; font-weight: normal;'>"+pages +"頁</span></span>");
 }
@@ -1835,6 +1838,21 @@ if(prodColorBuild.length()>0){
         prodColorBuild = "<span class='prodInfo_boldSpan'>商品顏色：</span>" + prodColorBuild;
     }
 }
+
+
+prodDataSb.append("<div style='margin:2px 0;'>");
+prodDataSb.append("<span class='prodInfo_boldSpan' style='padding:0;'>類別：<span style='color: #666666; font-weight: normal;'>"+ getCatNamePath +"</span></span>");
+if(!prodCatId.equals("61")&&!prodCatId.equals("62")){
+	prodDataSb.append("<span class='editXsxcatLink' >");
+	prodDataSb.append("<img class='single_tags' />"); 
+	if(cc!=null && cc.getCuid().toString().length()>0){
+		prodDataSb.append("<a style='cursor:pointer;' class='editXsxcat'>類別有誤？</a>");
+	}else{ 
+		prodDataSb.append("<a style='cursor:pointer;' onClick='loginFirst()'>類別有誤？</a>");
+	} 
+	prodDataSb.append("</span>");
+}
+prodDataSb.append("</div>");
  
 return prodDataSb.toString();
 }
