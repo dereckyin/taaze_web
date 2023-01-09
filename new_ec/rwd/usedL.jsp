@@ -3804,6 +3804,7 @@ onclick="cancelWantedSize2('<%=sing.orgProdId %>')">取消徵求
 
 	<div class="button_container">
         <span class="btn2"><b class="v1">顯示全部內容</b><b class="v2 open">顯示部分內容</b></span>  
+		<br/>
     </div>
 
 	<%--內容簡介/各界推薦/章節試閱/作者序/目錄購物須知....--%>
