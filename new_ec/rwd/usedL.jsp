@@ -2520,13 +2520,13 @@ jQuery.browser = {};
 					<%}else if(sing.orgFlg.equals("B")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（回頭書）</span>
 					<%}else if(sing.orgFlg.equals("A") && (sing.prodCatId.equals("14")||sing.prodCatId.equals("25")||sing.prodCatId.equals("17"))){ %>
-	<%-- 								<%if(sing.bindingType!=null && sing.bindingType.equals("P")){ %> --%>
+	<%-- 								<%if(sing_o.bindingType!=null && sing_o.bindingType.equals("P")){ %> --%>
 	<%-- 								<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（PDF版）</span> --%>
-	<%-- 								<%}else if(sing.bindingType!=null && sing.bindingType.equals("Q")){ %> --%>
+	<%-- 								<%}else if(sing_o.bindingType!=null && sing_o.bindingType.equals("Q")){ %> --%>
 	<%-- 								<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（ePub版）</span> --%>
-						<%if(sing.bindingType!=null && sing.bindingType.equals("K")){ %>
+						<%if(sing_o.bindingType!=null && sing_o.bindingType.equals("K")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子有聲書）</span>
-						<%}else if(sing.bindingType!=null && sing.bindingType.equals("S")){ %>
+						<%}else if(sing_o.bindingType!=null && sing_o.bindingType.equals("S")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子雜誌訂閱）</span>
 						<%}else if(sing.prodCatId.equals("25")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子雜誌）</span>
