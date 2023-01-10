@@ -2511,24 +2511,24 @@ jQuery.browser = {};
 			<div class="row">
 				<div class="col-xs-12">
 					<h1 style="line-height: 24px;letter-spacing: 0.5px;font-size:20px;font-weight:bold; letter-spacing:1px;margin: 0;">
-					讀冊【二手徵求好處多】|<%=sing_o.titleMain %><span style="color:#755e5f; font-weight: normal;font-size:20px;">（二手書交易資訊）</span>
-					<% if(sing_o.orgFlg.equals("A")&&sing_o.prodFgInfo!=null&&sing_o.prodFgInfo.length()>0){%>
-						<span style="padding-left: 10px; font-size: 10pt; color: #333333;"><%=sing_o.prodFgInfo %></span>
+					<%=sing_o.titleMain %><span style="color:#755e5f; font-weight: normal;font-size:20px;">（二手書交易資訊）</span>
+					<% if(sing.orgFlg.equals("A")&&sing.prodFgInfo!=null&&sing.prodFgInfo.length()>0){%>
+						<span style="padding-left: 10px; font-size: 10pt; color: #333333;"><%=sing.prodFgInfo %></span>
 					<%} %>
-					<%if(sing_o.orgFlg.equals("C")){ %>
+					<%if(sing.orgFlg.equals("C")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（二手書）</span>
-					<%}else if(sing_o.orgFlg.equals("B")){ %>
+					<%}else if(sing.orgFlg.equals("B")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（回頭書）</span>
-					<%}else if(sing_o.orgFlg.equals("A") && (sing_o.prodCatId.equals("14")||sing_o.prodCatId.equals("25")||sing_o.prodCatId.equals("17"))){ %>
-	<%-- 								<%if(sing_o.bindingType!=null && sing_o.bindingType.equals("P")){ %> --%>
+					<%}else if(sing.orgFlg.equals("A") && (sing.prodCatId.equals("14")||sing.prodCatId.equals("25")||sing.prodCatId.equals("17"))){ %>
+	<%-- 								<%if(sing.bindingType!=null && sing.bindingType.equals("P")){ %> --%>
 	<%-- 								<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（PDF版）</span> --%>
-	<%-- 								<%}else if(sing_o.bindingType!=null && sing_o.bindingType.equals("Q")){ %> --%>
+	<%-- 								<%}else if(sing.bindingType!=null && sing.bindingType.equals("Q")){ %> --%>
 	<%-- 								<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（ePub版）</span> --%>
-						<%if(sing_o.bindingType!=null && sing_o.bindingType.equals("K")){ %>
+						<%if(sing.bindingType!=null && sing.bindingType.equals("K")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子有聲書）</span>
-						<%}else if(sing_o.bindingType!=null && sing_o.bindingType.equals("S")){ %>
+						<%}else if(sing.bindingType!=null && sing.bindingType.equals("S")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子雜誌訂閱）</span>
-						<%}else if(sing_o.prodCatId.equals("25")){ %>
+						<%}else if(sing.prodCatId.equals("25")){ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子雜誌）</span>
 						<%}else{ %>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;">（電子書）</span>
