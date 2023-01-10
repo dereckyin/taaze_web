@@ -134,11 +134,6 @@ if (!sing.initState) {
 	return;
 }
 
-out.print(sing.orgProdId);
-
-if(sing.orgProdId != pid)
-	pid = sing.orgProdId;
-
 SingleLibs sing_o = null;
 if(pid.length()==11) {
 	sing_o = new SingleLibs(this.getServletConfig(), pid);
