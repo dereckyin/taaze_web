@@ -134,6 +134,7 @@ if (!sing.initState) {
 	return;
 }
 
+out.print(sing.orgProdId);
 
 if(sing.orgProdId != pid)
 	pid = sing.orgProdId;
