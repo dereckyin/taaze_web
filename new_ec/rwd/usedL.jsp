@@ -2511,7 +2511,7 @@ jQuery.browser = {};
 			<div class="row">
 				<div class="col-xs-12">
 					<h1 style="line-height: 24px;letter-spacing: 0.5px;font-size:20px;font-weight:bold; letter-spacing:1px;margin: 0;">
-					<%=sing_o.titleMain %><span style="color:#755e5f; font-weight: normal;font-size:20px;">（二手書交易資訊）</span>
+					<%=sing_o.titleMain %><span style="color:#755e5f; font-weight: normal;font-size:20px;">（二手書交易資訊）sing.orgFlg |sing＿o.orgFlg</span>
 					<% if(sing.orgFlg.equals("A")&&sing_o.prodFgInfo!=null&&sing_o.prodFgInfo.length()>0){%>
 						<span style="padding-left: 10px; font-size: 10pt; color: #333333;"><%=sing_o.prodFgInfo %></span>
 					<%} %>
